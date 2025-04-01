@@ -922,11 +922,11 @@
       (until (ja-done? 0)
         (suspend)
         (ja :num! (seek!)))
-      (let ((gp-5 (cond
-                    ((>= (-> self try) 15) 6000)
-                    ((>= (-> self try) 10) 3600)
-                    ((>= (-> self try) 5) 3000)
-                    (else 2400))))
+      (let ((gp-5 (cond ;mod: Reduced plant boss vulnerability time
+                    ((>= (-> self try) 15) (seconds 10.0))
+                    ((>= (-> self try) 10) (seconds 6.0))
+                    ((>= (-> self try) 5) (seconds 5.0))
+                    (else (seconds 4.0)))))
         (while (not (time-elapsed? (-> self state-time) gp-5))
           (ja-no-eval :group! plant-boss-main-vulnerable-ja :num! (seek!) :frame-num 0.0)
           (until (ja-done? 0)
@@ -980,6 +980,7 @@
                       (* 2.0 (seconds-per-frame))))
           (set! (-> self interp) f30-0)
           (ja :num! (seek!))
+          (ja :num! (seek!)) ;mod: Speed up plant-boss bite
           (ja :chan 1 :num! (chan 0) :frame-interp f30-0)
           (suspend)
           (set! v1-64 (>= (ja-aframe-num 0) 149.0))))

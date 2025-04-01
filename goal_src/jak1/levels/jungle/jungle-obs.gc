@@ -144,7 +144,7 @@
       (loop
         (ja-no-eval :group! lurkerm-tall-sail-idle-ja :num! (seek! max (/ (-> self speed) 2)) :frame-num 0.0)
         (until (ja-done? 0)
-          (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* 12743.111 (seconds-per-frame) (-> self speed)))
+          (quaternion-rotate-local-y! (-> self root quat) (-> self root quat) (* (degrees 70.0) (seconds-per-frame) (-> self speed)))
           (suspend)
           (ja :num! (seek! max (/ (-> self speed) 2))))))
   :post rider-post)
@@ -179,7 +179,8 @@
   (logior! (-> this skel status) (janim-status inited))
   (update-transforms! (-> this root))
   (set! (-> this alt-actor) (entity-actor-lookup (-> this entity) 'alt-actor 0))
-  (set! (-> this speed) 1.0)
+  ;mod: Increased rotation speed (1.0 -> 3.0)
+  (set! (-> this speed) 3.0)
   (if (and (-> this entity) (logtest? (-> this entity extra perm status) (entity-perm-status complete)))
     (set! (-> this speed) 0.0))
   (go lurkerm-tall-sail-idle)
@@ -261,7 +262,8 @@
   (logior! (-> this skel status) (janim-status inited))
   (update-transforms! (-> this root))
   (set! (-> this alt-actor) (entity-actor-lookup (-> this entity) 'alt-actor 0))
-  (set! (-> this speed) 1.0)
+  ;mod: Increased rotation speed (1.0 -> 3.0)
+  (set! (-> this speed) 3.0)
   (if (and (-> this entity) (logtest? (-> this entity extra perm status) (entity-perm-status complete)))
     (set! (-> this speed) 0.0))
   (go lurkerm-short-sail-idle)
@@ -333,15 +335,37 @@
     (set! sv-16 (new 'static 'res-tag))
     (let ((v1-32 (res-lump-data arg0 'height-info pointer :tag-ptr (& sv-16))))
       (set! (-> this base y)
-            (+ f30-0 (if (and v1-32 (> (the-as int (-> sv-16 elt-count)) 0)) (-> (the-as (pointer float) v1-32)) 0.0)))))
+        (+ f30-0 0.0
+          (if (and v1-32 (> (the-as int (-> sv-16 elt-count)) 0))
+            (* -1.0 (-> (the-as (pointer float) v1-32)))
+            0.0
+          )
+        )
+      )
+      ;mod: Override the piston heights
+      (+! (-> this base y) (cond
+        ((name= (-> this name) "lurkerm-piston-4") (meters -1.0))
+        ((name= (-> this name) "lurkerm-piston-5") (meters -3.5))
+        ((name= (-> this name) "lurkerm-piston-6") (meters 2.0))
+      ))
+    )
+  )
   (let ((s4-1 (-> this height)))
     (set! (-> s4-1 x) 0.0)
     (set! sv-32 (new 'static 'res-tag))
     (let ((v1-35 (res-lump-data arg0 'height-info (pointer float) :tag-ptr (& sv-32))))
-      (set! (-> s4-1 y) (if (and v1-35 (< 1 (the-as int (-> sv-32 elt-count)))) (-> v1-35 1) 20480.0)))
+      (set! (-> s4-1 y)
+        (if (and v1-35 (< 1 (the-as int (-> sv-32 elt-count))))
+          (-> v1-35 1)
+          (meters 5.0)
+        )
+      )
+    )
     (set! (-> s4-1 z) 0.0)
-    (set! (-> s4-1 w) 1.0))
-  (load-params! (-> this sync) this (the-as uint 1500) 0.0 0.15 0.15)
+    (set! (-> s4-1 w) 1.0)
+  )
+  (load-params! (-> this sync) this (the-as uint (seconds 5.0)) 0.0 0.15 0.15)
+  (set! (-> this sync period) (the-as uint (seconds 2.0)))
   (set! (-> this alt-actor) (entity-actor-lookup (-> this entity) 'alt-actor 0))
   (set! (-> this speed) 1.0)
   (if (and (-> this entity) (logtest? (-> this entity extra perm status) (entity-perm-status complete)))
@@ -385,7 +409,7 @@
   (initialize-skeleton this *accordian-sg* '())
   (set! (-> this root pause-adjust-distance) 204800.0)
   (set! (-> this alt-actor) (entity-actor-lookup (-> this entity) 'alt-actor 0))
-  (set! (-> this speed) 1.0)
+  (set! (-> this speed) 2.0) ;mod: Increased animation speed (1.0 -> 2.0)
   (if (and (-> this entity) (logtest? (-> this entity extra perm status) (entity-perm-status complete)))
     (set! (-> this speed) 0.0))
   (go accordian-idle)
@@ -453,34 +477,9 @@
     (behavior ()
       (ja :group! precurbridge-idle-ja :num! min)
       (transform-post)
-      (loop
-        (when (and *target*
-                   (< (vector-vector-xz-distance (-> self activation-point) (-> *target* control trans)) 49152.0)
-                   (< (-> self activation-point y) (-> *target* control trans y))
-                   (< (-> *target* control trans y) (+ 20480.0 (-> self activation-point y)))
-                   (not (-> self child)))
-          (cond
-            ((send-event *target* 'query 'powerup (pickup-type eco-blue))
-             (logclear! (-> self mask) (process-mask actor-pause))
-             (logclear! (-> self mask) (process-mask platform))
-             (let ((gp-1 (entity-by-name "junglecam-1")))
-               (cond
-                 (gp-1
-                  (process-spawn precurbridgecam
-                                 :init
-                                 pov-camera-init-by-other
-                                 (-> gp-1 extra trans)
-                                 *junglecam-sg*
-                                 "precurbridgecam"
-                                 0
-                                 #f
-                                 '()
-                                 :to
-                                 self))
-                 (else (format #t "ERROR<GMJ>: position for precursor bridge camera not found~%") (go precurbridge-activate)))))
-            (else
-             (level-hint-spawn (text-id sidekick-hint-precurbridge) "sksp0039" (the-as entity #f) *entity-pool* (game-task none)))))
-        (suspend)))
+      ;mod: Removed precursor bridge activation code, gotta use launchpad or boosted
+      (loop (suspend))
+    )
   :post ja-post)
 
 (defstate precurbridge-activate (precurbridge)

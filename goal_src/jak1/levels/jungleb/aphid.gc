@@ -137,6 +137,7 @@
         (ja :num! (seek!)))
       (go-virtual nav-enemy-patrol)))
 
+;mod: Speed up aphids
 (define *aphid-nav-enemy-info*
   (new 'static
        'nav-enemy-info
@@ -152,11 +153,11 @@
        :die-anim 11
        :neck-joint 10
        :player-look-at-joint 5
-       :run-travel-speed (meters 5)
+       :run-travel-speed (meters 6.5)
        :run-rotate-speed (degrees 2880)
-       :run-acceleration (meters 1)
+       :run-acceleration (meters 2.0)
        :run-turn-time (seconds 0.1)
-       :walk-travel-speed (meters 3)
+       :walk-travel-speed (meters 4.0)
        :walk-rotate-speed (degrees 720)
        :walk-acceleration (meters 1)
        :walk-turn-time (seconds 0.5)
