@@ -10,14 +10,16 @@
 
 (deftype fisher-bank (basic)
   (
-    (width       meters)
-    (net-radius  meters)
-    (net-max-vel  float) ; per second
-    (net-accel    float) ; per second
-    (net-decel    float) ; per second
-    (fish-vel     float)
-    (max-caught   int32)
-    (max-missed   int32)
+    (width             meters)
+    (net-radius        meters)
+    (net-max-vel        float) ; per second
+    (net-accel          float) ; per second
+    (net-decel          float) ; per second
+    (fish-vel           float)
+    (max-caught         int32)
+    (max-missed         int32)
+    (max-caught-hard    int32)
+    (max-missed-hard    int32)
   )
 )
 
@@ -25,12 +27,14 @@
   (new 'static 'fisher-bank
     :width       (meters   3.3) ;vanilla:   3.3
     :net-radius  (meters   0.7) ;vanilla:   0.7
-    :net-max-vel           2.0  ;vanilla:   2.0
-    :net-accel            28.0  ;vanilla:  28.0
-    :net-decel            15.0  ;vanilla:  15.0
-    :fish-vel              1.85 ;vanilla:   1.85
+    :net-max-vel           2.2  ;vanilla:   2.0
+    :net-accel            32.0  ;vanilla:  28.0
+    :net-decel            17.0  ;vanilla:  15.0
+    :fish-vel              2.85 ;vanilla:   1.85 ;mod: All fish are faster, controls are snappier to compensate
     :max-caught          200    ;vanilla: 200
     :max-missed           20    ;vanilla:  20
+    :max-caught-hard     400
+    :max-missed-hard      30
   )
 )
 
@@ -51,8 +55,9 @@
     (:y (meters 0.2))
     (:scale-x (meters 0.5) (meters 0.5))
     (:scale-y :copy scale-x)
-    (:r 128.0 128.0)
-    (:b 128.0 128.0)
+    (:r 128.0 128.0) ;mod: Red-ish
+    (:g 16.0 32.0)   ;mod: Red-ish
+    (:b 16.0 32.0)  ;mod: Red-ish
     (:a 0.0)
     (:vel-x (meters -0.0033333334) (meters 0.006666667))
     (:scalevel-x (meters 0.0033333334))
@@ -186,6 +191,7 @@
     (fish-vel            float)
     (big-chance         float)
     (deadly-chance      float)
+    (assassin-chance    float)  ; Applied *only* to fish that rolled deadly, not as a separate fish type
     ;;[ADD-FISH-TYPE] (<FISH-TYPE>-chance float)
   )
   :allow-misaligned
@@ -202,7 +208,7 @@
     (pad-buttons left)
     (pad-buttons right)
     (pad-buttons right)
-    (pad-buttons x)
+    (pad-buttons square) ;mod: Change x -> square so the "go immediately to query" change doesn't automatically accept
   )
 )
 
@@ -222,6 +228,8 @@
   )
 )
 
+;mod: Eel waves now have 100% eel chance, and appropriate(-ish) assassin chances
+;mod: Eel waves also have a drastically reduced period
 (define *fisher-waves*
   (new 'static 'boxed-array :type (inline-array fisher-wave-data)
     ; Pity 0
@@ -247,52 +255,57 @@
         :length (seconds 8)
         :post-margin (seconds 2.0)
         :vel 3.0
-        :swing-min (seconds 0.5)
+        :swing-min (seconds 0.6)
         :swing-max (seconds 2)
-        :period (seconds 0.6)
+        :period (seconds 0.4)
         :fish-vel 1.6
-        :big-chance 0.25
-        :deadly-chance 0.375)
+        :big-chance 0.5
+        :deadly-chance 1.0
+        :assassin-chance 0.5)
       (new 'static 'fisher-wave-data
         :length (seconds 15)
         :post-margin (seconds 2.0)
         :vel 0.6
-        :swing-min (seconds 0.5)
+        :swing-min (seconds 0.625)
         :swing-max (seconds 2)
         :period (seconds 0.45)
         :fish-vel 1.7
         :big-chance 0.1
-        :deadly-chance 0.09)
+        :deadly-chance 0.09
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 15)
         :post-margin (seconds 2.0)
         :vel 3.0
-        :swing-min (seconds 0.5)
+        :swing-min (seconds 0.65)
         :swing-max (seconds 2)
         :period (seconds 0.4)
         :fish-vel 1.8
         :big-chance 0.1
-        :deadly-chance 0.09)
+        :deadly-chance 0.09
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 15)
         :post-margin (seconds 2.0)
         :vel 3.0
-        :swing-min (seconds 0.5)
+        :swing-min (seconds 0.675)
         :swing-max (seconds 2)
-        :period (seconds 0.5)
+        :period (seconds 0.3)
         :fish-vel 1.9
-        :big-chance 0.1
-        :deadly-chance 0.81)
+        :big-chance 1.0
+        :deadly-chance 1.0
+        :assassin-chance 0.1)
       (new 'static 'fisher-wave-data
         :length (seconds 2000)
         :post-margin (seconds 2.0)
         :vel 0.8
-        :swing-min (seconds 0.5)
+        :swing-min (seconds 0.7)
         :swing-max (seconds 2)
-        :period (seconds 0.35)
+        :period (seconds 0.375)
         :fish-vel 2.0
         :big-chance 0.1
-        :deadly-chance 0.09)
+        :deadly-chance 0.09
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data)
     )
 
@@ -321,10 +334,11 @@
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.7)
+        :period (seconds 0.45)
         :fish-vel 1.5
-        :big-chance 0.25
-        :deadly-chance 0.3)
+        :big-chance 0.5
+        :deadly-chance 1.0
+        :assassin-chance 0.5)
       (new 'static 'fisher-wave-data
         :length (seconds 18)
         :post-margin (seconds 2.0)
@@ -334,7 +348,8 @@
         :period (seconds 0.527)
         :fish-vel 1.6
         :big-chance 0.1
-        :deadly-chance 0.0747)
+        :deadly-chance 0.0747
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 18)
         :post-margin (seconds 2.0)
@@ -344,17 +359,19 @@
         :period (seconds 0.48)
         :fish-vel 1.7
         :big-chance 0.1
-        :deadly-chance 0.0747)
+        :deadly-chance 0.0747
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 14)
         :post-margin (seconds 2.0)
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.58)
+        :period (seconds 0.36)
         :fish-vel 1.8
-        :big-chance 0.1
-        :deadly-chance 0.72)
+        :big-chance 1.0
+        :deadly-chance 1.0
+        :assassin-chance 0.1)
       (new 'static 'fisher-wave-data
         :length (seconds 2000)
         :post-margin (seconds 2.0)
@@ -364,7 +381,8 @@
         :period (seconds 0.43)
         :fish-vel 1.8
         :big-chance 0.1
-        :deadly-chance 0.0747)
+        :deadly-chance 0.0747
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data)
     )
 
@@ -393,10 +411,11 @@
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.8)
+        :period (seconds 0.5)
         :fish-vel 1.5
-        :big-chance 0.25
-        :deadly-chance 0.225)
+        :big-chance 0.5
+        :deadly-chance 1.0
+        :assassin-chance 0.5)
       (new 'static 'fisher-wave-data
         :length (seconds 21)
         :post-margin (seconds 2.0)
@@ -406,7 +425,8 @@
         :period (seconds 0.61)
         :fish-vel 1.5
         :big-chance 0.1
-        :deadly-chance 0.0594)
+        :deadly-chance 0.0594
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 21)
         :post-margin (seconds 2.0)
@@ -416,17 +436,19 @@
         :period (seconds 0.56)
         :fish-vel 1.6
         :big-chance 0.1
-        :deadly-chance 0.0594)
+        :deadly-chance 0.0594
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 14)
         :post-margin (seconds 2.0)
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.66)
+        :period (seconds 0.49)
         :fish-vel 1.6
-        :big-chance 0.1
-        :deadly-chance 0.54)
+        :big-chance 1.0
+        :deadly-chance 1.0
+        :assassin-chance 0.1)
       (new 'static 'fisher-wave-data
         :length (seconds 2000)
         :post-margin (seconds 2.0)
@@ -436,7 +458,8 @@
         :period (seconds 0.515)
         :fish-vel 1.7
         :big-chance 0.1
-        :deadly-chance 0.0594)
+        :deadly-chance 0.0594
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data)
     )
 
@@ -465,10 +488,11 @@
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.9)
+        :period (seconds 0.6)
         :fish-vel 1.4
-        :big-chance 0.25
-        :deadly-chance 0.15)
+        :big-chance 0.5
+        :deadly-chance 1.0
+        :assassin-chance 0.5)
       (new 'static 'fisher-wave-data
         :length (seconds 23)
         :post-margin (seconds 2.0)
@@ -478,7 +502,8 @@
         :period (seconds 0.7)
         :fish-vel 1.4
         :big-chance 0.1
-        :deadly-chance 0.045)
+        :deadly-chance 0.045
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 23)
         :post-margin (seconds 2.0)
@@ -488,17 +513,19 @@
         :period (seconds 0.65)
         :fish-vel 1.5
         :big-chance 0.1
-        :deadly-chance 0.045)
+        :deadly-chance 0.045
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 13)
         :post-margin (seconds 2.0)
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.75)
+        :period (seconds 0.57)
         :fish-vel 1.5
-        :big-chance 0.1
-        :deadly-chance 0.45)
+        :big-chance 1.0
+        :deadly-chance 1.0
+        :assassin-chance 0.1)
       (new 'static 'fisher-wave-data
         :length (seconds 2000)
         :post-margin (seconds 2.0)
@@ -508,7 +535,8 @@
         :period (seconds 0.6)
         :fish-vel 1.6
         :big-chance 0.1
-        :deadly-chance 0.045)
+        :deadly-chance 0.045
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data)
     )
 
@@ -537,10 +565,11 @@
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.9)
+        :period (seconds 0.76)
         :fish-vel 1.3
-        :big-chance 0.25
-        :deadly-chance 0.15)
+        :big-chance 0.5
+        :deadly-chance 1.0
+        :assassin-chance 0.5)
       (new 'static 'fisher-wave-data
         :length (seconds 3)
         :post-margin (seconds 2.0)
@@ -584,7 +613,8 @@
         :period (seconds 0.9)
         :fish-vel 1.3
         :big-chance 0.1
-        :deadly-chance 0.045)
+        :deadly-chance 0.045
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data
         :length (seconds 3)
         :post-margin (seconds 2.0)
@@ -620,7 +650,8 @@
         :period (seconds 0.9)
         :fish-vel 1.3
         :big-chance 0.1
-        :deadly-chance 0.045)
+        :deadly-chance 0.045
+        :assassin-chance 0.12)
       (new 'static 'fisher-wave-data)
     )
 
@@ -649,10 +680,11 @@
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.6)
+        :period (seconds 0.3)
         :fish-vel 2.0
-        :big-chance 0.25
-        :deadly-chance 0.5625)
+        :big-chance 1.0
+        :deadly-chance 1.0
+        :assassin-chance 0.5)
       (new 'static 'fisher-wave-data
         :length (seconds 15)
         :post-margin (seconds 2.0)
@@ -679,10 +711,11 @@
         :vel 3.0
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.4)
+        :period (seconds 0.23)
         :fish-vel 2.0
-        :big-chance 0.1
-        :deadly-chance 0.81)
+        :big-chance 1.0
+        :deadly-chance 1.0
+        :assassin-chance 0.25)
       (new 'static 'fisher-wave-data
         :length (seconds 30)
         :post-margin (seconds 2.0)
@@ -708,10 +741,11 @@
         :vel 1.4
         :swing-min (seconds 0.5)
         :swing-max (seconds 2)
-        :period (seconds 0.25)
+        :period (seconds 0.147)
         :fish-vel 2.0
-        :big-chance 0.1
-        :deadly-chance 0.18)
+        :big-chance 1.0
+        :deadly-chance 1.0
+        :assassin-chance 0.5)
       (new 'static 'fisher-wave-data
         :length (seconds 31535998)
         :post-margin (seconds 2.0)
@@ -949,8 +983,8 @@
   :code
     (behavior ()
       (case (-> self fish-type)
-        (('deadly)
-          (sound-play "caught-eel")
+        (('deadly 'assassin)
+          (sound-play "caught-eel" :vol (if (-> (fisher-parent) hard) 75.0 100.0)) ;mod: Reduce sfx volume in hard mode
           (ambient-hint-spawn "sksp0a42" (-> self root trans) *entity-pool* 'ambient)
           (send-event (ppointer->process (-> self parent)) 'deadly)
         )
@@ -965,7 +999,13 @@
             (-> self root trans)
             :to *entity-pool*
           )
-          (sound-play "get-big-fish")
+          ;mod: Reduce sfx volume in hard mode, further on last wave (100.0 -> 80.0 -> 50.0)
+          (sound-play "get-big-fish"
+            :vol (if (-> (fisher-parent) hard)
+              (if (= (-> (fisher-parent) wave) (- (-> *fisher-wave-counts* *fisher-hardmode-idx*) 1)) 50.0 80.0)
+              100.0
+            )
+          )
           (send-event (ppointer->process (-> self parent)) 'fisher-fish-caught 5)
         )
         ;;[ADD-FISH-TYPE] Add handling for fish being caught here
@@ -980,16 +1020,23 @@
             (-> self root trans)
             :to *entity-pool*
           )
-          (sound-play "get-small-fish")
+          ;mod: Reduce sfx volume in hard mode, further on last wave (100.0 -> 80.0 -> 50.0)
+          (sound-play "get-small-fish"
+            :vol (if (-> (fisher-parent) hard)
+              (if (= (-> (fisher-parent) wave) (- (-> *fisher-wave-counts* *fisher-hardmode-idx*) 1)) 50.0 80.0)
+              100.0
+            )
+          )
           (send-event (ppointer->process (-> self parent)) 'fisher-fish-caught 1)
         )
       )
 
-      (/! (-> self vel) 4) ; Make them move less but don't just kill their velocity
+      (/! (-> self vel) 4.5) ; Make them move less but don't just kill their velocity ;mod /4 -> /4.5
       (while (< 0.1 (-> self root scale x))
         (set! (-> self offset) (-> (fisher-parent) paddle))
         (fisher-fish-move)
-        (vector-float*! (-> self root scale) (-> self root scale) 0.93)
+        ;mod: scale down faster to get out of the way (0.93 -> 0.88)
+        (vector-float*! (-> self root scale) (-> self root scale) 0.88)
         (ja-post)
         (suspend)
         (ja :num! (loop!))
@@ -1004,7 +1051,8 @@
       (('big)
         (level-hint-spawn (text-id sidekick-hint-fish-powerup) "sksp0b42" (the-as entity #f) *entity-pool* (game-task none))
         (let ((ambient-rng (rand-float-gen)))
-          (if (< 0.5 ambient-rng)
+          ;mod: Disable fisher dialog in hard mode
+          (if (and (not (-> (fisher-parent) hard)) (< 0.5 ambient-rng))
             (play-ambient (-> (fisher-parent) ambient) "FIS-TA04" #t (-> self root trans))
             (play-ambient (-> (fisher-parent) ambient) "FIS-TA05" #t (-> self root trans))
           )
@@ -1012,9 +1060,13 @@
         (send-event (ppointer->process (-> self parent)) 'fisher-fish-die 5)
       )
       ;;[ADD-FISH-TYPE] Add handling for fish being missed here
+      (('assassin)
+        (send-event (ppointer->process (-> self parent)) 'fisher-fish-die 0)
+      )
       (else
         (let ((ambient-rng (rand-float-gen)))
           (cond
+            ((-> (fisher-parent) hard)) ;mod: Disable fisher dialog in hard mode
             ((< 0.8333 ambient-rng)
               (if (< (-> (fisher-parent) paddle-pos z) (-> self root trans z))
                 (play-ambient (-> (fisher-parent) ambient) "FIS-TA01" #t (-> self root trans))
@@ -1053,19 +1105,32 @@
   (set! (-> self size) (meters 0.8))
 
   (initialize-skeleton self
-    (cond
-      ((= type 'deadly)
-        (set! (-> self size) (meters 0.1))
+    (case type
+      (('deadly)
+        (set! (-> self size) (meters 0.2)) ;mod: Eels have a larger "hitbox"
         (set-vector! (-> self root scale) 0.9 0.9 0.7 1.0)
         (set! (-> self part) (create-launch-control (-> *part-group-id-table* 177) self))
         *catch-fish-deadly-sg*
       )
-      ((= type 'big)
+      (('big)
         (set-vector! (-> self root scale) 0.4 0.4 0.4 1.0)
         (set! (-> self part) (create-launch-control (-> *part-group-id-table* 178) self))
         *catch-fish-big-sg*
       )
       ;;[ADD-FISH-TYPE] Add initialization here
+      (('assassin) ; Disguises itself as another fish, but maintains poison puff particles
+        (set! (-> self part) (create-launch-control (-> *part-group-id-table* 177) self))
+        (if (rand-vu-percent? (-> (fisher-parent) wave-data big-chance))
+          (begin ; beeg fish
+            (set-vector! (-> self root scale) 0.4 0.4 0.4 1.0)
+            *catch-fish-big-sg*
+          )
+          (begin ; smol fish
+            (set-vector! (-> self root scale) 0.3 0.3 0.3 1.0)
+            *catch-fish-normal-sg*
+          )
+        )
+      )
       (else
         (set-vector! (-> self root scale) 0.3 0.3 0.3 1.0)
         (set! (-> self part) (create-launch-control (-> *part-group-id-table* 178) self))
@@ -1469,6 +1534,7 @@
 (defbehavior fisher-spawn-ambient fisher ()
   (let ((ambient-rng (rand-float-gen)))
     (cond
+      ((-> self hard)) ;mod: Disable fisher dialog in hard mode
       ((and
             (< 0.3 ambient-rng)
             (< (- (-> self max-caught) 30) (-> self caught))
@@ -1535,35 +1601,50 @@
     )
 
     ; Clamp the spawner pos
+    ;mod: In hard mode, clamp it to a bit thinner because we spawn eels at the edges
     (cond
       ((and
             (< 0.0 (-> self wave-data vel))
-            (>= (-> self spawner) 1.0)
+            (>= (-> self spawner) (if (-> self hard) 0.9 1.0))
           )
         (set! (-> self wave-data vel) (- (-> self wave-data vel)))
-        (set! (-> self spawner) 1.0)
+        (set! (-> self spawner) (if (-> self hard) 0.9 1.0))
       )
       ((and
             (> 0.0 (-> self wave-data vel))
-            (<= (-> self spawner) 0.0)
+            (<= (-> self spawner) (if (-> self hard) 0.1 0.0))
           )
         (set! (-> self wave-data vel) (- (-> self wave-data vel)))
-        (set! (-> self spawner) 0.0)
+        (set! (-> self spawner) (if (-> self hard) 0.1 0.0))
       )
     )
 
     ; Try to spawn a fish
     (when (and (nonzero? (-> self wave-data period)) (time-elapsed? (-> self spawn-time) (-> self wave-data period)))
       ;mod: Revamped fish type rng code, chances in waves were adjusted to match vanilla rates
+      ;mod: Expert Mode further adjusts rates for more difficult eel phases
       (let (
             (fish-type 'normal)
             (fish-rng (rand-float-gen))
             (sum 0.0)
             (fish-vel-mul (res-lump-float (-> self entity) 'fish-vel :default (-> *fisher-bank* fish-vel)))
           )
+        (+! sum (-> self wave-data deadly-chance))
+        (when (and (= fish-type 'normal) (< fish-rng sum))
+          (set! fish-type 'deadly)
+
+          ; Assassins are more of a "modifier" to eels than their own fish type
+          (if (rand-vu-percent? (-> self wave-data assassin-chance))
+            (set! fish-type 'assassin)
+          )
+        )
+
+        ;mod: Check big chance second in case deadly = 1.0 but we want big assassins
         (+! sum (-> self wave-data big-chance))
         (when (and (= fish-type 'normal) (< fish-rng sum))
+          ;mod: Disable fisher dialog in hard mode
           (if (and
+                (not (-> self hard))
                 (time-elapsed? (-> self ambient-big-one) (seconds 30))
                 (play-ambient (-> self ambient) "FIS-TA03" #t (-> self root trans))
               )
@@ -1571,11 +1652,6 @@
           )
 
           (set! fish-type 'big)
-        )
-
-        (+! sum (-> self wave-data deadly-chance))
-        (when (and (= fish-type 'normal) (< fish-rng sum))
-          (set! fish-type 'deadly)
         )
 
         ;;[ADD-FISH-TYPE]
@@ -1593,13 +1669,23 @@
         (set! (-> self spawner-last) (-> self spawner))
         (set-time! (-> self spawn-time))
 
-        (sound-play "fish-spawn" :vol 70)
+        ;mod: Reduce sfx volume in hard mode, further on last wave (70.0 -> 50.0 -> 20.0)
+        (sound-play "fish-spawn"
+          :vol (if (-> self hard)
+            (if (= (-> self wave) (- (-> *fisher-wave-counts* *fisher-hardmode-idx*) 1)) 20.0 50.0)
+            70.0
+          )
+        )
         (fisher-spawn-ambient)
-        (process-spawn fisher-fish
-          fish-type
-          (-> self spawner)
-          (* fish-vel-mul (-> self wave-data fish-vel))
-          :to self
+
+        (let ((fish-vel (* fish-vel-mul (-> self wave-data fish-vel))))
+          (process-spawn fisher-fish fish-type (-> self spawner) fish-vel :to self)
+
+          ;mod: In hard mode, alongside whatever fish we just spawned, spawn two eels at the edges of the river
+          (when (-> self hard)
+            (process-spawn fisher-fish 'deadly -0.05 fish-vel :to self)
+            (process-spawn fisher-fish 'deadly 1.05 fish-vel :to self)
+          )
         )
       )
     )
@@ -1631,7 +1717,7 @@
 
       (case message
         (('fisher-fish-die)
-          (sound-play "fish-miss")
+          (sound-play "fish-miss" :vol (if (-> self hard) 50.0 100.0)) ; Reduce sfx volume in hard mode
           (+! (-> self missed) (the-as int (-> block param 0)))
           (the-as object (-> self missed))
         )
@@ -1927,7 +2013,7 @@
   :trans
     (behavior ()
       (call-parent-state-handler trans)
-      (when (task-complete? *game-info* (-> (fisher-get-perm) task))
+      (when (or #t (task-complete? *game-info* (-> (fisher-get-perm) task)))
         (when (nonzero? (-> *cpad-list* cpads 0 button0-rel 0))
           ; Inputting hard mode cheat...
           (if (cpad-pressed-btn? 0 (-> *fisher-hardmode-cheat* (-> self cheat-progress)))
@@ -1938,18 +2024,22 @@
           ; Successfully inputted hard mode cheat!
           (when (= (-> self cheat-progress) *fisher-hardmode-cheat-length*)
             ;mod: Add some extra changes so it's more obvious
-            ; The music won't activate until the player goes away and comes back lol
             (sound-play "menu-close")
             (set! (-> self music) 'finalboss)
+            (set-setting! 'music (-> self music) 0.0 0)
 
             (set! (-> self hard) #t)
             (set! (-> self pity) *fisher-hardmode-idx*)
-            (set! (-> self max-caught) #x70000000)
+            (set! (-> self max-caught) (-> *fisher-bank* max-caught-hard))
+            (set! (-> self max-missed) (-> *fisher-bank* max-missed-hard))
 
             ;mod: this was a lil buggy and inconsistent so I commented it out
             ;(ambient-hint-spawn "FIS-LO03" (the-as vector #f) *entity-pool* 'stinger)
 
             (set! (-> self cheat-progress) 0)
+
+            ;mod: Immediately go to query
+            (go (method-of-object self query))
           )
         )
       )
