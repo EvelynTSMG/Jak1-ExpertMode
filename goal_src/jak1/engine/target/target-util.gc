@@ -160,7 +160,7 @@
        :fall-timeout (seconds 1)
        :fall-stumble-threshold (meters 39.9)
        :yellow-projectile-speed (meters 60)
-       :hit-invulnerable-timeout (seconds 3)
+       :hit-invulnerable-timeout (seconds 1.5)
        :run-cycle-length 60.0
        :walk-cycle-dist (meters 2.8)
        :walk-up-cycle-dist (meters 2.8)
