@@ -65,8 +65,7 @@
 
 (defstate plat-path-active (plat-eco-finalboss)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('target)
          (process-entity-status! self (entity-perm-status complete) #t)
@@ -81,16 +80,14 @@
          (set-time! (-> self touch-time))
          #f)
         (else (plat-event proc argc message block))))
-  :enter
-    (behavior ((arg0 plat))
+  :enter (behavior ((arg0 plat))
       (set-time! (-> self state-time))
       (lods-assign! (-> self draw) (-> self lit-look))
       (process-entity-status! self (entity-perm-status complete) #t)
       (cond
         (arg0)
         (else (dotimes (gp-1 5) (spawn-projectile-blue *target*)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((s5-0 (eval-path-curve! (-> self path) (new 'stack-no-clear 'vector) 0.0 'interp))
             (gp-0 (eval-path-curve! (-> self path) (new 'stack-no-clear 'vector) 1.0 'interp)))
         (if (time-elapsed? (-> self touch-time) (seconds 3)) (set! (-> self targ-dest) -1.0))
@@ -418,20 +415,17 @@
 
 (defstate play-anim (sage-finalboss)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('fade) (set! (-> self credit-fade) 1.0))
         (('flash) (set! (-> self palette-val) 1.9921875))
         (('activate-particle)
          (let ((v0-0 (the-as object #t))) (set! (-> self particle (-> block param 0) active) (the-as symbol v0-0)) v0-0))
         (('deactivate-particle) (set! (-> self particle (-> block param 0) active) #f) #f)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self credit-fade) 0.0)
       ((-> (method-of-type process-taskable play-anim) enter)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when (= (current-status (-> self tasks)) (task-status complete))
         (cond
           ((not (-> self credits-played)) (set! (-> self kick-the-credits) #t))
@@ -476,8 +470,7 @@
       (dotimes (v1-84 9)
         (set! (-> self particle v1-84 active) #f))
       ((-> (method-of-type process-taskable play-anim) exit)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (local-vars (f28-0 float))
       (when (-> self left-door)
         (let ((f30-0 (ja-aframe-num 0)))
@@ -570,13 +563,11 @@
       ((-> (method-of-type process-taskable play-anim) trans))))
 
 (defstate sage-finalboss-credits (sage-finalboss)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when (= (current-status (-> self tasks)) (task-status complete))
         (set-blackout-frames 0)
         (initialize! *game-info* 'game (the-as game-save #f) "title-start")))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (s5-0 symbol))
       (set! (-> self credits-played) #t)
       (set-blackout-frames 0)
@@ -643,24 +634,20 @@
 
 (defstate hidden (sage-finalboss)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (sage-finalboss-extra-enter)
       ((-> (method-of-type process-taskable hidden) enter))
       (remove-setting! 'allow-progress))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (sage-finalboss-extra-trans)
       ((-> (method-of-type process-taskable hidden) trans))))
 
 (defstate idle (sage-finalboss)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (sage-finalboss-extra-enter)
       ((-> (method-of-type process-taskable idle) enter)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (sage-finalboss-extra-trans)
       ((-> (method-of-type process-taskable idle) trans))))
 

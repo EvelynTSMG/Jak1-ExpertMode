@@ -26,8 +26,7 @@
        :count 3
        :converted #f
        :normal-scale 1.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.5)
@@ -74,13 +73,11 @@
 
 (defstate water-vol-idle (sunken-water)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('notify) (if (= (-> block param 0) 'attack) (sound-play "get-shocked")))
         (else ((-> (method-of-type water-anim water-vol-idle) event) proc argc message block))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((t9-0 (-> (method-of-type water-anim water-vol-idle) trans))) (if t9-0 (t9-0)))
       (cond
         ((-> self use-sync?)

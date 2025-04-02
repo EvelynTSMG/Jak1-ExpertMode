@@ -26,14 +26,12 @@
    spider-vent-idle))
 
 (defstate spider-vent-idle (spider-vent)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (case message
         (('can-spawn?) (return (time-elapsed? (-> self last-spawn-time) (seconds 1))) v0-0)
         (('notify-spawned) (set! v0-0 (current-time)) (set! (-> self last-spawn-time) (the-as time-frame v0-0)) v0-0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self mask) (process-mask sleep-code))
       (suspend)
       0))
@@ -123,8 +121,7 @@
 
 (defstate cave-trap-idle (cave-trap)
   :event cave-trap-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when *target*
         (let* ((gp-0 (target-pos 0))
                (f0-0 (vector-vector-xz-distance (-> self root trans) (target-pos 0)))
@@ -135,19 +132,16 @@
                 (level-hint-spawn (text-id cave-trap-nest-hint) "sksp0341" (the-as entity #f) *entity-pool* (game-task none))
                 (close-specific-task! (game-task cave-spider-tunnel) (task-status need-hint))
                 (go cave-trap-active)))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self mask) (process-mask sleep-code))
       (suspend)
       0))
 
 (defstate cave-trap-active (cave-trap)
   :event cave-trap-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self spawn-delay) (seconds 0.5)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         (*target*
          (let* ((gp-0 (target-pos 0))
@@ -158,16 +152,14 @@
            (cave-trap-method-20 self)))
         (else (go cave-trap-give-up)))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self mask) (process-mask sleep-code))
       (suspend)
       0))
 
 (defstate cave-trap-give-up (cave-trap)
   :event cave-trap-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (suspend)
       (go cave-trap-idle)))
 

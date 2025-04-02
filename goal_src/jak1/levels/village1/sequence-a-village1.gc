@@ -73,8 +73,7 @@
   :id 688
   :flags (screen-space)
   :bounds (static-bspherem 0 0 0 2)
-  :parts
-  ((sp-item 2858 :period (seconds 1) :length (seconds 0.017) :binding 2856)
+  :parts ((sp-item 2858 :period (seconds 1) :length (seconds 0.017) :binding 2856)
    (sp-item 2856 :flags (start-dead launch-asap) :binding 2857)
    (sp-item 2856 :flags (start-dead launch-asap) :binding 2857)
    (sp-item 2857 :flags (start-dead))
@@ -232,8 +231,7 @@
 
 (defstate play-anim (sequenceA-village1)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('sidekick-human)
          (format 0 "got sidekick-human~%")
@@ -250,8 +248,7 @@
          (let ((v0-2 (the-as object (logior (-> self mask) (process-mask pause)))))
            (set! (-> self mask) (the-as process-mask v0-2))
            v0-2))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (send-event *target* 'sidekick #t)
       (let ((a0-2 (handle->process (-> self boat)))) (if a0-2 (deactivate a0-2)))
       (let ((a0-6 (handle->process (-> self side)))) (if a0-6 (deactivate a0-6)))
@@ -271,8 +268,7 @@
         (send-event *camera* 'clear-entity)
         (entity-birth-no-kill gp-0)
         (send-event (if gp-0 (-> gp-0 extra process)) 'play-anim)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ;; og:preserve-this
       ;; yeah they messed up a little bit here
       (spool-push *art-control* "sage-intro-sequence-b" 0 self -1.0)

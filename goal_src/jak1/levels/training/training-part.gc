@@ -13,8 +13,7 @@
   :id 146
   :flags (always-draw)
   :bounds (static-bspherem 0 32 0 70)
-  :parts
-  ((sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 4) :offset 4500)
+  :parts ((sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 4) :offset 4500)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.8) :offset 4530)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.6) :offset 4560)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.4) :offset 4590)
@@ -45,8 +44,7 @@
   :id 147
   :flags (always-draw)
   :bounds (static-bspherem 0 32 0 70)
-  :parts
-  ((sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 4) :offset 900)
+  :parts ((sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 4) :offset 900)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.8) :offset 930)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.6) :offset 960)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.4) :offset 990)
@@ -77,8 +75,7 @@
   :id 149
   :flags (always-draw)
   :bounds (static-bspherem 0 32 0 70)
-  :parts
-  ((sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 4) :offset 2100)
+  :parts ((sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 4) :offset 2100)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.8) :offset 2130)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.6) :offset 2160)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.4) :offset 2190)
@@ -101,8 +98,7 @@
   :id 148
   :flags (always-draw)
   :bounds (static-bspherem 0 32 0 70)
-  :parts
-  ((sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 4) :offset 3300)
+  :parts ((sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 4) :offset 3300)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.8) :offset 3330)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.6) :offset 3360)
    (sp-item 752 :falloff-to (meters 500) :period (seconds 16) :length (seconds 3.4) :offset 3390)
@@ -386,8 +382,7 @@
 (defpartgroup group-training-warpgate
   :id 150
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 767 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 767 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 768 :fade-after (meters 60) :falloff-to (meters 100) :binding 765)
    (sp-item 765 :flags (bit1 start-dead launch-asap))
    (sp-item 765 :flags (bit1 start-dead launch-asap))
@@ -667,8 +662,7 @@
 (defpartgroup group-training-butterflies
   :id 151
   :bounds (static-bspherem 0 0 0 30)
-  :parts
-  ((sp-item 773
+  :parts ((sp-item 773
             :fade-after (meters 120)
             :period (seconds 16.345)
             :length (seconds 0.017)
@@ -770,8 +764,7 @@
 (defpartgroup group-training-birds
   :id 152
   :bounds (static-bspherem 0 8 0 45)
-  :parts
-  ((sp-item 779 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 777)
+  :parts ((sp-item 779 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 777)
    (sp-item 779 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 777)
    (sp-item 779 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 777)
    (sp-item 777 :flags (start-dead launch-asap) :binding 778)
@@ -865,8 +858,7 @@
   :id 153
   :flags (always-draw)
   :bounds (static-bspherem 0 16 0 32)
-  :parts
-  ((sp-item 782 :fade-after (meters 160) :falloff-to (meters 160))
+  :parts ((sp-item 782 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 783 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 784 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 785 :fade-after (meters 80) :falloff-to (meters 80))
@@ -1048,8 +1040,7 @@
   :id 154
   :flags (always-draw)
   :bounds (static-bspherem 0 12 0 12)
-  :parts
-  ((sp-item 792 :fade-after (meters 160) :falloff-to (meters 160))
+  :parts ((sp-item 792 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 793 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 794 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 795 :fade-after (meters 160) :falloff-to (meters 160))

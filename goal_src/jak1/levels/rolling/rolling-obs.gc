@@ -75,8 +75,7 @@
 
 (defstate pusher-idle (pusher)
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((f0-0 -1.0))
           (when (and *target* *camera*)
@@ -105,8 +104,7 @@
 
 (defstate gorge-pusher-idle (gorge-pusher)
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (task-closed? (game-task rolling-race) (task-status need-introduction))
           (ja :num! (seek! (-> self min-frame)))
@@ -185,8 +183,7 @@
 
 (defstate dark-plant-sprout (dark-plant)
   :trans dark-plant-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (dark-plant-randomize self)
       (logclear! (-> self draw status) (draw-status hidden))
       (sound-play "darkvine-grow")
@@ -198,8 +195,7 @@
   :post ja-post)
 
 (defstate dark-plant-gone (dark-plant)
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self draw status) (draw-status hidden))
       (let* ((f30-0 1500.0)
              (v1-4 (/ (the-as int (rand-uint31-gen *random-generator*)) 256))
@@ -218,8 +214,7 @@
   :post ja-post)
 
 (defstate dark-plant-death (dark-plant)
-  :code
-    (behavior ()
+  :code (behavior ()
       (spawn (-> self part) (-> self root trans))
       (ja-channel-push! 1 (seconds 0.2))
       (sound-play "darkvine-kill")
@@ -232,8 +227,7 @@
 
 (defstate dark-plant-idle (dark-plant)
   :trans dark-plant-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (and (logtest? (-> self draw status) (draw-status was-drawn))
                    *target*
@@ -263,8 +257,7 @@
 
 (defstate dark-plant-startup (dark-plant)
   :trans dark-plant-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (-> self skel root-channel 0)))
         (set! (-> gp-0 frame-group) (the-as art-joint-anim dark-plant-idle-ja))
         (set! (-> gp-0 param 0) (the float (+ (-> (the-as art-joint-anim dark-plant-idle-ja) data 0 length) -1)))
@@ -356,8 +349,7 @@
   :bounds (static-spherem 0 2.25 0 6))
 
 (defstate happy-plant-opened (happy-plant)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! happy-plant-idle-ja :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -366,14 +358,12 @@
   :post ja-post)
 
 (defstate happy-plant-opening (happy-plant)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when *target*
         (logclear! (-> *target* mask) (process-mask sleep))
         (process-entity-status! self (entity-perm-status bit-3) #f)
         (logior! (-> self mask) (process-mask actor-pause))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (close-specific-task! (game-task rolling-plants) (task-status need-reminder))
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (logclear! (-> self mask) (process-mask actor-pause))
@@ -412,16 +402,14 @@
   :post transform-post)
 
 (defstate happy-plant-init (happy-plant)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (-> self alt-actor)
         (spool-push *art-control* "happy-plant-open" 0 self -99.0)
         (let* ((gp-0 (-> self alt-actor extra process))
                (a0-2 (if (and (nonzero? gp-0) (type-type? (-> gp-0 type) dark-plant)) gp-0)))
           (when a0-2
             (if (dark-plants-all-done (the-as dark-plant a0-2)) (go happy-plant-opening))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (clear-collide-with-as (-> self root))
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
@@ -537,12 +525,10 @@
 
 
 (defstate rolling-start-break (rolling-start)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('unbreak) (go rolling-start-whole))))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (ja-no-eval :group! rolling-start-break-whole-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -561,13 +547,11 @@
   :post ja-post)
 
 (defstate rolling-start-whole (rolling-start)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('break) (sound-play "cool-rolling-st") (go rolling-start-break #f))
         (('break-and-die) (go rolling-start-break #t))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (lods-assign! (-> self draw) (-> self whole-look))
       (loop
         (ja-no-eval :group! rolling-start-idle-ja :num! (seek!) :frame-num 0.0)
@@ -651,8 +635,7 @@
 
 (defstate gorge-abort-idle (gorge-abort)
   :trans gorge-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (if (gorge-behind self) (send-event (ppointer->process (-> self parent)) 'aborted)))))
@@ -666,8 +649,7 @@
 
 (defstate gorge-finish-idle (gorge-finish)
   :trans gorge-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (if (gorge-in-front self) (send-event (ppointer->process (-> self parent)) 'finished)))))
@@ -749,11 +731,9 @@
                   v0-1))))))
 
 (defstate gorge-start-race-finished (gorge-start)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (gorge-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (gorge-start-draw-time #t #t)
       (suspend)
       (set-time! (-> self state-time))
@@ -768,11 +748,9 @@
       (go gorge-start-idle)))
 
 (defstate gorge-start-race-aborted (gorge-start)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (gorge-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (until (time-elapsed? (-> self state-time) (seconds 3))
         (seekl! (-> self timer-pos-offset) 100 (the int (* 5.0 (-> *display* time-adjust-ratio))))
@@ -792,13 +770,11 @@
       (go gorge-start-idle)))
 
 (defstate gorge-start-racing (gorge-start)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('finished) (go gorge-start-race-finished))
         (('aborted) (go gorge-start-race-aborted))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (send-event (handle->process (-> self start-banner)) 'break)
       (send-event (ppointer->process (-> *hud-parts* fuel-cell)) 'disable)
       (send-event (ppointer->process (-> *hud-parts* fuel-cell)) 'hide)
@@ -811,36 +787,30 @@
                      (new 'static 'vector :x -86016.0 :y 114688.0 :z -6303744.0)
                      (new 'static 'vector :x -1.0)
                      57344.0
-                     :to
-                     self)
+                     :to self)
       (process-spawn gorge-abort
                      (new 'static 'vector :x -696320.0 :y 122880.0 :z -6828032.0)
                      (new 'static 'vector :x -0.707 :y 0.707)
                      163840.0
-                     :to
-                     self)
+                     :to self)
       (process-spawn gorge-abort
                      (new 'static 'vector :x -847872.0 :y 143360.0 :z -6828032.0)
                      (new 'static 'vector :x 0.707 :y 0.707)
                      163840.0
-                     :to
-                     self)
+                     :to self)
       (process-spawn gorge-abort
                      (new 'static 'vector :x -417792.0 :y 143360.0 :z -6004736.0)
                      (new 'static 'vector :x -0.5 :y 0.707 :z 0.3)
                      266240.0
-                     :to
-                     self)
+                     :to self)
       (process-spawn gorge-abort
                      (new 'static 'vector :x -647168.0 :y 143360.0 :z -6025216.0)
                      (new 'static 'vector :x 0.5 :y 0.707 :z -0.3)
                      163840.0
-                     :to
-                     self)
+                     :to self)
       (sleep (-> self ticker) (seconds 6000))
       (set-setting! 'sound-flava #f 40.0 (music-flava rolling-gorge)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let* ((v1-0 (-> self child))
              (gp-0 (-> v1-0 0 brother)))
         (while v1-0
@@ -851,8 +821,7 @@
       (send-event (handle->process (-> self start-banner)) 'unbreak)
       (remove-setting! 'sound-flava))
   :trans gorge-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self state-time) (-> *display* game-frame-counter))
       (loop
         (seconds->race-time (-> self this-time) (- (-> *display* game-frame-counter) (-> self state-time)))
@@ -864,8 +833,7 @@
 
 (defstate gorge-start-ready (gorge-start)
   :trans gorge-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (seekl! (-> self timer-pos-offset) 100 (the int (* 5.0 (-> *display* time-adjust-ratio))))
@@ -879,20 +847,16 @@
           (else (go gorge-start-idle))))))
 
 (defstate gorge-start-idle (gorge-start)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logior! (-> self mask) (process-mask actor-pause))
       (process-entity-status! self (entity-perm-status bit-3) #f))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause))
       (process-entity-status! self (entity-perm-status bit-3) #t))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (gorge-start-launch-start-banner)
       (gorge-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (seekl! (-> self timer-pos-offset) 100 (the int (* 5.0 (-> *display* time-adjust-ratio))))
@@ -924,8 +888,7 @@
                :count 3
                :converted #f
                :normal-scale 1.0
-               :wave
-               (new 'static 'inline-array
+               :wave (new 'static 'inline-array
                     ripple-wave
                     4
                     (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.5)

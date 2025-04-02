@@ -57,8 +57,7 @@
 
 (defstate give-cell (sculptor)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (muse-to-idle (the-as muse self))))
 
 (defmethod play-anim! ((this sculptor) (arg0 symbol))
@@ -133,8 +132,7 @@
 
 (defstate idle (sculptor)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (!= (ja-group) (get-art-elem self))
         (ja-channel-push! 1 (seconds 0.2))
         (ja :group! (get-art-elem self)))

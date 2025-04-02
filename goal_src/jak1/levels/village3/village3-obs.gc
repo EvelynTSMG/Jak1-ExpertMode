@@ -48,8 +48,7 @@
   (new 'static 'ripple-wave-set
        :count 2
        :converted #f
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 2 :speed 1.5)
@@ -86,8 +85,7 @@
 
 (defstate idle (gondola)
   :virtual #t
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (set-time! (-> self state-time))
       (ja-channel-set! 1)
       (cond
@@ -186,8 +184,7 @@
 
 (defstate ride-up (gondola)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (when (send-event *target* 'clone-anim self)
         (send-event (ppointer->process (-> *target* sidekick)) 'matrix 'play-anim)
@@ -214,15 +211,13 @@
         (set-continue! *game-info* "snow-start"))
       (process-entity-status! self (entity-perm-status bit-3) #f)
       (go-virtual idle #t))
-  :post
-    (behavior ()
+  :post (behavior ()
       (ja-post)
       (update-direction-from-time-of-day (-> self draw shadow-ctrl))))
 
 (defstate ride-down (gondola)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (when (send-event *target* 'clone-anim self)
         (send-event *target* 'trans 'save (-> self old-target-pos))
@@ -250,8 +245,7 @@
         (set-continue! *game-info* "village3-farside"))
       (process-entity-status! self (entity-perm-status bit-3) #f)
       (go-virtual idle #f))
-  :post
-    (-> (method-of-type gondola ride-up)
+  :post (-> (method-of-type gondola ride-up)
         post))
 
 (defmethod init-from-entity! ((this gondola) (arg0 entity-actor))
@@ -307,12 +301,10 @@
 
 (defstate idle (pistons)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('update) (go-virtual active (process->handle proc) #f))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-post)
       (logior! (-> self mask) (process-mask sleep))
       (suspend)
@@ -320,8 +312,7 @@
 
 (defstate active (pistons)
   :virtual #t
-  :code
-    (behavior ((arg0 handle) (arg1 symbol))
+  :code (behavior ((arg0 handle) (arg1 symbol))
       (process-entity-status! self (entity-perm-status complete) #t)
       (if (not arg1) (sound-play "gdl-start-up"))
       (let ((f30-0 (if arg1 1.0 0.0)))
@@ -357,14 +348,12 @@
 
 (defstate idle (gondolacables)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('update)
          (process-entity-status! self (entity-perm-status complete) #t)
          (let ((v0-0 1)) (set! (-> self draw mgeo effect 0 effect-bits) (the-as uint v0-0)) v0-0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)

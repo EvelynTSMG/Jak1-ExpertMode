@@ -55,10 +55,8 @@
   (new 'static 'continue-point
        :name "default"
        :level #f
-       :trans
-       (new 'static 'vector :w 1.0)
-       :quat
-       (new 'static 'quaternion :w 1.0)
+       :trans (new 'static 'vector :w 1.0)
+       :quat (new 'static 'quaternion :w 1.0)
        :camera-trans
        (new 'static 'vector :w 1.0)
        :load-commands
@@ -255,8 +253,7 @@
          cause
          (get-or-create-continue! this)
          save-to-load
-         :from
-         *4k-dead-pool*)
+         :from *4k-dead-pool*)
        (set-master-mode 'game))))
   (label cfg-50)
   this)
@@ -523,13 +520,11 @@
          (when (= eco-lev 0.0)
            (let ((s5-1 (-> this process)))
              (let ((s4-3 (process-spawn touch-tracker
-                                        :init
-                                        touch-tracker-init
+                                        :init touch-tracker-init
                                         (-> s5-1 root trans)
                                         (-> *FACT-bank* suck-bounce-dist)
                                         (seconds 1)
-                                        :to
-                                        s5-1)))
+                                        :to s5-1)))
                (send-event (ppointer->process s4-3) 'target s5-1)
                (send-event (ppointer->process s4-3) 'event 'eco-blue)
                (send-event (ppointer->process s4-3) 'exit (lambda () (send-event *target* 'query 'powerup (pickup-type eco-blue))))
@@ -543,10 +538,8 @@
                  (let ((s5-0 (current-time))) (until (time-elapsed? s5-0 (seconds 0.6)) (send-event arg0 'effect 'eco-blue) (suspend)))
                  (none))
                s5-1
-               :from
-               *4k-dead-pool*
-               :to
-               s5-1)))))
+               :from *4k-dead-pool*
+               :to s5-1)))))
      (-> this eco-level))
     (else ((method-of-type fact-info pickup-collectable!) this kind amount source-handle))))
 

@@ -28,8 +28,7 @@
     (if (< (vector-dot (vector-x-quaternion! (new-stack-vector0) (-> arg0 root quat)) gp-1) -8192.0) #t)))
 
 (defstate teetertotter-idle (teetertotter)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack)
          (case (-> block param 1)
@@ -42,16 +41,14 @@
          (when (target-on-end-of-teetertotter? self)
            (level-hint-spawn (text-id misty-teetertotter) "sksp0070" (the-as entity #f) *entity-pool* (game-task none))
            (go teetertotter-bend)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :group! teetertotter-idle-ja :num! min)
       (loop
         (suspend)))
   :post transform-post)
 
 (defstate teetertotter-launch (teetertotter)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (when (= message 'touch)
         (if (and ((method-of-type touching-shapes-entry prims-touching?)
                   (the-as touching-shapes-entry (-> block param 0))
@@ -71,8 +68,7 @@
                             #f
                             (static-attack-info ((shove-back (meters 0)) (shove-up (meters 13)) (angle 'jump) (control 0.5))))
             (let ((v0-0 #t)) (set! (-> self launched-player) v0-0) v0-0)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self launched-player) #f)
       (ja-no-eval :group! teetertotter-idle-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
@@ -85,8 +81,7 @@
   :post rider-post)
 
 (defstate teetertotter-bend (teetertotter)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! teetertotter-landing-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)

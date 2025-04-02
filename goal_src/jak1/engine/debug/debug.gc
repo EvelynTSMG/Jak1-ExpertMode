@@ -100,12 +100,9 @@
     (('fade)
      (set! second-color
            (new 'static 'rgba
-                :r
-                (shr (-> second-color r) 1)
-                :g
-                (shr (-> second-color g) 1)
-                :b
-                (shr (-> second-color b) 1)
+                :r (shr (-> second-color r) 1)
+                :g (shr (-> second-color g) 1)
+                :b (shr (-> second-color b) 1)
                 :a (-> second-color a)))))
   (let ((s4-0 (new 'stack 'vector4w-2))
         (s1-0 (new 'stack 'vector4w-2)))
@@ -625,12 +622,9 @@
     (let ((light-vec-end (vector+*! (new-stack-vector0) arg3 (-> arg2 direction) (* (meters 3) (-> arg2 levels x))))
           ;; the original code here uses w for alpha but that looks terrible
           (light-rgba (new 'static 'rgba
-                           :r
-                           (the int (* 128.0 (-> arg2 color x)))
-                           :g
-                           (the int (* 128.0 (-> arg2 color y)))
-                           :b
-                           (the int (* 128.0 (-> arg2 color z)))
+                           :r (the int (* 128.0 (-> arg2 color x)))
+                           :g (the int (* 128.0 (-> arg2 color y)))
+                           :b (the int (* 128.0 (-> arg2 color z)))
                            :a 128)))
       (add-debug-text-sphere arg0
                              arg1

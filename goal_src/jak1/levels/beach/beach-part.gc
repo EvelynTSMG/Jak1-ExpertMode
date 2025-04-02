@@ -73,8 +73,7 @@
   :init-specs ((:fade-a -0.16) (:timer (seconds 0.5)) (:func 'check-water-level-drop)))
 
 (defstate beach-part-grotto-1 (beach-part)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (is-visible? self)
           (let* ((gp-0 (camera-pos))
@@ -250,8 +249,7 @@
   :id 162
   :flags (always-draw unknown-bit-01)
   :bounds (static-bspherem 0 55 0 55)
-  :parts
-  ((sp-item 677 :fade-after (meters 200) :falloff-to (meters 200))
+  :parts ((sp-item 677 :fade-after (meters 200) :falloff-to (meters 200))
    (sp-item 675)
    (sp-item 675 :fade-after (meters 200) :falloff-to (meters 200))
    (sp-item 672)
@@ -515,8 +513,7 @@
 (defpartgroup group-beach-butterflies
   :id 171
   :bounds (static-bspherem 0 0 0 30)
-  :parts
-  ((sp-item 696
+  :parts ((sp-item 696
             :fade-after (meters 120)
             :period (seconds 16.345)
             :length (seconds 0.017)
@@ -618,8 +615,7 @@
 (defpartgroup group-beach-moth
   :id 172
   :bounds (static-bspherem 0 0 0 3)
-  :parts
-  ((sp-item 702
+  :parts ((sp-item 702
             :fade-after (meters 120)
             :flags (bit1)
             :period (seconds 60.1)

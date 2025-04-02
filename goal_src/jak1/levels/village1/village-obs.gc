@@ -229,8 +229,7 @@
 (defpartgroup group-win-wind-mill
   :id 123
   :bounds (static-bspherem 0 0 0 20)
-  :parts
-  ((sp-item 368 :fade-after (meters 100))
+  :parts ((sp-item 368 :fade-after (meters 100))
    (sp-item 369 :fade-after (meters 100))
    (sp-item 370 :fade-after (meters 200))
    (sp-item 371 :fade-after (meters 200))))
@@ -241,8 +240,7 @@
   :parts ((sp-item 368) (sp-item 369) (sp-item 370) (sp-item 371)))
 
 (defstate windmill-sail-idle (windmill-sail)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((task-closed? (game-task jungle-lurkerm) (task-status need-reminder))
          (let ((f30-0 (get-current-value (-> self sync) 65536.0)))
@@ -308,8 +306,7 @@
   :longest-edge (meters 24.2))
 
 (defstate sagesail-idle (sagesail)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((f0-0 (get-current-value (-> self sync) 65536.0)))
         (quaternion-axis-angle! (-> self root-override quat)
                                 (-> self blade-normal x)
@@ -360,8 +357,7 @@
   :bounds (static-spherem 0 0 0 8))
 
 (defstate windspinner-idle (windspinner)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let* ((f0-0 0.992)
              (f1-0 0.008090864)
              (a0-0 (-> self root trans))
@@ -411,8 +407,7 @@
   :bounds (static-spherem 0 0 0 4.5))
 
 (defstate mayorgears-idle (mayorgears)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (task-closed? (game-task jungle-lurkerm) (task-status need-reminder)) (ja :num! (loop!)) (ja :num! (loop! 0.0)))
         (suspend)))
@@ -445,8 +440,7 @@
 
 (defstate idle (evilplant)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -476,8 +470,7 @@
   :bounds (static-spherem 0 17 0 17))
 
 (defstate reflector-middle-idle (reflector-middle)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (task-closed? (game-task jungle-lurkerm) (task-status need-reminder))
         (process-entity-status! self (entity-perm-status complete) #t)
         (draw-eco-beam (-> self reflector-trans) (-> self next-reflector-trans))))
@@ -534,36 +527,29 @@
 
 
 (defstate starfish-idle (starfish)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (move-to-ground (-> self collide-info) 40960.0 40960.0 #t (collide-kind background))
       (set-time! (-> self state-time))
       (ja-channel-set! 0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (ja-channel-set! 1))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target* (>= 163840.0 (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
         (go starfish-patrol)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post ja-post)
 
 (defstate starfish-patrol (starfish)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (logior! (-> self nav flags) (nav-control-flags navcf19)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (time-elapsed? (-> self state-time) (seconds 1))
         (if (or (not *target*) (< 204800.0 (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
           (go starfish-idle))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self target-speed) 4096.0)
       (set! (-> self rotate-speed) 12743.111)
       (set! (-> self turn-time) (seconds 0.5))
@@ -667,8 +653,7 @@
   (let ((gp-0 (new-stack-vector0))) (get-random-point (-> self path) gp-0) (process-spawn starfish self gp-0 :to self)))
 
 (defstate villa-starfish-idle (villa-starfish)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (loop
         (when (time-elapsed? (-> self state-time) (seconds 0.5))
@@ -695,8 +680,7 @@
 
 
 (defstate village-fish-idle (village-fish)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (loop
         (suspend)))
@@ -748,8 +732,7 @@
   :longest-edge (meters 0.7))
 
 (defstate hutlamp-idle (hutlamp)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((f0-3 (* 1820.4445 (sin (* 65536.0 (update-clock (-> self clock)))))))
           (quaternion-vector-angle! (-> self pivot transform quat) *x-vector* f0-3))
@@ -824,8 +807,7 @@
        :count 3
        :converted #f
        :normal-scale 4.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 10.0 :xdiv 1 :speed 1.5)

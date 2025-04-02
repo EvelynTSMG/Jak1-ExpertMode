@@ -16,8 +16,7 @@
         (new 'static 'gif-tag64
              :pre #x1
              :nreg #x3
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :fge #x1 :abe arg1)))
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :fge #x1 :abe arg1)))
   (set! (-> arg0 giftag regs)
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
   (set! (-> arg0 hvdf-offset quad) (-> *math-camera* hvdf-off quad))

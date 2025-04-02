@@ -62,8 +62,7 @@
 
 ;; State for just ticking time forward.
 (defstate time-of-day-tick (time-of-day-proc)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (+! (-> self frame) (the int (* (-> self time-ratio) (-> *display* time-adjust-ratio))))
         ;; now update time...
@@ -385,12 +384,9 @@
   (let ((v1-179 (-> arg0 current-fog)))
     (set! *fog-color*
           (new 'static 'rgba
-               :r
-               (the int (-> v1-179 fog-color x))
-               :g
-               (the int (-> v1-179 fog-color y))
-               :b
-               (the int (-> v1-179 fog-color z)))))
+               :r (the int (-> v1-179 fog-color x))
+               :g (the int (-> v1-179 fog-color y))
+               :b (the int (-> v1-179 fog-color z)))))
   (let ((v1-184 (-> arg0 current-fog erase-color)))
     (set! (-> arg0 erase-color)
           (new 'static 'rgba :a #x80 :b (the int (-> v1-184 z)) :g (the int (-> v1-184 y)) :r (the int (-> v1-184 x)))))

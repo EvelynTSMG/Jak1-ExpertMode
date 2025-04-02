@@ -111,8 +111,7 @@
 
 (defstate idle (explorer)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (!= (ja-group) explorer-idle-ja) (ja-channel-push! 1 (seconds 0.2)))
       (loop
         (do-idle-ambience self)

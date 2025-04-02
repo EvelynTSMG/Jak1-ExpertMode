@@ -99,8 +99,7 @@
   :id 538
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 16)
-  :parts
-  ((sp-item 1928 :fade-after (meters 70) :falloff-to (meters 70))
+  :parts ((sp-item 1928 :fade-after (meters 70) :falloff-to (meters 70))
    (sp-item 1929 :fade-after (meters 70) :falloff-to (meters 70))))
 
 (defpart 1929
@@ -186,8 +185,7 @@
 
 (defstate yeti-slave-appear-jump-up (yeti-slave)
   :event yeti-slave-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (nav-enemy-neck-control-inactive)
       (set-time! (-> self state-time))
       (if (-> self nav-info move-to-ground) (move-to-ground (-> self collide-info) 40960.0 40960.0 #t (collide-kind background)))
@@ -198,8 +196,7 @@
       (+! (-> self collide-info trans y) -12288.0)
       (set! (-> self collide-info transv quad) (-> *null-vector* quad))
       (set! (-> self collide-info transv y) (rand-vu-float-range 102400.0 114688.0)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (and (< (-> self collide-info trans y) (-> self ground-y)) (< (-> self collide-info transv y) 0.0))
         (set! (-> self collide-info trans y) (-> self ground-y))
         (set! (-> self collide-info transv quad) (-> *null-vector* quad))
@@ -209,8 +206,7 @@
              (gp-0 (new 'stack-no-clear 'vector)))
         (vector<-cspace! gp-0 (-> s5-0 data (nav-enemy-rnd-int-count a0-2)))
         (spawn (-> self part2) gp-0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.075))
       (ja-no-eval :group! yeti-jump-ja :num! (seek!) :frame-num (ja-aframe 10.0 0))
       (until (ja-done? 0)
@@ -222,8 +218,7 @@
 
 (defstate yeti-slave-appear-land (yeti-slave)
   :event yeti-slave-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.05))
       (ja-no-eval :group! yeti-jump-land-ja :num! (seek! max 0.5) :frame-num 0.0)
       (until (ja-done? 0)
@@ -233,18 +228,15 @@
   :post ja-post)
 
 (defstate yeti-slave-show-anims (yeti-slave)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       0)
   :post transform-post)
 
 (defstate nav-enemy-patrol (yeti-slave)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((ja-group? yeti-give-up-hop-ja)
          (ja-channel-push! 1 (seconds 0.15))
@@ -280,8 +272,7 @@
 
 (defstate nav-enemy-chase (yeti-slave)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((f30-0 (nav-enemy-rnd-float-range 0.9 1.1)))
         (cond
           ((ja-group? yeti-jump-land-ja)
@@ -302,8 +293,7 @@
 
 (defstate nav-enemy-stare (yeti-slave)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self turn-time) (seconds 0.2))
       (let ((f30-0 (nav-enemy-rnd-float-range 0.8 1.2)))
         (when (or (logtest? (-> self nav-enemy-flags) (nav-enemy-flags navenmf8))
@@ -339,8 +329,7 @@
 
 (defstate nav-enemy-give-up (yeti-slave)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self rotate-speed) 218453.33)
       (set! (-> self turn-time) (seconds 0.5))
       (ja-channel-push! 1 (seconds 0.15))
@@ -366,8 +355,7 @@
 
 (defstate nav-enemy-jump-land (yeti-slave)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (seek!))
       (ja-channel-push! 1 (seconds 0.075))
       (ja-no-eval :group!
@@ -481,8 +469,7 @@
   #f)
 
 (defstate yeti-first-time-start (yeti)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when *target*
           (when (>= (-> self first-time-spawn-dist) (vector-vector-xz-distance (target-pos 0) (-> self root trans)))
@@ -491,8 +478,7 @@
         (suspend))))
 
 (defstate yeti-resuming-start (yeti)
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 0))
         (let ((v1-0 (the-as (pointer process-tree) (-> self child-process))))
           (while v1-0
@@ -509,8 +495,7 @@
       (go yeti-idle)))
 
 (defstate yeti-idle (yeti)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (cond
           ((zero? (-> self spawn-delay))

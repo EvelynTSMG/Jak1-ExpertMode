@@ -14,20 +14,16 @@
 
 (defstate target-warp-in (target)
   :event target-generic-event-handler
-  :enter
-    (-> target-warp-out
+  :enter (-> target-warp-out
         enter)
-  :exit
-    (-> target-warp-out
+  :exit (-> target-warp-out
         exit)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self control transv x) (- (-> self control unknown-vector103 x) (-> self control unknown-vector102 x)))
       (set! (-> self control transv z) (- (-> self control unknown-vector103 z) (-> self control unknown-vector102 z)))
       (vector-xz-normalize! (-> self control transv) 49152.0)
       (if (logtest? (-> self control status) (cshape-moving-flags onsurf)) (go target-hit-ground #f)))
-  :code
-    (behavior ((arg0 vector) (arg1 vector))
+  :code (behavior ((arg0 vector) (arg1 vector))
       (clear-collide-with-as (-> self control))
       (ja-channel-set! 0)
       (vector-reset! (-> self control transv))
@@ -64,12 +60,10 @@
 
 (defstate idle (warp-gate)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('hide) (go-virtual hidden))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (remove-setting! 'allow-progress)
       (set-time! (-> self state-time))
       (loop
@@ -132,14 +126,12 @@
 
 (defstate active (warp-gate)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-setting! 'allow-progress #f 0.0 0)
       (apply-settings *setting-control*)
       (sound-play "start-options")
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (or (and (cpad-pressed? 0 triangle) (time-elapsed? (-> self state-time) (seconds 0.1)) (process-release? *target*))
                 (not *target*))
         (logclear! (-> *cpad-list* cpads 0 button0-abs 0) (pad-buttons triangle))
@@ -152,8 +144,7 @@
                (f0-0 (deg-diff (y-angle gp-1) (vector-y-angle (vector-! (new 'stack-no-clear 'vector) s4-0 (-> gp-1 trans))))))
           (if (!= f0-0 0.0)
             (send-event *target* 'rotate-y-angle (fmax (fmin f0-0 (* 65536.0 (seconds-per-frame))) (* -65536.0 (seconds-per-frame))))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (sv-112 int) (sv-128 int) (sv-144 int))
       (let ((gp-0 (get-next-slot-up self (+ (-> self level-slot) -1))))
         0
@@ -379,8 +370,7 @@
 
 (defstate basebutton-up-idle (warp-gate-switch)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch 'attack)
          (when (pressable? self)
@@ -388,12 +378,10 @@
            (go-virtual basebutton-going-down)))
         (('hide) (send-event (handle->process (-> self warp)) message))
         (else ((-> (method-of-type basebutton basebutton-up-idle) event) proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (let ((t9-0 (-> (method-of-type basebutton basebutton-up-idle) enter))) (if t9-0 (t9-0))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((a1-0 (new 'stack-no-clear 'event-message-block)))
         (set! (-> a1-0 from) self)
         (set! (-> a1-0 num-params) 0)
@@ -423,23 +411,19 @@
 
 (defstate basebutton-down-idle (warp-gate-switch)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('hide) (send-event (handle->process (-> self warp)) message))
         (else ((-> (method-of-type basebutton basebutton-down-idle) event) proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self warp) (ppointer->handle (process-spawn warp-gate (-> self notify-actor extra trans) :to self)))
       (process-entity-status! self (entity-perm-status complete) #t)
       (let ((t9-4 (-> (method-of-type basebutton basebutton-down-idle) enter))) (if t9-4 (t9-4))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-1 (handle->process (-> self warp)))) (if a0-1 (deactivate a0-1)))
       (let ((t9-1 (-> (method-of-type basebutton basebutton-down-idle) exit))) (if t9-1 (t9-1))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (time-elapsed? (-> self state-time) (seconds 60))
         (case (-> self entity extra perm task)
           (((game-task training-door))
@@ -451,8 +435,7 @@
 
 (defstate basebutton-going-down (warp-gate-switch)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (sound-play "warpgate-butt")
       (sound-play "warpgate-act")
       (let ((gp-2 (entity-actor-count (-> self entity) 'trigger-actor)))
@@ -493,8 +476,7 @@
 
 (defstate idle (village-cam)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (v1-18 symbol))
       (loop
         (let ((v1-5 (and (and *target* (>= (-> self range) (vector-vector-distance (-> self root-override trans) (-> *target* control trans))))
@@ -588,8 +570,7 @@
                                         (0 alive "money-2675")
                                         (0 alive "money-2677")
                                         (0 alive "money-2678"))
-                                       :to
-                                       self))
+                                       :to self))
                        ((= v1-84 1)
                         (level-hint-spawn (text-id village1cam-enough-cells2) "asstvb08" (the-as entity #f) *entity-pool* (game-task none))
                         (process-spawn pov-camera
@@ -608,8 +589,7 @@
                                         (0 alive "money-2675")
                                         (0 alive "money-2677")
                                         (0 alive "money-2678"))
-                                       :to
-                                       self))))
+                                       :to self))))
                    (set! (-> gp-0 user-int8 0) (seekl (the-as int (-> gp-0 user-uint8 0)) 255 1))))
                 ((= v1-79 1))
                 ((= v1-79 2)

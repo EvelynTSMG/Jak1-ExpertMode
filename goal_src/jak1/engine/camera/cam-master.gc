@@ -520,8 +520,7 @@
      (master-unset-region))))
 
 (defstate cam-master-active (camera-master)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (rlet ((vf0 :class vf))
         (init-vf0-vector)
@@ -916,17 +915,14 @@
                           (send-event-function (ppointer->process (-> self slave s3-1)) a1-62)))
                       #f))))))
         v0-0))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (if (and (nonzero? camera-master-debug) *debug-segment*)
         (add-connection *debug-engine* self camera-master-debug self #f #f)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (not (paused?))
         (vector-negate! (-> self local-down) (vector-normalize-copy! (-> self local-down) (-> *standard-dynamics* gravity) 1.0))
         (cam-master-effect)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (and *dproc* *debug-segment*)
           (add-frame (-> *display* frames (-> *display* on-screen) frame profile-bar 0)
@@ -959,8 +955,7 @@
 
 
 (defstate list-keeper-active (camera-master)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (change-to-last-brother self)
         (suspend))))

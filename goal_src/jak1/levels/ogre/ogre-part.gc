@@ -14,8 +14,7 @@
   :linger-duration (seconds 10)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 2193 :period (seconds 5) :length (seconds 0.017))
+  :parts ((sp-item 2193 :period (seconds 5) :length (seconds 0.017))
    (sp-item 2194 :period (seconds 5) :length (seconds 0.135))
    (sp-item 2195 :period (seconds 5) :length (seconds 0.067))
    (sp-item 2196 :period (seconds 5) :length (seconds 0.067))))
@@ -408,8 +407,7 @@
   :linger-duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 3)
-  :parts
-  ((sp-item 2079 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2079 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2206 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2206 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2206 :period (seconds 2) :length (seconds 0.1))
@@ -450,8 +448,7 @@
   :duration (seconds 1)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 16)
-  :parts
-  ((sp-item 2079 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2079 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2080 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2148 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2082 :period (seconds 2) :length (seconds 0.067))))
@@ -459,8 +456,7 @@
 (defpartgroup group-ogre-lava-lava-20x20
   :id 472
   :bounds (static-bspherem 0 0 0 14)
-  :parts
-  ((sp-item 2030 :fade-after (meters 40) :falloff-to (meters 40))
+  :parts ((sp-item 2030 :fade-after (meters 40) :falloff-to (meters 40))
    (sp-item 2031 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 2032 :fade-after (meters 80) :falloff-to (meters 80) :binding 2028)
    (sp-item 2028 :flags (start-dead))

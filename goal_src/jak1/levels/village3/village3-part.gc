@@ -15,8 +15,7 @@
 (defpartgroup group-village3-candle
   :id 476
   :bounds (static-bspherem 0 10 0 12)
-  :parts
-  ((sp-item 1797 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1797 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1798 :fade-after (meters 60) :falloff-to (meters 60))))
 
 (defpart 1797
@@ -64,78 +63,67 @@
 (defpartgroup group-village3-sulphur-05
   :id 477
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1799 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1799 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-06
   :id 478
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1801 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1801 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-07
   :id 479
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1802 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1802 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-08
   :id 480
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1803 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1803 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-09
   :id 481
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1804 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1804 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-10
   :id 482
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1805 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1805 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-11
   :id 483
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1806 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1806 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-12
   :id 484
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1807 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1807 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-13
   :id 485
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1808 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1808 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-14
   :id 486
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1809 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1809 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpartgroup group-village3-sulphur-15
   :id 487
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1810 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1810 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1800 :fade-after (meters 180) :falloff-to (meters 180))))
 
 (defpart 1810
@@ -474,8 +462,7 @@
 (defpartgroup group-village3-minor-fire
   :id 488
   :bounds (static-bspherem 0 2.5 0 2.5)
-  :parts
-  ((sp-item 2358 :fade-after (meters 50) :falloff-to (meters 80))
+  :parts ((sp-item 2358 :fade-after (meters 50) :falloff-to (meters 80))
    (sp-item 2359 :fade-after (meters 40) :falloff-to (meters 40) :binding 2357)
    (sp-item 2357 :flags (bit1 start-dead launch-asap))
    (sp-item 2357 :flags (bit1 start-dead launch-asap))
@@ -669,8 +656,7 @@
 (defpartgroup group-spewing-volcano-36
   :id 489
   :bounds (static-bspherem 0 3 0 14)
-  :parts
-  ((sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 4) :offset 300)
+  :parts ((sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 4) :offset 300)
    (sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 4.4) :offset 360)
    (sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 4.8) :offset 420)
    (sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 5.2) :offset 480)
@@ -720,8 +706,7 @@
 (defpartgroup group-spewing-volcano-37
   :id 490
   :bounds (static-bspherem 0 3 0 14)
-  :parts
-  ((sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 4) :offset 1500)
+  :parts ((sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 4) :offset 1500)
    (sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 4.4) :offset 1560)
    (sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 4.8) :offset 1620)
    (sp-item 1823 :falloff-to (meters 300) :period (seconds 8) :length (seconds 5.2) :offset 1680)
@@ -1171,8 +1156,7 @@
 (defpartgroup group-village3-steam-puff-31
   :id 491
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1842 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3) :length (seconds 0.42))
+  :parts ((sp-item 1842 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3) :length (seconds 0.42))
    (sp-item 1843 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4.2) :length (seconds 0.557))
    (sp-item 1844 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 2.3) :length (seconds 0.5))
    (sp-item 1845 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 6.4) :length (seconds 0.267))
@@ -1181,8 +1165,7 @@
 (defpartgroup group-village3-steam-puff-22
   :id 492
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1842 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4.1) :length (seconds 0.52))
+  :parts ((sp-item 1842 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4.1) :length (seconds 0.52))
    (sp-item 1843 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 7.7) :length (seconds 0.357))
    (sp-item 1844 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3.2) :length (seconds 0.4))
    (sp-item 1845 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4.5) :length (seconds 0.57))
@@ -1191,8 +1174,7 @@
 (defpartgroup group-village3-steam-puff-23
   :id 493
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1842 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4) :length (seconds 0.42))
+  :parts ((sp-item 1842 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4) :length (seconds 0.42))
    (sp-item 1843 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 5.2) :length (seconds 0.357))
    (sp-item 1844 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 6.1) :length (seconds 0.4))
    (sp-item 1845 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 2.3) :length (seconds 0.367))
@@ -1326,8 +1308,7 @@
 (defpartgroup group-village3-bottom-puff-25
   :id 494
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3) :length (seconds 0.42))
+  :parts ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3) :length (seconds 0.42))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4.2) :length (seconds 0.557))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 2.23) :length (seconds 0.5))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 6.4) :length (seconds 0.267))
@@ -1336,8 +1317,7 @@
 (defpartgroup group-village3-bottom-puff-27
   :id 495
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4) :length (seconds 0.42))
+  :parts ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4) :length (seconds 0.42))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3.6) :length (seconds 0.557))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 5.23) :length (seconds 0.5))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3.3) :length (seconds 0.267))
@@ -1346,8 +1326,7 @@
 (defpartgroup group-village3-bottom-puff-28
   :id 496
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 5) :length (seconds 0.42))
+  :parts ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 5) :length (seconds 0.42))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4.9) :length (seconds 0.557))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3.43) :length (seconds 0.5))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 2.4) :length (seconds 0.267))
@@ -1356,8 +1335,7 @@
 (defpartgroup group-village3-bottom-puff-29
   :id 497
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 5) :length (seconds 0.42))
+  :parts ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 5) :length (seconds 0.42))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 6.7) :length (seconds 0.557))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3.33) :length (seconds 0.5))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 2.4) :length (seconds 0.267))
@@ -1366,8 +1344,7 @@
 (defpartgroup group-village3-bottom-puff-30
   :id 498
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 5) :length (seconds 0.42))
+  :parts ((sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 5) :length (seconds 0.42))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3.2) :length (seconds 0.557))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 6.23) :length (seconds 0.5))
    (sp-item 1847 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 3.5) :length (seconds 0.267))
@@ -1402,8 +1379,7 @@
 (defpartgroup group-village3-lava-lava-20x20
   :id 499
   :bounds (static-bspherem 0 0 0 14)
-  :parts
-  ((sp-item 1850 :fade-after (meters 40) :falloff-to (meters 40))
+  :parts ((sp-item 1850 :fade-after (meters 40) :falloff-to (meters 40))
    (sp-item 1851 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1852 :fade-after (meters 80) :falloff-to (meters 80) :binding 1848)
    (sp-item 1848 :flags (start-dead))
@@ -1568,8 +1544,7 @@
 (defpartgroup group-village3-sagehut-warpgate
   :id 500
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 1861 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1861 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1862 :fade-after (meters 60) :falloff-to (meters 100) :binding 1859)
    (sp-item 1859 :flags (bit1 start-dead launch-asap))
    (sp-item 1859 :flags (bit1 start-dead launch-asap))
@@ -1887,8 +1862,7 @@
 (defpartgroup group-village3-sagehut-steam
   :id 502
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1867 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 4) :length (seconds 0.42))
+  :parts ((sp-item 1867 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 4) :length (seconds 0.42))
    (sp-item 1867 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 5.2) :length (seconds 0.357))
    (sp-item 1867 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 6.1) :length (seconds 0.4))
    (sp-item 1867 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 2.3) :length (seconds 0.367))
@@ -1922,8 +1896,7 @@
 (defpartgroup group-village3-sagehut-understeam
   :id 503
   :bounds (static-bspherem 0 -3 0 8)
-  :parts
-  ((sp-item 1868 :fade-after (meters 200) :falloff-to (meters 200) :period (seconds 4) :length (seconds 0.42))
+  :parts ((sp-item 1868 :fade-after (meters 200) :falloff-to (meters 200) :period (seconds 4) :length (seconds 0.42))
    (sp-item 1868 :fade-after (meters 200) :falloff-to (meters 200) :period (seconds 5.2) :length (seconds 0.357))
    (sp-item 1868 :fade-after (meters 200) :falloff-to (meters 200) :period (seconds 6.1) :length (seconds 0.4))
    (sp-item 1868 :fade-after (meters 200) :falloff-to (meters 200) :period (seconds 2.3) :length (seconds 0.367))

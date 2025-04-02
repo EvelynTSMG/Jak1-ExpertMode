@@ -18,8 +18,7 @@
   :bounds (static-spherem 0 0 0 30))
 
 (defstate blocking-plane-idle (blocking-plane)
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (loop
         (logior! (-> self mask) (process-mask sleep))

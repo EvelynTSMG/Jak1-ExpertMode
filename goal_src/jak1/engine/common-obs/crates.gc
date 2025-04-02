@@ -245,8 +245,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 295 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017) :binding 296)
+  :parts ((sp-item 295 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017) :binding 296)
    (sp-item 296 :flags (start-dead launch-asap) :binding 297)
    (sp-item 297 :fade-after (meters 80) :falloff-to (meters 100) :flags (start-dead))
    (sp-item 296 :flags (start-dead launch-asap) :binding 297)
@@ -545,8 +544,7 @@
 (defstate wait (crate)
   :virtual #t
   :event crate-standard-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (suspend)
       (update-transforms! (-> self root))
       (logior! (-> self mask) (process-mask sleep))
@@ -557,8 +555,7 @@
 (defstate bounce-on (crate)
   :virtual #t
   :event crate-standard-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (!= (-> self smush amp) 0.0)
         (suspend))
       (go-virtual wait))
@@ -567,15 +564,13 @@
 (defstate notice-blue (crate)
   :virtual #t
   :event crate-standard-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((not (send-event *target* 'query 'powerup (pickup-type eco-blue)))
          (logior! (-> self mask) (process-mask sleep-code))
          (if (not (!= (-> self smush amp) 0.0)) (go-virtual wait)))
         (else (logclear! (-> self mask) (process-mask sleep-code)))))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (set! (-> self target) arg0)
       (loop
         (let* ((gp-0 (handle->process (-> self target)))
@@ -611,8 +606,7 @@
 
 (defstate die (crate)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touched)
          (case (-> self defense)
@@ -629,13 +623,11 @@
                  (let ((v1-12 (+ *global-attack-id* 1))) (set! *global-attack-id* v1-12) (set! (-> a1-5 param 2) (the-as uint v1-12)))
                  (set! (-> a1-5 param 3) (the-as uint 0))
                  (send-event-function proc a1-5)))))))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (case (-> self type)
         ((crate-buzzer)
          (if (and *target* (>= (-> *target* fact buzzer) 6.0)) (spool-push *art-control* (-> self victory-anim name) 0 self -99.0)))))
-  :code
-    (behavior ((arg0 symbol) (arg1 int))
+  :code (behavior ((arg0 symbol) (arg1 int))
       (clear-collide-with-as (-> self root))
       (if (nonzero? (-> self sound)) (stop! (-> self sound)))
       (if (and *target*
@@ -656,50 +648,42 @@
            (let ((f0-0 (lerp-scale 1.0 0.0 (vector-vector-distance (-> self root trans) (target-pos 0)) 8192.0 40960.0)))
              (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 (the int (* 255.0 f0-0)) (seconds 0.3)))
            (process-spawn touch-tracker
-                          :init
-                          touch-tracker-init
+                          :init touch-tracker-init
                           (-> self root trans)
                           (-> *CRATE-bank* DARKECO_EXPLODE_RADIUS)
                           30
-                          :to
-                          self)))
+                          :to self)))
         (case (-> self look)
           (('darkeco)
            (process-spawn part-tracker
-                          :init
-                          part-tracker-init
+                          :init part-tracker-init
                           (-> *part-group-id-table* 73)
                           -1
                           #f
                           #f
                           #f
                           (-> self root trans)
-                          :to
-                          *entity-pool*))
+                          :to *entity-pool*))
           (('steel 'iron)
            (process-spawn part-tracker
-                          :init
-                          part-tracker-init
+                          :init part-tracker-init
                           (-> *part-group-id-table* 72)
                           -1
                           #f
                           #f
                           #f
                           (-> self root trans)
-                          :to
-                          *entity-pool*))
+                          :to *entity-pool*))
           (else
            (process-spawn part-tracker
-                          :init
-                          part-tracker-init
+                          :init part-tracker-init
                           (-> *part-group-id-table* 71)
                           -1
                           #f
                           #f
                           #f
                           (-> self root trans)
-                          :to
-                          *entity-pool*))))
+                          :to *entity-pool*))))
       (case (-> self fact pickup-type)
         (((pickup-type money)
           (pickup-type buzzer)
@@ -715,8 +699,7 @@
 
 (defstate special-contents-die (crate)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('notify)
          (case (-> block param 0)
@@ -732,11 +715,9 @@
                 (process-entity-status! self (entity-perm-status complete) #t)
                 (set! (-> gp-0 user-int8 0) 2)
                 (let ((v0-0 (logclear (-> self mask) (process-mask sleep)))) (set! (-> self mask) v0-0) v0-0))))))))
-  :trans
-    (-> (method-of-type crate die)
+  :trans (-> (method-of-type crate die)
         trans)
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (or (= (-> self fact pickup-type) (pickup-type money)) (= (-> self defense) 'iron) (= (-> self defense) 'steel))
         (let ((a0-4 (-> self entity)))
           (if (when a0-4
@@ -935,8 +916,7 @@
 
 (defstate wait (crate-buzzer)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (and
             (and *target* (>= 327680.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
             (-> self do-fancies)
@@ -948,8 +928,7 @@
         (logclear! (-> self mask) (process-mask sleep-code)))
       (if (nonzero? (-> self sound)) (update! (-> self sound)))
       (if (and *target* (>= (-> *target* fact buzzer) 6.0)) (spool-push *art-control* (-> self victory-anim name) 0 self -99.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (suspend)
       (update-transforms! (-> self root))
@@ -975,8 +954,7 @@
 
 (defstate bounce-on (crate-buzzer)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (!= (-> self smush amp) 0.0)
         (spawn (-> self part) (-> self root trans))
         (suspend))
@@ -1001,8 +979,7 @@
 
 (defstate wait (pickup-spawner)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (or (not (-> self blocker)) (logtest? (-> self blocker extra perm status) (entity-perm-status complete)))
           (go-virtual die #t 0))

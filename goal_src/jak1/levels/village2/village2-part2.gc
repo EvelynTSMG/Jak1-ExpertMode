@@ -20,8 +20,7 @@
   :id 277
   :flags (always-draw)
   :bounds (static-bspherem 0 22 0 35)
-  :parts
-  ((sp-item 1211)
+  :parts ((sp-item 1211)
    (sp-item 1211 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1211 :fade-after (meters 200) :falloff-to (meters 200))
    (sp-item 1212 :fade-after (meters 100) :falloff-to (meters 100))
@@ -913,8 +912,7 @@
   :id 278
   :flags (always-draw)
   :bounds (static-bspherem 0 22 0 35)
-  :parts
-  ((sp-item 1243)
+  :parts ((sp-item 1243)
    (sp-item 1243 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 1243 :fade-after (meters 240) :falloff-to (meters 240))
    (sp-item 1244 :fade-after (meters 80) :falloff-to (meters 80))
@@ -1064,8 +1062,7 @@
   :id 280
   :flags (always-draw)
   :bounds (static-bspherem 0 22 0 35)
-  :parts
-  ((sp-item 1253)
+  :parts ((sp-item 1253)
    (sp-item 1253 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 1253 :fade-after (meters 240) :falloff-to (meters 240))
    (sp-item 1254 :fade-after (meters 80) :falloff-to (meters 80))
@@ -1409,8 +1406,7 @@
   :id 281
   :flags (always-draw)
   :bounds (static-bspherem 0 22 0 35)
-  :parts
-  ((sp-item 1267)
+  :parts ((sp-item 1267)
    (sp-item 1267 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1267 :fade-after (meters 200) :falloff-to (meters 200))
    (sp-item 1268)
@@ -1726,8 +1722,7 @@
   :id 282
   :flags (always-draw)
   :bounds (static-bspherem -15 17 -10 40)
-  :parts
-  ((sp-item 1278)
+  :parts ((sp-item 1278)
    (sp-item 1278 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1278 :fade-after (meters 200) :falloff-to (meters 200))
    (sp-item 1279 :fade-after (meters 80) :falloff-to (meters 80))
@@ -2636,8 +2631,7 @@
 (defpartgroup group-village2-sagehut-warpgate
   :id 283
   :bounds (static-bspherem 7 4 -4.5 12)
-  :parts
-  ((sp-item 1313 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1313 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1314 :fade-after (meters 60) :falloff-to (meters 100) :binding 1311)
    (sp-item 1311 :flags (bit1 start-dead launch-asap))
    (sp-item 1311 :flags (bit1 start-dead launch-asap))
@@ -2903,8 +2897,7 @@
 (defpartgroup group-village2-tree-fire
   :id 284
   :bounds (static-bspherem 0 10 0 12)
-  :parts
-  ((sp-item 1316 :fade-after (meters 120) :falloff-to (meters 120))
+  :parts ((sp-item 1316 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1317 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1318 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1319 :fade-after (meters 120) :falloff-to (meters 120))))

@@ -83,8 +83,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-idle (hopper)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.075))
       (loop
         (dotimes (gp-0 3)
@@ -100,12 +99,10 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-patrol (hopper)
   :virtual #t
   :event nav-enemy-jump-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> self nav-enemy-flags) (nav-enemy-flags enable-rotate)))
         ((-> (method-of-type nav-enemy nav-enemy-patrol) trans))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (vector-reset! (-> self collide-info transv))
       (set! (-> self jump-length) 16384.0)
       (logclear! (-> self nav-enemy-flags) (nav-enemy-flags enable-rotate))
@@ -142,19 +139,16 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-notice (hopper)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-chase)))
 
 (defstate nav-enemy-chase (hopper)
   :virtual #t
   :event nav-enemy-jump-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> self nav-enemy-flags) (nav-enemy-flags enable-rotate)))
         ((-> (method-of-type nav-enemy nav-enemy-chase) trans))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (vector-reset! (-> self collide-info transv))
       (set! (-> self jump-length) 32768.0)
       (logclear! (-> self nav-enemy-flags) (nav-enemy-flags enable-rotate))
@@ -187,8 +181,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-stop-chase (hopper)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-stare)))
 
 (define *hopper-nav-enemy-info*

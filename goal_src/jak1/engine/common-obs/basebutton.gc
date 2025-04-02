@@ -50,14 +50,12 @@
 
 (defstate basebutton-startup (basebutton)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (-> self down?) (go-virtual basebutton-down-idle) (go-virtual basebutton-up-idle))))
 
 (defstate basebutton-up-idle (basebutton)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack)
          (case (-> block param 1)
@@ -67,15 +65,12 @@
             (go-virtual basebutton-going-down))))
         (('trigger) (sound-play "silo-button") (go-virtual basebutton-going-down))
         (('move-to) (move-to-vec-or-quat! self (the-as vector (-> block param 0)) (the-as quaternion (-> block param 1))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (press! self #f))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (-> self move-to?) (rider-trans)))
   :code anim-loop
-  :post
-    (behavior ()
+  :post (behavior ()
       (when (-> self move-to?)
         (set! (-> self move-to?) #f)
         (set! (-> self root trans quad) (-> self move-to-pos quad))
@@ -84,25 +79,21 @@
 
 (defstate basebutton-going-down (basebutton)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('untrigger) (sound-play "silo-button") (go-virtual basebutton-going-up))
         (('move-to) (move-to-vec-or-quat! self (the-as vector (-> block param 0)) (the-as quaternion (-> block param 1))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (press! self #t))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (seek! max (-> self anim-speed)))
       (until (ja-done? 0)
         (suspend)
         (ja :num! (seek! max (-> self anim-speed))))
       (basebutton-method-29 self (-> self event-down) (-> self notify-actor))
       (go-virtual basebutton-down-idle))
-  :post
-    (behavior ()
+  :post (behavior ()
       (when (-> self move-to?)
         (set! (-> self move-to?) #f)
         (set! (-> self root trans quad) (-> self move-to-pos quad))
@@ -111,19 +102,15 @@
 
 (defstate basebutton-down-idle (basebutton)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('untrigger) (sound-play "silo-button") (go-virtual basebutton-going-up))
         (('move-to) (move-to-vec-or-quat! self (the-as vector (-> block param 0)) (the-as quaternion (-> block param 1))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (press! self #t))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (-> self move-to?) (rider-trans)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (cond
         ((= (-> self timeout) 0.0) (anim-loop))
@@ -133,8 +120,7 @@
          (basebutton-method-29 self (-> self event-going-up) (-> self notify-actor))
          (sound-play "silo-button")
          (go-virtual basebutton-going-up))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (when (-> self move-to?)
         (set! (-> self move-to?) #f)
         (set! (-> self root trans quad) (-> self move-to-pos quad))
@@ -143,25 +129,21 @@
 
 (defstate basebutton-going-up (basebutton)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('move-to) (move-to-vec-or-quat! self (the-as vector (-> block param 0)) (the-as quaternion (-> block param 1))))
         (('trigger) (sound-play "silo-button") (go-virtual basebutton-going-down))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (press! self #f))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (seek! 0.0 (-> self anim-speed)))
       (until (ja-done? 0)
         (suspend)
         (ja :num! (seek! 0.0 (-> self anim-speed))))
       (basebutton-method-29 self (-> self event-up) (-> self notify-actor))
       (go-virtual basebutton-up-idle))
-  :post
-    (behavior ()
+  :post (behavior ()
       (when (-> self move-to?)
         (set! (-> self move-to?) #f)
         (set! (-> self root trans quad) (-> self move-to-pos quad))
@@ -308,11 +290,9 @@
 
 (defstate use (warp-gate)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (send-event *camera* 'joystick 0.0 0.0))
-  :code
-    (behavior ((arg0 int) (arg1 level))
+  :code (behavior ((arg0 int) (arg1 level))
       (set-time! (-> self state-time))
       (when (not arg1)
         (process-release? *target*)
@@ -375,16 +355,14 @@
        :flags (surface-flags always-rotate-toward-transv)))
 
 (defstate target-warp-out (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('death-end)
          (let ((v0-0 (the-as object (logior (-> self draw status) (draw-status hidden)))))
            (set! (-> self draw status) (the-as draw-status v0-0))
            v0-0))
         (else (target-generic-event-handler proc argc message block))))
-  :enter
-    (behavior ((arg0 vector) (arg1 vector))
+  :enter (behavior ((arg0 vector) (arg1 vector))
       (set-time! (-> self state-time))
       (logclear! (-> self control status) (cshape-moving-flags onsurf onground tsurf))
       (set! (-> self control unknown-surface00) *warp-jump-mods*)
@@ -395,11 +373,9 @@
       (vector-reset! (-> self control transv))
       (logior! (-> self state-flags) (state-flags use-alt-cam-pos))
       (set! (-> self alt-cam-pos quad) (-> arg1 quad)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self state-flags) (state-flags use-alt-cam-pos)))
-  :code
-    (behavior ((arg0 vector) (arg1 vector))
+  :code (behavior ((arg0 vector) (arg1 vector))
       (send-event *camera* 'change-state cam-fixed 0)
       (ja-channel-push! 1 (seconds 0.2))
       (ja-no-eval :group! eichar-duck-high-jump-ja :num! (seek! (ja-aframe 16.0 0)) :frame-num 0.0)

@@ -31,15 +31,13 @@
   (none))
 
 (defstate target-snowball-start (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (cond
         ((and (= message 'query) (= (-> block param 0) 'mode)) 'snowball)
         ((let ((v1-3 message)) (= v1-3 'end-mode))
          (go target-jump (-> *TARGET-bank* duck-jump-height-min) (-> *TARGET-bank* duck-jump-height-max) (the-as surface #f)))
         (else (target-generic-event-handler proc argc message block))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when (!= (-> self next-state name) 'target-snowball)
         (let ((v1-1 (-> self manipy)))
           (when v1-1
@@ -52,8 +50,7 @@
         (target-collide-set! 'normal 0.0)
         (set! (-> self control reaction) target-collision-reaction)
         (target-exit)))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (target-exit)
       (set! *display-profile* #f)
       (set! *display-entity-errors* #f)
@@ -72,16 +69,12 @@
   :post target-post)
 
 (defstate target-snowball (target)
-  :event
-    (-> target-snowball-start
+  :event (-> target-snowball-start
         event)
-  :exit
-    (-> target-snowball-start
+  :exit (-> target-snowball-start
         exit)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (target-snowball-post)))

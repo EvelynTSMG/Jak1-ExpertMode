@@ -57,8 +57,7 @@
 
 (define *bully-shadow-control*
   (new 'static 'shadow-control
-       :settings
-       (new 'static 'shadow-settings
+       :settings (new 'static 'shadow-settings
             :flags (shadow-flags shdf00 shdf03)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 614400.0)
@@ -198,8 +197,7 @@
    (:conerot-y (degrees 0) (degrees 360))))
 
 (defstate bully-broken-cage-explode (bully-broken-cage)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 0)
       (ja-no-eval :group! bully-broken-cage-explode-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
@@ -346,27 +344,23 @@
 
 (defstate bully-idle (bully)
   :event bully-default-event-handler
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (set-time! (-> self state-time))
       (set! (-> self reaction-delay) (rand-vu-int-range 0 (seconds 0.35)))
       (set! (-> self travel-speed) 0.0)
       (shut-down! (-> self neck))
       (let ((v1-5 (-> self draw shadow-ctrl))) (logior! (-> v1-5 settings flags) (shadow-flags disable-draw)))
       0)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((v1-1 (-> self draw shadow-ctrl))) (logclear! (-> v1-1 settings flags) (shadow-flags disable-draw)))
       0)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (and (and *target*
                       (>= (-> self fact idle-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
                  (time-elapsed? (-> self state-time) (-> self reaction-delay)))
         (start-hint-timer (text-id sunken-bully-dive-hint))
         (go bully-notice)))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (ja-channel-push! 1 (seconds 0.075))
       (if arg0
         (ja :group! bully-idle-ja :num! (identity (rand-vu-float-range 0.0 (the float (+ (-> (ja-group) data 0 length) -1)))))
@@ -378,8 +372,7 @@
 
 (defstate bully-notice (bully)
   :event bully-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when *target*
         (if *target*
           (look-at-enemy! (-> *target* neck)
@@ -387,8 +380,7 @@
                           'attacking
                           self))
         (set-target! (-> self neck) (target-pos 5))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self travel-speed) 0.0)
       (ja-channel-push! 1 (seconds 0.075))
       (set-vector! (-> self root transv) 0.0 (rand-vu-float-range 61440.0 90112.0) 0.0 1.0)
@@ -421,8 +413,7 @@
 
 (defstate bully-start-spinning (bully)
   :event bully-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set-time! (-> self start-spin-time))
       (set! (-> self slow-down) (rand-vu-int-range (seconds 4) (seconds 8)))
@@ -432,8 +423,7 @@
         (if *target* (vector-! gp-0 (target-pos 0) (-> self root trans)) (vector-z-quaternion! gp-0 (-> self root quat)))
         (set! (-> self travel-ry) (atan (-> gp-0 x) (-> gp-0 z))))
       (+! (-> self travel-ry) (rand-vu-float-range -910.2222 910.2222)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when *target*
         (if *target*
           (look-at-enemy! (-> *target* neck)
@@ -459,8 +449,7 @@
                                                 #f
                                                 #f)
       (nav-control-method-27 (-> self nav)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (v1-34 symbol) (v1-52 symbol))
       (ja-channel-push! 1 (seconds 0.2))
       (ja-no-eval :group! bully-start-spin-ja :num! (seek!) :frame-num 0.0)
@@ -491,14 +480,12 @@
 
 (defstate bully-stop-spinning (bully)
   :event bully-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self reaction-delay) (rand-vu-int-range (seconds 2) (seconds 3)))
       (set! (-> self travel-speed) 0.0)
       (set! (-> self bounced?) #f))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when *target*
         (if *target*
           (look-at-enemy! (-> *target* neck)
@@ -506,8 +493,7 @@
                           'attacking
                           self))
         (set-target! (-> self neck) (target-pos 5))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (v1-17 symbol) (v1-35 symbol))
       (let ((gp-0 2))
         (ja-channel-push! 1 (seconds 0.2))
@@ -538,8 +524,7 @@
   :post bully-post)
 
 (defstate bully-die (bully)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)
       (shut-down! (-> self neck))
       (logclear! (-> self mask) (process-mask actor-pause))

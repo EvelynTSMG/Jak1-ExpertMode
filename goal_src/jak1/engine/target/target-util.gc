@@ -22,8 +22,7 @@
 
 (define *target-shadow-control*
   (new 'static 'shadow-control
-       :settings
-       (new 'static 'shadow-settings
+       :settings (new 'static 'shadow-settings
             :flags (shadow-flags disable-fade)
             :shadow-dir
             (new 'static 'vector :x -0.4226 :y -0.9063 :w 409600.0)

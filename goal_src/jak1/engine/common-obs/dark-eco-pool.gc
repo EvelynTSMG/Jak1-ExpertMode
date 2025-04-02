@@ -13,8 +13,7 @@
        :count 3
        :converted #f
        :normal-scale 3.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 2 :speed 0.5)
@@ -27,8 +26,7 @@
        :count 3
        :converted #f
        :normal-scale 8.57
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 14.0 :xdiv 1 :speed 1.0)
@@ -41,8 +39,7 @@
        :count 3
        :converted #f
        :normal-scale 4.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 25.0 :xdiv 2 :speed -2.0)
@@ -55,8 +52,7 @@
        :count 3
        :converted #f
        :normal-scale 3.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.0)
@@ -69,8 +65,7 @@
        :count 3
        :converted #f
        :normal-scale 8.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 15.0 :xdiv 1 :speed 1.0)
@@ -145,8 +140,7 @@
   :linger-duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 2056 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2056 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017))
    (sp-item 2057 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017) :binding 2052)
    (sp-item 2052 :flags (start-dead launch-asap) :binding 2053)
    (sp-item 2053 :fade-after (meters 80) :falloff-to (meters 100) :flags (start-dead))
@@ -299,8 +293,7 @@
 
 (defstate water-vol-idle (dark-eco-pool)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((t9-0 (-> (method-of-type water-anim water-vol-idle) trans))) (if t9-0 (t9-0)))
       (let* ((gp-0 (-> self draw ripple))
              (f0-1 (the float (logand (current-time) #xffff)))
@@ -314,16 +307,14 @@
             (when (and (nonzero? (-> s5-0 vertex-count)) (< #x32000 (memory-free *nk-dead-pool*)))
               (let ((s3-0 (rand-vu-int-range 0 (+ (-> s5-0 vertex-count) -1))))
                 (process-spawn part-tracker
-                               :init
-                               part-tracker-init
+                               :init part-tracker-init
                                (-> *part-group-id-table* 445)
                                -1
                                #f
                                #f
                                #f
                                (-> s5-0 data s3-0)
-                               :to
-                               *entity-pool*)))))
+                               :to *entity-pool*)))))
         (case (-> self look)
           ((32)
            (set! (-> gp-0 global-scale) (* 4096.0 (* 1.5 (+ 1.0 f30-0))))

@@ -55,8 +55,7 @@
 (defpartgroup group-energyball-always
   :id 545
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2168 :fade-after (meters 80) :falloff-to (meters 80))
+  :parts ((sp-item 2168 :fade-after (meters 80) :falloff-to (meters 80))
    (sp-item 2169 :fade-after (meters 120))
    (sp-item 2170 :fade-after (meters 120))
    (sp-item 2171 :fade-after (meters 120) :flags (is-3d))
@@ -241,8 +240,7 @@
   :id 546
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 45)
-  :parts
-  ((sp-item 2179 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2179 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2180 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2181 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2182 :period (seconds 2) :length (seconds 0.067))))
@@ -369,8 +367,7 @@
 
 (defstate energydoor-closing (energydoor)
   :event energydoor-closed-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! (ja-group) :num! (seek! 0.0) :frame-num max)
       (until (ja-done? 0)
         (suspend)
@@ -382,8 +379,7 @@
 
 (defstate energydoor-opened (energydoor)
   :event energydoor-open-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((f30-0 (energydoor-player-dist)))
         (cond
           ((< f30-0 -450560.0) (go energydoor-closing))
@@ -397,8 +393,7 @@
                         (v1-7 (-> self alt-actor)))
                     (not (t9-3 (if v1-7 (-> v1-7 extra process)) a1-1)))))
            (go energydoor-closing)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :num-func num-func-identity :frame-num max)
       (transform-post)
       (loop
@@ -406,8 +401,7 @@
 
 (defstate energydoor-opening (energydoor)
   :event energydoor-open-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -417,8 +411,7 @@
 
 (defstate energydoor-closed-till-task (energydoor)
   :event energydoor-closed-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((task-closed? (-> self entity extra perm task) (task-status need-resolution)) (go energydoor-opening))
         ((let ((a1-1 (new 'stack-no-clear 'event-message-block)))
@@ -429,8 +422,7 @@
                  (v1-5 (-> self alt-actor)))
              (t9-2 (if v1-5 (-> v1-5 extra process)) a1-1)))
          (go energydoor-opening))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :num-func num-func-identity :frame-num 0.0)
       (transform-post)
       (loop
@@ -438,11 +430,9 @@
 
 (defstate energydoor-closed-till-near (energydoor)
   :event energydoor-closed-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (< -409600.0 (energydoor-player-dist)) (go energydoor-opening)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :num-func num-func-identity :frame-num 0.0)
       (transform-post)
       (loop
@@ -500,15 +490,13 @@
   :bounds (static-spherem 0 40 0 40))
 
 (defstate energybase-stopped (energybase)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-post)
       (loop
         (suspend))))
 
 (defstate energybase-stopping (energybase)
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((f30-0 1.0))
         (loop
           (ja-no-eval :group! (ja-group) :num! (seek! max f30-0) :frame-num 0.0)
@@ -520,12 +508,10 @@
   :post ja-post)
 
 (defstate energybase-idle (energybase)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('stop) (go energybase-stopping))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (and *target* (>= 307200.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
           (level-hint-spawn (text-id lavatube-balls) "sksp0375" (the-as entity #f) *entity-pool* (game-task none)))
@@ -594,28 +580,24 @@
   :bounds (static-spherem 0 0 0 6))
 
 (defstate energyball-idle (energyball)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack)
          (when (and (>= argc 2) (= (-> block param 1) 'eco-yellow))
            (increment-success-for-hint (text-id lavatube-balls))
            (sound-play "dcrate-break")
            (process-spawn part-tracker
-                          :init
-                          part-tracker-init
+                          :init part-tracker-init
                           (-> *part-group-id-table* 546)
                           600
                           #f
                           #f
                           #f
                           (-> self root trans)
-                          :to
-                          *entity-pool*)
+                          :to *entity-pool*)
            (cleanup-for-death self)
            (deactivate self)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (spawn (-> self part) (-> self root trans))
       (let* ((v1-3 (-> self parent-overide))
@@ -632,8 +614,7 @@
           (matrix-rotate-y! s5-1 (* -436.90668 f30-0))
           (matrix*! s5-1 s5-1 (-> gp-0 rot-mat))
           (matrix->quaternion (-> self root quat) s5-1))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -697,16 +678,13 @@
       (vector+! (-> self root trans) (-> s5-0 root trans) gp-1))))
 
 (defstate energyarm-stop (energyarm)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       '())
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! (-> self x-rotation) 0.0)
       (update! (-> self y-chatter-rotation) 0.0)
       (energyarm-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -715,15 +693,12 @@
   :post rider-post)
 
 (defstate energyarm-no-ball (energyarm)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('stop) (go energyarm-stop))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self y-chatter-rotation osc target) 1.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self x-correction) (fmax -1.0 (+ -0.1 (-> self x-correction))))
       (update! (-> self x-rotation) 0.0)
       (when (at-min? (-> self x-rotation))
@@ -741,8 +716,7 @@
           (set! (-> self y-chatter-rotation min-value) (fabs (-> self y-chatter-min value)))
           (set! (-> self y-chatter-rotation osc vel) (fmin f30-2 (-> self y-chatter-rotation osc vel)))))
       (energyarm-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -751,11 +725,9 @@
   :post rider-post)
 
 (defstate energyarm-fall (energyarm)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self x-fall-rotation osc target) 1.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! (-> self x-fall-rotation) 0.0)
       (update! (-> self y-chatter-rotation) 0.0)
       (when (at-max? (-> self x-fall-rotation))
@@ -763,8 +735,7 @@
         (set! (-> self y-chatter-rotation osc vel) 0.2)
         (if (< -0.01 (-> self x-fall-rotation osc vel)) (go energyarm-no-ball)))
       (energyarm-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -773,12 +744,10 @@
   :post rider-post)
 
 (defstate energyarm-idle (energyarm)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('stop) (go energyarm-stop))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! (-> self x-rotation) 0.0)
       (when (at-min? (-> self x-rotation))
         (let* ((f30-0 0.15)
@@ -800,8 +769,7 @@
            (let ((t9-10 send-event-function)
                  (v1-24 (-> self parent-overide)))
              (t9-10 (if v1-24 (-> v1-24 0 self-override)) a1-8))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (-> self skel root-channel 0)))
         (set! (-> gp-0 num-func) num-func-identity)
         (set! (-> gp-0 frame-num) (* (rand-float-gen) (the float (ja-num-frames 0)))))
@@ -893,20 +861,17 @@
           (set! (-> (the-as process-drawable v1-2) root scale z) 1.25))))))
 
 (defstate energyhub-stopped (energyhub)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self rotation-speed target) 0.0)
       (set! (-> self rotation-speed accel) 0.0005)
       (dotimes (gp-0 5)
         (send-event (handle->process (-> self arm gp-0)) 'stop))
       (if (nonzero? (-> self sound)) (stop! (-> self sound))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! (-> self rotation-speed) 0.0)
       (energyhub-trans)
       (energyhub-set-lava-height -122880.0))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (let* ((f30-0 1.0)
@@ -918,12 +883,10 @@
   :post ja-post)
 
 (defstate energyhub-stop (energyhub)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('flash) (set! (-> self palette-val) 1.9921875))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self rotation-speed target) 0.0)
       (set! (-> self rotation-speed accel) 0.0005)
       (let ((a1-0 (new 'stack-no-clear 'event-message-block)))
@@ -943,14 +906,12 @@
       (close-specific-task! (game-task lavatube-balls) (task-status need-resolution))
       (level-hint-spawn (text-id lavatube-balls-resolution) "sksp0378" (the-as entity #f) *entity-pool* (game-task none))
       (if (nonzero? (-> self sound)) (stop! (-> self sound))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! (-> self rotation-speed) 0.0)
       (energyhub-trans)
       (energyhub-set-lava-height -122880.0)
       (if (< (-> self rotation-speed value) 0.3) (go energyhub-stopped)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (let* ((f30-0 1.0)
@@ -962,12 +923,10 @@
   :post ja-post)
 
 (defstate energyhub-idle (energyhub)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('flash) (set! (-> self palette-val) 1.9921875))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (nonzero? (-> self sound)) (update! (-> self sound)))
       (let ((gp-0 0))
         (dotimes (s5-0 5)
@@ -984,8 +943,7 @@
       (update! (-> self rotation-speed-offset))
       (update! (-> self rotation-speed) (-> self rotation-speed-offset value))
       (energyhub-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (let* ((f30-0 1.0)
@@ -1038,8 +996,7 @@
   :bounds (static-spherem 0 0 0 120))
 
 (defstate energylava-idle (energylava)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)

@@ -144,8 +144,7 @@
   (= (-> this next-state name) 'hud-hidden))
 
 (defstate hud-hidden (hud)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (case message
         (('show) (if (and (not *progress-process*) (!= (-> self last-hide-time) (current-time))) (go hud-arriving)))
@@ -155,8 +154,7 @@
         (('sync) (set! v0-0 #t) (set! (-> self first-init) (the-as symbol v0-0)) v0-0)
         (('disable) (set! v0-0 #t) (set! (-> self disable) (the-as symbol v0-0)) v0-0)
         (('enable) (set! (-> self disable) #f) #f)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self offset) 128)
       (draw-icons self)
       (draw-particles self)
@@ -167,22 +165,18 @@
       (dotimes (gp-1 (-> self nb-of-particles))
         (kill-and-free-particles (-> self particles gp-1 part))
         (set! (-> self particles gp-1 part matrix) -1)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self y-offset) (-> self next-y-offset)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self mask) (process-mask sleep-code))
       (loop
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (if (-> self deactivate-when-hidden) (deactivate self))
       (hud-update self)))
 
 (defstate hud-arriving (hud)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-3 object))
       (case message
         (('hide-quick)
@@ -199,16 +193,14 @@
         (('sync) (set! v0-3 #t) (set! (-> self first-init) (the-as symbol v0-3)) v0-3)
         (('disable) (set! v0-3 #t) (set! (-> self disable) (the-as symbol v0-3)) v0-3)
         (('enable) (set! (-> self disable) #f) #f)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (let ((gp-0 (-> self child)))
         (while gp-0
           (send-event (ppointer->process gp-0) 'draw #t)
           (set! gp-0 (-> gp-0 0 brother))))
       (dotimes (gp-1 (-> self nb-of-particles))
         (if (= (-> self particles gp-1 part matrix) -1) (set! (-> self particles gp-1 part matrix) (sprite-allocate-user-hvdf)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (not (paused?)) (seekl! (-> self offset) 0 (the int (* 15.0 (-> *display* time-adjust-ratio)))))
         (draw-icons self)
@@ -222,18 +214,15 @@
           (hud-update self)
           (go hud-hidden))
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (hud-update self)
       (draw-particles self)
       (draw-hud self)))
 
 (defstate hud-in (hud)
-  :event
-    (-> hud-arriving
+  :event (-> hud-arriving
         event)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self trigger-time))
       (while (and (not (time-elapsed? (-> self trigger-time) (seconds 2))) (not (movie?)))
         (set! (-> self offset) 0)
@@ -248,16 +237,13 @@
         (hud-update self)
         (go hud-hidden))
       (go hud-leaving 5))
-  :post
-    (-> hud-arriving
+  :post (-> hud-arriving
         post))
 
 (defstate hud-leaving (hud)
-  :event
-    (-> hud-arriving
+  :event (-> hud-arriving
         event)
-  :code
-    (behavior ((arg0 int))
+  :code (behavior ((arg0 int))
       (loop
         (if (not (paused?)) (seekl! (-> self offset) 128 (the int (* (the float arg0) (-> *display* time-adjust-ratio)))))
         (draw-icons self)
@@ -271,8 +257,7 @@
           (go hud-hidden))
         (if (>= (-> self offset) 128) (go hud-hidden))
         (suspend)))
-  :post
-    (-> hud-arriving
+  :post (-> hud-arriving
         post))
 
 (defbehavior hud-init-by-other hud ((arg0 int))
@@ -303,12 +288,10 @@
   (if (-> arg0 increment-on-event) (send-event arg0 'increment)))
 
 (defstate hud-collecting (process-drawable)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (case (-> self type)
         ((fuel-cell) (fuel-cell-animate))))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (let ((s5-0 (new 'stack-no-clear 'vector)))
         (let ((s4-0 (handle->process arg0)))
           (set! (-> s5-0 x) (- (the float (+ (get-icon-pos-x (the-as hud s4-0)) -256)) (-> self root trans x)))

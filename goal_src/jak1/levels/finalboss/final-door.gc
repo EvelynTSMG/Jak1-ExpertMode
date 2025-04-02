@@ -43,12 +43,10 @@
 
 (defstate idle (final-door)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('open) (go-virtual open #f))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (logior! (-> self mask) (process-mask sleep))
       (suspend)
@@ -56,8 +54,7 @@
 
 (defstate open (final-door)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('brightness)
          (let ((f0-0 (the-as float (-> block param 0)))
@@ -69,8 +66,7 @@
              (set! (-> v0-0 z) f1-0)
              (set! (-> v0-0 w) f1-0)
              v0-0)))))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (case (-> self type)
         ((power-left)
          (ja-no-eval :group! (-> self draw art-group data 2) :num! (seek! max 0.353) :frame-num 0.0)
@@ -118,8 +114,7 @@
 
 (defstate idle (power-left)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-post)
       (loop
         (if (and (and *target* (>= 61440.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
@@ -158,8 +153,7 @@
 
 (defstate jump (powercellalt)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (sound-play "cell-prize")
       (let ((gp-1 (new 'stack 'trajectory)))
         (set! (-> self base y) (-> self jump-pos y))
@@ -176,22 +170,19 @@
       (transform-post)
       (sound-play "land-pcmetal" :pitch 2)
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 4)
                      -1
                      #f
                      #f
                      #f
                      (-> self root root-prim prim-core)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (go-virtual idle)))
 
 (defstate idle (powercellalt)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (vector<-cspace! (-> self root trans) (-> (the-as process-drawable (-> self parent 0)) node-list data (-> self index)))
         (transform-post)
@@ -224,26 +215,21 @@
   (none))
 
 (defstate target-final-door (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       ((-> target-grab event) proc argc message block))
-  :enter
-    (behavior ((arg0 basic) (arg1 handle))
+  :enter (behavior ((arg0 basic) (arg1 handle))
       (send-event *camera* 'change-to-entity-by-name "camera-403")
       (set! (-> self control unknown-surface00) *empty-mods*)
       (logior! (-> self state-flags) (state-flags invulnerable grabbed))
       (set-setting! 'allow-progress #f 0.0 0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (send-event *camera* 'change-state *camera-base-mode* (seconds 0.2))
       (logclear! (-> self state-flags) (state-flags invulnerable grabbed))
       (target-exit)
       (remove-setting! 'allow-progress))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set-letterbox-frames (seconds 0.017)))
-  :code
-    (behavior ((arg0 basic) (arg1 handle))
+  :code (behavior ((arg0 basic) (arg1 handle))
       (local-vars (sv-144 process) (sv-160 vector) (sv-176 process) (sv-192 vector))
       (let ((a0-2 (get-task-control (game-task finalboss-movies)))) (save-reminder a0-2 (logior (get-reminder a0-2 0) 2) 0))
       (move-to-point! (-> self control) (new 'static 'vector :x 11368946.0 :y 2215900.2 :z -19405602.0 :w 1.0))

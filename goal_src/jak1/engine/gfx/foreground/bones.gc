@@ -1161,8 +1161,7 @@
               (.add.mul.z.vf vf8 vf3 vf5 acc)
               ;mulax.xyzw ACC, vf01, vf06
               (.mul.x.vf acc vf1 vf6)
-              ;madday.xyzw ACC, vf02, vf06 :e
-              (.add.mul.y.vf acc vf2 vf6 acc)
+              ;madday.xyzw ACC, vf02, vf06 :e (.add.mul.y.vf acc vf2 vf6 acc)
               ;maddz.xyzw vf09, vf03, vf06
               (.add.mul.z.vf vf9 vf3 vf6 acc)
               (let ((a1-9 (-> v1-6 color 0 quad)))

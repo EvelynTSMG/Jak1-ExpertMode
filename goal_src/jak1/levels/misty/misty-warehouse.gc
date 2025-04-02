@@ -24,13 +24,11 @@
   :bounds (static-spherem 0 2 0 8))
 
 (defstate silostep-idle (silostep)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (go silostep-camera))
         (('trigger-rise) (go silostep-rise #f))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :group! silostep-idle-ja :num! min)
       (transform-post)
       (loop
@@ -40,8 +38,7 @@
 (defbehavior misty-camera-view silostep ()
   (set! (-> self cam-tracker)
         (ppointer->handle (process-spawn camera-tracker
-                                         :init
-                                         camera-tracker-init
+                                         :init camera-tracker-init
                                          (lambda :behavior camera-tracker ()
                                            (while (not (process-grab? *target*))
                                              (suspend))
@@ -51,13 +48,11 @@
                                              (suspend))
                                            (camera-change-to (the-as string 'base) 150 #f)
                                            (none))
-                                         :to
-                                         self)))
+                                         :to self)))
   (none))
 
 (defstate silostep-camera (silostep)
-  :code
-    (behavior ()
+  :code (behavior ()
       (misty-camera-view)
       (let* ((gp-0 (get-task-control (game-task misty-warehouse)))
              (v1-1 (get-reminder gp-0 0)))
@@ -70,8 +65,7 @@
   :post ja-post)
 
 (defstate silostep-rise (silostep)
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (process-entity-status! self (entity-perm-status complete) #t)
       (when (not arg0)
         (ja-no-eval :group! silostep-idle-ja :num! (seek! (-> self anim-limit)) :frame-num 0.0)

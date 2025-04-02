@@ -74,6 +74,17 @@
 
 (defmacro beach-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
-    (('fuel-cell-freebie))
+    ;; CELLS
+    (('fuel-cell-40) (set-cell-pos e -240.82 29.63 -389.50)) ; Pillartop #1
+    (('fuel-cell-42) (set-cell-pos e -303.33 31.53 -386.13)) ; Sentinel #1, on top of broken arch
+
+    ;; FLIES
+    (('crate-213)  (set-cell-pos e  -50.42 18.61 -327.25)) ; Upper Path (Start), gap in wall
+    (('crate-646)  (set-cell-pos e -167.23 15.74 -257.17)) ; Upper Path (Start), behind rocks out of the cannon's range
+    ; crate-647 left on top of hill overlooking sentinels
+    (('crate-648)  (set-cell-pos e -162.16 17.00 -527.88)) ; Upper Path (End), near eco collectors
+    (('crate-649)  (set-cell-pos e -257.69 -0.93 -499.66)) ; Logs Area (Lower), in the center
+    (('crate-651)  (set-cell-pos e -422.75  4.08 -472.27)) ; Sentinel #3, below the balcony
+    (('crate-2467) (set-cell-pos e -252.45 16.94 -302.89) (rot-ent e -10.0 -7.5 -20.0)) ; Cannon Tower, in front of the window
   )
 )

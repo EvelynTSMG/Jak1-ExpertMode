@@ -217,16 +217,13 @@
   (and (!= (-> this next-state name) 'level-hint-sidekick) (< (seconds 5) (-> this total-time))))
 
 (defstate level-hint-normal (level-hint)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('exit) (go level-hint-exit))
         (('die) (deactivate self))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (= (ppointer->process *hint-semaphore*) self) (set! *hint-semaphore* (the-as (pointer level-hint) #f))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((= (-> self text-id-to-display) (text-id zero)) (if *debug-segment* (go level-hint-error "UNKNOWN TEXT ID" "")))
         (else
@@ -250,8 +247,7 @@
       (go level-hint-exit)))
 
 (defstate level-hint-sidekick (level-hint)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('exit)
          (when (nonzero? (-> self sound-id))
@@ -260,8 +256,7 @@
            0)
          (go level-hint-exit))
         (('die) (deactivate self))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       ;; og:preserve-this
       (#when PC_PORT
         (set! *level-hint-spool-name* #f))
@@ -271,8 +266,7 @@
       (remove-setting! 'dialog-volume)
       (if (= (ppointer->process *hint-semaphore*) self) (set! *hint-semaphore* (the-as (pointer level-hint) #f)))
       (send-event (handle->process (-> self voicebox)) 'die))
-  :code
-    (behavior ((arg0 string))
+  :code (behavior ((arg0 string))
       ;; og:preserve-this
       (#when PC_PORT
         (set! *level-hint-spool-name* arg0))
@@ -310,17 +304,14 @@
       (go level-hint-exit)))
 
 (defstate level-hint-ambient-sound (level-hint)
-  :event
-    (-> level-hint-sidekick
+  :event (-> level-hint-sidekick
         event)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (nonzero? (-> self sound-id)) (sound-stop (-> self sound-id)))
       (remove-setting! 'music-volume)
       (remove-setting! 'sfx-volume)
       (if (= (ppointer->process *hint-semaphore*) self) (set! *hint-semaphore* (the-as (pointer level-hint) #f))))
-  :code
-    (behavior ((arg0 string))
+  :code (behavior ((arg0 string))
       (while (not *sound-player-enable*)
         (suspend))
       (cond
@@ -362,11 +353,9 @@
       (go level-hint-exit)))
 
 (defstate level-hint-error (level-hint)
-  :event
-    (-> level-hint-normal
+  :event (-> level-hint-normal
         event)
-  :code
-    (behavior ((arg0 string) (arg1 string))
+  :code (behavior ((arg0 string) (arg1 string))
       (remove-setting! 'hint)
       (suspend-for (seconds 1)
                    (when (and *debug-segment* (not (paused?)) (not (str-is-playing?)) (bottom-hud-hidden?))
@@ -378,8 +367,7 @@
       (go level-hint-exit)))
 
 (defstate level-hint-exit (level-hint)
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (= (ppointer->process *hint-semaphore*) self) (set! *hint-semaphore* (the-as (pointer level-hint) #f)))))
 
 (defun ambient-type-error ((arg0 drawable-ambient) (arg1 vector))

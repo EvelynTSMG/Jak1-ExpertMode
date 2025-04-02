@@ -33,19 +33,16 @@
   :bounds (static-spherem 0 1 0 2))
 
 (defstate spider-egg-idle (spider-egg)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (case message
         (('touch) (send-shove-back (-> self root) proc (the-as touching-shapes-entry (-> block param 0)) 0.7 6144.0 16384.0))
         (('can-spawn?) (return #t) v0-0)
         (('notify-spawned) (go spider-egg-hatch))
         (('attack) (go spider-egg-die))))
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (set-time! (-> self state-time)))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (let ((f30-0 (rand-vu-float-range 0.8 1.2)))
         (cond
           (arg0
@@ -75,27 +72,23 @@
   :post ja-post)
 
 (defstate spider-egg-hatch (spider-egg)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 symbol))
       (case message
         (('can-spawn?) (return (the-as object #f)) v0-0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)
       (logclear! (-> self mask) (process-mask actor-pause))
       (clear-collide-with-as (-> self root))
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 324)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (lods-assign! (-> self draw) (-> self broken-look))
       (ja-channel-push! 1 (seconds 0.2))
       (ja-no-eval :group! spider-egg-crack-ja :num! (seek!) :frame-num 0.0)
@@ -108,13 +101,11 @@
   :post ja-post)
 
 (defstate spider-egg-die (spider-egg)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 symbol))
       (case message
         (('can-spawn?) (return (the-as object #f)) v0-0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)
       (logclear! (-> self mask) (process-mask actor-pause))
       (when (-> self notify-actor)
@@ -127,16 +118,14 @@
                 (v1-9 (-> self notify-actor)))
             (t9-1 (if v1-9 (-> v1-9 extra process)) a1-0))))
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 325)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (lods-assign! (-> self draw) (-> self broken-look))
       (ja-channel-push! 1 (seconds 0.1))
       (clear-collide-with-as (-> self root))

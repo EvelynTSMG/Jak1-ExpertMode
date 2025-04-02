@@ -164,8 +164,7 @@
   (vector-float*! (-> this targ-orbit-rotv) (-> this targ-orbit-rotv) arg0))
 
 (defstate blue-eco-charger-orb-idle (blue-eco-charger-orb)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self root trans quad) (-> self rest-pos quad))
       (loop
         (let ((f0-0 (-> self parent-process 0 open-level))) (if (< 0.0 f0-0) (go blue-eco-charger-orb-active)))
@@ -173,8 +172,7 @@
   :post ja-post)
 
 (defstate blue-eco-charger-orb-active (blue-eco-charger-orb)
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (at-0 int))
       (rlet ((vf0 :class vf)
              (vf1 :class vf)
@@ -259,8 +257,7 @@
        (send-event *target* 'query 'powerup (pickup-type eco-blue))))
 
 (defstate blue-eco-charger-idle (blue-eco-charger)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self open-level) 0.0)
       (ja-channel-set! 1)
       (ja :group! blue-eco-charger-open-ja :num! min)
@@ -277,17 +274,14 @@
   :post ja-post)
 
 (defstate blue-eco-charger-open (blue-eco-charger)
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (set-time! (-> self state-time))
       (if arg0 (sound-play "blue-eco-start"))
       (blue-eco-charger-method-21 self #t))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (blue-eco-charger-method-20 self) (set-time! (-> self state-time)))
       (update! (-> self sound)))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (ja-no-eval :num! (seek!))
       (while (not (ja-done? 0))
         (suspend)
@@ -308,21 +302,17 @@
   :post ja-post)
 
 (defstate blue-eco-charger-stuck-open (blue-eco-charger)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! (-> self sound)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend))))
 
 (defstate blue-eco-charger-close (blue-eco-charger)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (stop! (-> self sound)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (seek! 0.0))
       (while (not (ja-done? 0))
         (when (blue-eco-charger-method-20 self)
@@ -457,8 +447,7 @@
             (send-event a0-12 'trans (-> s5-1 fcell-pos))))))))
 
 (defstate exit-chamber-charger-puzzle (exit-chamber)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (case message
         (('notify)
@@ -478,11 +467,9 @@
               (let ((a1-6 (-> block param 1))) (set! v0-0 (logclear (-> self chargers-active) (ash 1 a1-6))))
               (set! (-> self chargers-active) (the-as uint v0-0))
               v0-0))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self draw status) (draw-status hidden)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (>= 214228270000.0 (vector-vector-distance-squared (camera-pos) (-> self root trans)))
           (logclear! (-> self draw status) (draw-status hidden))
@@ -491,8 +478,7 @@
   :post ja-post)
 
 (defstate exit-chamber-charger-puzzle-beaten (exit-chamber)
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-spawn pov-camera (-> self root trans) *sunkencam-sg* "exit-chamber-door-open" 0 #f '() :to self)
       (set-time! (-> self state-time))
       (until (time-elapsed? (-> self state-time) (seconds 2.5))
@@ -501,8 +487,7 @@
       (go exit-chamber-idle-in-sunken)))
 
 (defstate exit-chamber-idle-in-sunken (exit-chamber)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-1 object))
       (case message
         (('trigger) (go exit-chamber-rise) (return #t) v0-1)
@@ -514,11 +499,9 @@
                  (set-vector! v1-10 0.0 64102.4 0.0 1.0)
                  (vector+! v1-10 v1-10 (-> self last-pos))
                  (send-event a0-5 'set-movie-pos v1-10))))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self draw status) (draw-status hidden)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (save-reminder (get-task-control (game-task sunken-room)) 1 0)
       (set! (-> self wave-scale) 0.0)
       (if (-> self door) (send-event (ppointer->process (-> self door)) 'trigger))
@@ -530,14 +513,11 @@
         (suspend))))
 
 (defstate exit-chamber-rise (exit-chamber)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self move-player?) #f))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (-> self move-player?)) (rider-trans)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (aybabtu 2)
       (let ((v1-1 (handle->process (-> self fcell-handle))))
         (if v1-1 (clear-collide-with-as (-> (the-as fuel-cell v1-1) root))))
@@ -613,14 +593,12 @@
         (exit-chamber-method-20 self (-> self wave-scale))
         (suspend))
       (go exit-chamber-idle-in-village #f))
-  :post
-    (behavior ()
+  :post (behavior ()
       (if (-> self move-player?) (transform-post) (rider-post))
       (exit-chamber-method-23 self #t)))
 
 (defstate exit-chamber-idle-in-village (exit-chamber)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (go exit-chamber-lower))
         (('notify)
@@ -631,15 +609,12 @@
                  (set-vector! v1-8 0.0 64102.4 0.0 1.0)
                  (vector+! v1-8 v1-8 (-> self last-pos))
                  (send-event a0-5 'set-movie-pos v1-8))))))))
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (logior! (-> self mask) (process-mask platform))
       (set-time! (-> self state-time)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self mask) (process-mask platform)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (when *target*
         (let ((f30-0 (vector-vector-xz-distance (target-pos 0) (-> self last-pos))))
@@ -650,8 +625,7 @@
           (when (and (-> self play-assistant-message?) (>= f30-0 57344.0))
             (set! (-> self play-assistant-message?) #f)
             (level-hint-spawn (text-id sunken-room-resolution) "asstvb22" (the-as entity #f) *entity-pool* (game-task none))))))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (set! (-> self move-player?) #f)
       (set! (-> self wave-scale) 1.0)
       (save-reminder (get-task-control (game-task sunken-room)) 2 0)
@@ -664,37 +638,31 @@
       (loop
         (exit-chamber-method-20 self 1.0)
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (rider-post)
       (exit-chamber-method-23 self #t)
       (if (and *target* (>= (vector-vector-xz-distance (target-pos 0) (-> self last-pos)) 40960.0))
         (spawn (-> self part) (-> self last-pos)))))
 
 (defstate exit-chamber-lower (exit-chamber)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self move-player?) #t)
       (let ((v1-2 (handle->process (-> self fcell-handle))))
         (if v1-2 (clear-collide-with-as (-> (the-as fuel-cell v1-2) root)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (-> self move-player?)) (rider-trans))
       (seek! (-> self wave-scale) 0.0 0.0016666667)
       (exit-chamber-method-20 self (-> self wave-scale)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((v1-1 (process-spawn sunkencam
-                                 :init
-                                 pov-camera-init-by-other
+                                 :init pov-camera-init-by-other
                                  (-> self root trans)
                                  *sunkencam-sg*
                                  "qbert-show-door-open"
                                  0
                                  #f
                                  '()
-                                 :to
-                                 self)))
+                                 :to self)))
         (set! (-> (the-as sunkencam (-> v1-1 0)) seq) (the-as uint 1)))
       (load-state-want-display-level 'sunken 'display)
       (suspend)
@@ -740,8 +708,7 @@
         (suspend))
       (set-continue! *game-info* "sunkenb-start")
       (go exit-chamber-idle-in-sunken))
-  :post
-    (behavior ()
+  :post (behavior ()
       (if (-> self move-player?) (transform-post) (rider-post))
       (exit-chamber-method-23 self #t)))
 

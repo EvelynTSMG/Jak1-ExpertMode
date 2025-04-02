@@ -106,8 +106,7 @@
 
 (defstate idle (gambler)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (!= (ja-group) gambler-idle-fidget-ja)
         (ja-channel-push! 1 (seconds 0.2))
         (ja :group! gambler-idle-fidget-ja))

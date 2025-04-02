@@ -33,8 +33,7 @@
   :bounds (static-spherem 2 4 0 12))
 
 (defstate plunger-lurker-plunge (plunger-lurker)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-setting! 'allow-progress #f 0.0 0)
       (logclear! (-> self mask) (process-mask actor-pause))
       (process-entity-status! self (entity-perm-status bit-3) #t)
@@ -117,31 +116,26 @@
   :post ja-post)
 
 (defstate plunger-lurker-flee (plunger-lurker)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack) (let ((v0-0 #t)) (set! (-> self got-hit) v0-0) v0-0))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (-> self got-hit)
         (close-specific-task! (game-task plunger-lurker-hit) (task-status need-hint))
         (process-entity-status! self (entity-perm-status complete) #t)
         (level-hint-spawn (text-id ogre-plunger-lurker-resolution) "sksp0321" (the-as entity #f) *entity-pool* (game-task none))
         (process-spawn part-tracker
-                       :init
-                       part-tracker-init
+                       :init part-tracker-init
                        (-> *part-group-id-table* 474)
                        -1
                        #f
                        #f
                        #f
                        (-> self root trans)
-                       :to
-                       *entity-pool*)
+                       :to *entity-pool*)
         (cleanup-for-death self)
         (deactivate self)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! plunger-lurker-notice-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -155,18 +149,15 @@
   :post ja-post)
 
 (defstate plunger-lurker-idle (plunger-lurker)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('plunge) (logclear! (-> self mask) (process-mask actor-pause)) (go plunger-lurker-plunge))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (spool-push *art-control* "plunger-lurker-blowup" 0 self -99.0)
       (when (and *target* (< (vector-vector-distance-squared (-> self root trans) (target-pos 0)) 6710886400.0))
         (logclear! (-> self mask) (process-mask actor-pause))
         (go plunger-lurker-flee)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! plunger-lurker-idle-ja :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -175,8 +166,7 @@
   :post ja-post)
 
 (defstate plunger-lurker-die (plunger-lurker)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)
       (deactivate self)
       (suspend)
@@ -314,14 +304,12 @@
   (= (get-task-status (game-task plunger-lurker-hit)) (task-status unknown)))
 
 (defstate flying-lurker-die (flying-lurker)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)
       (deactivate self)))
 
 (defstate flying-lurker-sleep (flying-lurker)
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #f)
       (logior! (-> self draw status) (draw-status hidden))
       (loop
@@ -411,8 +399,7 @@
     (fmin 1.5 (fmax 0.9 f1-3))))
 
 (defstate flying-lurker-fly (flying-lurker)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('clone-and-kill-links)
          (let ((a1-1 (new 'stack-no-clear 'event-message-block)))
@@ -472,12 +459,10 @@
                  (a1-7 (-> self link next)))
              (t9-7 (if a1-7 (-> a1-7 extra process)) v1-15)))
          (deactivate self))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (logclear! (-> self draw status) (draw-status hidden)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (flying-lurker-method-20 self)
       (when (not (movie?))
         (flying-lurker-calc-speed (meters 15) (meters 30) (meters 0.11666667) (meters 0.083333336))
@@ -495,8 +480,7 @@
             (let ((t9-10 send-event-function)
                   (v1-13 (-> self alt-actor)))
               (t9-10 (if v1-13 (-> v1-13 extra process)) a1-4))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (ja-group? flying-lurker-fly-ja))
           (ja-channel-push! 1 (seconds 0.2))
@@ -611,17 +595,14 @@
       (suspend-for (seconds 0.1))
       (level-hint-spawn (text-id ogre-race-hint) "asstvb24" (the-as entity #f) *entity-pool* (game-task none))
       (none))
-    :to
-    self)
+    :to self)
   (none))
 
 (defstate flying-lurker-start (flying-lurker)
   :event flying-lurker-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (remove-setting! 'allow-progress))
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (play-movie?)
         (set-setting! 'allow-progress #f 0.0 0)
         (flying-lurker-play-intro))
@@ -641,8 +622,7 @@
   :post ja-post)
 
 (defstate flying-lurker-clone (flying-lurker)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('die)
          (let ((v1-1 (new 'stack-no-clear 'event-message-block)))
@@ -694,16 +674,13 @@
              (t9-5 (if a1-5 (-> a1-5 extra process)) v1-9)))
          (deactivate self))
         (else (flying-lurker-handler proc argc message block))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (ja-channel-set! 0))
-  :code
-    (behavior ((arg0 handle) (arg1 string))
+  :code (behavior ((arg0 handle) (arg1 string))
       (clone-anim arg0 3 #t arg1)))
 
 (defstate flying-lurker-idle (flying-lurker)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('saw-player)
          (set! (-> self take-off) #t)
@@ -739,15 +716,12 @@
            ((2) (go flying-lurker-clone (the-as handle (-> block param 0)) "flying-lurker-b-"))
            ((1) (go flying-lurker-clone (the-as handle (-> block param 0)) "flying-lurker-c-"))))
         (else (flying-lurker-handler proc argc message block))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self draw status) (draw-status hidden)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (spool-push *art-control* "flying-lurker-intro" 0 self -99.0)
       (if (and (-> self take-off) (first?)) (go flying-lurker-start)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (gp-0 int) (f30-0 float))
       1.0
       0

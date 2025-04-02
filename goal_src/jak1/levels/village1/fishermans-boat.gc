@@ -662,16 +662,13 @@
 
 (defstate fishermans-boat-docked-village (fishermans-boat)
   :event rigid-body-platform-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (fishermans-boat-leave-dock?) (go fishermans-boat-ride-to-misty))
       (rider-trans)
       (if (nonzero? (-> self anim)) (spool-push *art-control* (-> self anim name) 0 self -99.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self anim)
             (new 'static 'spool-anim
                  :name "fishermans-boat-ride-to-misty"
@@ -695,8 +692,7 @@
   :post fishermans-boat-post)
 
 (defstate fishermans-boat-leaving-village (fishermans-boat)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (< 614400.0 (vector-vector-xz-distance (-> self root-overlay trans) (-> self dock-point)))
         (load-state-want-display-level 'village1 'special)
         (load-state-want-display-level 'misty 'display)
@@ -704,13 +700,11 @@
         (load-state-want-force-vis 'misty #t)
         (go fishermans-boat-player-control))
       (rider-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (load-state-want-levels 'village1 'misty)
       (set! (-> self cam-tracker)
             (ppointer->handle (process-spawn camera-tracker
-                                             :init
-                                             camera-tracker-init
+                                             :init camera-tracker-init
                                              (lambda :behavior fishermans-boat ()
                                                (camera-change-to "camera-282" 0 #f)
                                                (while (!= (-> self rbody lin-momentum-damping-factor) 'release)
@@ -718,8 +712,7 @@
                                                (set! (-> self rbody lin-momentum-damping-factor) (the-as float #f))
                                                (camera-change-to (the-as string 'base) 0 #f)
                                                (none))
-                                             :to
-                                             self)))
+                                             :to self)))
       (send-event (handle->process (-> self cam-tracker)) 'border #t)
       (send-event (handle->process (-> self cam-tracker)) 'mask #x20800)
       (fishermans-boat-set-path-point 0)
@@ -729,8 +722,7 @@
   :post fishermans-boat-post)
 
 (defstate fishermans-boat-entering-village (fishermans-boat)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (fishermans-boat-enter-dock?)
         (set! (-> self waiting-for-player) #f)
         (when #t
@@ -741,8 +733,7 @@
           (load-state-want-force-vis 'village1 #f)
           (go fishermans-boat-docked-village)))
       (rider-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (load-state-want-levels 'village1 'beach)
       (load-state-want-vis 'vi1)
       (fishermans-boat-set-dock-point 0)
@@ -752,16 +743,13 @@
 
 (defstate fishermans-boat-docked-misty (fishermans-boat)
   :event rigid-body-platform-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (fishermans-boat-leave-dock?) (go fishermans-boat-ride-to-village1))
       (rider-trans)
       (if (nonzero? (-> self anim)) (spool-push *art-control* (-> self anim name) 0 self -99.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if #t
         (set! (-> self anim)
               (new 'static 'spool-anim
@@ -809,8 +797,7 @@
   :post fishermans-boat-post)
 
 (defstate fishermans-boat-leaving-misty (fishermans-boat)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (< 409600.0 (vector-vector-xz-distance (-> self root-overlay trans) (-> self dock-point)))
         (load-state-want-force-vis 'village1 #t)
         (load-state-want-display-level 'village1 'display)
@@ -818,12 +805,10 @@
         (load-commands-set! *level* (load-command-get-index *level* 'village1 2))
         (go fishermans-boat-player-control))
       (rider-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self cam-tracker)
             (ppointer->handle (process-spawn camera-tracker
-                                             :init
-                                             camera-tracker-init
+                                             :init camera-tracker-init
                                              (lambda :behavior fishermans-boat ()
                                                (camera-change-to "camera-287" 0 #f)
                                                (while (!= (-> self rbody lin-momentum-damping-factor) 'release)
@@ -831,8 +816,7 @@
                                                (set! (-> self rbody lin-momentum-damping-factor) (the-as float #f))
                                                (camera-change-to (the-as string 'base) 0 #f)
                                                (none))
-                                             :to
-                                             self)))
+                                             :to self)))
       (send-event (handle->process (-> self cam-tracker)) 'border #t)
       (send-event (handle->process (-> self cam-tracker)) 'mask #x20800)
       (fishermans-boat-set-path-point 4)
@@ -842,8 +826,7 @@
   :post fishermans-boat-post)
 
 (defstate fishermans-boat-entering-misty (fishermans-boat)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (fishermans-boat-enter-dock?)
         (set! (-> self waiting-for-player) #f)
         (level-hint-spawn (text-id sidekick-misty) "sksp0060" (the-as entity #f) *entity-pool* (game-task none))
@@ -852,8 +835,7 @@
           (send-event *camera* 'clear-entity)
           (go fishermans-boat-docked-misty)))
       (rider-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-continue! *game-info* "misty-start")
       (fishermans-boat-set-dock-point 4)
       (fishermans-boat-set-path-point 2)
@@ -862,20 +844,17 @@
   :post fishermans-boat-post)
 
 (defstate fishermans-boat-player-control (fishermans-boat)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (send-event *camera* 'change-state *camera-base-mode* 0)
       (set! (-> self auto-pilot) #t))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((gp-0 (new 'stack-no-clear 'vector)))
         (nth-point (-> self boat-path) 0 gp-0)
         (if (< (vector-vector-xz-distance (-> self root-overlay trans) gp-0) 614400.0) (go fishermans-boat-entering-village))
         (nth-point (-> self boat-path) 4 gp-0)
         (if (< (vector-vector-xz-distance (-> self root-overlay trans) gp-0) 409600.0) (go fishermans-boat-entering-misty)))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (send-event (handle->process (-> self cam-tracker)) 'message 'release)
       (suspend)
       (send-event *camera* 'change-state cam-stick 0)
@@ -894,14 +873,11 @@
   (none))
 
 (defstate fishermans-boat-measurements (fishermans-boat)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self measure-parameters) #f))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (cpad-pressed? 1 square) (go fishermans-boat-player-control)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self auto-pilot) #f)
       (let ((gp-0 (new 'stack-no-clear 'vector))
             (s5-0 1)
@@ -1065,8 +1041,7 @@
   (none))
 
 (defstate fishermans-boat-ride-to-misty (fishermans-boat)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self propeller enable) #f)
       (quaternion-identity! (-> self root-overlay quat))
       (set! (-> self root-overlay trans quad) (-> self entity extra trans quad))
@@ -1113,18 +1088,15 @@
           (suspend)
           (level-hint-spawn (text-id sidekick-misty) "sksp0060" (the-as entity #f) *entity-pool* (game-task none))
           (none))
-        :to
-        self)
+        :to self)
       (go fishermans-boat-docked-misty))
-  :post
-    (behavior ()
+  :post (behavior ()
       (ja-post)
       (fishermans-boat-spawn-particles 81920.0)
       (fishermans-boat-play-sounds)))
 
 (defstate fishermans-boat-ride-to-village1 (fishermans-boat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('evilbro)
          (when (= (level-status *level* 'intro) 'active)
@@ -1143,8 +1115,7 @@
         (('evilsis)
          (let ((a0-44 (handle->process (-> self evilbro)))) (if a0-44 (deactivate a0-44)))
          (let ((a0-48 (handle->process (-> self evilsis)))) (if a0-48 (deactivate a0-48))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self propeller enable) #f)
       (set! (-> self evilbro) (the-as handle #f))
       (set! (-> self evilsis) (the-as handle #f))
@@ -1186,8 +1157,7 @@
       (fishermans-boat-play-sounds)
       (process-entity-status! self (entity-perm-status complete) #t)
       (go fishermans-boat-docked-village))
-  :post
-    (behavior ()
+  :post (behavior ()
       (ja-post)
       (fishermans-boat-spawn-particles 81920.0)
       (fishermans-boat-play-sounds)))

@@ -14,8 +14,7 @@
 (defpartgroup group-firecanyon-lava-1
   :id 229
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1011 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1011 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1012 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1013 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -126,8 +125,7 @@
 (defpartgroup group-firecanyon-lava-2
   :id 230
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1017 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1017 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1018 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1019 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -238,8 +236,7 @@
 (defpartgroup group-firecanyon-lava-3
   :id 231
   :bounds (static-bspherem 0 0 0 20)
-  :parts
-  ((sp-item 1021 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1021 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1022 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1023 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -350,8 +347,7 @@
 (defpartgroup group-firecanyon-lava-5
   :id 232
   :bounds (static-bspherem -2 0 -2 14)
-  :parts
-  ((sp-item 1025 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1025 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1026 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1027 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -508,8 +504,7 @@
 (defpartgroup group-firecanyon-lava-6
   :id 233
   :bounds (static-bspherem 2 0 2 14)
-  :parts
-  ((sp-item 1031 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1031 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1032 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1033 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -620,8 +615,7 @@
 (defpartgroup group-firecanyon-lava-7
   :id 234
   :bounds (static-bspherem 0 0 0 14)
-  :parts
-  ((sp-item 1035 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1035 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1036 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1037 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -732,8 +726,7 @@
 (defpartgroup group-firecanyon-lava-8
   :id 235
   :bounds (static-bspherem 0 0 0 16)
-  :parts
-  ((sp-item 1039 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1039 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1040 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1041 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -844,8 +837,7 @@
 (defpartgroup group-firecanyon-lava-9
   :id 236
   :bounds (static-bspherem 0 0 0 9)
-  :parts
-  ((sp-item 1043 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1043 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1044 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1045 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -956,8 +948,7 @@
 (defpartgroup group-firecanyon-lava-10
   :id 237
   :bounds (static-bspherem -4 0 0 15)
-  :parts
-  ((sp-item 1047 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1047 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1048 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1049 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1068,8 +1059,7 @@
 (defpartgroup group-firecanyon-lava-11
   :id 238
   :bounds (static-bspherem -4 0 0 12)
-  :parts
-  ((sp-item 1051 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1051 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1052 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1053 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1180,8 +1170,7 @@
 (defpartgroup group-firecanyon-lava-14
   :id 239
   :bounds (static-bspherem -4 0 0 15)
-  :parts
-  ((sp-item 1055 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1055 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1056 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1057 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1292,8 +1281,7 @@
 (defpartgroup group-firecanyon-lava-15
   :id 240
   :bounds (static-bspherem -4 0 0 12)
-  :parts
-  ((sp-item 1059 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1059 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1060 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1061 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1404,8 +1392,7 @@
 (defpartgroup group-firecanyon-lava-16
   :id 241
   :bounds (static-bspherem 0 0 0 14)
-  :parts
-  ((sp-item 1063 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1063 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1064 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1065 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1516,8 +1503,7 @@
 (defpartgroup group-firecanyon-lava-18
   :id 242
   :bounds (static-bspherem -4 0 -4 26)
-  :parts
-  ((sp-item 1067 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1067 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1068 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1069 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1628,8 +1614,7 @@
 (defpartgroup group-firecanyon-lava-19
   :id 243
   :bounds (static-bspherem 0 0 0 20)
-  :parts
-  ((sp-item 1071 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1071 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1072 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1073 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1740,8 +1725,7 @@
 (defpartgroup group-firecanyon-lava-21
   :id 244
   :bounds (static-bspherem -4 0 4 22)
-  :parts
-  ((sp-item 1075 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1075 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1076 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1077 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1852,8 +1836,7 @@
 (defpartgroup group-firecanyon-lava-22
   :id 245
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1079 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1079 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1080 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1081 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -1964,8 +1947,7 @@
 (defpartgroup group-firecanyon-lava-60
   :id 246
   :bounds (static-bspherem 0 0 0 20)
-  :parts
-  ((sp-item 1083 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1083 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1084 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1085 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -2076,8 +2058,7 @@
 (defpartgroup group-firecanyon-lava-62
   :id 247
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1087 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1087 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1088 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1089 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -2188,8 +2169,7 @@
 (defpartgroup group-firecanyon-lava-63
   :id 248
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1091 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1091 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1092 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1093 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -2300,8 +2280,7 @@
 (defpartgroup group-firecanyon-lava-64
   :id 249
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1095 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1095 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1096 :fade-after (meters 150) :falloff-to (meters 150))
    (sp-item 1097 :fade-after (meters 100) :falloff-to (meters 100) :binding 1009)
    (sp-item 1009 :flags (start-dead))
@@ -2412,8 +2391,7 @@
 (defpartgroup group-firecanyon-heat-44
   :id 250
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1099 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1099 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1100 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1100
@@ -2461,8 +2439,7 @@
 (defpartgroup group-firecanyon-heat-45
   :id 251
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1101 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1101 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1102 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1102
@@ -2510,8 +2487,7 @@
 (defpartgroup group-firecanyon-heat-46
   :id 252
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1103 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1103 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1104 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1104
@@ -2559,8 +2535,7 @@
 (defpartgroup group-firecanyon-heat-47
   :id 253
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1105 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1105 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1106 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1106
@@ -2608,8 +2583,7 @@
 (defpartgroup group-firecanyon-heat-48
   :id 254
   :bounds (static-bspherem 0 0 0 20)
-  :parts
-  ((sp-item 1107 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1107 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1108 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1108
@@ -2657,8 +2631,7 @@
 (defpartgroup group-firecanyon-heat-50
   :id 255
   :bounds (static-bspherem 0 0 0 14)
-  :parts
-  ((sp-item 1109 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1109 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1110 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1110
@@ -2706,8 +2679,7 @@
 (defpartgroup group-firecanyon-heat-52
   :id 256
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1111 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1111 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1112 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1112
@@ -2755,8 +2727,7 @@
 (defpartgroup group-firecanyon-heat-53
   :id 257
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1113 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1113 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1114 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1114
@@ -2804,8 +2775,7 @@
 (defpartgroup group-firecanyon-heat-54
   :id 258
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1115 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1115 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1116 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1116
@@ -2853,8 +2823,7 @@
 (defpartgroup group-firecanyon-heat-55
   :id 259
   :bounds (static-bspherem 0 0 0 20)
-  :parts
-  ((sp-item 1117 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1117 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1118 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1118
@@ -2902,8 +2871,7 @@
 (defpartgroup group-firecanyon-heat-56
   :id 260
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1119 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1119 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1120 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1120
@@ -2951,8 +2919,7 @@
 (defpartgroup group-firecanyon-heat-57
   :id 261
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1121 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1121 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1122 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1122
@@ -3000,8 +2967,7 @@
 (defpartgroup group-firecanyon-heat-58
   :id 262
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1123 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1123 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1124 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1124
@@ -3049,8 +3015,7 @@
 (defpartgroup group-firecanyon-heat-59
   :id 263
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 1125 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1125 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1126 :fade-after (meters 150) :falloff-to (meters 150))))
 
 (defpart 1126

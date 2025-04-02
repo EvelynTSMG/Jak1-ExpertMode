@@ -11,8 +11,7 @@
   :id 636
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 34)
-  :parts
-  ((sp-item 2680)
+  :parts ((sp-item 2680)
    (sp-item 2545 :binding 2542)
    (sp-item 2542 :flags (bit1 start-dead launch-asap) :binding 2543)
    (sp-item 2542 :flags (bit1 start-dead launch-asap) :binding 2544)
@@ -43,8 +42,7 @@
   :id 637
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 34)
-  :parts
-  ((sp-item 2681)
+  :parts ((sp-item 2681)
    (sp-item 2682 :period (seconds 1.12) :length (seconds 0.017))
    (sp-item 2682 :period (seconds 0.467) :length (seconds 0.017))
    (sp-item 2682 :period (seconds 0.205) :length (seconds 0.017))
@@ -293,8 +291,7 @@
   :id 644
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2591 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2591 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2592 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2593 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2594 :period (seconds 2) :length (seconds 0.135))))
@@ -409,8 +406,7 @@
   :id 645
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2685 :period (seconds 0.12) :length (seconds 0.017))
+  :parts ((sp-item 2685 :period (seconds 0.12) :length (seconds 0.017))
    (sp-item 2685 :period (seconds 0.467) :length (seconds 0.017))
    (sp-item 2685 :period (seconds 0.205) :length (seconds 0.017))
    (sp-item 2599 :period (seconds 0.05) :length (seconds 0.017))
@@ -533,8 +529,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2753)
+  :parts ((sp-item 2753)
    (sp-item 2754)
    (sp-item 2755 :fade-after (meters 120) :falloff-to (meters 140) :binding 2752)
    (sp-item 2752 :flags (bit1 start-dead launch-asap) :binding 2671)
@@ -704,8 +699,7 @@
   :id 619
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2500 :flags (is-3d) :period (seconds 3) :length (seconds 0.017))
+  :parts ((sp-item 2500 :flags (is-3d) :period (seconds 3) :length (seconds 0.017))
    (sp-item 2501 :period (seconds 3) :length (seconds 0.017))
    (sp-item 2502 :period (seconds 3) :length (seconds 0.135))
    (sp-item 2503 :period (seconds 3) :length (seconds 0.067) :binding 2499)
@@ -908,8 +902,7 @@
   :id 640
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2799 :period (seconds 2) :length (seconds 0.035))
+  :parts ((sp-item 2799 :period (seconds 2) :length (seconds 0.035))
    (sp-item 2800 :period (seconds 2) :length (seconds 0.035))
    (sp-item 2801 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2802 :period (seconds 2) :length (seconds 0.035))))
@@ -999,8 +992,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2769 :binding 2766)
+  :parts ((sp-item 2769 :binding 2766)
    (sp-item 2766 :flags (bit1 start-dead launch-asap) :binding 2767)
    (sp-item 2767 :flags (start-dead) :binding 2768)
    (sp-item 2768 :flags (start-dead launch-asap))
@@ -1221,8 +1213,7 @@
   :id 641
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2805 :period (seconds 2) :length (seconds 0.035))
+  :parts ((sp-item 2805 :period (seconds 2) :length (seconds 0.035))
    (sp-item 2806 :period (seconds 2) :length (seconds 0.035))
    (sp-item 2807 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2808 :period (seconds 2) :length (seconds 0.035))))
@@ -1487,8 +1478,7 @@
   :id 649
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2629 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2629 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2630 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2631 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2632 :period (seconds 2) :length (seconds 0.135))))
@@ -1603,8 +1593,7 @@
   :id 650
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2776 :period (seconds 0.12) :length (seconds 0.017))
+  :parts ((sp-item 2776 :period (seconds 0.12) :length (seconds 0.017))
    (sp-item 2776 :period (seconds 0.467) :length (seconds 0.017))
    (sp-item 2776 :period (seconds 0.205) :length (seconds 0.017))
    (sp-item 2637 :period (seconds 0.05) :length (seconds 0.017))
@@ -1678,8 +1667,7 @@
   :id 642
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2778 :period (seconds 2) :length (seconds 0.035))
+  :parts ((sp-item 2778 :period (seconds 2) :length (seconds 0.035))
    (sp-item 2779 :period (seconds 2) :length (seconds 0.035))
    (sp-item 2780 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2781 :period (seconds 2) :length (seconds 0.035))))
@@ -1940,8 +1928,7 @@
   :id 653
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2648 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2648 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2649 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2650 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2651 :period (seconds 2) :length (seconds 0.135))))
@@ -2056,8 +2043,7 @@
   :id 654
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2820 :period (seconds 0.12) :length (seconds 0.017))
+  :parts ((sp-item 2820 :period (seconds 0.12) :length (seconds 0.017))
    (sp-item 2820 :period (seconds 0.467) :length (seconds 0.017))
    (sp-item 2820 :period (seconds 0.205) :length (seconds 0.017))
    (sp-item 2656 :period (seconds 0.05) :length (seconds 0.017))
@@ -2228,8 +2214,7 @@
   :id 666
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2719 :binding 2716)
+  :parts ((sp-item 2719 :binding 2716)
    (sp-item 2716 :flags (bit1 start-dead launch-asap) :binding 2717)
    (sp-item 2716 :flags (bit1 start-dead launch-asap) :binding 2718)
    (sp-item 2716 :flags (bit1 start-dead launch-asap) :binding 2717)
@@ -2400,8 +2385,7 @@
   :id 668
   :flags (use-local-clock)
   :bounds (static-bspherem 0 23 0 64)
-  :parts
-  ((sp-item 2726 :binding 2724)
+  :parts ((sp-item 2726 :binding 2724)
    (sp-item 2724 :flags (bit1 start-dead launch-asap) :binding 2725)
    (sp-item 2724 :flags (bit1 start-dead launch-asap) :binding 2725)
    (sp-item 2724 :flags (bit1 start-dead launch-asap) :binding 2725)
@@ -2550,8 +2534,7 @@
   :id 670
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2733 :binding 2731)
+  :parts ((sp-item 2733 :binding 2731)
    (sp-item 2731 :flags (bit1 start-dead launch-asap) :binding 2732)
    (sp-item 2731 :flags (bit1 start-dead launch-asap) :binding 2732)
    (sp-item 2731 :flags (bit1 start-dead launch-asap) :binding 2732)
@@ -2705,8 +2688,7 @@
   :id 672
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2740 :binding 2738)
+  :parts ((sp-item 2740 :binding 2738)
    (sp-item 2738 :flags (bit1 start-dead launch-asap) :binding 2739)
    (sp-item 2738 :flags (bit1 start-dead launch-asap) :binding 2739)
    (sp-item 2738 :flags (bit1 start-dead launch-asap) :binding 2739)

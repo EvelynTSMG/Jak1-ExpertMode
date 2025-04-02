@@ -148,8 +148,7 @@
                    :nloop #x1
                    :eop #x1
                    :pre #x1
-                   :prim
-                   (new 'static 'gs-prim :prim (gs-prim-type line) :iip #x1 :abe #x1)
+                   :prim (new 'static 'gs-prim :prim (gs-prim-type line) :iip #x1 :abe #x1)
                    :nreg #x4))
         (set! (-> (the-as gs-gif-tag a3-2) regs)
               (new 'static 'gif-tag-regs

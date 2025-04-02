@@ -255,8 +255,7 @@
                :bounds ,bounds
                :name ,(symbol->string name)
                :length ,(length parts)
-               :launcher
-               (new 'static 'inline-array sparticle-group-item ,(length parts) ,@parts)))))
+               :launcher (new 'static 'inline-array sparticle-group-item ,(length parts) ,@parts)))))
 
 (defmacro get-part-group (id)
   `(-> *part-group-id-table* ,id))
@@ -342,8 +341,7 @@
            `(new 'static 'sp-field-init-spec :field (sp-field-id ,field-enum-name) :tex ,param0 :flags (sp-flag int))
            `(new 'static 'sp-field-init-spec
                 :field (sp-field-id ,field-enum-name)
-                :tex
-                ,(string->symbol-format "{}-{}" (car param0) (cadr param0))
+                :tex ,(string->symbol-format "{}-{}" (car param0) (cadr param0))
                 :flags (sp-flag int))))
         ((eq? field-name 'next-launcher)
          `(new 'static 'sp-field-init-spec :field (sp-field-id ,field-enum-name) :initial-value ,param0 :flags (sp-flag launcher)))
@@ -367,15 +365,13 @@
          `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags (sp-flag object)
-              :object
-              ,(cadr (member ':data params))))
+              :object ,(cadr (member ':data params))))
         ((and (= 1 param-count) (param-symbol? param0))
          `(new 'static 'sp-field-init-spec :field (sp-field-id ,field-enum-name) :flags (sp-flag symbol) :sym ,param0))
         ((and (= 1 param-count) (param-float? param0))
          `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
-              :flags
-              (sp-flag ,(if store? 'float-store 'float))
+              :flags (sp-flag ,(if store? 'float-store 'float))
               :initial-valuef
               ,(if vel? `(/ ,param0 60.0) param0)
               :random-rangef 0.0
@@ -383,8 +379,7 @@
         ((and (= 2 param-count) (param-float? param0) (param-float? param1))
          `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
-              :flags
-              (sp-flag ,(if store? 'float-store 'float))
+              :flags (sp-flag ,(if store? 'float-store 'float))
               :initial-valuef
               ,(if vel? `(/ ,param0 60.0) param0)
               :random-rangef
@@ -393,8 +388,7 @@
         ((and (= 3 param-count) (param-float? param0) (param-float? param1) (param-float? param2))
          `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
-              :flags
-              (sp-flag ,(if store? 'float-store 'float))
+              :flags (sp-flag ,(if store? 'float-store 'float))
               :initial-valuef
               ,(if vel? `(/ ,param0 60.0) param0)
               :random-rangef ,param1

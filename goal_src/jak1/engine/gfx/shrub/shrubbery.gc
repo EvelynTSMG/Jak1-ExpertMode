@@ -324,8 +324,7 @@
           (new 'static 'dma-tag
                :id (dma-tag-id ref)
                :addr (-> arg0 obj)
-               :qwc
-               (+ (-> arg0 obj-qwc) (-> arg0 vtx-qwc) (-> arg0 col-qwc) (-> arg0 stq-qwc))))
+               :qwc (+ (-> arg0 obj-qwc) (-> arg0 vtx-qwc) (-> arg0 col-qwc) (-> arg0 stq-qwc))))
     (set! (-> (the-as dma-packet a3-0) vif0) (new 'static 'vif-tag :cmd (vif-cmd base) :imm *shrub-state*))
     (set! (-> (the-as dma-packet a3-0) vif1) (new 'static 'vif-tag :cmd (vif-cmd offset)))
     (set! (-> v1-0 base) (&+ (the-as pointer a3-0) 16)))

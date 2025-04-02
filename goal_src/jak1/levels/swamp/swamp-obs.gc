@@ -20,8 +20,7 @@
   :duration (seconds 0.017)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1325 :fade-after (meters 120) :falloff-to (meters 120))
+  :parts ((sp-item 1325 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1326 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1327 :fade-after (meters 60) :falloff-to (meters 60))))
 
@@ -106,8 +105,7 @@
   :duration (seconds 0.017)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1325 :fade-after (meters 120) :falloff-to (meters 120))
+  :parts ((sp-item 1325 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 1326 :fade-after (meters 120) :falloff-to (meters 120))))
 
 (deftype swamp-spike (process-drawable)
@@ -158,8 +156,7 @@
 
 (defstate swamp-spike-idle (swamp-spike)
   :event swamp-spike-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self dangerous) #f)
       (let ((gp-0 (new 'stack-no-clear 'vector)))
         (new 'stack-no-clear 'vector)
@@ -183,16 +180,14 @@
                  (ja :num! (seek!)))
                (if (logtest? (-> self draw status) (draw-status was-drawn))
                  (process-spawn part-tracker
-                                :init
-                                part-tracker-init
+                                :init part-tracker-init
                                 (-> *part-group-id-table* 289)
                                 -1
                                 swamp-spike-set-particle-rotation-callback
                                 (-> self ppointer)
                                 #f
                                 (-> self root trans)
-                                :to
-                                self))
+                                :to self))
                (set! (-> self dangerous) #t)
                (ja-no-eval :group! swamp-spike-up-ja :num! (seek!) :frame-num 0.0)
                (until (ja-done? 0)
@@ -205,16 +200,14 @@
                  (suspend))
                (if (logtest? (-> self draw status) (draw-status was-drawn))
                  (process-spawn part-tracker
-                                :init
-                                part-tracker-init
+                                :init part-tracker-init
                                 (-> *part-group-id-table* 290)
                                 -1
                                 swamp-spike-set-particle-rotation-callback
                                 (-> self ppointer)
                                 #f
                                 (-> self root trans)
-                                :to
-                                self))
+                                :to self))
                (ja-no-eval :group! swamp-spike-down-ja :num! (seek!) :frame-num 0.0)
                (until (ja-done? 0)
                  (suspend)
@@ -222,28 +215,24 @@
   :post swamp-spike-post)
 
 (defstate swamp-spike-gate-up (swampgate)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (let ((v0-0 #t)) (set! (-> self open-gate) v0-0) v0-0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (ja :group! swamp-spike-down-ja)
       (until (-> self open-gate)
         (ja :num-func num-func-identity :frame-num 0.0)
         (suspend))
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 290)
                      -1
                      swamp-spike-set-particle-rotation-callback
                      (-> self ppointer)
                      #f
                      (-> self root trans)
-                     :to
-                     self)
+                     :to self)
       (ja-no-eval :group! swamp-spike-down-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -252,8 +241,7 @@
   :post swamp-spike-post)
 
 (defstate swamp-spike-gate-down (swampgate)
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-entity-status! self (entity-perm-status complete) #t)
       (cleanup-for-death self))
   :post swamp-spike-post)
@@ -329,13 +317,11 @@
   :bounds (static-spherem 0 0 0 10))
 
 (defstate balance-plat-idle (balance-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('grow) (let ((v0-0 #t)) (set! (-> self got-grow) v0-0) v0-0))))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         ;; og:preserve-this modified for high fps
         (let ((f30-0 (* -0.025 (+ (-> self y-offset) (-> self y-travel))))
@@ -416,8 +402,7 @@
   :duration (seconds 1)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1330 :period (seconds 5) :length (seconds 0.017))
+  :parts ((sp-item 1330 :period (seconds 5) :length (seconds 0.017))
    (sp-item 1331 :period (seconds 5) :length (seconds 0.017))
    (sp-item 1332 :period (seconds 5) :length (seconds 0.05))))
 
@@ -491,32 +476,27 @@
   :bounds (static-spherem 0 0 0 3))
 
 (defstate swamp-rock-break (swamp-rock)
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-entity-status! self (entity-perm-status complete) #t)
       (sound-play "rock-break")
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 291)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (cleanup-for-death self)
       (deactivate self))
   :post ja-post)
 
 (defstate swamp-rock-idle (swamp-rock)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack) (if (and (>= argc 2) (= (-> block param 1) 'eco-yellow)) (go swamp-rock-break)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (loop
         (logior! (-> self mask) (process-mask sleep))
@@ -621,11 +601,9 @@
 
 (defstate rigid-body-platform-idle (tar-plat)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (ja-channel-set! 0))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post ja-post)
@@ -633,8 +611,7 @@
 (defstate rigid-body-platform-float (tar-plat)
   :virtual #t
   :event rigid-body-platform-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((or (not *target*)
              (< (-> self info idle-distance) (vector-vector-distance (-> self root-overlay trans) (-> *target* control trans))))
@@ -642,8 +619,7 @@
            (seek! (-> self float-height-offset) f30-1 (* 2048.0 (seconds-per-frame)))
            (if (= (-> self float-height-offset) f30-1) (go-virtual rigid-body-platform-idle))))
         (else (seek! (-> self float-height-offset) 4096.0 (* 2048.0 (seconds-per-frame))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
       (ja :group! tar-plat-idle-ja)
       (ja :num-func num-func-identity :frame-num 0.0)
@@ -709,8 +685,7 @@
 
 (defstate battlecontroller-play-intro-camera (swamp-battlecontroller)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (suspend)
       (process-drawable-delay-player (seconds 1))
       (let ((gp-1 (ppointer->handle (process-spawn pov-camera (-> self root trans) *swampcam-sg* "swamp-ambush" 0 #f '() :to self))))
@@ -720,7 +695,6 @@
 
 (defstate battlecontroller-die (swamp-battlecontroller)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-entity-status! self (entity-perm-status complete) #t)
       ((the-as (function none :behavior battlecontroller) (-> (method-of-type battlecontroller battlecontroller-die) code)))))

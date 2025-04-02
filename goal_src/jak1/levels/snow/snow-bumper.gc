@@ -111,13 +111,11 @@
   (none))
 
 (defstate snow-bumper-active-far-idle (snow-bumper)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target* (>= 135895450000.0 (vector-vector-xz-distance-squared (-> self root trans) (target-pos 0))))
         (go snow-bumper-active-close-idle))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (suspend)
       (loop
@@ -125,8 +123,7 @@
         (suspend))))
 
 (defstate snow-bumper-active-close-idle (snow-bumper)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch 'attack 'bonk)
          (when (= (-> proc type) target)
@@ -138,8 +135,7 @@
                          (the-as uint 1)))
                (close-specific-task! (game-task snow-bumpers) (task-status need-hint))
                (go snow-bumper-deactivate)))))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         (*target*
          (let* ((gp-0 (target-pos 0))
@@ -154,8 +150,7 @@
         (else (go snow-bumper-active-far-idle)))
       (spawn (-> self part) (-> self root trans))
       (update! (-> self sound)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (suspend)
       (loop
@@ -163,13 +158,11 @@
         (suspend))))
 
 (defstate snow-bumper-deactivate (snow-bumper)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (stop! (-> self sound))
       (logior! (-> self mask) (process-mask actor-pause)))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (sv-16 symbol))
       (logclear! (-> self mask) (process-mask actor-pause))
       (sound-play "bumper-pwr-dwn")
@@ -197,8 +190,7 @@
   :post rider-post)
 
 (defstate snow-bumper-spawn-fuel-cell (snow-bumper)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 1)
       (ja :group! snow-bumper-collapse-ja :num! max)
       (transform-post)
@@ -214,8 +206,7 @@
       (go snow-bumper-inactive-idle)))
 
 (defstate snow-bumper-inactive-idle (snow-bumper)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self root nav-radius) 6963.2)
       (ja-channel-set! 1)
       (ja :group! snow-bumper-collapse-ja :num! max)

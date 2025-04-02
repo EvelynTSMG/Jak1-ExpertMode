@@ -66,8 +66,7 @@
            :duration #x258
            :linger-duration #x12c
            :name "group-cavegeyserrock-sides"
-           :launcher
-           (new 'static 'inline-array
+           :launcher (new 'static 'inline-array
                 sparticle-group-item
                 7
                 (sp-item 1869 :fade-after (meters 100.0) :falloff-to (meters 160.0) :period 36 :length 15)
@@ -77,8 +76,7 @@
                 (sp-item 1873 :fade-after (meters 100.0) :falloff-to (meters 160.0) :period 36 :length 15 :offset 12)
                 (sp-item 1874 :fade-after (meters 100.0) :falloff-to (meters 160.0) :period 36 :length 15 :offset 24)
                 (sp-item 1875 :fade-after (meters 60.0) :falloff-to (meters 60.0) :period 36 :length 15 :offset 24))
-           :bounds
-           (new 'static 'sphere :w 40960.0)))
+           :bounds (new 'static 'sphere :w 40960.0)))
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1875)
@@ -321,8 +319,7 @@
            :duration #x258
            :linger-duration #x12c
            :name "group-cavegeyserrock-plume"
-           :launcher
-           (new 'static 'inline-array
+           :launcher (new 'static 'inline-array
                 sparticle-group-item
                 9
                 (sp-item 1881 :flags (bit1) :period 240 :length 1 :binding 1878)
@@ -334,8 +331,7 @@
                 (sp-item 1883 :fade-after (meters 120.0) :falloff-to (meters 160.0))
                 (sp-item 1884 :fade-after (meters 60.0) :falloff-to (meters 60.0))
                 (sp-item 1880 :fade-after (meters 60.0) :falloff-to (meters 60.0) :flags (start-dead)))
-           :bounds
-           (new 'static 'sphere :w 131072.0)))
+           :bounds (new 'static 'sphere :w 131072.0)))
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1880)
@@ -534,8 +530,7 @@
 ;; failed to figure out what this is:
 (let ((v1-22 (new 'static 'skeleton-group
                   :art-group-name "cavegeyserrock"
-                  :bounds
-                  (new 'static 'vector :y -4096.0 :w 14745.6)
+                  :bounds (new 'static 'vector :y -4096.0 :w 14745.6)
                   :max-lod 1
                   :version #x6)))
   (set! (-> v1-22 jgeo) 0)
@@ -699,18 +694,15 @@
 
 ;; failed to figure out what this is:
 (defstate cavegeyserrock-idle (cavegeyserrock)
-  :trans
-    (the-as (function none :behavior cavegeyserrock)
+  :trans (the-as (function none :behavior cavegeyserrock)
             rider-trans)
-  :code
-    (behavior ()
+  :code (behavior ()
       (while #t
         (dummy-20 self)
         (dummy-21 self)
         (suspend))
       (none))
-  :post
-    (the-as (function none :behavior cavegeyserrock)
+  :post (the-as (function none :behavior cavegeyserrock)
             rider-post))
 
 ;; definition for method 10 of type cavegeyserrock

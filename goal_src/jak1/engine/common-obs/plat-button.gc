@@ -48,8 +48,7 @@
 
 (defstate plat-button-idle (plat-button)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch)
          (when (can-activate? self)
@@ -59,8 +58,7 @@
                      (the-as uint 1))
                     (or (not (-> self should-grab-player?)) (set! (-> self grab-player?) (process-grab? *target*))))
              (go-virtual plat-button-pressed))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (can-activate? self)))
         (if gp-0 (ja-no-eval :num! (seek! 0.0)) (ja-no-eval :num! (seek!)))
         (loop
@@ -77,8 +75,7 @@
 
 (defstate plat-button-teleport-to-other-end (plat-button)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((f0-0 1.0))
         (if (>= (-> self path-pos) 0.5) (set! f0-0 0.0))
         (set! (-> self path-pos) f0-0)
@@ -92,8 +89,7 @@
 (defstate plat-button-pressed (plat-button)
   :virtual #t
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (seek!))
       (until (ja-done? 0)
         (suspend)
@@ -116,23 +112,19 @@
 
 (defstate plat-button-move-downward (plat-button)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (when (or (= message 'touch) (= message 'attack))
         (set-time! (-> self state-time))
         #f))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (plat-button-camera-on)
       (set-setting! 'allow-look-around #f 0.0 0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (plat-button-camera-off)
       (remove-setting! 'allow-look-around))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (= (-> self path-pos) 1.0) (go-virtual plat-button-at-end))
       (rider-trans)
       (when (-> self go-back-if-lost-player?)
@@ -167,23 +159,19 @@
 
 (defstate plat-button-move-upward (plat-button)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (when (or (= message 'touch) (= message 'attack))
         (set-time! (-> self state-time))
         #f))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (plat-button-camera-on)
       (set-setting! 'allow-look-around #f 0.0 0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (plat-button-camera-off)
       (remove-setting! 'allow-look-around))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (= (-> self path-pos) 0.0) (go-virtual plat-button-at-end))
       (rider-trans)
       (when (-> self go-back-if-lost-player?)
@@ -218,8 +206,7 @@
 
 (defstate plat-button-at-end (plat-button)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (-> self allow-auto-kill) (process-entity-status! self (entity-perm-status bit-3) #f))
       (sound-stop (-> self sound-id))
       (sound-play "elev-land")

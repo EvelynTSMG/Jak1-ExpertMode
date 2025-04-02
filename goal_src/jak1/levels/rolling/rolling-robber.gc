@@ -9,8 +9,7 @@
 
 (defstate fuel-cell-spline-slider (fuel-cell)
   :trans hide-hud-quick
-  :code
-    (behavior ((arg0 handle) (arg1 float) (arg2 float))
+  :code (behavior ((arg0 handle) (arg1 float) (arg2 float))
       (logclear! (-> self mask) (process-mask actor-pause))
       (ja :group! fuel-cell-idle-ja)
       (if *target* (process-grab? *target*))
@@ -196,8 +195,7 @@
     (fmin 1.5 (fmax 0.9 f1-3))))
 
 (defstate robber-debug (robber)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -217,15 +215,13 @@
   :post ja-post)
 
 (defstate robber-dead (robber)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)
       (deactivate self)))
 
 (defstate robber-die (robber)
   :event process-drawable-death-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 #t))
         (when (robber-task-complete?)
           (let ((v1-3 (-> self entity extra perm)))
@@ -236,14 +232,12 @@
                (set! (-> v1-3 user-object 0) (-> self curve-position))
                (let ((f30-0 (if (>= (-> self speed) 0.0) 163840.0 -163840.0)))
                  (process-spawn fuel-cell
-                                :init
-                                fuel-cell-init-as-spline-slider
+                                :init fuel-cell-init-as-spline-slider
                                 (process->handle self)
                                 (-> self curve-position)
                                 f30-0
                                 (-> self entity extra perm task)
-                                :to
-                                self)))
+                                :to self)))
               (else
                (set! gp-0 #f)
                (logior! (-> self draw status) (draw-status hidden))
@@ -271,15 +265,13 @@
 
 (defstate robber-got-away (robber)
   :event robber-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (not (and *target* (>= 204800.0 (vector-vector-xz-distance (-> self root trans) (-> *target* control trans)))))
                (robber-find-ground))
         (go robber-idle))
       (if (and *target* (>= 122880.0 (vector-vector-xz-distance (-> self root trans) (-> *target* control trans))))
         (go robber-flee)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (not (ja-group? robber-fly-ja))
         (ja-channel-push! 1 (seconds 0.2))
         (ja :group! robber-fly-ja))
@@ -293,18 +285,14 @@
 
 (defstate robber-tired (robber)
   :event robber-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self y-offset-desired) -12288.0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self y-offset-desired) 0.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (and *target* (>= 163840.0 (vector-vector-xz-distance (-> self root trans) (-> *target* control trans)))))
         (go robber-got-away)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (ja-group? robber-fly-ja))
           (ja-channel-push! 1 (seconds 0.2))
@@ -335,13 +323,11 @@
 
 (defstate robber-flee (robber)
   :event robber-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self near-timer) 3000)
       (set-time! (-> self far-time))
       (set! (-> self y-offset-desired) 0.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (and *target* (>= 163840.0 (vector-vector-xz-distance (-> self root trans) (-> *target* control trans)))))
         (go robber-got-away))
       (when (and *target* (>= 102400.0 (vector-vector-xz-distance (-> self root trans) (-> *target* control trans))))
@@ -350,8 +336,7 @@
         (if (<= (-> self near-timer) 0) (go robber-tired))
         (set-time! (-> self far-time)))
       (if (time-elapsed? (-> self far-time) (seconds 3)) (set! (-> self near-timer) (the-as int (-> self timeout)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (ja-group? robber-fly-ja))
           (ja-channel-push! 1 (seconds 0.2))
@@ -382,17 +367,14 @@
 
 (defstate robber-idle (robber)
   :event robber-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self speed) 0.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target* (>= 122880.0 (vector-vector-xz-distance (-> self root trans) (-> *target* control trans))))
         (go robber-flee))
       (robber-rotate (the-as target #t) 182.04445)
       (robber-move))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (loop
         (ja-no-eval :group! robber-idle-hover-ja :num! (seek!) :frame-num 0.0)
@@ -403,15 +385,13 @@
 
 (defstate robber-initial-notice (robber)
   :event robber-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (logtest? (-> self draw status) (draw-status was-drawn))
         (if (and *target* (>= 163840.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
           (level-hint-spawn (text-id rolling-robbers-hint) "sksp0116" (the-as entity #f) *entity-pool* (game-task none))))
       (if (and *target* (>= 32768.0 (vector-vector-xz-distance (-> self root trans) (-> *target* control trans))))
         (go robber-flee)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (path-control-method-14 (-> self path) (-> self tangent) (-> self curve-position))
       (let ((gp-1 (vector-! (new 'stack-no-clear 'vector) (-> self root trans) (target-pos 0)))
             (f0-1 6.826667))
@@ -431,16 +411,13 @@
 
 (defstate robber-initial (robber)
   :event robber-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self speed) 0.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target* (>= 122880.0 (vector-vector-xz-distance (-> self root trans) (-> *target* control trans))))
         (go robber-initial-notice))
       (robber-move))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (loop
         (ja-no-eval :group! robber-idle-ja :num! (seek!) :frame-num 0.0)

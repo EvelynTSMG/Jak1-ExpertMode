@@ -3,11 +3,9 @@ Basic State
 ===
 
 (defstate joint-exploder-shatter (joint-exploder)
-  :enter
-  (behavior ()
+  :enter (behavior ()
     (set-time! (-> self state-time)))
-  :trans
-  (behavior ()
+  :trans (behavior ()
     (let* ((f1-0 (the float (- (current-time) (-> self state-time))))
            (f0-2 (- 1.0 (/ f1-0 (the float (-> self tuning duration)))))
            (f1-2 (- 1.0 (/ f1-0 (* 0.75 (the float (-> self tuning duration)))))))
@@ -37,23 +35,19 @@ Basic State
           (vector-! s5-2 s5-2 (-> self root trans))
           (set! (-> s5-2 w) f0-12))))
     0)
-  :code
-  (behavior ()
+  :code (behavior ()
     (set-time! (-> self state-time))
     (until (time-elapsed? (-> self state-time) (-> self tuning duration))
       (suspend)
       (ja :num! (loop!))))
-  :post
-  ja-post)
+  :post ja-post)
 
 ---
 
 (defstate joint-exploder-shatter (joint-exploder)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let* ((f1-0 (the float (- (current-time) (-> self state-time))))
              (f0-2 (- 1.0 (/ f1-0 (the float (-> self tuning duration)))))
              (f1-2 (- 1.0 (/ f1-0 (* 0.75 (the float (-> self tuning duration)))))))
@@ -83,8 +77,7 @@ Basic State
             (vector-! s5-2 s5-2 (-> self root trans))
             (set! (-> s5-2 w) f0-12))))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (until (time-elapsed? (-> self state-time) (-> self tuning duration))
         (suspend)
@@ -96,13 +89,11 @@ Ensure indentation is correct
 ===
 
 (defstate idle (voicebox)
-  :event
-    (-> (method-of-type voicebox enter)
+  :event (-> (method-of-type voicebox enter)
       event))
 
 ---
 
 (defstate idle (voicebox)
-  :event
-    (-> (method-of-type voicebox enter)
+  :event (-> (method-of-type voicebox enter)
         event))

@@ -37,8 +37,7 @@
 
 (define *flutflut-shadow-control*
   (new 'static 'shadow-control
-       :settings
-       (new 'static 'shadow-settings
+       :settings (new 'static 'shadow-settings
             :flags (shadow-flags disable-fade shdf03)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 614400.0)
@@ -64,19 +63,16 @@
 
 (defstate wait-for-start (flutflut)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trans) (vector+! (the-as vector (-> block param 0)) (-> self root trans) (-> self extra-trans)))
         (('notify) (let ((v0-1 (the-as structure #t))) (set! (-> self auto-get-off) (the-as symbol v0-1)) v0-1))
         (('touch 'attack) (set-time! (-> self touch-time)) #f)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self root root-prim prim-core action) (collide-action))
       (set! (-> self root root-prim prim-core offense) (collide-offense no-offense))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((v1-0 (-> self condition)))
           (cond
@@ -119,19 +115,15 @@
 
 (defstate idle (flutflut)
   :virtual #t
-  :event
-    (-> (method-of-type flutflut wait-for-start)
+  :event (-> (method-of-type flutflut wait-for-start)
         event)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (blocking-plane-destroy)
       (if (not *allow-flutflut-anywhere*) (blocking-plane-spawn (the-as curve-control (-> self path-target))))
       (none))
-  :exit
-    (-> (method-of-type flutflut wait-for-start)
+  :exit (-> (method-of-type flutflut wait-for-start)
         exit)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 1)
       (ja :group! flut-saddle-flut-idle-ja)
       (set! (-> self root root-prim prim-core action) (collide-action solid attackable-unused))
@@ -164,8 +156,7 @@
 
 (defstate pickup (flutflut)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('draw)
          (ja-channel-set! 1)
@@ -175,11 +166,9 @@
          (transform-post))
         (('trans) (vector+! (the-as vector (-> block param 0)) (-> self root trans) (-> self extra-trans)))
         (('touch 'attack) #f)))
-  :enter
-    (behavior ((arg0 (state flutflut)))
+  :enter (behavior ((arg0 (state flutflut)))
       ((-> arg0 enter)))
-  :code
-    (behavior ((arg0 (state flutflut)))
+  :code (behavior ((arg0 (state flutflut)))
       (ja-channel-set! 0)
       (ja-post)
       (while (zero? (ja-group-size))
@@ -194,18 +183,15 @@
 
 (defstate wait-for-return (flutflut)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (if (and (or (= message 'touch) (= message 'attack)) (send-event *target* 'end-mode))
         (go-virtual pickup (method-of-object self idle)))
       (if (= message 'trans) (vector+! (the-as vector (-> block param 0)) (-> self root trans) (-> self extra-trans))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (blocking-plane-destroy)
       (if (not *allow-flutflut-anywhere*) (blocking-plane-spawn (the-as curve-control (-> self path-flut))))
       (none))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (ja-post)
       (loop

@@ -14,8 +14,7 @@
 (defpartgroup group-part-robocave-torch
   :id 506
   :bounds (static-bspherem 0 3 0 4)
-  :parts
-  ((sp-item 729 :fade-after (meters 150) :falloff-to (meters 180))
+  :parts ((sp-item 729 :fade-after (meters 150) :falloff-to (meters 180))
    (sp-item 730 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 731 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 2) :length (seconds 0.3))
    (sp-item 732 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 1.23) :length (seconds 0.23))

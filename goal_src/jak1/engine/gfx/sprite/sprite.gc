@@ -156,8 +156,7 @@
              :nloop #x1
              :eop #x1
              :pre #x1
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :fge #x1 :abe #x1)
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :fge #x1 :abe #x1)
              :nreg #x9))
   (set! (-> data sprite-2d-giftag regs)
         (new 'static 'gif-tag-regs
@@ -176,8 +175,7 @@
              :nloop #x1
              :eop #x1
              :pre #x1
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :abe #x1)
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :abe #x1)
              :nreg #x9))
   (set! (-> data sprite-2d-giftag-2 regs)
         (new 'static 'gif-tag-regs
@@ -196,8 +194,7 @@
              :nloop #x1
              :eop #x1
              :pre #x1
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :fge #x1 :abe #x1)
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :fge #x1 :abe #x1)
              :nreg #xc))
   ;; note that we have rgbaq's per vertex in 3d
   (set! (-> data sprite-3d-giftag regs)
@@ -220,8 +217,7 @@
              :nloop #x1
              :eop #x1
              :pre #x1
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :fge #x1 :abe #x1)
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :fge #x1 :abe #x1)
              :nreg #x3))
   (set! (-> data clipped-giftag regs)
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
@@ -231,8 +227,7 @@
              :nloop #x1
              :eop #x1
              :pre #x1
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri) :tme #x1 :abe #x1)
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri) :tme #x1 :abe #x1)
              :nreg #xc))
   (set! (-> data warp-giftag regs)
         (new 'static 'gif-tag-regs
@@ -417,8 +412,7 @@
                                      :cmd (vif-cmd unpack-v4-32)
                                      :num 5
                                      ;; matrix + qword
-                                     :imm
-                                     (new 'static 'vif-unpack-imm :addr count)))
+                                     :imm (new 'static 'vif-unpack-imm :addr count)))
        ;; sent the camera-temp matrix
        ;; these weren't done through the usual macros which is strange
        (let* ((mtx (the-as matrix (-> dma-buff base)))
@@ -445,8 +439,7 @@
                                      :cmd (vif-cmd unpack-v4-32)
                                      :num 80
                                      ;; matrix + qword + 75 qword table
-                                     :imm
-                                     (new 'static 'vif-unpack-imm :addr count)))
+                                     :imm (new 'static 'vif-unpack-imm :addr count)))
        (let ((mtx2 (the-as matrix (-> dma-buff base)))
              (f1-0 (-> *math-camera* perspective vector 0 x))
              (f2-0 (-> *math-camera* perspective vector 1 y))

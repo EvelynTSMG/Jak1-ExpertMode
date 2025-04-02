@@ -31,8 +31,7 @@
   :bounds (static-spherem 0 0 0 4))
 
 (defstate orb-cache-top-idle (orb-cache-top)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('eco-blue)
          (process-entity-status! self (entity-perm-status complete) #t)
@@ -41,13 +40,11 @@
          (increment-success-for-hint (text-id sidekick-hint-orb-cache-top))
          (go orb-cache-top-activate #f))
         (else (plat-event proc argc message block))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (and *target* (>= 20480.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
                (not (send-event *target* 'query 'powerup (pickup-type eco-blue))))
         (level-hint-spawn (text-id sidekick-hint-orb-cache-top) "sksp0009" (the-as entity #f) *entity-pool* (game-task none))))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (if (and (not arg0) (-> self child)) (sound-play "close-orb-cash"))
       (dotimes (gp-1 (-> self money))
         (let ((a0-4 (handle->process (-> self money-list gp-1)))) (if a0-4 (deactivate a0-4))))
@@ -120,12 +117,10 @@
 
 (defstate orb-cache-top-activate (orb-cache-top)
   :event plat-event
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #f))
   :trans plat-trans
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (calculate-pos self arg0)
       (if arg0 (set! (-> self basetrans y) (-> self platform-pos)) (sound-play "open-orb-cash"))
@@ -169,8 +164,7 @@
 (defstate orb-cache-top-complete (orb-cache-top)
   :event plat-event
   :trans plat-trans
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (if (not arg0) (sound-play "close-orb-cash"))
       (ja :group! orb-cache-top-idle-ja :num! (identity (ja-aframe 0.0 0)))
       (new 'stack-no-clear 'vector)

@@ -12,8 +12,7 @@
   :linger-duration (seconds 2.6)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 -12 0 14)
-  :parts
-  ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
+  :parts ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
    (sp-item 125 :period (seconds 3) :length (seconds 0.05))
    (sp-item 126 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
    (sp-item 127 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
@@ -158,15 +157,12 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-idle (sharkey)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (logclear! (-> self nav-enemy-flags) (nav-enemy-flags navenmf0)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self draw status) (draw-status hidden)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((-> self enable-patrol)
          (if (and (and *target*
@@ -187,8 +183,7 @@ nav-enemy-default-event-handler
              (go-virtual nav-enemy-chase))))
         (else
          (if (time-elapsed? (-> self notice-time) (seconds 10)) (logclear! (-> self nav-enemy-flags) (nav-enemy-flags navenmf0))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.075))
       (ja :group! (-> self draw art-group data (-> self nav-info idle-anim)))
       (ja :num-func num-func-identity :frame-num 0.0)
@@ -206,11 +201,9 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-patrol (sharkey)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (sharkey-notice-player?) (go-virtual nav-enemy-chase)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.075))
       (set! (-> self nav target-pos quad) (-> self spawn-point quad))
       (loop
@@ -227,18 +220,15 @@ nav-enemy-default-event-handler
             (else (if (< (- (-> self collide-info trans y) (-> self y-min)) 409.6) (go-virtual nav-enemy-idle))))
           (suspend)
           (ja :num! (seek! max (-> self anim-speed))))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (nav-enemy-travel-post)))
 
 (defstate nav-enemy-notice (sharkey)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (go-virtual nav-enemy-chase))
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-chase)))
 
 (defbehavior sharkey-follow-trajectory sharkey ((arg0 float))
@@ -251,8 +241,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-attack (sharkey)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (new 'stack-no-clear 'vector))
             (s5-0 (new 'stack-no-clear 'vector)))
         (current-time)
@@ -301,18 +290,15 @@ nav-enemy-default-event-handler
       (sharkey-reset-position)
       (logior! (-> self draw status) (draw-status hidden))
       (go-virtual nav-enemy-idle))
-  :post
-    (behavior ()
+  :post (behavior ()
       (nav-enemy-simple-post)))
 
 (defstate nav-enemy-chase (sharkey)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (sound-stop (-> self sound-id)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not *target*) (go-virtual nav-enemy-patrol))
       (let ((gp-0 (-> *target* control trans)))
         (let ((s5-0 (nav-enemy-test-point-near-nav-mesh? (-> *target* control shadow-pos)))
@@ -339,8 +325,7 @@ nav-enemy-default-event-handler
         (if (and a0-10 (logtest? (-> a0-10 pat) 2))
           (set! (-> self target-speed) (* 2.0 (-> self chase-speed)))
           (set! (-> self target-speed) (-> self chase-speed)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self player-water-time))
       (ja-channel-push! 1 (seconds 0.17))
       (sound-play "bigshark-idle")
@@ -354,8 +339,7 @@ nav-enemy-default-event-handler
           (seek! (-> self anim-speed) 1.0 (* 3.0 (seconds-per-frame)))
           (suspend)
           (ja :num! (seek! max (-> self anim-speed))))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (sharkey-get-player-position (-> self nav target-pos))
       (nav-enemy-travel-post)
       (let* ((f3-0 (vector-vector-distance (-> self collide-info trans) (-> self nav target-pos)))
@@ -366,8 +350,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-stop-chase (sharkey)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.17))
       (loop
         (ja-no-eval :group!
@@ -384,12 +367,10 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-stare (sharkey)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (target-in-range? self (-> self nav-info notice-distance)) (go-virtual nav-enemy-chase))
       (if (time-elapsed? (-> self state-time) (-> self state-timeout)) (go-virtual nav-enemy-patrol)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.17))
       (ja :group! (-> self draw art-group data (-> self nav-info idle-anim)))
       (ja :num-func num-func-identity :frame-num 0.0)
@@ -402,8 +383,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-victory (sharkey)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.075))
       (dotimes (gp-0 3)
         (ja-no-eval :group!

@@ -16,8 +16,7 @@
        (new 'static 'dma-gif-packet
             :dma-vif
             (new 'static 'dma-packet
-                 :dma
-                 (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                 :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
             :gif0
@@ -29,8 +28,7 @@
        (new 'static 'dma-gif-packet
             :dma-vif
             (new 'static 'dma-packet
-                 :dma
-                 (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                 :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
             :gif0
@@ -38,8 +36,7 @@
                  :nloop #x1
                  :eop #x1
                  :pre #x1
-                 :prim
-                 (new 'static 'gs-prim :prim (gs-prim-type sprite) :tme #x1 :fst #x1)
+                 :prim (new 'static 'gs-prim :prim (gs-prim-type sprite) :tme #x1 :fst #x1)
                  :nreg #x5)
             :gif1
             (new 'static 'gif-tag-regs
@@ -53,8 +50,7 @@
        (new 'static 'dma-gif-packet
             :dma-vif
             (new 'static 'dma-packet
-                 :dma
-                 (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                 :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
             :gif0
@@ -62,8 +58,7 @@
                  :nloop #x1
                  :eop #x1
                  :pre #x1
-                 :prim
-                 (new 'static 'gs-prim :prim (gs-prim-type sprite) :tme #x1 :abe #x1 :fst #x1)
+                 :prim (new 'static 'gs-prim :prim (gs-prim-type sprite) :tme #x1 :abe #x1 :fst #x1)
                  :nreg #x5)
             :gif1
             (new 'static 'gif-tag-regs
@@ -102,8 +97,7 @@
              :nloop #x1
              :eop #x1
              :pre #x1
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :abe #x1)
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :abe #x1)
              :nreg #x3))
   (set! (-> arg0 giftag-roof regs)
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
@@ -112,8 +106,7 @@
              :nloop #x1
              :eop #x1
              :pre #x1
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :fge #x1)
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :fge #x1)
              :nreg #x3))
   (set! (-> arg0 giftag-ocean regs)
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
@@ -270,138 +263,86 @@
        sky-vertex
        12
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :z -40960000.0)
-            :col
-            (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
+            :pos (new 'static 'vector :z -40960000.0)
+            :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex :pos (new 'static 'vector :x 40960000.0) :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :y -40960000.0)
-            :col
-            (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
+            :pos (new 'static 'vector :y -40960000.0)
+            :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex :pos (new 'static 'vector :x 40960000.0) :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex :pos (new 'static 'vector :z 40960000.0) :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :y -40960000.0)
-            :col
-            (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
+            :pos (new 'static 'vector :y -40960000.0)
+            :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex :pos (new 'static 'vector :z 40960000.0) :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :x -40960000.0)
-            :col
-            (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
+            :pos (new 'static 'vector :x -40960000.0)
+            :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :y -40960000.0)
-            :col
-            (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
+            :pos (new 'static 'vector :y -40960000.0)
+            :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :x -40960000.0)
-            :col
-            (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
+            :pos (new 'static 'vector :x -40960000.0)
+            :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :z -40960000.0)
-            :col
-            (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
+            :pos (new 'static 'vector :z -40960000.0)
+            :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :y -40960000.0)
-            :col
-            (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))))
+            :pos (new 'static 'vector :y -40960000.0)
+            :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))))
 
 (define sky-roof-polygons
   (new 'static 'inline-array
        sky-vertex
        12
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :z -40960000.0)
-            :stq
-            (new 'static 'vector :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :z -40960000.0)
+            :stq (new 'static 'vector :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :x 40960000.0)
-            :stq
-            (new 'static 'vector :x 1.0 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :x 40960000.0)
+            :stq (new 'static 'vector :x 1.0 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :y 10240000.0)
-            :stq
-            (new 'static 'vector :x 0.5 :y 0.5 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :y 10240000.0)
+            :stq (new 'static 'vector :x 0.5 :y 0.5 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :x 40960000.0)
-            :stq
-            (new 'static 'vector :x 1.0 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :x 40960000.0)
+            :stq (new 'static 'vector :x 1.0 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :z 40960000.0)
-            :stq
-            (new 'static 'vector :x 1.0 :y 1.0 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :z 40960000.0)
+            :stq (new 'static 'vector :x 1.0 :y 1.0 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :y 10240000.0)
-            :stq
-            (new 'static 'vector :x 0.5 :y 0.5 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :y 10240000.0)
+            :stq (new 'static 'vector :x 0.5 :y 0.5 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :z 40960000.0)
-            :stq
-            (new 'static 'vector :x 1.0 :y 1.0 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :z 40960000.0)
+            :stq (new 'static 'vector :x 1.0 :y 1.0 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :x -40960000.0)
-            :stq
-            (new 'static 'vector :y 1.0 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :x -40960000.0)
+            :stq (new 'static 'vector :y 1.0 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :y 10240000.0)
-            :stq
-            (new 'static 'vector :x 0.5 :y 0.5 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :y 10240000.0)
+            :stq (new 'static 'vector :x 0.5 :y 0.5 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :x -40960000.0)
-            :stq
-            (new 'static 'vector :y 1.0 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :x -40960000.0)
+            :stq (new 'static 'vector :y 1.0 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :z -40960000.0)
-            :stq
-            (new 'static 'vector :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
+            :pos (new 'static 'vector :z -40960000.0)
+            :stq (new 'static 'vector :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))
        (new 'static 'sky-vertex
-            :pos
-            (new 'static 'vector :y 10240000.0)
-            :stq
-            (new 'static 'vector :x 0.5 :y 0.5 :z 1.0)
-            :col
-            (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))))
+            :pos (new 'static 'vector :y 10240000.0)
+            :stq (new 'static 'vector :x 0.5 :y 0.5 :z 1.0)
+            :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))))
 
 (define sky-cloud-polygons
   (new 'static 'inline-array

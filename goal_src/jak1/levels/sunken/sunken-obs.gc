@@ -28,8 +28,7 @@
   :id 436
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1713 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1713 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1714 :fade-after (meters 160) :falloff-to (meters 160))))
 
 (defpart 1713
@@ -130,11 +129,9 @@
 
 (defstate pov-camera-playing (sunkencam)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> *screen-filter* draw?) #f))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((v1-0 (-> self seq)))
         (cond
           ((zero? v1-0)
@@ -243,8 +240,7 @@
   :bounds (static-spherem 0 6 0 7))
 
 (defstate seaweed-idle (seaweed)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (seek! max (-> self anim-speed)))
       (while (not (ja-done? 0))
         (suspend)

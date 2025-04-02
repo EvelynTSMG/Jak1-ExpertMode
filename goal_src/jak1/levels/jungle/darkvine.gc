@@ -122,8 +122,7 @@
 
 (defstate darkvine-idle (darkvine)
   :event darkvine-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self dangerous) #t)
       (set! (-> self vulnerable) #t)
       (let ((f30-0 0.0))
@@ -136,8 +135,7 @@
             (suspend)
             (ja :num! (seek! max (-> self speed))))
           (set! f30-0 (if (rand-vu-percent? 0.5) (+ 16384.0 f30-0) (+ -16384.0 f30-0))))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (when (and (-> self hit-player) (or (not *target*) (time-elapsed? (-> self touch-time) (seconds 0.05))))
         (set-collide-offense (-> self root) 2 (collide-offense indestructible))
         (set! (-> self hit-player) #f))
@@ -150,8 +148,7 @@
 
 (defstate darkvine-retreat (darkvine)
   :event darkvine-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self dangerous) #f)
       (set! (-> self vulnerable) #f)
@@ -165,16 +162,14 @@
       (ja-channel-set! 0)
       (suspend-for (seconds 2))
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 175)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (suspend-for (seconds 0.5))
       (set! (-> self dangerous) #t)
       (logior! (-> self mask) (process-mask actor-pause))
@@ -184,13 +179,11 @@
         (suspend)
         (ja :num! (seek!)))
       (go darkvine-idle))
-  :post
-    (-> darkvine-idle
+  :post (-> darkvine-idle
         post))
 
 (defstate darkvine-die (darkvine)
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (logclear! (-> self mask) (process-mask actor-pause))
       (if arg0 (ja-channel-set! 1) (ja-channel-push! 1 (seconds 0.5)))
       (clear-collide-with-as (-> self root))
@@ -199,8 +192,7 @@
         (suspend))
       (logior! (-> self mask) (process-mask sleep))
       (anim-loop))
-  :post
-    (-> darkvine-idle
+  :post (-> darkvine-idle
         post))
 
 (defmethod init-from-entity! ((this darkvine) (arg0 entity-actor))

@@ -32,8 +32,7 @@
   (none))
 
 (defstate part-tester-idle (part-tester)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((gp-0 (entity-by-name *part-tester-name*)))
           (when gp-0
@@ -80,6 +79,5 @@
   (kill-by-type part-tester *active-pool*)
   (process-spawn part-tester
                  (if *anim-tester* (-> *anim-tester* 0 root trans) (target-pos 0))
-                 :from
-                 *debug-part-dead-pool*)
+                 :from *debug-part-dead-pool*)
   (none))

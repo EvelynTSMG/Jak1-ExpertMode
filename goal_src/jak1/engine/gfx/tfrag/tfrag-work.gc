@@ -11,32 +11,27 @@
   (new 'static 'tfrag-work
        :base-tmpl
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id ref))
+            :dma (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif0
             (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl)))
        :level-0-tmpl
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id ref))
+            :dma (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif0
             (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl)))
        :common-tmpl
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id ref))
+            :dma (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif0
             (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl)))
        :level-1-tmpl
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id ref))
+            :dma (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif0
             (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl)))
        :color-tmpl
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id cnt))
+            :dma (new 'static 'dma-tag :id (dma-tag-id cnt))
             :vif0
             (new 'static 'vif-tag :imm #x102 :cmd (vif-cmd stcycl))
             :vif1

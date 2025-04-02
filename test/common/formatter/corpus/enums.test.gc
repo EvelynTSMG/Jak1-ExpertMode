@@ -4,10 +4,8 @@ With Bitfield and Type Info
 
 (defenum
          process-mask
-         :bitfield
-         #t
-         :type
-         uint32
+         :bitfield #t
+         :type uint32
          (execute 0) ;; 1
          (draw 1) ;; 2
          (pause 2) ;; 4

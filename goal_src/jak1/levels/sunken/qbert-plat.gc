@@ -81,12 +81,10 @@
    qbert-plat-master-wait-for-door))
 
 (defstate qbert-plat-on-mimic (qbert-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('die) (go qbert-plat-on-die))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-vector! (-> self draw color-emissive) 0.0 0.0 1.0 0.0)
       (loop
         (let ((gp-0 (-> self parent)))
@@ -97,8 +95,7 @@
   :post ja-post)
 
 (defstate qbert-plat-on-die (qbert-plat)
-  :code
-    (behavior ()
+  :code (behavior ()
       '()))
 
 (defbehavior qbert-plat-on-init-by-other qbert-plat ((arg0 entity-actor) (arg1 qbert-plat))
@@ -139,8 +136,7 @@
              (sound-play "plat-light-off"))))))))
 
 (defstate qbert-plat-wait-for-master (qbert-plat)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((v1-0 (-> self master)))
           (when (if v1-0 (-> v1-0 extra process))
@@ -154,8 +150,7 @@
 (defstate rigid-body-platform-idle (qbert-plat)
   :virtual #t
   :event qbert-plat-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post ja-post)
@@ -163,11 +158,9 @@
 (defstate rigid-body-platform-float (qbert-plat)
   :virtual #t
   :event qbert-plat-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (-> self on?) (logior! (-> self draw status) (draw-status hidden))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (logclear! (-> self draw status) (draw-status hidden))
       ((-> (method-of-type rigid-body-platform rigid-body-platform-float) trans))
       (let* ((v1-5 (-> self root-overlay riders))
@@ -175,8 +168,7 @@
         (when gp-1
           (if (not (-> self player-is-riding?)) (rigid-body-platform-method-33 self)))
         (set! (-> self player-is-riding?) gp-1)))
-  :post
-    (behavior ()
+  :post (behavior ()
       ((the-as (function none :behavior qbert-plat) (-> (method-of-type rigid-body-platform rigid-body-platform-float) post)))
       (if (-> self on?) (logior! (-> self draw status) (draw-status hidden)))))
 
@@ -258,8 +250,7 @@
   (logtest? (-> this plat-states) (ash 1 arg0)))
 
 (defstate qbert-plat-master-idle (qbert-plat-master)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger)
          (start-hint-timer (text-id sunken-qbert-plat-hint))
@@ -276,8 +267,7 @@
                  (send-event proc 'notify)
                  (let ((a0-13 (= (-> self plat-states-needed-to-open-door) (-> self plat-states))))
                    (if (!= s5-1 a0-13) (go qbert-plat-master-do-door a0-13))))))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (-> self puzzle-beaten?))
           (when (task-complete? *game-info* (game-task sunken-platforms))
@@ -340,8 +330,7 @@
         (suspend))))
 
 (defstate qbert-plat-master-do-door (qbert-plat-master)
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (when (not (-> self play-door-cam?))
         (cond
           (arg0
@@ -422,8 +411,7 @@
       (go qbert-plat-master-idle)))
 
 (defstate qbert-plat-master-wait-for-door (qbert-plat-master)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let* ((v1-0 (-> self door))
                (gp-0 (if v1-0 (-> v1-0 extra process)))

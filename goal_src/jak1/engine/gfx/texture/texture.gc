@@ -223,9 +223,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define ct32-24-block-table
-  (new 'static 'boxed-array
-       :type
-       int32
+  (new 'static 'boxed-array :type int32
        :length 32
        0
        1
@@ -261,9 +259,7 @@
        31))
 
 (define mz32-24-block-table
-  (new 'static 'boxed-array
-       :type
-       int32
+  (new 'static 'boxed-array :type int32
        :length 32
        16
        17
@@ -299,9 +295,7 @@
        15))
 
 (define ct16-block-table
-  (new 'static 'boxed-array
-       :type
-       int32
+  (new 'static 'boxed-array :type int32
        :length 32
        0
        2
@@ -337,9 +331,7 @@
        31))
 
 (define ct16s-block-table
-  (new 'static 'boxed-array
-       :type
-       int32
+  (new 'static 'boxed-array :type int32
        :length 32
        0
        2
@@ -375,9 +367,7 @@
        31))
 
 (define mz16-block-table
-  (new 'static 'boxed-array
-       :type
-       int32
+  (new 'static 'boxed-array :type int32
        :length 32
        16
        18
@@ -413,9 +403,7 @@
        15))
 
 (define mz16s-block-table
-  (new 'static 'boxed-array
-       :type
-       int32
+  (new 'static 'boxed-array :type int32
        :length 32
        16
        18
@@ -451,9 +439,7 @@
        15))
 
 (define mt8-block-table
-  (new 'static 'boxed-array
-       :type
-       int32
+  (new 'static 'boxed-array :type int32
        :length 32
        0
        1
@@ -489,9 +475,7 @@
        31))
 
 (define mt4-block-table
-  (new 'static 'boxed-array
-       :type
-       int32
+  (new 'static 'boxed-array :type int32
        :length 32
        0
        2
@@ -1557,14 +1541,11 @@
                                              ;; source VRAM addr
                                              :sbw (-> tex width mip-level)
                                              ;; source width
-                                             :spsm
-                                             (the-as int (-> tex psm)) ;; source format
-                                             :dbp
-                                             (/ dest-loc 64) ;; dest location
+                                             :spsm (the-as int (-> tex psm)) ;; source format
+                                             :dbp (/ dest-loc 64) ;; dest location
                                              :dbw (-> tex width mip-level)
                                              ;; dest width
-                                             :dpsm
-                                             dest-fmt ;; dest format
+                                             :dpsm dest-fmt ;; dest format
                                              ))
                              (trxpos (new 'static 'gs-trxpos))
                              (trxreg (new 'static 'gs-trxreg :rrw mip-w :rrh mip-h))
@@ -1583,8 +1564,7 @@
                                             :sbw 1
                                             :dbw 1
                                             :dpsm (-> tex clutpsm)
-                                            :dbp
-                                            (/ clut-dst 64)
+                                            :dbp (/ clut-dst 64)
                                             :spsm (-> tex clutpsm)
                                             :sbp (-> tex clutdest)))
                             (trxpos (new 'static 'gs-trxpos))
@@ -1599,8 +1579,7 @@
                                             :sbw 2
                                             :dbw 2
                                             :dpsm (-> tex clutpsm)
-                                            :dbp
-                                            (/ clut-dst 64)
+                                            :dbp (/ clut-dst 64)
                                             :spsm (-> tex clutpsm)
                                             :sbp (-> tex clutdest)))
                             (trxpos (new 'static 'gs-trxpos))
@@ -1884,8 +1863,7 @@
                 ;; branch to cfg-7 if we're below mem start
                 (b! (< (the-as int (- (the-as int shader) (the-as int mem-start))) 0)
                     cfg-7
-                    :delay
-                    (set! dist-past-end (the-as uint (- (the-as int shader) (the int mem-end)))))
+                    :delay (set! dist-past-end (the-as uint (- (the-as int shader) (the int mem-end)))))
                 ;; in the delay slot of the above branch we determined our distance from end of memory
                 (b! (>= (the-as int dist-past-end) 0) cfg-7 :delay (nop!))
                 ;; in here, we're in the heap.
@@ -1920,16 +1898,12 @@
              :cpsm (-> arg1 clutpsm)
              :cbp (-> arg1 clutdest)
              :tfx (-> arg0 tex0 tfx)
-             :th
-             (log2 (-> arg1 h))
-             :tw
-             (log2 (-> arg1 w))
-             :tbw
-             (-> arg1 width 0)
+             :th (log2 (-> arg1 h))
+             :tw (log2 (-> arg1 w))
+             :tbw (-> arg1 width 0)
              :tbp0
              (-> arg1 dest 0)
-             :psm
-             (the-as int (-> arg1 psm))))
+             :psm (the-as int (-> arg1 psm))))
   ;; mitptbp1
   (set! (-> arg0 miptbp1)
         (new 'static 'gs-miptbp

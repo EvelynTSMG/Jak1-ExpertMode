@@ -76,38 +76,31 @@
 
 (defstate water-vol-idle (helix-dark-eco)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (let ((a0-1 (-> self sound))) (set! (-> a0-1 spec pitch-mod) 2057) (update-vol! a0-1 100)))
         (else ((-> (method-of-type water-anim water-vol-idle) event) proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (let ((t9-0 (-> (method-of-type dark-eco-pool water-vol-idle) enter))) (if t9-0 (t9-0)))
       (let ((a0-0 (-> self sound))) (set! (-> a0-0 spec pitch-mod) 1524) (update-vol! a0-0 58)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((t9-0 (-> (method-of-type dark-eco-pool water-vol-idle) trans))) (if t9-0 (t9-0)))
       (update! (-> self sound)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (let ((t9-0 (-> (method-of-type dark-eco-pool water-vol-idle) post)))
         (if t9-0 ((the-as (function none :behavior helix-dark-eco) t9-0))))
       (ja-post)))
 
 (defstate helix-slide-door-idle-open (helix-slide-door)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (go helix-slide-door-close))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend))))
 
 (defstate helix-slide-door-close (helix-slide-door)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! helix-slide-door-idle-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -117,8 +110,7 @@
   :post transform-post)
 
 (defstate helix-slide-door-idle-closed (helix-slide-door)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend))))
@@ -150,8 +142,7 @@
   (none))
 
 (defstate helix-button-startup (helix-button)
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (not (task-complete? *game-info* (game-task sunken-slide)))
         (let ((a0-1 (new 'stack-no-clear 'vector)))
           (set! (-> a0-1 quad) (-> self root trans quad))
@@ -162,8 +153,7 @@
       (go helix-button-idle-up)))
 
 (defstate helix-button-idle-up (helix-button)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch)
          (when *target*
@@ -173,16 +163,14 @@
                      (not (handle->process (-> self fcell-handle))))
                 (go helix-button-quick-activate))
                (else (process-entity-status! self (entity-perm-status complete) #t) (go helix-button-activate))))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend))))
 
 (defstate helix-button-activate (helix-button)
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (v1-7 symbol))
       (let ((a0-1 (handle->process (-> self fcell-handle))))
         (when a0-1
@@ -191,16 +179,14 @@
             (suspend)
             (set! v1-7 (or (not *target*) (not (logtest? (-> *target* state-flags) (state-flags grabbed))))))))
       (let ((v1-11 (process-spawn sunkencam
-                                  :init
-                                  pov-camera-init-by-other
+                                  :init pov-camera-init-by-other
                                   (-> self spawn-trans)
                                   *sunkencam-sg*
                                   "qbert-show-door-open"
                                   0
                                   #f
                                   '()
-                                  :to
-                                  self)))
+                                  :to self)))
         (set! (-> (the-as (pointer sunkencam) v1-11) 0 seq) (the-as uint 2)))
       (let ((a1-5 (new 'stack-no-clear 'event-message-block)))
         (set! (-> a1-5 from) self)
@@ -275,8 +261,7 @@
 
 (defstate helix-button-quick-activate (helix-button)
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((a1-0 (new 'stack-no-clear 'event-message-block)))
         (set! (-> a1-0 from) self)
         (set! (-> a1-0 num-params) 0)
@@ -321,8 +306,7 @@
   :post rider-post)
 
 (defstate helix-button-idle-down (helix-button)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend))))
 
@@ -381,13 +365,11 @@
           (else (set! (-> this last-alt-actor-consumed) s5-0) s5-0))))))
 
 (defstate helix-water-idle (helix-water)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (go helix-water-activated))
         (('music) (set-setting! 'music 'danger 0.0 0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self root trans y) (-> self start-y))
       (set! (-> self last-alt-actor-consumed) -1)
       (set! (-> self transv-y) 9216.0)
@@ -399,12 +381,10 @@
   :post ja-post)
 
 (defstate helix-water-activated (helix-water)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('notify) (when (= (-> proc type) launcherdoor) (remove-setting! 'music) (go helix-water-idle)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (seek! (-> self root scale y) 0.8 (* 0.667 (seconds-per-frame)))
       (when *target*
         (let ((f0-4 (-> (target-pos 0) y)))
@@ -420,8 +400,7 @@
       (if (< (-> self end-y) (-> self root trans y)) (set! (-> self root trans y) (-> self end-y)))
       (send-event (ppointer->process (-> self dark-eco)) 'move-to (-> self root trans))
       (helix-water-method-21 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (send-event (ppointer->process (-> self dark-eco)) 'trigger)
       (loop
         (logior! (-> self mask) (process-mask sleep-code))

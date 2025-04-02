@@ -2,8 +2,7 @@
 With behavior tag
 ===
 
-(lambda :behavior
-        target
+(lambda :behavior target
         ()
         (println "something"))
 

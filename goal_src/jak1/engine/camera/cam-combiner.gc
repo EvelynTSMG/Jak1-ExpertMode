@@ -7,8 +7,7 @@
 ;; DECOMP BEGINS
 
 (defstate cam-combiner-active (camera-combiner)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('point-of-interest)
          (cond
@@ -94,8 +93,7 @@
               (set! (-> self tracking use-point-of-interest) (-> gp-3 tracking use-point-of-interest))
               (set! (-> self tracking point-of-interest quad) (-> gp-3 tracking point-of-interest quad))
               (copy-cam-float-seeker (-> self tracking point-of-interest-blend) (-> gp-3 tracking point-of-interest-blend))))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (sv-160 cam-rotation-tracker))
       (loop
         (when (and (not (logtest? (-> *camera* master-options) 2)) (!= (-> self tracking-status) 0))

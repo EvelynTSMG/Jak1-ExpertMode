@@ -11,9 +11,7 @@
 (define-extern *mod-version-text* string)
 
 (define *hub1-cell-list*
-  (new 'static 'boxed-array
-       :type
-       game-task
+  (new 'static 'boxed-array :type game-task
        (game-task training-gimmie)
        (game-task training-door)
        (game-task training-climb)
@@ -52,9 +50,7 @@
        (game-task firecanyon-buzzer)))
 
 (define *hub2-cell-list*
-  (new 'static 'boxed-array
-       :type
-       game-task
+  (new 'static 'boxed-array :type game-task
        (game-task training-gimmie)
        (game-task training-door)
        (game-task training-climb)
@@ -93,9 +89,7 @@
        (game-task firecanyon-buzzer)))
 
 (define *hub2-cell-list*
-  (new 'static 'boxed-array
-       :type
-       game-task
+  (new 'static 'boxed-array :type game-task
        (game-task village2-gambler-money)
        (game-task village2-geologist-money)
        (game-task village2-warrior-money)
@@ -132,9 +126,7 @@
        (game-task ogre-buzzer)))
 
 (define *hub3-cell-list*
-  (new 'static 'boxed-array
-       :type
-       game-task
+  (new 'static 'boxed-array :type game-task
        (game-task village3-miner-money1)
        (game-task village3-miner-money2)
        (game-task village3-miner-money3)

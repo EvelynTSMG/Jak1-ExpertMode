@@ -29,12 +29,10 @@
   :bounds (static-spherem 1 -2 0 6.5))
 
 (defstate wall-plat-retracted (wall-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (go wall-plat-extending))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self extended-amount) 0.0)
       (move-to-point! (-> self root) (-> self in-trans))
       (transform-post)
@@ -44,16 +42,13 @@
         (suspend))))
 
 (defstate wall-plat-extending (wall-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch) (send-event proc 'no-look-around (seconds 1.5)) #f)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (sound-play "wall-plat"))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (restore-collide-with-as (-> self root))
       (set-time! (-> self state-time))
       (loop
@@ -66,12 +61,10 @@
   :post rider-post)
 
 (defstate wall-plat-extended (wall-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('untrigger) (go wall-plat-retracting))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self extended-amount) 1.0)
       (move-to-point! (-> self root) (-> self out-trans))
       (transform-post)
@@ -80,16 +73,13 @@
         (suspend))))
 
 (defstate wall-plat-retracting (wall-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch) (send-event proc 'no-look-around (seconds 1.5)) #f)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (sound-play "wall-plat"))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (loop
         (seek! (-> self extended-amount) 0.0 (* 2.5 (seconds-per-frame)))
@@ -101,19 +91,15 @@
   :post rider-post)
 
 (defstate wall-plat-sync-idle (wall-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch) (send-event proc 'no-look-around (seconds 1.5)) #f)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self mask) (process-mask actor-pause)))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 #f))
         (loop
           (let ((f30-0 (get-current-phase-with-mirror (-> self sync))))

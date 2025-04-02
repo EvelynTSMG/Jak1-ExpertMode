@@ -105,8 +105,7 @@
 
 (defstate idle (logo-slave)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 uint))
       (case message
         (('blend-shape)
@@ -119,8 +118,7 @@
             (set! (-> self skel status) (the-as janim-status v0-0))))
          v0-0)
         (('origin-joint-index) (set! v0-0 (-> block param 0)) (set! (-> self draw origin-joint-index) v0-0) v0-0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-post)
       (loop
         (clone-anim-once (ppointer->handle (-> self parent-process)) (the-as int (-> self draw origin-joint-index)) #t "")
@@ -150,24 +148,20 @@
 
 (defstate startup (logo)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('update) (remove-setting! 'process-mask))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-0 (-> self anim)))
         (when (nonzero? a0-0)
           (ja-abort-spooled-anim a0-0 (the-as art-joint-anim #f) -1)
           (ja-channel-set! 0)
           (ja-post)
           (let ((a0-3 (handle->process (-> self camera)))) (if a0-3 (deactivate a0-3))))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (none-reserved? *art-control*)) (go-virtual hidden))
       (if (nonzero? (-> self next-anim)) (spool-push *art-control* (-> self next-anim name) 0 self -1.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (!= (file-status *art-control* (-> self next-anim name) 0) 'active)
         (set-blackout-frames (seconds 0.05))
         (suspend))
@@ -263,8 +257,7 @@
                             (the-as (function process-drawable symbol) false-func))
       (remove-exit)
       (go-virtual idle))
-  :post
-    (behavior ()
+  :post (behavior ()
       (if *progress-process*
         (logior! (-> self draw status) (draw-status skip-bones))
         (logclear! (-> self draw status) (draw-status skip-bones)))
@@ -282,14 +275,11 @@
 
 (defstate idle (logo)
   :virtual #t
-  :exit
-    (-> (method-of-type logo startup)
+  :exit (-> (method-of-type logo startup)
         exit)
-  :trans
-    (-> (method-of-type logo startup)
+  :trans (-> (method-of-type logo startup)
         trans)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (set! (-> self anim) (-> self next-anim))
         (if (not (handle->process (-> self camera)))
@@ -308,17 +298,14 @@
                               (the-as art-joint-anim #f)
                               (the-as art-joint-anim #f)
                               (the-as (function process-drawable symbol) false-func))))
-  :post
-    (-> (method-of-type logo startup)
+  :post (-> (method-of-type logo startup)
         post))
 
 (defstate hidden (logo)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (nonzero? (-> self next-anim)) (spool-push *art-control* (-> self next-anim name) 0 self -1.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (ja-post)
       (let ((gp-0 *master-mode*)) (set! *master-mode* 'game) (clear-rec *art-control*) (set! *master-mode* gp-0))
@@ -331,23 +318,19 @@
 
 (defstate ndi (logo)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('blackout) (set-setting! 'bg-a 'abs 1.0 0))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-setting! 'bg-a 'abs 0.0 0)
       (apply-settings *setting-control*)
       (set-time! (-> self state-time))
       (if *time-of-day-proc* (set! (-> *time-of-day-proc* 0 hour) 12))
       (set! (-> self done?) #f))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       ((-> (method-of-type logo startup) exit))
       (set-blackout-frames (seconds 0.035)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> (method-of-type logo startup) trans))
       ;; og:preserve-this
       (if (and (or *debug-segment* PC_PORT)
@@ -370,8 +353,7 @@
         (set! (-> self done?) #t)
         (deactivate self))
       (if *time-of-day-proc* (set! (-> *time-of-day-proc* 0 hour) 12)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (!= (file-status *art-control* (-> self next-anim name) 0) 'active)
         (set-blackout-frames (seconds 0.05))
         (suspend))
@@ -408,8 +390,7 @@
       (set! (-> self done?) #t)
       (set-setting! 'bg-a 'abs 1.0 0)
       (anim-loop))
-  :post
-  (behavior ()
+  :post (behavior ()
     (ja-post)))
 
 (defbehavior logo-init-by-other logo ((arg0 entity-actor) (arg1 vector) (arg2 symbol))
@@ -489,8 +470,7 @@
 
 (defstate target-title (target)
   :event target-generic-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-setting! 'music-volume 'abs 0.0 0)
       (set-setting! 'sfx-volume 'abs 0.0 0)
       (set-setting! 'ambient-volume 'abs 0.0 0)
@@ -503,18 +483,15 @@
       (ja-channel-set! 0)
       (ja-post)
       (send-event *camera* 'change-state cam-fixed 0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when (not (or (= (-> self next-state name) 'target-title-play) (= (-> self next-state name) 'target-title-wait)))
         (if (-> self manipy) (deactivate (-> self manipy 0)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (hide-hud-quick)
       (spool-push *art-control* "ndi-intro" 0 self -1.0)
       ;; og:preserve-this PAL patch here
       (if *sound-player-enable* (sound-group-pause (sound-group music))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (the-as handle #f)))
         ;; og:preserve-this PAL patch here
         (cond
@@ -570,32 +547,27 @@
   :post target-no-move-post)
 
 (defstate target-title-play (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('wait) (go target-title-wait))
         (('reset) (deactivate (-> self manipy 0)))
         (else (target-generic-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-setting! 'allow-pause #f 0.0 0)
       (set-setting! 'allow-progress #f 0.0 0))
-  :exit
-    (-> target-title
+  :exit (-> target-title
         exit)
   :trans hide-hud-quick
   :code anim-loop
   :post target-no-move-post)
 
 (defstate target-title-wait (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('play) (go target-title-play))
         (('reset) (deactivate (-> self manipy 0)))
         (else (target-generic-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (remove-setting! 'ambient-volume)
       (remove-setting! 'sfx-volume)
       (remove-setting! 'music-volume)
@@ -604,8 +576,7 @@
       (when *time-of-day-proc*
         (set! (-> *time-of-day-proc* 0 time-ratio) 18000.0)
         (set! *time-of-day-fast* #t)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when *time-of-day-proc*
         (set! (-> *time-of-day-proc* 0 time-ratio) 300.0)
         (set! *time-of-day-fast* #f))
@@ -613,8 +584,7 @@
       (remove-setting! 'allow-pause)
       (remove-setting! 'allow-progress)
       ((-> target-title exit)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (hide-hud-quick)
       ;; og:preserve-this PAL patch here
       (when (cpad-pressed? 0 start)

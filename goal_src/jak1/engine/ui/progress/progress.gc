@@ -698,12 +698,10 @@
   (or (not *progress-process*) (= (-> *progress-process* 0 in-out-position) 4096)))
 
 (defstate progress-waiting (progress)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('go-away) (go progress-gone))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (hud-hidden?)
           (dotimes (gp-0 (-> self nb-of-particles))
@@ -714,8 +712,7 @@
         (suspend))))
 
 (defstate progress-gone (progress)
-  :code
-    (behavior ()
+  :code (behavior ()
       (remove-setting! 'process-mask)
       (apply-settings *setting-control*)
       (logior! (-> self mask) (process-mask sleep))
@@ -1202,8 +1199,7 @@
   (none))
 
 (defstate progress-normal (progress)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (case message
         (('go-away) (go progress-going-out))
@@ -1260,8 +1256,7 @@
                   (set! v0-0 20)
                   (set! (-> self next-display-state) (the-as progress-screen v0-0))
                   v0-0)))))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (and (cpad-hold? 0 l1) (cpad-hold? 0 r1) *cheat-mode*)
           (when (and (< (-> self task-index) (-> *level-task-data* (-> self display-level-index) nb-of-tasks))
@@ -1345,8 +1340,7 @@
                  (= v1-74 (progress-screen quit)))
              (respond-memcard self))))
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (let* ((a1-0 (-> self display-level-index))
              (gp-0 (-> *level-task-data* a1-0)))
         #t
@@ -1427,11 +1421,9 @@
       (adjust-icons self)))
 
 (defstate progress-coming-in (progress)
-  :event
-    (-> progress-waiting
+  :event (-> progress-waiting
         event)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (sound-group-pause (sound-group sfx music dialog sog3 ambient sog5 sog6 sog7))
       (logclear! (-> *setting-control* default process-mask) (process-mask pause menu))
       (add-setting! 'process-mask 'set 0.0 (process-mask progress))
@@ -1439,8 +1431,7 @@
       (sound-play "select-menu")
       (set-blackout-frames 0)
       (set! *pause-lock* #f))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (seekl! (-> self in-out-position) 0 (the int (* 170.0 (-> *display* time-adjust-ratio))))
         (when (< (-> self in-out-position) 2867)
@@ -1448,13 +1439,11 @@
           (set-transition-progress! self (-> self transition-offset)))
         (if (zero? (-> self in-out-position)) (go progress-normal))
         (suspend)))
-  :post
-    (-> progress-normal
+  :post (-> progress-normal
         post))
 
 (defstate progress-going-out (progress)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (sound-play "menu-close")
       (hide-progress-icons)
       (set! (-> self particles 3 init-pos x) -320.0)
@@ -1462,8 +1451,7 @@
       (case (-> self display-state)
         (((progress-screen load-game) (progress-screen save-game) (progress-screen save-game-title))
          (set! (-> self transition-speed) 30.0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (seekl! (-> self transition-offset) 512 (the int (* (-> self transition-speed) (-> *display* time-adjust-ratio))))
         (set-transition-progress! self (-> self transition-offset))
@@ -1471,17 +1459,14 @@
           (seekl! (-> self in-out-position) 4096 (the int (* 170.0 (-> *display* time-adjust-ratio))))
           (if (= (-> self in-out-position) 4096) (go progress-gone)))
         (suspend)))
-  :post
-    (-> progress-normal
+  :post (-> progress-normal
         post))
 
 (defstate progress-debug (progress)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('go-away) (go progress-going-out))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (cond
           ((cpad-pressed? 0 left) (if (> (-> self current-debug-string) 0) (+! (-> self current-debug-string) -1)))
@@ -1507,8 +1492,7 @@
            (go progress-normal)))
         (load-game-text-info (-> *text-group-names* (-> self current-debug-group)) '*common-text* *common-text-heap*)
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (let* ((s5-0 (-> *display* frames (-> *display* on-screen) frame global-buf))
              (gp-0 (-> s5-0 base)))
         (let ((s4-0 draw-string-xy))

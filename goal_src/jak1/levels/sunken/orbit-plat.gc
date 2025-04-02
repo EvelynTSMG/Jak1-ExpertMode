@@ -53,8 +53,7 @@
 (defpartgroup group-orbit-plat-jet
   :id 440
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 1715 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 0.5) :length (seconds 0.25))
+  :parts ((sp-item 1715 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 0.5) :length (seconds 0.25))
    (sp-item 1715 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 0.25) :length (seconds 0.32))
    (sp-item 1715 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 0.3) :length (seconds 0.2))
    (sp-item 1716 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -133,8 +132,7 @@
   (none))
 
 (defstate orbit-plat-bottom-idle (orbit-plat-bottom)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (set! (-> self root trans quad) (-> self parent-override 0 root trans quad))
         (+! (-> self root trans y) -5324.8)
@@ -202,8 +200,7 @@
   (none))
 
 (defstate orbit-plat-idle (orbit-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (baseplat-method-22 self))
         (('go) (go orbit-plat-rotating))
@@ -218,8 +215,7 @@
              (t9-3 (if v1-8 (-> v1-8 extra process)) a1-1))))
         (('reset) (go orbit-plat-reset))))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self plat-status) (the-as uint 0))
       (ja-no-eval :num! (seek! 0.0))
       (dotimes (gp-0 2)
@@ -260,14 +256,12 @@
   #f)
 
 (defstate orbit-plat-still (orbit-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (baseplat-method-22 self))
         (('go) (go orbit-plat-rotating))))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self plat-status) (the-as uint 0))
       (set-time! (-> self state-time))
       (ja-no-eval :num! (seek! 0.0))
@@ -289,8 +283,7 @@
 (defstate orbit-plat-riding (orbit-plat)
   :event plat-event
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self plat-status) (the-as uint 1))
       (ja-no-eval :num! (seek!))
       (loop
@@ -335,14 +328,12 @@
   arg0)
 
 (defstate orbit-plat-rotating (orbit-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (baseplat-method-22 self))
         (('stop) (go orbit-plat-still))))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self plat-status) (the-as uint 2))
       (set! (-> self is-reset?) #f)
       (let ((gp-0 (new 'stack-no-clear 'vector)))
@@ -439,14 +430,12 @@
                  (set! (-> this basetrans y) (-> s5-3 y))))))))
 
 (defstate orbit-plat-reset (orbit-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (baseplat-method-22 self))
         (('go) (go orbit-plat-rotating))))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self plat-status) (the-as uint 3))
       (logclear! (-> self nav flags) (nav-control-flags navcf19))
       (ja-no-eval :num! (seek! 0.0))
@@ -468,8 +457,7 @@
   :post plat-post)
 
 (defstate orbit-plat-wait-for-other (orbit-plat)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self plat-status) (the-as uint 0))
       (ja-no-eval :num! (seek! 0.0))
       (loop

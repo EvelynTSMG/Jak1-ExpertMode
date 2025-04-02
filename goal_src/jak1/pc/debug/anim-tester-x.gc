@@ -313,15 +313,13 @@
   0)
 
 (defstate anim-tester-x-process (anim-tester-x)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (clean-art-groups)
       (if (= *master-mode* 'menu) (anim-tester-x-interface) (set! *camera-read-buttons* #f))
       (when (!= *master-mode* 'menu)
         (add-debug-x #t (bucket-id debug-no-zbuf) (-> self root trans) *color-white*))
       (none))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((need-update #f)
             (lst (the-as atx-list #f)))
         (loop
@@ -376,8 +374,7 @@
               ((-> lst func) (atx-list-get-by-index lst (-> lst selection)))
               (set! need-update #f)))
           (suspend))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (when (-> self cur-joint-geo)
         (ja-post)
         (when (!= *master-mode* 'menu)

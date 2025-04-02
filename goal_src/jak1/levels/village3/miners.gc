@@ -64,8 +64,7 @@
 
 (defstate idle (minertall)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self will-talk) #f)
       ((-> (method-of-type process-taskable idle) trans)))
   :code miners-anim-loop)
@@ -92,8 +91,7 @@
 (defpartgroup group-minershort-candle
   :id 566
   :bounds (static-bspherem 0 0 0 15)
-  :parts
-  ((sp-item 2364 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 2364 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 2365 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 2366 :fade-after (meters 60) :falloff-to (meters 60))))
 
@@ -318,8 +316,7 @@
 
 (defstate play-anim (minershort)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (send-event (-> self other-miner ppointer 3) 'end-mode)
       ((-> (method-of-type process-taskable play-anim) exit))))
 
@@ -389,8 +386,7 @@
 
 (defstate idle (cavegem)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)

@@ -25,20 +25,16 @@
 
 (define *shadow-data*
   (new 'static 'shadow-data
-       :texoffset
-       (new 'static 'vector :x 256.5 :y 112.5)
-       :texscale
-       (new 'static 'vector :x 0.001953125 :y 0.00390625)
-       :clrs
-       (new 'static 'inline-array
+       :texoffset (new 'static 'vector :x 256.5 :y 112.5)
+       :texscale (new 'static 'vector :x 0.001953125 :y 0.00390625)
+       :clrs (new 'static 'inline-array
             vector
             2
             (new 'static 'vector :x (the-as float #x80) :w (the-as float #x82))
             (new 'static 'vector :y (the-as float #x80) :w (the-as float #x7f)))
        :dma-unpack-template
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id cnt))
+            :dma (new 'static 'dma-tag :id (dma-tag-id cnt))
             :vif0
             (new 'static 'vif-tag :cmd (vif-cmd flusha) :msk #x1)
             :vif1
@@ -96,10 +92,8 @@
                 (new 'static 'gs-clamp
                      :wms (gs-tex-wrap-mode region-clamp)
                      :wmt (gs-tex-wrap-mode region-clamp)
-                     :maxv
-                     (+ t2-0 -1)
-                     :maxu
-                     (+ t3-0 -1))))
+                     :maxv (+ t2-0 -1)
+                     :maxu (+ t3-0 -1))))
         (&+! (-> arg0 base) 160)
         (let* ((t2-7 arg0)
                (t3-5 (the-as object (-> t2-7 base))))

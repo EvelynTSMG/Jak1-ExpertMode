@@ -17,11 +17,8 @@
 (define *orb-placer-orbs* (new 'global 'boxed-array handle ORB_PLACER_MAX))
 
 (define *orb-placer-temp-strs*
-  (new 'static 'boxed-array
-       :type
-       string
-       :length
-       ORB_PLACER_MAX
+  (new 'static 'boxed-array :type string
+       :length ORB_PLACER_MAX
        "orba-00"
        "orba-01"
        "orba-02"

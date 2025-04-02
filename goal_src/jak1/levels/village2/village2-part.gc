@@ -12,8 +12,7 @@
 (defpartgroup group-village2-moth
   :id 264
   :bounds (static-bspherem 0 0 0 3)
-  :parts
-  ((sp-item 1129 :fade-after (meters 120) :flags (bit1) :period (seconds 60.1) :length (seconds 0.017) :binding 1127)
+  :parts ((sp-item 1129 :fade-after (meters 120) :flags (bit1) :period (seconds 60.1) :length (seconds 0.017) :binding 1127)
    (sp-item 1127 :flags (start-dead launch-asap) :binding 1128)
    (sp-item 1128 :flags (is-3d start-dead))))
 
@@ -77,8 +76,7 @@
 (defpartgroup group-village2-tableflys
   :id 265
   :bounds (static-bspherem 0 3 0 10)
-  :parts
-  ((sp-item 1133 :flags (launch-asap) :binding 1131)
+  :parts ((sp-item 1133 :flags (launch-asap) :binding 1131)
    (sp-item 1134 :flags (launch-asap) :binding 1131)
    (sp-item 1135 :flags (launch-asap) :binding 1131)
    (sp-item 1131 :flags (start-dead launch-asap) :binding 1132)
@@ -172,8 +170,7 @@
 (defpartgroup group-village2-flamepot
   :id 266
   :bounds (static-bspherem 0 5 0 6)
-  :parts
-  ((sp-item 1137 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1137 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1138 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 1.641) :length (seconds 0.2))
    (sp-item 1139 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1140 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 1.23) :length (seconds 0.73))
@@ -185,16 +182,14 @@
 (defpartgroup group-village2-flamepot-half
   :id 267
   :bounds (static-bspherem 0 5 0 6)
-  :parts
-  ((sp-item 1145 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1145 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1146 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1147 :fade-after (meters 50) :falloff-to (meters 60))))
 
 (defpartgroup group-village2-flamepot-alt1
   :id 268
   :bounds (static-bspherem 0 5 0 6)
-  :parts
-  ((sp-item 1137 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1137 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1138 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 1.26) :length (seconds 0.2))
    (sp-item 1139 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1140 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 1.45) :length (seconds 0.73))
@@ -206,8 +201,7 @@
 (defpartgroup group-village2-flamepot-alt2
   :id 269
   :bounds (static-bspherem 0 5 0 6)
-  :parts
-  ((sp-item 1137 :fade-after (meters 180) :falloff-to (meters 180))
+  :parts ((sp-item 1137 :fade-after (meters 180) :falloff-to (meters 180))
    (sp-item 1138 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 2.031) :length (seconds 0.2))
    (sp-item 1139 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1140 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 0.96) :length (seconds 0.73))
@@ -533,16 +527,14 @@
 (defpartgroup group-village2-fireboulder-off
   :id 634
   :bounds (static-bspherem 0 4 0 10.5)
-  :parts
-  ((sp-item 1169 :fade-after (meters 80) :falloff-to (meters 100))
+  :parts ((sp-item 1169 :fade-after (meters 80) :falloff-to (meters 100))
    (sp-item 1170 :fade-after (meters 80) :falloff-to (meters 100))))
 
 (defpartgroup group-village2-fireboulder
   :id 271
   :duration (seconds 60)
   :bounds (static-bspherem 0 4 0 10.5)
-  :parts
-  ((sp-item 1153 :fade-after (meters 200) :falloff-to (meters 240))
+  :parts ((sp-item 1153 :fade-after (meters 200) :falloff-to (meters 240))
    (sp-item 1154 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 1) :length (seconds 0.2))
    (sp-item 1155 :fade-after (meters 80) :falloff-to (meters 100))
    (sp-item 1156 :fade-after (meters 50) :falloff-to (meters 50))
@@ -1058,8 +1050,7 @@
 (defpartgroup group-village2-window-flames-45
   :id 272
   :bounds (static-bspherem 8 -8 0 36)
-  :parts
-  ((sp-item 1178 :fade-after (meters 300))
+  :parts ((sp-item 1178 :fade-after (meters 300))
    (sp-item 1179 :fade-after (meters 300))
    (sp-item 1179 :fade-after (meters 180))
    (sp-item 1180 :fade-after (meters 200) :period (seconds 7.2) :length (seconds 0.017))
@@ -1205,8 +1196,7 @@
 (defpartgroup group-village2-window-flames-41
   :id 273
   :bounds (static-bspherem 8 -8 0 36)
-  :parts
-  ((sp-item 1186 :fade-after (meters 300))
+  :parts ((sp-item 1186 :fade-after (meters 300))
    (sp-item 1187 :fade-after (meters 300))
    (sp-item 1187 :fade-after (meters 180))
    (sp-item 1188 :fade-after (meters 200) :period (seconds 7.2) :length (seconds 0.017))
@@ -1343,8 +1333,7 @@
 (defpartgroup group-village2-big-boulder
   :id 274
   :bounds (static-bspherem 8 -8 0 36)
-  :parts
-  ((sp-item 1191 :fade-after (meters 300))
+  :parts ((sp-item 1191 :fade-after (meters 300))
    (sp-item 1192 :fade-after (meters 300))
    (sp-item 1192 :fade-after (meters 180))))
 
@@ -1403,8 +1392,7 @@
 (defpartgroup group-village2-sages-controlpanel
   :id 275
   :bounds (static-bspherem 0 0 0 4)
-  :parts
-  ((sp-item 1193 :fade-after (meters 30) :period (seconds 2.455) :length (seconds 0.035))
+  :parts ((sp-item 1193 :fade-after (meters 30) :period (seconds 2.455) :length (seconds 0.035))
    (sp-item 1193 :fade-after (meters 30) :period (seconds 5.655) :length (seconds 0.035))
    (sp-item 1193 :fade-after (meters 30) :period (seconds 16.93) :length (seconds 0.035))
    (sp-item 1194 :fade-after (meters 30) :period (seconds 16.93) :length (seconds 0.035))
@@ -1498,8 +1486,7 @@
 (defpartgroup group-village2-sages-machine
   :id 276
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1199 :fade-after (meters 40) :period (seconds 2.56) :length (seconds 0.035) :binding 1197)
+  :parts ((sp-item 1199 :fade-after (meters 40) :period (seconds 2.56) :length (seconds 0.035) :binding 1197)
    (sp-item 1199 :fade-after (meters 40) :period (seconds 3.655) :length (seconds 0.035) :binding 1198)
    (sp-item 1199 :fade-after (meters 40) :period (seconds 7.125) :length (seconds 0.035) :binding 1197)
    (sp-item 1197 :fade-after (meters 40) :flags (start-dead))
@@ -1735,8 +1722,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 16)
-  :parts
-  ((sp-item 2792 :fade-after (meters 100) :falloff-to (meters 100) :binding 2791)
+  :parts ((sp-item 2792 :fade-after (meters 100) :falloff-to (meters 100) :binding 2791)
    (sp-item 2791 :flags (bit1 start-dead launch-asap))
    (sp-item 2791 :flags (bit1 start-dead launch-asap))
    (sp-item 2791 :flags (bit1 start-dead launch-asap))

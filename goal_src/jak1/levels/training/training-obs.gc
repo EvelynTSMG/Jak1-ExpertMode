@@ -18,8 +18,7 @@
        :count 3
        :converted #f
        :normal-scale 1.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.5)
@@ -60,8 +59,7 @@
 
 (defstate idle (training-cam)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (and *target*
                    (< (vector-vector-distance (target-pos 0) (-> self root trans)) (-> self range))
@@ -469,8 +467,7 @@
 
 (defstate idle (scarecrow-a)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack)
          (let* ((s3-0 (-> block param 2))
@@ -509,12 +506,10 @@
                                                  (logtest? (-> (the-as target proc) control unknown-surface00 flags) (surface-flags jump))
                                                  (not (logtest? (-> (the-as target proc) control status) (cshape-moving-flags onsurf))))))))))))
         (('touch) (send-shove-back (-> self root) proc (the-as touching-shapes-entry (-> block param 0)) 0.7 6144.0 16384.0))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target* (>= 40960.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (get-reminder (get-task-control (game-task training-gimmie)) 0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.12))
       (loop
         (ja-no-eval :group! scarecrow-a-idle-ja :num! (seek!) :frame-num 0.0)
@@ -525,8 +520,7 @@
 
 (defstate hit (scarecrow-a)
   :virtual #t
-  :code
-    (behavior ((arg0 float) (arg1 vector) (arg2 symbol))
+  :code (behavior ((arg0 float) (arg1 vector) (arg2 symbol))
       (when (not arg2)
         (effect-control-method-10 (-> self skel effect) 'group-scarecrow-hit 4.0 -1)
         (ja-channel-push! 1 (seconds 0.07))
@@ -569,10 +563,7 @@
                        5
                        s5-2
                        (new 'static 'joint-exploder-static-params
-                            :joints
-                            (new 'static 'boxed-array
-                                 :type
-                                 joint-exploder-static-joint-params
+                            :joints (new 'static 'boxed-array :type joint-exploder-static-joint-params
                                  (new 'static 'joint-exploder-static-joint-params :joint-index 12)
                                  (new 'static 'joint-exploder-static-joint-params :joint-index 10)
                                  (new 'static 'joint-exploder-static-joint-params :joint-index 20)
@@ -583,8 +574,7 @@
                                  (new 'static 'joint-exploder-static-joint-params :joint-index 7)
                                  (new 'static 'joint-exploder-static-joint-params :joint-index 14)
                                  (new 'static 'joint-exploder-static-joint-params :joint-index 13)))
-                       :to
-                       self))
+                       :to self))
       (while (-> self child)
         (suspend))
       (cleanup-for-death self))
@@ -636,11 +626,9 @@
 
 (defstate idle (scarecrow-b)
   :virtual #t
-  :event
-    (-> (method-of-type scarecrow-a idle)
+  :event (-> (method-of-type scarecrow-a idle)
         event)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.12))
       (loop
         (ja-no-eval :group! scarecrow-b-idle-ja :num! (seek!) :frame-num 0.0)
@@ -651,8 +639,7 @@
 
 (defstate hit (scarecrow-b)
   :virtual #t
-  :code
-    (behavior ((arg0 float) (arg1 vector) (arg2 symbol))
+  :code (behavior ((arg0 float) (arg1 vector) (arg2 symbol))
       (when (not arg2)
         (effect-control-method-10 (-> self skel effect) 'group-scarecrow-hit 4.0 -1)
         (ja-channel-push! 1 (seconds 0.07))

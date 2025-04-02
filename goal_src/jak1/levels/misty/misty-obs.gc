@@ -10,8 +10,7 @@
 (defpartgroup group-windturbine-particles
   :id 191
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 908 :fade-after (meters 60) :period (seconds 4.04) :length (seconds 0.035))
+  :parts ((sp-item 908 :fade-after (meters 60) :period (seconds 4.04) :length (seconds 0.035))
    (sp-item 908 :fade-after (meters 60) :period (seconds 19.3) :length (seconds 0.035))
    (sp-item 908 :fade-after (meters 60) :period (seconds 16.627) :length (seconds 0.035))
    (sp-item 908 :fade-after (meters 60) :period (seconds 11.7) :length (seconds 0.035))
@@ -143,8 +142,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 24)
-  :parts
-  ((sp-item 914 :period (seconds 2.6) :length (seconds 0.05))
+  :parts ((sp-item 914 :period (seconds 2.6) :length (seconds 0.05))
    (sp-item 915 :period (seconds 2.6) :length (seconds 0.05))
    (sp-item 916 :period (seconds 2.6) :length (seconds 0.215))
    (sp-item 917 :period (seconds 2.6) :length (seconds 0.107) :offset 65131)
@@ -367,8 +365,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 24)
-  :parts
-  ((sp-item 914 :period (seconds 2.6) :length (seconds 0.05))
+  :parts ((sp-item 914 :period (seconds 2.6) :length (seconds 0.05))
    (sp-item 915 :period (seconds 2.6) :length (seconds 0.05))
    (sp-item 924 :period (seconds 2.6) :length (seconds 0.215))
    (sp-item 925 :period (seconds 2.6) :length (seconds 0.107) :offset 65131)
@@ -535,8 +532,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 24)
-  :parts
-  ((sp-item 914 :period (seconds 2.6) :length (seconds 0.05))
+  :parts ((sp-item 914 :period (seconds 2.6) :length (seconds 0.05))
    (sp-item 915 :period (seconds 2.6) :length (seconds 0.05))
    (sp-item 930 :period (seconds 2.6) :length (seconds 0.215))
    (sp-item 931 :period (seconds 2.6) :length (seconds 0.107) :offset 65131)
@@ -703,8 +699,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 24)
-  :parts
-  ((sp-item 914 :period (seconds 2.6) :length (seconds 0.05))
+  :parts ((sp-item 914 :period (seconds 2.6) :length (seconds 0.05))
    (sp-item 915 :period (seconds 2.6) :length (seconds 0.05))
    (sp-item 936 :period (seconds 2.6) :length (seconds 0.215))
    (sp-item 937 :period (seconds 2.6) :length (seconds 0.107) :offset 65131)
@@ -967,8 +962,7 @@
   :bounds (static-spherem 0 0 0 18))
 
 (defstate boatpaddle-idle (boatpaddle)
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (s4-0 int))
       (loop
         (quaternion-rotate-local-x! (-> self root quat) (-> self root quat) (* -5461.3335 (seconds-per-frame)))
@@ -1009,8 +1003,7 @@
   :bounds (static-spherem 0 3 0 7))
 
 (defstate windturbine-idle (windturbine)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let* ((a0-0 (-> self root trans))
                (f2-0 (-> *wind-work* wind-force (logand (+ (the int (-> a0-0 x)) (the int (-> a0-0 z)) (-> *wind-work* wind-time)) 63)))
@@ -1072,8 +1065,7 @@
 
 (defstate mis-bone-bridge-idle (mis-bone-bridge)
   :event mis-bone-bridge-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :num-func num-func-identity :frame-num 0.0)
       (loop
         (if (and *target* (>= 32768.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
@@ -1084,8 +1076,7 @@
 (defstate mis-bone-bridge-bump (mis-bone-bridge)
   :event mis-bone-bridge-event-handler
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! mis-bone-bridge-bumped-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -1096,8 +1087,7 @@
 (defstate mis-bone-bridge-hit (mis-bone-bridge)
   :event mis-bone-bridge-event-handler
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (+! (-> self hit-points) -1)
       (if (zero? (-> self hit-points)) (go mis-bone-bridge-fall #f))
       (ja-no-eval :group! mis-bone-bridge-kicked-ja :num! (seek!) :frame-num 0.0)
@@ -1109,21 +1099,18 @@
 
 (defstate mis-bone-bridge-fall (mis-bone-bridge)
   :trans rider-trans
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (process-entity-status! self (entity-perm-status complete) #t)
       (when (not arg0)
         (process-spawn part-tracker
-                       :init
-                       part-tracker-init
+                       :init part-tracker-init
                        (-> self particle-group)
                        -1
                        #f
                        #f
                        #f
                        (-> self root trans)
-                       :to
-                       *entity-pool*)
+                       :to *entity-pool*)
         (ja-no-eval :group! (-> self draw art-group data (-> self fall-anim-index)) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
           (suspend)
@@ -1205,8 +1192,7 @@
 
 
 (defstate breakaway-idle (breakaway)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch) (send-event proc 'no-look-around (seconds 1.5)) (go breakaway-about-to-fall))))
   :code anim-loop
@@ -1217,8 +1203,7 @@
   #f)
 
 (defstate breakaway-about-to-fall (breakaway)
-  :code
-    (behavior ()
+  :code (behavior ()
       (sound-play "falling-bones")
       (launch-particles (-> *part-id-table* 281) (-> self root trans))
       (let ((gp-1 #f)
@@ -1235,8 +1220,7 @@
   :post rider-post)
 
 (defstate breakaway-fall (breakaway)
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((f30-0 0.0)
             (f28-0 0.0)
             (f26-0 (* 0.1 (- (-> *standard-dynamics* gravity-length)))))
@@ -1381,11 +1365,9 @@
 
 (defstate rigid-body-platform-idle (bone-platform)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (ja-channel-set! 0))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post ja-post)
@@ -1393,8 +1375,7 @@
 (defstate rigid-body-platform-float (bone-platform)
   :virtual #t
   :event rigid-body-platform-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (-> self entity extra trans y)
       (cond
         ((or (not *target*)
@@ -1403,8 +1384,7 @@
            (seek! (-> self float-height-offset) f30-1 (* 2048.0 (seconds-per-frame)))
            (if (= (-> self float-height-offset) f30-1) (go-virtual rigid-body-platform-idle))))
         (else (seek! (-> self float-height-offset) 4096.0 (* 2048.0 (seconds-per-frame))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
       (ja :group! mis-bone-platform-idle-ja)
       (ja :num-func num-func-identity :frame-num 0.0)
@@ -1470,8 +1450,7 @@
                                                       0
                                                       #f
                                                       '()
-                                                      :to
-                                                      pp)))
+                                                      :to pp)))
                (s5-2 (ppointer->handle (process-spawn fuel-cell :init fuel-cell-init-as-clone gp-1 (-> pp entity extra perm task) :to pp))))
           (let ((v1-13 (handle->process gp-1)))
             (if v1-13 (set! (-> (the-as pov-camera v1-13) notify-handle) (the-as handle s5-2))))
@@ -1486,8 +1465,7 @@
 
 (defstate battlecontroller-play-intro-camera (misty-battlecontroller)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-1 (ppointer->handle (process-spawn pov-camera (-> self root trans) *mistycam-sg* "lurkerattack" 0 #f '() :to self))))
         (while (handle->process (the-as handle gp-1))
           (suspend)))
@@ -1543,8 +1521,7 @@
 
 
 (defstate boat-fuelcell-idle (boat-fuelcell)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('task-complete)
          (set! (-> self play-cutscene?) #t)
@@ -1554,8 +1531,7 @@
 
 (defstate boat-fuelcell-spawn (boat-fuelcell)
   :event process-drawable-fuel-cell-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-drawable-birth-fuel-cell (the-as entity #f) (the-as vector #f) #f)
       (when (and *target* (-> self play-cutscene?))
         (ambient-hint-spawn "gamcam02" (the-as vector #f) *entity-pool* 'camera)
@@ -1567,8 +1543,7 @@
       (go boat-fuelcell-die)))
 
 (defstate boat-fuelcell-die (boat-fuelcell)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)))
 
 (defmethod init-from-entity! ((this boat-fuelcell) (arg0 entity-actor))

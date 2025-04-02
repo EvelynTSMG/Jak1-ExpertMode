@@ -11,8 +11,7 @@
 (defpartgroup group-quicksandlurker-missile
   :id 198
   :bounds (static-bspherem 0 0 0 3)
-  :parts
-  ((sp-item 2481 :flags (launch-asap) :binding 2479)
+  :parts ((sp-item 2481 :flags (launch-asap) :binding 2479)
    (sp-item 2479 :flags (start-dead) :binding 2480)
    (sp-item 2480 :flags (start-dead launch-asap))
    (sp-item 2480 :flags (start-dead launch-asap))
@@ -233,8 +232,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 -12 0 14)
-  :parts
-  ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
+  :parts ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
    (sp-item 125 :period (seconds 3) :length (seconds 0.05))
    (sp-item 126 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
    (sp-item 127 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
@@ -256,8 +254,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 -12 0 14)
-  :parts
-  ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
+  :parts ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
    (sp-item 125 :period (seconds 3) :length (seconds 0.05))
    (sp-item 126 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
    (sp-item 127 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
@@ -282,8 +279,7 @@
 
 
 (defstate quicksandlurker-missile-idle (quicksandlurker-missile)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touched)
          (when (cond
@@ -300,11 +296,9 @@
                     (send-event-function proc a1-4))))
            (send-event (ppointer->process (-> self parent)) 'victory)
            (go quicksandlurker-missile-impact)))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (not (time-elapsed? (-> self state-time) (seconds 4)))
         (fill-cache-integrate-and-collide! (-> self root) (-> self root transv) (-> self root root-prim collide-with))
         (if (or (logtest? (-> self root status) (cshape-moving-flags twall))
@@ -320,25 +314,21 @@
                                      81920.0)
         (suspend))
       (cleanup-for-death self))
-  :post
-    (behavior ()
+  :post (behavior ()
       (update-transforms! (-> self root))))
 
 (defstate quicksandlurker-missile-impact (quicksandlurker-missile)
-  :code
-    (behavior ()
+  :code (behavior ()
       (sound-play "sack-land" :position (the-as symbol (-> self root trans)))
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 200)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (set-time! (-> self state-time))
       (until (time-elapsed? (-> self state-time) (seconds 1))
         (suspend))
@@ -458,26 +448,21 @@
 
 (defstate quicksandlurker-idle (quicksandlurker)
   :event #f
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logior! (-> self draw status) (draw-status hidden)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self draw status) (draw-status hidden)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target* (>= 163840.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (go quicksandlurker-wait)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post ja-post)
 
 (defstate quicksandlurker-wait (quicksandlurker)
   :event quicksandlurker-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((and *target* (>= 81920.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
          (set! (-> self y-offset) 1228.8)
@@ -486,8 +471,7 @@
          (seek! (-> self y-offset) -6553.6 (* 20480.0 (seconds-per-frame)))
          (if (= (-> self y-offset) -6553.6) (go quicksandlurker-idle)))
         (else (seek! (-> self y-offset) 1228.8 (* 20480.0 (seconds-per-frame))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (let ((gp-0 (the int (* 300.0 (rand-vu-float-range 1.5 2.0))))
             (s5-0 5)
@@ -515,8 +499,7 @@
 
 (defstate quicksandlurker-yawn (quicksandlurker)
   :event quicksandlurker-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! quicksandlurker-yawn-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -526,13 +509,11 @@
 
 (defstate quicksandlurker-track (quicksandlurker)
   :event quicksandlurker-default-event-handler
-  :trans
-    (behavior () ;mod: TFL res-lump ;mod: Tracking distance extended (20.0 -> 28.0)
+  :trans (behavior () ;mod: TFL res-lump ;mod: Tracking distance extended (20.0 -> 28.0)
       (if (or (not *target*) (<  (res-lump-float (-> self entity) 'target-distance :default (meters 28.0)) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (go quicksandlurker-wait))
       (quicksandlurker-check-hide-transition))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       ;mod: TFL res-lump ;mod: Track time is much lower (1.0 -> 0.4)
       (let ((gp-0 (the int (* (seconds (res-lump-float (-> self entity) 'track-time :default 0.4)) (rand-vu-float-range 0.8 1.2))))
@@ -606,8 +587,7 @@
 (defstate quicksandlurker-attack (quicksandlurker)
   :event quicksandlurker-default-event-handler
   :trans quicksandlurker-check-hide-transition
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 #f)
             (f30-0 51.0))
         (ja-no-eval :group! quicksandlurker-spit-ja :num! (seek!) :frame-num 0.0)
@@ -624,8 +604,7 @@
 (defstate quicksandlurker-victory (quicksandlurker)
   :event quicksandlurker-default-event-handler
   :trans quicksandlurker-check-hide-transition
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (cond
         ((rand-vu-percent? 0.5)
@@ -643,14 +622,11 @@
 
 (defstate quicksandlurker-hide (quicksandlurker)
   :event quicksandlurker-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (restore-collide-with-as (-> self root)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not *target*) (go quicksandlurker-wait))
       (let ((a0-0 (-> self nav))
             (a1-0 (-> *target* control trans)))
@@ -659,24 +635,21 @@
                (and *target* (>= 16384.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))))
            (set-time! (-> self state-time)))
           (else (if (time-elapsed? (-> self state-time) (seconds 2)) (go quicksandlurker-popup))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (ja-no-eval :group! quicksandlurker-hide-ja :num! (seek! max 0.75) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
         (ja :num! (seek! max 0.75)))
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 201)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (clear-collide-with-as (-> self root))
       (loop
         (orient-to-face-target)
@@ -685,19 +658,16 @@
 
 (defstate quicksandlurker-popup (quicksandlurker)
   :trans quicksandlurker-check-hide-transition
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 202)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (ja-no-eval :group! quicksandlurker-popup-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (orient-to-face-target)
@@ -708,8 +678,7 @@
 
 (defstate quicksandlurker-die (quicksandlurker)
   :event process-drawable-death-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause))
       (ja-channel-push! 1 (seconds 0.2))
       (ja-no-eval :group! quicksandlurker-die-ja :num! (seek!) :frame-num 0.0)

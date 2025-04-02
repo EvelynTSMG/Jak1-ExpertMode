@@ -157,12 +157,10 @@
 
 (defstate idle (oracle)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (stop! (-> self sound))
       ((-> (method-of-type process-taskable idle) exit)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! (-> self sound))
       ((-> (method-of-type process-taskable idle) trans))))
 

@@ -304,8 +304,7 @@
   (none))
 
 (defstate process-drawable-art-error (process-drawable)
-  :code
-    (behavior ((arg0 string))
+  :code (behavior ((arg0 string))
       (logior! (-> self entity extra perm status) (entity-perm-status bit-1))
       (loop
         (when *display-entity-errors*

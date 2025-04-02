@@ -23,8 +23,7 @@
 
 (defstate idle (minecartsteel)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch 'attack)
          (when (= (-> proc type) target)
@@ -32,8 +31,7 @@
              (if (not (on-platform (-> self root) (-> *target* control) a2-1)) (send-event proc 'no-look-around (seconds 1.5)))))
          #f)))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 1)
       (ja :group! (-> self anim))
       (loop

@@ -7,12 +7,10 @@
 
 (defstate target-ice-stance (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self control unknown-surface00) *walk-mods*))
   :exit target-state-hook-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (if (!= (-> self control ground-pat material) (pat-material ice)) (go target-stance))
       (when (move-legs?)
@@ -29,8 +27,7 @@
       (if (can-hands? #t) (go target-running-attack))
       (slide-down-test)
       (fall-test))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 60))
         (let ((v1-2 (ja-group)))
           (cond
@@ -100,16 +97,13 @@
 
 (defstate target-ice-walk (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *walk-mods*))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (target-effect-exit)
       (target-state-hook-exit))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (when (!= (-> self control ground-pat material) (pat-material ice))
         (remove-exit)
@@ -138,8 +132,7 @@
       (if (can-hands? #t) (go target-running-attack))
       (slide-down-test)
       (fall-test))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((ja-group? eichar-walk-ja)
          (let ((f30-0 (ja-aframe-num 0)))

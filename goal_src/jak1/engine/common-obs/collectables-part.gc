@@ -61,8 +61,7 @@
 (defpartgroup group-eco-blue
   :id 42
   :bounds (static-bspherem 0 0 0 1)
-  :parts
-  ((sp-item 2 :flags (launch-asap) :binding 3)
+  :parts ((sp-item 2 :flags (launch-asap) :binding 3)
    (sp-item 3 :fade-after (meters 40) :flags (start-dead launch-asap) :binding 5)
    (sp-item 3 :fade-after (meters 60) :flags (start-dead launch-asap) :binding 5)
    (sp-item 3 :fade-after (meters 80) :flags (start-dead launch-asap) :binding 5)
@@ -220,8 +219,7 @@
   :duration (seconds 0.5)
   :linger-duration (seconds 2)
   :bounds (static-bspherem 0 0 0 2)
-  :parts
-  ((sp-item 11 :flags (launch-asap) :binding 12)
+  :parts ((sp-item 11 :flags (launch-asap) :binding 12)
    (sp-item 12 :flags (start-dead launch-asap) :binding 13)
    (sp-item 12 :flags (start-dead launch-asap) :binding 14)
    (sp-item 12 :flags (start-dead launch-asap) :binding 13)
@@ -335,8 +333,7 @@
 (defpartgroup group-part-vent-blue-active
   :id 44
   :bounds (static-bspherem 0 5 0 5)
-  :parts
-  ((sp-item 149 :fade-after (meters 140) :falloff-to (meters 140) :binding 156)
+  :parts ((sp-item 149 :fade-after (meters 140) :falloff-to (meters 140) :binding 156)
    (sp-item 149 :fade-after (meters 140) :falloff-to (meters 140) :binding 155)
    (sp-item 149 :fade-after (meters 140) :falloff-to (meters 140) :binding 154)
    (sp-item 150)
@@ -515,8 +512,7 @@
 (defpartgroup group-eco-red
   :id 48
   :bounds (static-bspherem 0 0 0 1)
-  :parts
-  ((sp-item 160 :flags (launch-asap) :binding 161)
+  :parts ((sp-item 160 :flags (launch-asap) :binding 161)
    (sp-item 161 :flags (start-dead launch-asap) :binding 162)
    (sp-item 161 :flags (start-dead launch-asap) :binding 162)
    (sp-item 161 :flags (start-dead launch-asap) :binding 162)
@@ -645,8 +641,7 @@
   :linger-duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 168 :flags (launch-asap) :binding 169)
+  :parts ((sp-item 168 :flags (launch-asap) :binding 169)
    (sp-item 169 :flags (start-dead launch-asap) :binding 170)
    (sp-item 169 :flags (start-dead launch-asap) :binding 170)
    (sp-item 169 :flags (start-dead launch-asap) :binding 170)
@@ -722,8 +717,7 @@
 (defpartgroup group-part-vent-red-active
   :id 50
   :bounds (static-bspherem 0 3 0 5)
-  :parts
-  ((sp-item 172 :fade-after (meters 30) :period (seconds 1.1) :length (seconds 0.017) :binding 173)
+  :parts ((sp-item 172 :fade-after (meters 30) :period (seconds 1.1) :length (seconds 0.017) :binding 173)
    (sp-item 172 :fade-after (meters 60) :period (seconds 2.455) :length (seconds 0.017) :binding 173)
    (sp-item 172 :fade-after (meters 90) :period (seconds 3.12) :length (seconds 0.017) :binding 173)
    (sp-item 172 :fade-after (meters 130) :period (seconds 1.76) :length (seconds 0.017) :binding 173)
@@ -883,8 +877,7 @@
 (defpartgroup group-part-vent-yellow-active
   :id 52
   :bounds (static-bspherem 0 3 0 5)
-  :parts
-  ((sp-item 178 :fade-after (meters 40) :period (seconds 1.1) :length (seconds 0.017) :binding 179)
+  :parts ((sp-item 178 :fade-after (meters 40) :period (seconds 1.1) :length (seconds 0.017) :binding 179)
    (sp-item 178 :fade-after (meters 60) :period (seconds 2.455) :length (seconds 0.017) :binding 179)
    (sp-item 178 :fade-after (meters 80) :period (seconds 3.12) :length (seconds 0.017) :binding 179)
    (sp-item 178 :fade-after (meters 100) :period (seconds 1.76) :length (seconds 0.017) :binding 179)
@@ -1045,8 +1038,7 @@
 (defpartgroup group-eco-yellow
   :id 56
   :bounds (static-bspherem 0 0 0 1)
-  :parts
-  ((sp-item 191 :flags (launch-asap) :binding 192)
+  :parts ((sp-item 191 :flags (launch-asap) :binding 192)
    (sp-item 192 :flags (start-dead launch-asap) :binding 193)
    (sp-item 192 :flags (start-dead launch-asap) :binding 193)
    (sp-item 192 :flags (start-dead launch-asap) :binding 193)
@@ -1175,8 +1167,7 @@
   :duration (seconds 0.5)
   :linger-duration (seconds 2)
   :bounds (static-bspherem 0 0 0 2)
-  :parts
-  ((sp-item 199 :flags (launch-asap) :binding 200)
+  :parts ((sp-item 199 :flags (launch-asap) :binding 200)
    (sp-item 200 :flags (start-dead launch-asap) :binding 201)
    (sp-item 200 :flags (start-dead launch-asap) :binding 201)
    (sp-item 200 :flags (start-dead launch-asap) :binding 201)
@@ -1249,8 +1240,7 @@
 (defpartgroup group-eco-green
   :id 58
   :bounds (static-bspherem 0 0 0 1)
-  :parts
-  ((sp-item 202 :flags (launch-asap) :binding 203)
+  :parts ((sp-item 202 :flags (launch-asap) :binding 203)
    (sp-item 203 :flags (start-dead launch-asap) :binding 204)
    (sp-item 203 :flags (start-dead launch-asap) :binding 204)
    (sp-item 203 :flags (start-dead launch-asap) :binding 204)
@@ -1359,8 +1349,7 @@
 (defpartgroup group-eco-green-pill
   :id 59
   :bounds (static-bspherem 0 0 0 0.4)
-  :parts
-  ((sp-item 209 :flags (launch-asap) :binding 210)
+  :parts ((sp-item 209 :flags (launch-asap) :binding 210)
    (sp-item 210 :flags (start-dead launch-asap) :binding 211)
    (sp-item 211 :flags (start-dead launch-asap) :binding 212)
    (sp-item 212 :flags (start-dead launch-asap) :binding 213)
@@ -1480,8 +1469,7 @@
   :duration (seconds 0.5)
   :linger-duration (seconds 2)
   :bounds (static-bspherem 0 0 0 2)
-  :parts
-  ((sp-item 216 :flags (launch-asap) :binding 217)
+  :parts ((sp-item 216 :flags (launch-asap) :binding 217)
    (sp-item 217 :flags (start-dead launch-asap) :binding 218)
    (sp-item 217 :flags (start-dead launch-asap) :binding 218)
    (sp-item 217 :flags (start-dead launch-asap) :binding 218)
@@ -1498,8 +1486,7 @@
   :duration (seconds 0.5)
   :linger-duration (seconds 2)
   :bounds (static-bspherem 0 0 0 2)
-  :parts
-  ((sp-item 216 :flags (launch-asap) :binding 219)
+  :parts ((sp-item 216 :flags (launch-asap) :binding 219)
    (sp-item 219 :flags (start-dead launch-asap) :binding 218)
    (sp-item 219 :flags (start-dead launch-asap) :binding 218)
    (sp-item 219 :flags (start-dead launch-asap) :binding 218)
@@ -1612,8 +1599,7 @@
 (defpartgroup group-part-vent-green-active
   :id 62
   :bounds (static-bspherem 0 5 0 5)
-  :parts
-  ((sp-item 222
+  :parts ((sp-item 222
             :fade-after (meters 80)
             :falloff-to (meters 80)
             :period (seconds 0.16)
@@ -1751,8 +1737,7 @@
 (defpartgroup group-fuel-cell-starburst
   :id 63
   :bounds (static-bspherem 0 0.5 0 1.5)
-  :parts
-  ((sp-item 228 :fade-after (meters 35))
+  :parts ((sp-item 228 :fade-after (meters 35))
    (sp-item 229 :fade-after (meters 20))
    (sp-item 230 :flags (bit1 launch-asap))
    (sp-item 231 :flags (bit1 launch-asap))))

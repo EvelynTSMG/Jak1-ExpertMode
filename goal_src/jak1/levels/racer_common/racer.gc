@@ -56,8 +56,7 @@
 
 (define *racer-shadow-control*
   (new 'static 'shadow-control
-       :settings
-       (new 'static 'shadow-settings
+       :settings (new 'static 'shadow-settings
             :flags (shadow-flags disable-fade shdf03)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 614400.0)
@@ -75,8 +74,7 @@
 
 (defstate wait-for-start (racer)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-1 structure))
       (case message
         (('trans) (vector+! (the-as vector (-> block param 0)) (-> self root trans) (-> self extra-trans)))
@@ -85,13 +83,11 @@
          (cond
            ((-> block param 0) (set! v0-1 (-> self shadow-backup)) (set! (-> self draw shadow) (the-as shadow-geo v0-1)) v0-1)
            (else (set! (-> self draw shadow) #f) #f)))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self root root-prim prim-core action) (collide-action))
       (set! (-> self root root-prim prim-core offense) (collide-offense no-offense))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (label cfg-0)
       (case (-> self condition)
         ((2)
@@ -144,17 +140,14 @@
 
 (defstate idle (racer)
   :virtual #t
-  :event
-    (-> (method-of-type racer wait-for-start)
+  :event (-> (method-of-type racer wait-for-start)
         event)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (blocking-plane-destroy)
       (if (not *allow-zoomer-anywhere*) (blocking-plane-spawn (-> self path-target)))
       (none)) ;; mod-base-change
   :exit (-> (method-of-type racer wait-for-start) exit)
-  :code
-  (behavior ()
+  :code (behavior ()
     (ja-channel-set! 1)
     (ja :group! racer-racer-idle-ja)
     (set! (-> self root root-prim prim-core action) (collide-action solid attackable-unused))
@@ -184,8 +177,7 @@
 
 (defstate pickup (racer)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('draw)
          (ja-channel-set! 1)
@@ -200,11 +192,9 @@
            ((-> block param 0)
             (let ((v0-1 (the-as object (-> self shadow-backup)))) (set! (-> self draw shadow) (the-as shadow-geo v0-1)) v0-1))
            (else (set! (-> self draw shadow) #f) #f)))))
-  :enter
-    (behavior ((arg0 (state collectable)))
+  :enter (behavior ((arg0 (state collectable)))
       ((the-as (function none :behavior racer) (-> arg0 enter))))
-  :code
-    (behavior ((arg0 (state collectable)))
+  :code (behavior ((arg0 (state collectable)))
       (ja-channel-set! 0)
       (ja-post)
       (while (zero? (ja-group-size))
@@ -225,8 +215,7 @@
 
 (defstate wait-for-return (racer)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (if (and (or (= message 'touch) (= message 'attack)) (and (!= (-> self condition) 4) (send-event *target* 'end-mode)))
         (go-virtual pickup (the-as (state collectable) (method-of-object self idle))))
       (cond
@@ -236,13 +225,11 @@
            ((-> block param 0)
             (let ((v0-3 (the-as structure (-> self shadow-backup)))) (set! (-> self draw shadow) (the-as shadow-geo v0-3)) v0-3))
            (else (set! (-> self draw shadow) #f) #f)))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (blocking-plane-destroy)
       (if (not *allow-zoomer-anywhere*) (blocking-plane-spawn (the-as curve-control (-> self path-racer)))) ;;mod-base-chhange
       (none))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (ja-post)
       (loop

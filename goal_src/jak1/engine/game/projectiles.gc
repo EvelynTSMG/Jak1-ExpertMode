@@ -118,8 +118,7 @@
   :id 102
   :duration (seconds 1)
   :bounds (static-bspherem 0 0 0 3)
-  :parts
-  ((sp-item 349 :flags (launch-asap) :binding 350)
+  :parts ((sp-item 349 :flags (launch-asap) :binding 350)
    (sp-item 350 :flags (start-dead launch-asap) :binding 351)
    (sp-item 351 :flags (start-dead launch-asap) :binding 352)
    (sp-item 352 :flags (start-dead) :binding 353)
@@ -251,8 +250,7 @@
   :id 103
   :duration (seconds 2)
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 355 :flags (launch-asap))
+  :parts ((sp-item 355 :flags (launch-asap))
    (sp-item 356 :flags (bit1) :period (seconds 2.1) :length (seconds 0.05))
    (sp-item 357 :flags (launch-asap))
    (sp-item 358 :flags (launch-asap) :binding 359)
@@ -415,8 +413,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 2059 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2059 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2060 :fade-after (meters 80) :falloff-to (meters 80) :period (seconds 2) :length (seconds 0.135))
    (sp-item 2061 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2062 :fade-after (meters 120) :falloff-to (meters 120) :period (seconds 2) :length (seconds 0.067))))
@@ -516,8 +513,7 @@
 
 (defstate projectile-moving (projectile)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touched)
          (when (-> self attack-mode)
@@ -539,11 +535,9 @@
              (+! (-> self hits) 1)
              (if (>= (-> self hits) (-> self max-hits)) (go-virtual projectile-impact)))))
         (('die) (go-virtual projectile-impact))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 #f))
         (while (not (time-elapsed? (-> self state-time) (-> self timeout)))
           (let ((s5-0 (the int (-> *display* time-ratio))))
@@ -599,19 +593,16 @@
 
 (defstate projectile-impact (projectile)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 104)
                      -1
                      #f
                      #f
                      #f
                      (-> self root root-prim prim-core)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (if (nonzero? (-> self sound-id)) (sound-stop (-> self sound-id)))
       (sound-play "yellow-explode")
       (suspend)
@@ -619,19 +610,16 @@
 
 (defstate projectile-dissipate (projectile)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 104)
                      -1
                      #f
                      #f
                      #f
                      (-> self root root-prim prim-core)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (if (nonzero? (-> self sound-id)) (sound-stop (-> self sound-id)))
       (sound-play "yellow-fizzle")
       (suspend)
@@ -668,8 +656,7 @@
 
 (defstate projectile-die (projectile)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((v1-0 (-> self notify-handle))) (if (handle->process v1-0) (send-event (-> v1-0 process 0) 'notify 'die)))
       (cleanup-for-death self)))
 
@@ -931,12 +918,10 @@
 
 (defstate projectile-impact (projectile-blue)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)))
 
 (defstate projectile-dissipate (projectile-blue)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual projectile-die)))

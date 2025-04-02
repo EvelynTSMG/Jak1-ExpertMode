@@ -9,9 +9,7 @@
 ;; DECOMP BEGINS
 
 (set! (-> *game-info* hint-control)
-      (new 'static 'boxed-array
-           :type
-           level-hint-control
+      (new 'static 'boxed-array :type level-hint-control
            (new 'static 'level-hint-control
                 :id (text-id training-ironcrate)
                 :num-attempts-before-playing 1
@@ -125,38 +123,24 @@
                 :num-success-before-killing 1)))
 
 (set! (-> *game-info* task-hint-control)
-      (new 'static 'boxed-array
-           :type
-           task-hint-control-group
+      (new 'static 'boxed-array :type task-hint-control-group
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task training-gimmie) :delay (seconds 600))
                      (new 'static 'task-hint-control :task (game-task training-door) :delay (seconds 1200))
                      (new 'static 'task-hint-control :task (game-task training-climb) :delay (seconds 1800))))
            (new 'static 'task-hint-control-group)
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task beach-gimmie) :delay (seconds 900))
                      (new 'static 'task-hint-control :task (game-task beach-sentinel) :delay (seconds 1800))
                      (new 'static 'task-hint-control :task (game-task beach-cannon) :delay (seconds 2700))))
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task jungle-plant) :delay (seconds 1200))
                      (new 'static 'task-hint-control :task (game-task jungle-canyon-end) :delay (seconds 2400))))
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task misty-boat) :delay (seconds 1200))
                      (new 'static 'task-hint-control :task (game-task misty-warehouse) :delay (seconds 1800))
                      (new 'static 'task-hint-control :task (game-task misty-bike-jump) :delay (seconds 2400))
@@ -164,51 +148,30 @@
            (new 'static 'task-hint-control-group)
            (new 'static 'task-hint-control-group)
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task sunken-spinning-room) :delay (seconds 1200))
                      (new 'static 'task-hint-control :task (game-task sunken-sharks) :delay (seconds 1800))
                      (new 'static 'task-hint-control :task (game-task sunken-slide) :delay (seconds 2400))))
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task swamp-battle) :delay (seconds 2400))))
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task rolling-lake) :delay (seconds 2400))))
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task ogre-secret) :delay (seconds 3600))))
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task village3-extra1) :delay (seconds 3600))))
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task snow-bumpers) :delay (seconds 1200))
                      (new 'static 'task-hint-control :task (game-task snow-cage) :delay (seconds 1800))
                      (new 'static 'task-hint-control :task (game-task snow-ball) :delay (seconds 2400))
                      (new 'static 'task-hint-control :task (game-task snow-bunnies) :delay (seconds 3000))))
            (new 'static 'task-hint-control-group
-                :tasks
-                (new 'static 'boxed-array
-                     :type
-                     task-hint-control
+                :tasks (new 'static 'boxed-array :type task-hint-control
                      (new 'static 'task-hint-control :task (game-task cave-dark-climb) :delay (seconds 1200))
                      (new 'static 'task-hint-control :task (game-task cave-robot-climb) :delay (seconds 1800))
                      (new 'static 'task-hint-control :task (game-task cave-swing-poles) :delay (seconds 2400))

@@ -923,8 +923,7 @@
 ;; Get heap memory.
 (defstate get-heap (auto-save)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self state-time) (-> *display* real-frame-counter))
       (let ((a0-1 (reserve-alloc *art-control*)))
         (while (not a0-1)
@@ -937,8 +936,7 @@
 
 (defstate get-card (auto-save)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (label cfg-0)
       (mc-get-slot-info (-> self slot) (-> self info))
       (when (zero? (-> self info known))
@@ -961,8 +959,7 @@
 
 (defstate format-card (auto-save)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (zero? (-> self info formatted))
         (label cfg-1)
         (set! (-> self result) (mc-format (-> self card)))
@@ -993,8 +990,7 @@
 
 (defstate unformat-card (auto-save)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (nonzero? (-> self info formatted))
         (label cfg-1)
         (set! (-> self result) (mc-unformat (-> self card)))
@@ -1013,8 +1009,7 @@
 
 (defstate create-file (auto-save)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((zero? (-> self info formatted)) (go-virtual error (mc-status-code no-format)))
         ((zero? (-> self info inited))
@@ -1040,8 +1035,7 @@
 
 (defstate save (auto-save)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((zero? (-> self info formatted)) (go-virtual error (mc-status-code no-format)))
         ((zero? (-> self info inited)) (go-virtual error (mc-status-code no-file))))
@@ -1086,8 +1080,7 @@
 
 (defstate restore (auto-save)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (gp-0 object))
       (cond
         ((zero? (-> self info formatted)) (go-virtual error (mc-status-code no-format)))
@@ -1128,13 +1121,11 @@
 
 (defstate error (auto-save)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('progress-allowed?) #t)
         (('die) (deactivate self))))
-  :code
-    (behavior ((arg0 mc-status-code))
+  :code (behavior ((arg0 mc-status-code))
       (if (-> self buffer) (reserve-free *art-control* (-> self buffer)))
       (set! (-> self result) arg0)
       (let ((s5-0 *auto-save-info*))
@@ -1155,8 +1146,7 @@
 
 (defstate done (auto-save)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (and (-> self buffer) (-> *art-control* reserve-buffer)) (reserve-free *art-control* (-> self buffer)))
       (set! (-> *game-info* auto-save-status) (mc-status-code ok))
       (case (-> self mode)

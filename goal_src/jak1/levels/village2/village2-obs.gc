@@ -24,8 +24,7 @@
 
 (defstate pov-camera-playing (village2cam)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((v1-0 (-> self seq)))
         (cond
           ((zero? v1-0)
@@ -79,40 +78,33 @@
 
 
 (defstate pontoon-hidden (pontoon)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logior! (-> self draw status) (draw-status hidden))
       (clear-collide-with-as (-> self root-overlay)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self draw status) (draw-status hidden))
       (restore-collide-with-as (-> self root-overlay)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (task-closed? (the-as game-task (-> self task)) (task-status need-resolution)) (go-virtual rigid-body-platform-idle)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend))))
 
 (defstate pontoon-die (pontoon)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)
       (deactivate self)))
 
 (defstate rigid-body-platform-float (pontoon)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('die) (cleanup-for-death self) (deactivate self))
         (else (rigid-body-platform-event-handler proc argc message block)))))
 
 (defstate rigid-body-platform-idle (pontoon)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('die) (cleanup-for-death self) (deactivate self)))))
 
@@ -317,8 +309,7 @@
   :id 563
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2841 :flags (is-3d) :period (seconds 3) :length (seconds 0.017))
+  :parts ((sp-item 2841 :flags (is-3d) :period (seconds 3) :length (seconds 0.017))
    (sp-item 2842 :flags (is-3d) :period (seconds 3) :length (seconds 0.017))))
 
 (defpart 2841
@@ -386,19 +377,15 @@
   :bounds (static-spherem 32 0 -5 34))
 
 (defstate allpontoons-be-clone (allpontoons)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('end-mode) (cleanup-for-death self) (deactivate self))))
-  :enter
-    (behavior ((arg0 handle))
+  :enter (behavior ((arg0 handle))
       (logclear! (-> self draw status) (draw-status hidden))
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self mask) (process-mask actor-pause)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (>= (ja-aframe-num 0) 500.0)
         (spawn (-> self part) (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node allpontoons-lod0-jg 1)))
         (spawn (-> self part) (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node allpontoons-lod0-jg 2)))
@@ -406,22 +393,18 @@
         (spawn (-> self part) (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node allpontoons-lod0-jg 4)))
         (spawn (-> self part) (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node allpontoons-lod0-jg 5)))
         (spawn (-> self part) (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node allpontoons-lod0-jg 6)))))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (clone-anim arg0 3 #t "")
       (cleanup-for-death self)
       (deactivate self)))
 
 (defstate allpontoons-idle (allpontoons)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('clone) (go allpontoons-be-clone (the-as handle (-> block param 0))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logior! (-> self draw status) (draw-status hidden)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (and (nonzero? (-> self task)) (task-closed? (the-as game-task (-> self task)) (task-status need-resolution)))
           (cleanup-for-death self)
@@ -490,8 +473,7 @@
   v0-1)
 
 (defstate fireboulder-hover (fireboulder)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (fireboulder-disable-blocking-collision)
       (ja-channel-set! 1)
       (ja :group! fireboulder-hover-ja)
@@ -505,15 +487,12 @@
         (vector<-cspace! gp-0 (joint-node fireboulder-lod0-jg bouldercenter))
         (vector-! (-> self draw bounds) gp-0 (-> self root trans)))
       (set! (-> self draw bounds w) 24576.0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (stop! (-> self sound)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (fireboulder-hover-stuff)
       (update! (-> self sound)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -523,35 +502,28 @@
   :post transform-post)
 
 (defstate fireboulder-be-clone (fireboulder)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('stop-cloning) (go fireboulder-hover))))
-  :enter
-    (behavior ((arg0 handle))
+  :enter (behavior ((arg0 handle))
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self mask) (process-mask actor-pause))
       (logclear! (-> self skel status) (janim-status spool)))
   :trans fireboulder-hover-stuff
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (clone-anim arg0 3 #t "")
       (format 0 "ERROR<GMJ>: fireboulder-be-clone ended~%")
       (cleanup-for-death self)
       (deactivate self)))
 
 (defstate fireboulder-idle (fireboulder)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('clone) (go fireboulder-be-clone (the-as handle (-> block param 0))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-1 (handle->process (-> self tracker)))) (if a0-1 (deactivate a0-1))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
@@ -563,16 +535,14 @@
             (else
              (set! (-> self tracker)
                    (ppointer->handle (process-spawn part-tracker
-                                                    :init
-                                                    part-tracker-init
+                                                    :init part-tracker-init
                                                     (-> *part-group-id-table* 271)
                                                     -1
                                                     #f
                                                     #f
                                                     #f
                                                     (-> self root trans)
-                                                    :to
-                                                    *entity-pool*)))))
+                                                    :to *entity-pool*)))))
           (suspend)
           (ja :num! (seek!)))))
   :post ja-post)
@@ -634,8 +604,7 @@
   :bounds (static-spherem 0 -4 0 7))
 
 (defstate ceilingflag-idle (ceilingflag)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -673,8 +642,7 @@
   #f)
 
 (defstate exit-chamber-dummy-wait-to-appear (exit-chamber-dummy)
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self draw status) (draw-status hidden))
       (while (not (skip-reminder? self))
         (suspend))
@@ -688,8 +656,7 @@
       (go exit-chamber-dummy-idle)))
 
 (defstate exit-chamber-dummy-idle (exit-chamber-dummy)
-  :code
-    (behavior ()
+  :code (behavior ()
       (logclear! (-> self draw status) (draw-status hidden))
       (let ((gp-0 0))
         (while (< gp-0 2)
@@ -741,8 +708,7 @@
   :id 564
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2319 :fade-after (meters 200) :falloff-to (meters 200))
+  :parts ((sp-item 2319 :fade-after (meters 200) :falloff-to (meters 200))
    (sp-item 2320 :fade-after (meters 200) :falloff-to (meters 200))))
 
 (defpart 2320
@@ -825,8 +791,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2288 :period (seconds 3) :length (seconds 0.067))
+  :parts ((sp-item 2288 :period (seconds 3) :length (seconds 0.067))
    (sp-item 2321 :flags (is-3d) :period (seconds 3) :length (seconds 0.035))
    (sp-item 2322 :flags (is-3d) :period (seconds 3) :length (seconds 0.035))))
 
@@ -1008,8 +973,7 @@
 
 (defstate ogreboss-village2-throw (ogreboss-village2)
   :trans ogreboss-village2-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self boulder)
             (ppointer->handle (manipy-spawn (-> self entity extra trans) (-> self entity) *fireboulder-sg* #f :to self)))
       (send-event (handle->process (-> self boulder)) 'anim-mode 'play1)
@@ -1050,8 +1014,7 @@
 
 (defstate ogreboss-village2-idle (ogreboss-village2)
   :trans ogreboss-village2-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-channel-push! 1 (seconds 0.1))
         (let ((v1-0 (rand-vu-int-range 0 2)))
@@ -1132,8 +1095,7 @@
        :count 3
        :converted #f
        :normal-scale 6.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 7.0 :xdiv 1 :speed 6.0)

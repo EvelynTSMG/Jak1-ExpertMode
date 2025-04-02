@@ -47,8 +47,7 @@
   :bounds (static-spherem 0 0 0 4))
 
 (defstate billy-snack-eat (billy-snack)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :group! farthy-snack-eat-ja)
       (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
@@ -60,12 +59,10 @@
   :post ja-post)
 
 (defstate billy-snack-idle (billy-snack)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('eat) (go billy-snack-eat))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -96,15 +93,13 @@
 
 (defstate nav-enemy-idle (billy-rat)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (go-virtual nav-enemy-chase))
   :post nav-enemy-common-post)
 
 (defstate nav-enemy-die (billy-rat)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (nav-enemy-fall-and-play-death-anim (the-as art-joint-anim (-> self draw art-group data (-> self nav-info die-anim)))
                                           1.0
                                           1.0
@@ -114,11 +109,9 @@
       (cleanup-for-death self)))
 
 (defstate billy-rat-eat (billy-rat)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (seek-to-point-toward-point! (-> self collide-info) (-> self destination) 131072.0 (seconds 0.01)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (send-event (handle->process (-> self snack)) 'eat)
       (sound-play "rat-gulp")
       (ja-channel-push! 1 (seconds 0.05))
@@ -134,8 +127,7 @@
 
 (defstate billy-rat-salivate (billy-rat)
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.075))
       (dotimes (gp-0 1)
         (sound-play "rat-eat")
@@ -153,8 +145,7 @@
 
 (defstate nav-enemy-victory (billy-rat)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (call-parent-state-handler enter)
       (when (logtest? (nav-control-flags navcf19) (-> self nav flags))
         (logclear! (-> self nav flags) (nav-control-flags navcf19))
@@ -164,20 +155,17 @@
 
 (defstate nav-enemy-stare (billy-rat)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (go-virtual nav-enemy-chase)))
 
 (defstate nav-enemy-chase (billy-rat)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self speed-scale) (-> self billy 0 rat-speed))
       (if (or (logtest? (nav-control-flags navcf19) (-> self nav flags))
               (time-elapsed? (-> self state-time) (-> self chase-rest-time)))
         (go-virtual nav-enemy-victory)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (swamp-rat-update-wiggle-target (-> self destination))
       (nav-enemy-travel-post)))
 
@@ -355,8 +343,7 @@
   (new 'static 'spool-anim :name "billy-reject" :index 7 :parts 3 :command-list '()))
 
 (defstate billy-done (billy)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('billy-rat-needs-destination)
          (let* ((gp-0 proc)
@@ -364,8 +351,7 @@
            (when v1-2
              (set! (-> (the-as billy-rat v1-2) dest-type) (the-as uint 1))
              (get-random-point (-> self path-waypts) (-> (the-as billy-rat v1-2) destination)))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (init! (-> self query)
              (lookup-text! *common-text* (text-id play-again?) #f)
              40
@@ -391,13 +377,11 @@
             ((< 0.5 f0-2) (play-ambient (-> self ambient) "BIL-TA05" #t (the-as vector #f)))
             ((< 0.25 f0-2) (play-ambient (-> self ambient) "BIL-TA4A" #t (the-as vector #f)))
             (else (play-ambient (-> self ambient) "BIL-TA5A" #t (the-as vector #f)))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (billy-kill-all-but-farthy)
       (send-event *camera* 'change-target *target*)
       (send-event *camera* 'change-state *camera-base-mode* 0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((> (-> self num-snacks) 0) (when (process-grab? *target*) (close-current! (-> self tasks)) (go-virtual play-anim)))
         ((< (-> self num-snacks) 0) (go-virtual idle))
@@ -410,8 +394,7 @@
                ((= gp-0 'no) (go-virtual play-reject)))))))
       (spool-push *art-control* "billy-reject" 0 self -99.0))
   :code process-taskable-anim-loop
-  :post
-    (behavior ()
+  :post (behavior ()
       (ja-post)))
 
 (defbehavior billy-game-update-wave billy ()
@@ -542,8 +525,7 @@
   (none))
 
 (defstate billy-playing (billy)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('billy-rat-die)
          (+! (-> self num-rats) -1)
@@ -602,8 +584,7 @@
                      (set! (-> gp-0 dest-type) (the-as uint 2))
                      (set! (-> gp-0 destination quad) (-> (the-as billy-snack s5-1) root trans quad))
                      (set! (-> gp-0 destination x) (+ 6799.36 (-> gp-0 destination x)))))))))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (add-setting! 'music 'danger 0.0 0)
       (ja-channel-set! 0)
       (clear-collide-with-as (-> self root))
@@ -645,18 +626,15 @@
           (execute-command *load-state* (the-as pair a1-8))
           (set! gp-2 (cdr gp-2))
           (set! a1-8 (car gp-2)))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (restore-collide-with-as (-> self root))
       (restore-load-state-and-cleanup *load-state*)
       (set! (-> *ACTOR-bank* birth-max) 1000)
       (remove-setting! 'music))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (spool-push *art-control* "billy-resolution" 0 self -99.0)
       (spool-push *art-control* "billy-reject" 0 self -99.0))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (billy-game-update)
         (if (or (zero? (-> self num-snacks))
@@ -664,14 +642,12 @@
                 (and *cheat-mode* (cpad-pressed? 1 x)))
           (go billy-done))
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (ja-post)))
 
 (defstate enter-playing (billy)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (send-event *target* 'change-mode 'billy)
         (send-event *target* 'trans 'reset)
         (let ((v1-8 (entity-actor-lookup (-> self entity) 'alt-actor 0)))
@@ -704,15 +680,13 @@
 
 (defstate play-anim (billy)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (billy-kill-all-but-farthy)
       ((-> (method-of-type process-taskable play-anim) exit))))
 
 (defstate idle (billy)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (!= (ja-group) (get-art-elem self)) (ja-channel-push! 1 (seconds 0.2)))
       (loop
         (ja :group! (get-art-elem self))

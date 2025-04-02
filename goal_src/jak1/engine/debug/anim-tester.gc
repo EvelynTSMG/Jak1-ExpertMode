@@ -1373,18 +1373,15 @@
 
 (defstate anim-tester-process (anim-tester)
   :event anim-tester-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logior! (-> self flags) (anim-tester-flags fanimt1)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (not (logtest? (-> self flags) (anim-tester-flags fanimt1))) (= *master-mode* 'menu)) (anim-tester-interface))
       (logclear! (-> self flags) (anim-tester-flags fanimt1))
       (when (!= *master-mode* 'menu)
         (debug-print-channels (-> self skel) (the-as symbol *stdcon*))
         (add-debug-x #t (bucket-id debug-no-zbuf) (-> self root trans) (new 'static 'rgba :r #xff :g #xff :b #xff :a #x80))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (s4-0 glst-node) (s5-1 anim-test-seq-item) (gp-2 anim-test-sequence))
       (loop
         (logclear! (-> self flags) (anim-tester-flags fanimt0))

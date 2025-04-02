@@ -241,11 +241,9 @@ battlecontroller-default-event-handler
 (defstate battlecontroller-idle (battlecontroller)
   :virtual #t
   :event battlecontroller-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (if (-> self prespawn) (battlecontroller-fill-all-spawners))
       (loop
@@ -266,14 +264,11 @@ battlecontroller-default-event-handler
 (defstate battlecontroller-play-intro-camera (battlecontroller)
   :virtual #t
   :event battlecontroller-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #t))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #f))
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual battlecontroller-active)))
 
 (defbehavior battlecontroller-disable-ocean battlecontroller ()
@@ -286,15 +281,13 @@ battlecontroller-default-event-handler
 (defstate battlecontroller-active (battlecontroller)
   :virtual #t
   :event battlecontroller-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target*
                (>= (-> self activate-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (level-hint-spawn (text-id zero) (the-as string #f) (-> self entity) *entity-pool* (game-task none)))
       (battlecontroller-disable-ocean)
       (battlecontroller-update-spawners))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (battlecontroller-camera-on)
       (loop
@@ -335,8 +328,7 @@ battlecontroller-default-event-handler
 (defstate battlecontroller-die (battlecontroller)
   :virtual #t
   :event process-drawable-fuel-cell-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (sound-play "money-pickup" :pitch -1.5 :position #f)
       (battlecontroller-battle-end)
       (battlecontroller-camera-off)

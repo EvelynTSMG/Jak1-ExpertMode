@@ -9,8 +9,7 @@
 (defpartgroup group-lurkercrab-slide
   :id 159
   :bounds (static-bspherem 0 -12 0 14)
-  :parts
-  ((sp-item 663 :fade-after (meters 40) :falloff-to (meters 40))
+  :parts ((sp-item 663 :fade-after (meters 40) :falloff-to (meters 40))
    (sp-item 664 :fade-after (meters 40) :falloff-to (meters 40))))
 
 (defpart 663
@@ -137,11 +136,9 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-idle (lurkercrab)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self draw force-lod) -1))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self target-speed) 0.0)
       (set! (-> self draw force-lod) 2)
       (ja-channel-push! 1 (seconds 0.075))
@@ -174,13 +171,11 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-patrol (lurkercrab)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (lurkercrab-invulnerable)
       (logclear! (-> self nav-enemy-flags) (nav-enemy-flags navenmf6))
       (logior! (-> self nav-enemy-flags) (nav-enemy-flags enable-rotate)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (ja-group? lurkercrab-idle-ja)
         (ja-no-eval :group! lurkercrab-idle-to-walk-ja :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -227,25 +222,21 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-notice (lurkercrab)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-chase)))
 
 (defstate nav-enemy-chase (lurkercrab)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (lurkercrab-invulnerable)
       (logclear! (-> self nav-enemy-flags) (nav-enemy-flags navenmf6)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (logtest? (-> *target* state-flags)
                     (state-flags being-attacked invulnerable timed-invulnerable invuln-powerup do-not-notice dying))
         (go-virtual nav-enemy-victory))
       (if (< (ja-aframe-num 0) 2.0) ((-> (method-of-type nav-enemy nav-enemy-chase) trans))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self nav-enemy-flags) (nav-enemy-flags enable-rotate))
       (ja-channel-push! 1 (seconds 0.075))
       (loop
@@ -289,22 +280,19 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-stop-chase (lurkercrab)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-patrol)))
 
 (defstate nav-enemy-stare (lurkercrab)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-patrol)))
 
 (defstate nav-enemy-victory (lurkercrab)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (ja-channel-push! 1 (seconds 0.075))
       (ja :group! (-> self draw art-group data (-> self nav-info victory-anim)))
@@ -315,11 +303,9 @@ nav-enemy-default-event-handler
 
 (defstate lurkercrab-pushed (lurkercrab)
   :event nav-enemy-default-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self orient) #t))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self momentum-speed) 57344.0)
       (set! (-> self target-speed) 0.0)
       (set! (-> self orient) #f)
@@ -330,8 +316,7 @@ nav-enemy-default-event-handler
       (suspend-for (seconds 0.25))
       (suspend-for (seconds 0.1))
       (go-virtual nav-enemy-chase))
-  :post
-    (behavior ()
+  :post (behavior ()
       (let ((a0-0 (-> self part))
             (a1-0 (-> self collide-info root-prim prim-core)))
         (spawn a0-0 (the-as vector a1-0)))

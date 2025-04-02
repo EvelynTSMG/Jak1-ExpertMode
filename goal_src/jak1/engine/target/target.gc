@@ -211,8 +211,7 @@
 
 (defstate target-startup (target)
   :event target-standard-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (suspend)
       (suspend)
       (go target-stance))
@@ -220,16 +219,13 @@
 
 (defstate target-stance (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self control unknown-surface00) *walk-mods*)
       (set-time! (-> self state-time)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self control unknown-float81) 0.0)
       (target-state-hook-exit))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (if (logtest? (-> self water flags) (water-flags wt10)) (go target-wade-stance))
       (when (= (-> self control ground-pat material) (pat-material ice))
@@ -252,8 +248,7 @@
       (if (can-hands? #t) (go target-running-attack))
       (slide-down-test)
       (fall-test))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((s5-0 22)
             (gp-0 (new 'stack 'ground-tween-info)))
         (let ((v1-3 (ja-group)))
@@ -373,16 +368,13 @@
 
 (defstate target-walk (target)
   :event target-walk-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *walk-mods*))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (target-effect-exit)
       (target-state-hook-exit))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (when (= (-> self control ground-pat material) (pat-material ice))
         (target-effect-exit)
@@ -413,8 +405,7 @@
         (go target-turn-around))
       (slide-down-test)
       (fall-test))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((f28-0 0.0)
             (f30-0 (fmax 0.0 (fmin 1.0 (* 0.000048828126 (+ -16384.0 (-> self control unknown-float01))))))
             (gp-0 #f))
@@ -590,20 +581,17 @@
 
 (defstate target-turn-around (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (vector-turn-to (-> self control transv))
       (set! (-> self control unknown-surface00) *turn-around-mods*)
       (set! (-> self control unknown-float81) 1.0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (target-state-hook-exit)
       (set-forward-vel (the-as float 0.0))
       (set! (-> self control unknown-float01) 0.0)
       (set-quaternion! (-> self control) (-> self control dir-targ))
       (set! (-> self control unknown-float81) 0.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       ;; og:preserve-this - High FPS Fix
       (if (and (recently-pressed? x) (can-jump? #f))
@@ -614,8 +602,7 @@
                (time-elapsed? (-> self control unknown-dword11) (seconds 0.08)))
         (go target-falling #f))
       (slide-down-test))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.04))
       (ja :group! eichar-turn-around-ja :num! min)
       (quaternion-rotate-y! (-> self control dir-targ) (-> self control dir-targ) (the-as float 32768.0))
@@ -635,20 +622,16 @@
 
 (defstate target-slide-down (target)
   :event target-walk-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self control unknown-surface00) *jump-mods*))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set-time! (-> self control unknown-dword35)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (or (logtest? (-> self control status) (cshape-moving-flags onsurf))
                 (if (< (target-move-dist (-> *TARGET-bank* stuck-time)) (-> *TARGET-bank* stuck-distance)) #t))
         (logior! (-> self control status) (cshape-moving-flags onsurf))
         (go target-duck-stance)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (not (ja-group? eichar-duck-stance-ja)) (ja-channel-push! 1 (seconds 0.1)))
       (loop
         (ja-no-eval :group! eichar-duck-stance-ja :num! (seek!) :frame-num 0.0)
@@ -730,13 +713,11 @@
 
 (defstate target-duck-stance (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self control unknown-float81) 1.0)
       (set! (-> self control unknown-surface00) *duck-mods*)
       (target-collide-set! 'duck (the-as float 1.0)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (not (or (= (-> self next-state name) 'target-duck-walk)
                    (= (-> self next-state name) 'target-duck-stance)
                    (= (-> self next-state name) 'target-walk)
@@ -745,8 +726,7 @@
         (target-state-hook-exit))
       (target-exit)
       (target-collide-set! 'normal (the-as float 0.0)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (if (and (or (not (cpad-hold? (-> self control unknown-cpad-info00 number) l1 r1))
                    (logtest? (-> self state-flags) (state-flags prevent-duck)))
@@ -763,8 +743,7 @@
         (go target-attack-uppercut (-> *TARGET-bank* attack-jump-height-min) (-> *TARGET-bank* attack-jump-height-max)))
       (fall-test)
       (slide-down-test))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((ja-group? eichar-duck-roll-ja)
          (ja-no-eval :group! eichar-duck-roll-end-ja :num! (seek!) :frame-num 0.0)
@@ -788,16 +767,13 @@
 
 (defstate target-duck-walk (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self control unknown-float81) 1.0)
       (target-collide-set! 'duck (the-as float 1.0))
       (if (not (ja-group? eichar-duck-roll-ja)) (set! (-> self control unknown-surface00) *duck-mods*)))
-  :exit
-    (-> target-duck-stance
+  :exit (-> target-duck-stance
         exit)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (if (and (or (not (cpad-hold? (-> self control unknown-cpad-info00 number) l1 r1))
                    (logtest? (-> self state-flags) (state-flags prevent-duck))
@@ -815,8 +791,7 @@
         (go target-attack-uppercut (-> *TARGET-bank* attack-jump-height-min) (-> *TARGET-bank* attack-jump-height-max)))
       (fall-test)
       (slide-down-test))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((and (ja-group? eichar-duck-walk-ja) (= (-> self skel root-channel 0) (-> self skel channel))))
         ((ja-group? eichar-duck-stance-ja) (ja-channel-push! 1 (seconds 0.45)) (ja :group! eichar-duck-walk-ja :num! min))
@@ -832,8 +807,7 @@
 
 (defstate target-jump (target)
   :event target-jump-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float) (arg2 surface))
+  :enter (behavior ((arg0 float) (arg1 float) (arg2 surface))
       (when (= (-> self control unknown-symbol40) 'launch)
         (level-hint-spawn (text-id sidekick-launcher1) "sksp009d" (the-as entity #f) *entity-pool* (game-task none))
         (level-hint-spawn (text-id sidekick-launcher2) "sksp009e" (the-as entity #f) *entity-pool* (game-task none))
@@ -861,8 +835,7 @@
       (set! (-> self control unknown-float122)
             (fmax 0.0 (fmin 1.0 (* 0.000048828126 (+ -10240.0 (-> self control unknown-float01)))))))
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self control unknown-float123)
             (fmax (-> self control unknown-float123)
                   (* 0.003921569 (the float (-> *cpad-list* cpads (-> self control unknown-cpad-info00 number) abutton (abutton-idx x)))))) ;; og:preserve-this abutton indexing
@@ -888,8 +861,7 @@
       (seek! (-> self control unknown-float122)
              (fmax 0.0 (fmin 1.0 (* 0.000048828126 (+ -10240.0 (-> self control unknown-float01)))))
              (seconds-per-frame)))
-  :code
-    (behavior ((arg0 float) (arg1 float) (arg2 surface))
+  :code (behavior ((arg0 float) (arg1 float) (arg2 surface))
       (ja-channel-push! 2 (seconds 0.05))
       (ja :group! eichar-jump-ja :num! min)
       (ja :chan 1 :group! eichar-jump-forward-ja :num! (chan 0) :frame-interp (-> self control unknown-float122))
@@ -914,16 +886,13 @@
 
 (defstate target-jump-forward (target)
   :event target-jump-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float))
+  :enter (behavior ((arg0 float) (arg1 float))
       ((-> target-jump enter) arg0 arg1 (the-as surface #f))
       (set! (-> self control unknown-surface00) *forward-jump-mods*))
   :exit target-exit
-  :trans
-    (-> target-jump
+  :trans (-> target-jump
         trans)
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (ja-channel-set! 1)
       (ja-no-eval :group! eichar-jump-ja :num! (seek!) :frame-num (ja-aframe (the-as float 3.0) 0))
       (until (ja-done? 0)
@@ -938,8 +907,7 @@
 
 (defstate target-double-jump (target)
   :event target-jump-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float))
+  :enter (behavior ((arg0 float) (arg1 float))
       (when (= (-> self control unknown-symbol40) 'launch)
         enter-state
         (let ((a0-3 (-> self control unknown-dword60))
@@ -952,8 +920,7 @@
       (logclear! (-> self control status) (cshape-moving-flags onsurf onground tsurf))
       (set! (-> self control unknown-surface00) *double-jump-mods*))
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (target-falling-trans #f (the-as time-frame (if (ja-group? eichar-jump-loop-ja) 15 -1)))
       (if (and (cpad-pressed? (-> self control unknown-cpad-info00 number) square)
                (< (vector-dot (-> self control dynam gravity-normal) (-> self control transv)) 22118.4)
@@ -970,8 +937,7 @@
       (seek! (-> self control unknown-float122)
              (fmax 0.0 (fmin 1.0 (* 0.000048828126 (+ -10240.0 (-> self control unknown-float01)))))
              (seconds-per-frame)))
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (ja-channel-push! 2 (seconds 0.05))
       (effect-control-method-10 (-> self skel effect) 'jump-double (the-as float -1.0) -1)
       (ja-no-eval :group! eichar-jump-ja :num! (seek!) :frame-num (ja-aframe (the-as float 5.0) 0))
@@ -985,8 +951,7 @@
 
 (defstate target-high-jump (target)
   :event target-jump-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float) (arg2 basic))
+  :enter (behavior ((arg0 float) (arg1 float) (arg2 basic))
       (when (and (= (-> self control unknown-symbol40) 'launch) (!= arg2 'launch))
         enter-state
         (let ((a0-3 (-> self control unknown-dword60))
@@ -1008,8 +973,7 @@
       (set! (-> self control unknown-float122)
             (fmax 0.0 (fmin 0.5 (* 0.00008138021 (+ -409.6 (-> self control unknown-float01)))))))
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (target-falling-trans #f (the-as time-frame (if (ja-group? eichar-jump-loop-ja) 15 -1)))
       ;; og:preserve-this - High FPS Fix
       (if (and (recently-pressed? square)
@@ -1026,21 +990,18 @@
       (seek! (-> self control unknown-float122)
              (fmax 0.0 (fmin 1.0 (* 0.00012207031 (+ -2048.0 (-> self control unknown-float01)))))
              (seconds-per-frame)))
-  :code
-    (-> target-jump
+  :code (-> target-jump
         code)
   :post target-post)
 
 (defstate target-duck-high-jump (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float) (arg2 symbol))
+  :enter (behavior ((arg0 float) (arg1 float) (arg2 symbol))
       (set-time! (-> self state-time))
       (logclear! (-> self control status) (cshape-moving-flags onsurf onground tsurf))
       (set! (-> self control unknown-surface00) *turn-around-mods*))
   :exit target-exit
-  :code
-    (behavior ((arg0 float) (arg1 float) (arg2 symbol))
+  :code (behavior ((arg0 float) (arg1 float) (arg2 symbol))
       (if (not (and (ja-group? eichar-duck-stance-ja) (= (-> self skel root-channel 0) (-> self skel channel))))
         (ja-channel-push! 1 (seconds 0.04)))
       (case arg2
@@ -1073,8 +1034,7 @@
 
 (defstate target-duck-high-jump-jump (target)
   :event target-jump-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float) (arg2 symbol))
+  :enter (behavior ((arg0 float) (arg1 float) (arg2 symbol))
       (set-time! (-> self state-time))
       (sound-play "jump" :vol 80 :pitch -0.4)
       (init-var-jump arg0 arg1 (the-as vector #t) (the-as vector #f) (-> self control transv))
@@ -1084,8 +1044,7 @@
         (else (set! (-> self control unknown-surface00) *high-jump-mods*))))
   :exit target-exit
   ;; og:preserve-this PAL patch here
-  :trans
-  (behavior ()
+  :trans (behavior ()
     ((-> target-high-jump trans))
     (case (-> self control unknown-int37)
       (('launch)
@@ -1101,8 +1060,7 @@
            (sound-trans-convert (-> gp-0 parms trans) a1-0))
          (set! (-> gp-0 parms mask) (sound-mask trans))
          (-> gp-0 id)))))
-  :code
-  (behavior ((arg0 float) (arg1 float) (arg2 symbol))
+  :code (behavior ((arg0 float) (arg1 float) (arg2 symbol))
     (let ((f30-0 (the-as float (if (= arg2 'launch) 110.0 35.0)))
           (f28-0 1.0))
       (until (ja-done? 0)
@@ -1135,24 +1093,20 @@
 
 (defstate target-falling (target)
   :event target-jump-event-handler
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (set! (-> self control unknown-surface00) *jump-mods*)
       (set! (-> self control unknown-uint20) (the-as uint arg0))
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (target-falling-trans (-> self control unknown-spoolanim00)
                             (the-as time-frame (if (= (-> self control unknown-spoolanim00) #f) 0 (/ (the-as int (-> *TARGET-bank* stuck-time)) 2)))))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (target-falling-anim -1 (seconds 0.33)))
   :post target-post)
 
 (defstate target-hit-ground (target)
   :event target-walk-event-handler
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (cond
         ((= arg0 'stuck))
         ((let ((v1-4 (ja-group))) (or (= v1-4 eichar-launch-jump-ja) (= v1-4 eichar-launch-jump-loop-ja)))
@@ -1179,8 +1133,7 @@
                                   (the-as float 102400.0))
                       600
                       1500))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ;; og:preserve-this - High FPS Fix
       (if (and (recently-pressed? x) (can-jump? #f))
         (go target-jump (-> *TARGET-bank* jump-height-min) (-> *TARGET-bank* jump-height-max) (the-as surface #f)))
@@ -1193,28 +1146,24 @@
       (if (can-hands? #t) (go target-running-attack))
       (fall-test)
       (slide-down-test))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (target-hit-ground-anim #f)
       (go target-stance))
   :post target-post)
 
 (defstate target-attack (target)
   :event target-dangerous-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (target-start-attack)
       (target-danger-set! 'spin #f)
       (set! (-> self control unknown-surface00) *attack-mods*)
       (set! (-> self water drip-mult) 4.0)
       (set! (-> self neck flex-blend) 0.0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set-time! (-> self control unknown-dword33))
       (target-exit))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.05))
       (ja-no-eval :group!
                   eichar-attack-from-stance-ja
@@ -1235,8 +1184,7 @@
   :post target-post)
 
 (defstate target-running-attack (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touched)
          (cond
@@ -1263,8 +1211,7 @@
                   (let ((v0-2 (the-as object (current-time)))) (set! (-> self control unknown-int21) (the-as int v0-2)) v0-2)))))
            (else (target-dangerous-event-handler proc argc message block))))
         (else (target-dangerous-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (if (or (and (= (-> self fact eco-type) (pickup-type eco-yellow)) (>= (-> self fact eco-level) 1.0))
               (not (time-elapsed? (-> self control unknown-dword82) (seconds 1.5))))
         (go target-yellow-blast))
@@ -1279,16 +1226,14 @@
       (target-danger-set! 'punch #f)
       (if (or (< (fabs (-> self control unknown-float62)) 0.3) (< 0.3 (fabs (-> self control unknown-float61))))
         (set! (-> self control unknown-float81) 1.0)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self control dynam gravity-max) (-> self control unknown-dynamics00 gravity-max))
       (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length))
       (set! (-> *run-attack-mods* turnv) 0.0)
       (set! (-> *run-attack-mods* turnvv) 0.0)
       (set-time! (-> self control unknown-dword31))
       (target-exit))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (!= (-> self state-time) (current-time))
         (if (and (or (smack-surface? #t)
                      (and (>= (-> self control unknown-float63) 0.7) (not (logtest? (-> self control status) (cshape-moving-flags t-act)))))
@@ -1330,8 +1275,7 @@
           (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 23)
           (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 153 (seconds 0.1))
           (level-hint-spawn (text-id misty-eco-red-first-use) "sksp0072" (the-as entity #f) *entity-pool* (game-task none)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (logtest? (-> self water flags) (water-flags wt09)) (sound-play "swim-stroke"))
       (ja-channel-push! 1 (seconds 0.02))
       (ja :group! eichar-attack-punch-ja :num! min)
@@ -1385,14 +1329,12 @@
   :post target-post)
 
 (defstate target-attack-air (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (let ((v0-0 (target-bonk-event-handler proc argc message block)))
         (cond
           (v0-0 (empty) v0-0)
           (else (target-dangerous-event-handler proc argc message block)))))
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (set-time! (-> self state-time))
       (logclear! (-> self control status) (cshape-moving-flags onsurf onground tsurf))
       (target-start-attack)
@@ -1432,13 +1374,11 @@
                            (vector-float*! gp-2 gp-2 (/ f0-9 f1-11)))))))))
       (set! (-> self control dynam gravity-length) 122880.0)
       (set! (-> self control unknown-vector52 quad) (-> self control trans quad)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self control dynam gravity-max) (-> self control unknown-dynamics00 gravity-max))
       (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length))
       ((-> target-attack exit)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (logtest? (-> self control status) (cshape-moving-flags onsurf))
         (set-quaternion! (-> self control) (-> self control dir-targ))
         (go target-hit-ground #f))
@@ -1455,8 +1395,7 @@
         (effect-control-method-10 (-> self skel effect) 'group-red-eco-spinkick (ja-frame-num 0) 70)
         (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 153 (seconds 0.1))
         (level-hint-spawn (text-id misty-eco-red-first-use) "sksp0072" (the-as entity #f) *entity-pool* (game-task none))))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (ja-channel-push! 1 (seconds 0.075))
       (ja-no-eval :group! eichar-attack-from-jump-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
@@ -1495,15 +1434,13 @@
 
 (defstate target-attack-uppercut (target)
   :event target-dangerous-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float))
+  :enter (behavior ((arg0 float) (arg1 float))
       (set-time! (-> self state-time))
       (target-start-attack)
       (target-danger-set! 'uppercut #f)
       (set! (-> self control unknown-surface00) *turn-around-mods*))
   :exit target-exit
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (let ((s3-0 (ja-group? eichar-duck-stance-ja)))
         (ja-no-eval :group!
                     eichar-attack-uppercut-ja
@@ -1519,8 +1456,7 @@
 
 (defstate target-attack-uppercut-jump (target)
   :event target-dangerous-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float))
+  :enter (behavior ((arg0 float) (arg1 float))
       (if (and (= (-> self control ground-pat material) (pat-material ice)) (< 32768.0 (-> self control unknown-float01)))
         (set-forward-vel (the-as float 32768.0)))
       (set-time! (-> self state-time))
@@ -1530,8 +1466,7 @@
       (target-start-attack)
       (target-danger-set! 'uppercut #f))
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (logtest? (-> self control status) (cshape-moving-flags onsurf)) (go target-hit-ground #f))
       (when (and (cpad-pressed? (-> self control unknown-cpad-info00 number) square)
                  (< (vector-dot (-> self control dynam gravity-normal) (-> self control transv)) 22118.4)
@@ -1558,8 +1493,7 @@
                (< (vector-dot (-> self control dynam gravity-normal) (-> self control transv)) -8192.0))
         (target-danger-set! 'harmless #f))
       (slide-down-test))
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (compute-alignment! (-> self align))
       (until (ja-done? 0)
         (suspend)
@@ -1576,8 +1510,7 @@
   :post target-post)
 
 (defstate target-flop (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (let ((v0-0 (target-bonk-event-handler proc argc message block)))
         (cond
           (v0-0 (empty) v0-0)
@@ -1594,8 +1527,7 @@
                 (set! (-> self next-state) target-flop-hit-ground)
                 ((the-as (function symbol object :behavior target) t9-4) a0-4)))))
           (else (target-dangerous-event-handler proc argc message block)))))
-  :enter
-    (behavior ((arg0 float) (arg1 float) (arg2 float))
+  :enter (behavior ((arg0 float) (arg1 float) (arg2 float))
       (if (and (= (-> self fact eco-type) (pickup-type eco-yellow)) (>= (-> self fact eco-level) 1.0))
         (go target-yellow-jump-blast))
       (if (= arg2 0.0) (set-forward-vel arg2) (set-forward-vel (-> self control unknown-float01)))
@@ -1615,14 +1547,12 @@
           (vector+! (-> self control transv)
                     (vector-float*! (-> self control transv) (-> self control dynam gravity-normal) f2-0)
                     (vector-float*! gp-1 gp-1 (/ f0-7 f1-3))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (target-danger-set! 'harmless #f)
       (set! (-> self control dynam gravity-max) (-> self control unknown-dynamics00 gravity-max))
       (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length))
       (set! (-> self control dynam gravity quad) (-> self control unknown-dynamics00 gravity quad)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (delete-back-vel)
       (let ((gp-1 (logtest? (-> self control status) (cshape-moving-flags onsurf))))
         (when (and (not gp-1) (let ((v1-6 (ja-group))) (or (= v1-6 eichar-flop-down-loop-ja) (= v1-6 eichar-moving-flop-down-ja))))
@@ -1660,8 +1590,7 @@
       (when (and (not (-> self control unknown-symbol30)) (ja-group? eichar-flop-down-ja) (>= (ja-aframe-num 0) 8.0))
         (target-start-attack)
         (target-danger-set! 'flop #f)))
-  :code
-    (behavior ((arg0 float) (arg1 float) (arg2 float))
+  :code (behavior ((arg0 float) (arg1 float) (arg2 float))
       (ja-channel-set! 2)
       (ja-no-eval :group! eichar-flop-down-ja :num! (seek!) :frame-num 0.0)
       (ja :chan 1 :group! eichar-moving-flop-down-ja :num! (chan 0) :frame-num 0.0)
@@ -1733,13 +1662,11 @@
   :post target-post)
 
 (defstate target-flop-hit-ground (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('swim) #f)
         (else (target-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (let ((f0-1 (vector-dot (-> self control dynam gravity-normal)
                               (vector-! (new 'stack-no-clear 'vector) (-> self control unknown-vector111) (-> self control trans)))))
         (if (< (-> *TARGET-bank* fall-far) f0-1) (go target-hit-ground-hard f0-1)))
@@ -1752,8 +1679,7 @@
       (logclear! (-> *flop-land-mods* flags) (surface-flags allow-edge-grab))
       (logior! (-> self state-flags) (state-flags flop-hit-ground)))
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (!= (-> self control unknown-spoolanim00) 'stuck)
         (if (and (cpad-pressed? (-> self control unknown-cpad-info00 number) circle) (can-feet?)) (go target-attack-air 'flop)))
       (when (and (and (= (-> self fact eco-type) (pickup-type eco-red)) (>= (-> self fact eco-level) 1.0))
@@ -1767,19 +1693,16 @@
         (if (and (or (= v1-33 eichar-flop-down-land-ja) (= v1-33 eichar-moving-flop-down-land-ja)) (>= (ja-aframe-num 0) 28.0))
           (logior! (-> *flop-land-mods* flags) (surface-flags allow-edge-grab))))
       (slide-down-test))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (target-hit-ground-anim arg0)
       (go target-falling #f))
   :post target-post)
 
 (defstate target-wheel (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (if (= message 'touched) (send-event proc 'roll))
       (target-standard-event-handler proc argc message block))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *wheel-mods*)
       (+! (-> self control unknown-int50) 1)
@@ -1791,14 +1714,12 @@
       (set! (-> self control unknown-uint20) (the-as uint 0))
       (set! (-> self control unknown-int21) 0)
       0)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when (!= (-> self next-state name) 'target-wheel)
         (set! (-> self control unknown-int50) 0)
         (set-time! (-> self control unknown-dword30)))
       (target-exit))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 0))
         0
         (let ((s5-0 0)
@@ -1849,12 +1770,10 @@
 
 (defstate target-wheel-flip (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float))
+  :enter (behavior ((arg0 float) (arg1 float))
       (set! (-> self control unknown-surface00) *wheel-flip-mods*))
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (or (smack-surface? #f) (< (target-move-dist (-> *TARGET-bank* stuck-time)) (-> *TARGET-bank* stuck-distance)))
                (!= (-> self state-time) (current-time)))
         (target-shoved (-> *TARGET-bank* smack-surface-dist)
@@ -1865,8 +1784,7 @@
                (can-feet?)
                (and (ja-group? eichar-jump-loop-ja) (= (-> self skel root-channel 0) (-> self skel channel))))
         (go target-attack-air #f)))
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (ja-channel-push! 1 (seconds 0.04))
       (ja :group! eichar-wheel-flip-ja :num! min)
       (let ((f30-0 1.0))

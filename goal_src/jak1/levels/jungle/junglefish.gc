@@ -26,11 +26,9 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-patrol (junglefish)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self target-speed) (-> self nav-info walk-travel-speed)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (let ((f30-0 (nav-enemy-rnd-float-range 0.9 1.1)))
         (loop
@@ -64,15 +62,13 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-notice (junglefish)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-chase)))
 
 (defstate nav-enemy-chase (junglefish)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> (method-of-type nav-enemy nav-enemy-chase) trans))
       (if (and *target* (>= 8192.0 (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
         (go-virtual nav-enemy-attack))))
@@ -80,29 +76,25 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-stop-chase (junglefish)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-patrol)))
 
 (defstate nav-enemy-stare (junglefish)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-patrol)))
 
 (defstate nav-enemy-give-up (junglefish)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual nav-enemy-patrol)))
 
 (defstate nav-enemy-attack (junglefish)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! junglefish-chomp-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
@@ -114,8 +106,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-victory (junglefish)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.075))
       (ja-no-eval :group! junglefish-swim-ja :num! (seek! max 2.0) :frame-num 0.0)
       (until (ja-done? 0)

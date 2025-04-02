@@ -72,16 +72,13 @@
 
 (defstate enter (voicebox)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('die) (go-virtual exit))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (voicebox-track)
       (if (< 0.1 (-> self blend)) (point-toward-point-clear-roll-pitch! (-> self root) (target-pos 0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-setting! 'sound-flava #f 20.0 (music-flava assistant))
       (if (and *target* (logtest? (-> *target* control root-prim prim-core action) (collide-action racer)))
         (send-event (ppointer->process (-> self parent-override))
@@ -104,12 +101,10 @@
 
 (defstate idle (voicebox)
   :virtual #t
-  :event
-    (-> (method-of-type voicebox enter)
+  :event (-> (method-of-type voicebox enter)
         event)
   :trans voicebox-track
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (ja :num! (loop!))))
@@ -118,8 +113,7 @@
 (defstate exit (voicebox)
   :virtual #t
   :trans voicebox-track
-  :code
-    (behavior ()
+  :code (behavior ()
       (remove-setting! 'sound-flava)
       (set-time! (-> self state-time))
       (set! (-> self seeker target) 1.0)
@@ -147,17 +141,13 @@
   (none))
 
 (defstate cam-voicebox (camera-voicebox)
-  :event
-    (-> cam-string
+  :event (-> cam-string
         event)
-  :enter
-    (-> cam-string
+  :enter (-> cam-string
         enter)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (deactivate self)))
-  :code
-    (-> cam-string
+  :code (-> cam-string
         code))
 
 (defun voicebox-spawn ((arg0 process) (arg1 vector))

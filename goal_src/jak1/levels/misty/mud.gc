@@ -12,8 +12,7 @@
        :count 3
        :converted #f
        :normal-scale 1.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.5)
@@ -26,8 +25,7 @@
        :count 3
        :converted #f
        :normal-scale 1.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 20.0 :xdiv 2 :speed 0.5)

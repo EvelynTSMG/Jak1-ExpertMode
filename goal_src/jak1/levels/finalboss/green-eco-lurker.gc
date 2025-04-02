@@ -93,8 +93,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 2585 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017) :binding 2583)
+  :parts ((sp-item 2585 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017) :binding 2583)
    (sp-item 2583 :flags (start-dead launch-asap) :binding 2584)
    (sp-item 2584 :fade-after (meters 80) :falloff-to (meters 100) :flags (start-dead))
    (sp-item 2583 :flags (start-dead launch-asap) :binding 2584)
@@ -324,28 +323,22 @@
   #f)
 
 (defstate green-eco-lurker-tune-spheres (green-eco-lurker)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       0)
   :post transform-post)
 
 (defstate green-eco-lurker-wait-to-appear (green-eco-lurker)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logior! (-> self draw status) (draw-status hidden))
       (clear-collide-with-as (-> self collide-info)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self draw status) (draw-status hidden))
       (restore-collide-with-as (-> self collide-info)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (nav-enemy-method-52 self (-> self appear-dest)) (go green-eco-lurker-appear)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend))))
@@ -365,8 +358,7 @@
             (else (let ((v1-9 (-> this draw shadow-ctrl))) (logior! (-> v1-9 settings flags) (shadow-flags disable-draw))) 0))))
 
 (defstate green-eco-lurker-appear (green-eco-lurker)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self played-sound?) #f)
       (set! (-> self sound-delay) (nav-enemy-rnd-int-range 30 150))
@@ -386,8 +378,7 @@
         (set! (-> gp-1 y) 0.0)
         (vector-normalize! gp-1 1.0)
         (forward-up->quaternion (-> self collide-info quat) gp-1 *up-vector*)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((f30-0 (fmin (the float (- (current-time) (-> self state-time))) (-> self traj time))))
         (eval-position! (-> self traj) f30-0 (-> self collide-info trans))
         (when (= f30-0 (-> self traj time))
@@ -399,8 +390,7 @@
         (sound-play "blob-jump" :pitch (nav-enemy-rnd-float-range -0.5 0.5)))
       (nav-enemy-method-53 self)
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (sound-play "blob-out" :pitch (nav-enemy-rnd-float-range -1.0 1.0))
       (cond
@@ -421,8 +411,7 @@
 
 (defstate green-eco-lurker-appear-land (green-eco-lurker)
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (activate! *camera-smush-control* 409.6 37 150 1.0 0.99)
       (sound-play "blob-land" :pitch (nav-enemy-rnd-float-range -1.0 1.0))
       (let ((v1-4 (-> self draw shadow-ctrl)))
@@ -445,15 +434,13 @@
 
 (defstate nav-enemy-patrol (green-eco-lurker)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (let ((t9-1 (-> (method-of-type nav-enemy nav-enemy-patrol) code))) (if t9-1 ((the-as (function none) t9-1))))))
 
 (defstate nav-enemy-chase (green-eco-lurker)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((f30-0 (nav-enemy-rnd-float-range 0.9 1.1)))
         (cond
           ((ja-group? green-eco-lurker-jump-land-ja)
@@ -474,8 +461,7 @@
 
 (defstate nav-enemy-jump-land (green-eco-lurker)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (seek!))
       (ja-channel-push! 1 (seconds 0.075))
       (ja-no-eval :group!
@@ -491,20 +477,17 @@
 
 (defstate nav-enemy-die (green-eco-lurker)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (send-event (ppointer->process (-> self parent)) 'blob-died)
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 643)
                      -1
                      #f
                      #f
                      #f
                      (-> self collide-info trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (sound-play "blob-explode")
       (activate! *camera-smush-control* 409.6 37 150 1.0 0.99)
       (let ((v1-14 (-> self draw shadow-ctrl))) (logior! (-> v1-14 settings flags) (shadow-flags disable-draw)))
@@ -603,15 +586,13 @@
   (none))
 
 (defstate spawn-minions (green-eco-lurker-gen)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('blob-died)
          (set! (-> self num-alive) (max 0 (+ (-> self num-alive) -1)))
          (send-event (ppointer->process (-> self parent)) 'blob-died))
         (('blob-hit-jak) (send-event (ppointer->process (-> self parent)) 'blob-hit-jak))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (< (-> self num-spawned) (-> self num-to-spawn))
         (when (< (-> self num-alive) 3)
           (when (nonzero? (-> self num-spawned))

@@ -19,8 +19,7 @@
 
 (defstate idle (bird-lady-beach)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (should-display? self))
         (let ((a0-2 (handle->process (-> self flutflut)))) (if a0-2 (deactivate a0-2)))
         (let ((a0-6 (handle->process (-> self egg)))) (if a0-6 (deactivate a0-6)))

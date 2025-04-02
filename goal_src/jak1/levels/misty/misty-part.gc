@@ -65,8 +65,7 @@
 (defpartgroup group-misty-ship-steam
   :id 205
   :bounds (static-bspherem 0 0.5 0 4.5)
-  :parts
-  ((sp-item 972 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 5) :length (seconds 1))
+  :parts ((sp-item 972 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 5) :length (seconds 1))
    (sp-item 972 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 9.76) :length (seconds 1.2))
    (sp-item 972 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 15.34) :length (seconds 0.6))
    (sp-item 973 :fade-after (meters 125) :falloff-to (meters 125) :period (seconds 0.6) :length (seconds 0.15))))
@@ -74,8 +73,7 @@
 (defpartgroup group-part-misty-torch
   :id 206
   :bounds (static-bspherem 0 3 0 4)
-  :parts
-  ((sp-item 974 :fade-after (meters 180) :falloff-to (meters 200))
+  :parts ((sp-item 974 :fade-after (meters 180) :falloff-to (meters 200))
    (sp-item 975 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 976 :fade-after (meters 50) :falloff-to (meters 50) :period (seconds 2) :length (seconds 0.3))
    (sp-item 977 :fade-after (meters 50) :falloff-to (meters 50) :period (seconds 1.23) :length (seconds 0.23))
@@ -637,8 +635,7 @@
 (defpartgroup group-misty-fort-steam
   :id 219
   :bounds (static-bspherem 0 0.5 0 4.5)
-  :parts
-  ((sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 5) :length (seconds 1))
+  :parts ((sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 5) :length (seconds 1))
    (sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 9.76) :length (seconds 1.2))
    (sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 15.34) :length (seconds 0.6))
    (sp-item 997 :fade-after (meters 125) :falloff-to (meters 125) :period (seconds 0.6) :length (seconds 0.15))))
@@ -646,8 +643,7 @@
 (defpartgroup group-misty-fort-steam2
   :id 220
   :bounds (static-bspherem 0 0.5 0 4.5)
-  :parts
-  ((sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 4.1) :length (seconds 1))
+  :parts ((sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 4.1) :length (seconds 1))
    (sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 8.5) :length (seconds 1.2))
    (sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 20.34) :length (seconds 0.6))
    (sp-item 997 :fade-after (meters 125) :falloff-to (meters 125) :period (seconds 0.7) :length (seconds 0.15))))
@@ -655,8 +651,7 @@
 (defpartgroup group-misty-fort-steam3
   :id 221
   :bounds (static-bspherem 0 0.5 0 4.5)
-  :parts
-  ((sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 6) :length (seconds 1))
+  :parts ((sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 6) :length (seconds 1))
    (sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 8.53) :length (seconds 1.2))
    (sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 17.34) :length (seconds 0.6))
    (sp-item 997 :fade-after (meters 125) :falloff-to (meters 125) :period (seconds 0.8) :length (seconds 0.15))))
@@ -664,8 +659,7 @@
 (defpartgroup group-misty-fort-steam4
   :id 222
   :bounds (static-bspherem 0 0.5 0 4.5)
-  :parts
-  ((sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 5.2) :length (seconds 1))
+  :parts ((sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 5.2) :length (seconds 1))
    (sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 8.67) :length (seconds 1.2))
    (sp-item 996 :fade-after (meters 175) :falloff-to (meters 175) :period (seconds 16.16) :length (seconds 0.6))
    (sp-item 997 :fade-after (meters 125) :falloff-to (meters 125) :period (seconds 0.9) :length (seconds 0.15))))
@@ -723,8 +717,7 @@
 (defpartgroup group-misty-lurkermachine-spout-314
   :id 223
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 998 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
+  :parts ((sp-item 998 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
    (sp-item 998 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.567) :length (seconds 0.32))
    (sp-item 998 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 3.12) :length (seconds 0.2))
    (sp-item 999 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -775,8 +768,7 @@
 (defpartgroup group-misty-lurkermachine-spout-310
   :id 224
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 1000 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
+  :parts ((sp-item 1000 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
    (sp-item 1000 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.567) :length (seconds 0.32))
    (sp-item 1000 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 3.12) :length (seconds 0.2))
    (sp-item 1001 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -829,8 +821,7 @@
 (defpartgroup group-misty-lurkermachine-spout-311
   :id 225
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 1002 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
+  :parts ((sp-item 1002 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
    (sp-item 1002 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.567) :length (seconds 0.32))
    (sp-item 1002 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 3.12) :length (seconds 0.2))
    (sp-item 1003 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -883,8 +874,7 @@
 (defpartgroup group-misty-lurkermachine-spout-312
   :id 226
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 1004 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
+  :parts ((sp-item 1004 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
    (sp-item 1004 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.567) :length (seconds 0.32))
    (sp-item 1004 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 3.12) :length (seconds 0.2))
    (sp-item 1005 :fade-after (meters 100) :falloff-to (meters 100))))

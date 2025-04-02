@@ -344,13 +344,11 @@
 
 (defstate idle (assistant-bluehut)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (case (get-task-status (game-task village2-levitator))
         (((task-status need-hint) (task-status need-introduction)) (send-event self 'play-anim)))
       ((-> (method-of-type process-taskable idle) trans)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (!= (ja-group) (get-art-elem self)) (ja-channel-push! 1 (seconds 0.05)))
       (loop
         (ja-no-eval :group! (get-art-elem self) :num! (seek!) :frame-num 0.0)
@@ -410,15 +408,13 @@
 
 (defstate play-anim (assistant-bluehut)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-1 (handle->process (-> self jaws)))) (if a0-1 (deactivate a0-1)))
       (send-event (-> self sage extra process) 'end-mode)
       (send-event (-> (entity-by-type flutflut-bluehut) extra process) 'end-mode)
       ((-> (method-of-type process-taskable play-anim) exit))
       (close-specific-task! (game-task village2-levitator) (task-status need-reminder-a)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       '()))
 
 (defmethod should-display? ((this assistant-bluehut))
@@ -432,8 +428,7 @@
 (defpartgroup group-assistant-bluehut-torch
   :id 288
   :bounds (static-bspherem 0 0 0 15)
-  :parts
-  ((sp-item 1322 :fade-after (meters 30) :falloff-to (meters 30))
+  :parts ((sp-item 1322 :fade-after (meters 30) :falloff-to (meters 30))
    (sp-item 1323 :fade-after (meters 60) :falloff-to (meters 80))))
 
 (defpart 1322
@@ -517,8 +512,7 @@
   :id 658
   :flags (use-local-clock)
   :bounds (static-bspherem -20 8 0 80)
-  :parts
-  ((sp-item 2673 :fade-after (meters 120) :falloff-to (meters 140) :binding 2670)
+  :parts ((sp-item 2673 :fade-after (meters 120) :falloff-to (meters 140) :binding 2670)
    (sp-item 2670 :flags (bit1 start-dead launch-asap) :binding 2671)
    (sp-item 2670 :flags (bit1 start-dead launch-asap) :binding 2672)
    (sp-item 2670 :flags (bit1 start-dead launch-asap) :binding 2671)
@@ -783,8 +777,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2751 :fade-after (meters 100) :falloff-to (meters 100) :binding 2750)
+  :parts ((sp-item 2751 :fade-after (meters 100) :falloff-to (meters 100) :binding 2750)
    (sp-item 2750 :flags (bit1 start-dead launch-asap) :binding 2797)
    (sp-item 2750 :flags (bit1 start-dead launch-asap) :binding 2798)
    (sp-item 2750 :flags (bit1 start-dead launch-asap) :binding 2797)
@@ -1029,8 +1022,7 @@
 
 (defstate play-anim (assistant-levitator)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a1-0 (new 'stack-no-clear 'event-message-block)))
         (set! (-> a1-0 from) self)
         (set! (-> a1-0 num-params) 0)
@@ -1039,16 +1031,14 @@
               (v1-1 (-> self boulder)))
           (t9-0 (if v1-1 (-> v1-1 extra process)) a1-0)))
       ((-> (method-of-type process-taskable play-anim) exit)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (assistant-levitator-blue-glow)
       (if (< 200.0 (ja-aframe-num 0)) (assistant-levitator-blue-beam))
       ((-> (method-of-type process-taskable play-anim) trans))))
 
 (defstate hidden (assistant-levitator)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> (method-of-type process-taskable hidden) trans))
       (when (and (cond
                    ((and *target* (>= 61440.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))) #t)
@@ -1078,17 +1068,14 @@
 
 (defstate idle (assistant-levitator)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (stop! (-> self sound))
       ((-> (method-of-type process-taskable idle) exit)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (assistant-levitator-blue-glow)
       (update! (-> self sound))
       ((-> (method-of-type process-taskable idle) trans)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (!= (ja-group) (get-art-elem self)) (ja-channel-push! 1 (seconds 0.05)))
       (loop
         (cond
@@ -1131,8 +1118,7 @@
       (zero? (get-task-status (game-task village2-levitator)))))
 
 (defstate just-particles (assistant-levitator)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (loop
         (assistant-levitator-blue-glow)

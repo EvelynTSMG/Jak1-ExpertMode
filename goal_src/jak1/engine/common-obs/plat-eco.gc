@@ -34,8 +34,7 @@
 
 (defstate plat-idle (plat-eco)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('wake) (go-virtual plat-path-active (the-as plat #f)))
         (('eco-blue) (go-virtual notice-blue (process->handle proc)))
@@ -43,19 +42,16 @@
          (when (send-event *target* 'query 'powerup (pickup-type eco-blue))
            (send-to-all (-> self link) 'wake)
            (go-virtual plat-path-active (the-as plat #f))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (lods-assign! (-> self draw) (-> self unlit-look)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (and (and *target* (>= (-> self notice-dist) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
                  (send-event *target* 'query 'powerup (pickup-type eco-blue)))
         (send-to-all (-> self link) 'wake)
         (go-virtual plat-path-active (the-as plat #f)))
       (if (and *target* (>= (-> self notice-dist) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (level-hint-spawn (text-id misty-eco-plat) "sksp0073" (the-as entity #f) *entity-pool* (game-task none))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-post)
       (update-transforms! (-> self root))
       (anim-loop))
@@ -63,8 +59,7 @@
 
 (defstate notice-blue (plat-eco)
   :virtual override
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('wake)
          (sound-play "blue-eco-on" :position (the-as symbol (-> self root trans)))
@@ -73,8 +68,7 @@
          (when (send-event *target* 'query 'powerup (pickup-type eco-blue))
            (send-to-all (-> self link) 'wake)
            (go-virtual plat-path-active (the-as plat #f))))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> (method-of-object self plat-idle) trans))
       (let ((a1-0 (new 'stack-no-clear 'event-message-block)))
         (set! (-> a1-0 from) self)
@@ -87,8 +81,7 @@
                    (logior! (-> self mask) (process-mask sleep-code))
                    (not (-> self bouncing))))
           (go-virtual plat-idle))))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (set! (-> self target) arg0)
       (loop
         (let* ((gp-0 (handle->process (-> self target)))
@@ -118,15 +111,13 @@
                              1.0
                              1.0))))))
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (plat-trans)
       (plat-post)))
 
 (defstate plat-path-active (plat-eco)
   :virtual #t
-  :enter
-    (behavior ((arg0 plat))
+  :enter (behavior ((arg0 plat))
       (lods-assign! (-> self draw) (-> self lit-look))
       (sync-now! (-> self sync) (-> self sync-linear-val))
       (set! (-> self sync-offset-faux) (-> self sync offset))
@@ -142,8 +133,7 @@
          (process-entity-status! self (entity-perm-status complete) #t)
          (dotimes (gp-1 5)
            (spawn-projectile-blue *target*)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (!= (-> self sync-offset-faux) (-> self sync-offset-dest))
         (seek! (-> self sync-offset-faux) (-> self sync-offset-dest) (* 12.0 (seconds-per-frame)))
         (let* ((f0-7 (the float (-> self sync period)))

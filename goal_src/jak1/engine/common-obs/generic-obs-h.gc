@@ -35,8 +35,7 @@
             process
             collide-prim-core
             none
-            :behavior
-            part-tracker))
+            :behavior part-tracker))
 
 (declare-type touch-tracker process-drawable)
 

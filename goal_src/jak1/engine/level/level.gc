@@ -710,12 +710,12 @@
 
 ;; method 10 level
 (define-extern crate (type))
+(define-extern money (type))
 (defmethod is-object-visible? ((this level) (e entity) (arg0 int))
   "Is arg0 visible? Note that this will return #f if the visibility data is not loaded."
   ;; og:mod-base anything thats not a vanilla level -> always show actors
   (case (-> this name)
-    :comp
-    name=
+    :comp name=
     (('intro 'title
             'demo
             'training

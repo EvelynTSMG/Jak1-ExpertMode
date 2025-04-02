@@ -299,15 +299,13 @@
 
 (defstate puffer-idle (puffer)
   :event puffer-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self attacking?) #f)
       (shut-down! (-> self neck))
       (let ((v1-5 (-> self draw shadow-ctrl))) (logior! (-> v1-5 settings flags) (shadow-flags disable-draw)))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (and (and *target*
                       (>= (-> self fact idle-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
@@ -320,8 +318,7 @@
 
 (defstate puffer-patrol (puffer)
   :event puffer-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self attacking?) #f)
       (set! (-> self reaction-delay) (rand-vu-int-range (seconds 0.1) (seconds 0.35)))
@@ -329,8 +326,7 @@
       (set-time! (-> self picked-point-time))
       (set! (-> self pick-new-point-delay) (rand-vu-int-range (seconds 3) (seconds 10)))
       (set-time! (-> self last-on-screen-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (not (and *target*
                          (>= (-> self fact idle-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans)))))
                (time-elapsed? (-> self state-time) (seconds 3)))
@@ -355,8 +351,7 @@
         (set-heading-vec-clear-roll-pitch! (-> self root) gp-0))
       (vector-v+! (-> self root trans) (-> self root trans) (-> self root transv))
       (puffer-method-28 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (puffer-method-26 self)
         (suspend)))
@@ -364,18 +359,15 @@
 
 (defstate puffer-attack (puffer)
   :event puffer-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self attacking?) #t)
       (set-time! (-> self state-time))
       (set! (-> self travel-turn-speed) 21845.334))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (shut-down! (-> self neck))
       (set! (-> self attacking?) #f)
       (set! (-> self travel-turn-speed) 16384.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (puffer-method-25 self (-> self give-up-dist))) (go puffer-patrol))
       (when *target*
         (if *target*
@@ -390,16 +382,14 @@
         (set-heading-vec-clear-roll-pitch! (-> self root) gp-2))
       (vector-v+! (-> self root trans) (-> self root trans) (-> self root transv))
       (puffer-method-28 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (puffer-method-26 self)
         (suspend)))
   :post puffer-post)
 
 (defstate puffer-die (puffer)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (the-as uint
               (case message
                 (('death-start) (the-as uint (drop-pickup (-> self fact) #t *entity-pool* (-> self fact) 0)))
@@ -407,8 +397,7 @@
                  (let ((v0-0 (the-as uint (logior (-> self draw status) (draw-status hidden)))))
                    (set! (-> self draw status) (the-as draw-status v0-0))
                    v0-0)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cleanup-for-death self)
       (shut-down! (-> self neck))
       (logclear! (-> self mask) (process-mask actor-pause))

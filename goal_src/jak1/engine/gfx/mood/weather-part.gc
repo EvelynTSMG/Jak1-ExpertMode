@@ -12,8 +12,7 @@
   :id 188
   :flags (screen-space)
   :bounds (static-bspherem 0 0 0 16)
-  :parts
-  ((sp-item 18 :binding 19)
+  :parts ((sp-item 18 :binding 19)
    (sp-item 19 :flags (start-dead launch-asap) :binding 20)
    (sp-item 19 :flags (start-dead launch-asap) :binding 20)
    (sp-item 19 :flags (start-dead launch-asap) :binding 20)

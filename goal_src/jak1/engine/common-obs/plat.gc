@@ -10,8 +10,7 @@
 (defpartgroup group-standard-plat
   :id 107
   :bounds (static-bspherem 0 -12 0 14)
-  :parts
-  ((sp-item 363 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 363 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 364 :fade-after (meters 160) :falloff-to (meters 160))))
 
 (defpart 363
@@ -124,8 +123,7 @@
 
 (defstate plat-startup (plat)
   :virtual #t
-  :code
-    (behavior ((arg0 plat))
+  :code (behavior ((arg0 plat))
       (cond
         ((logtest? (-> self path flags) (path-control-flag not-found)) (go-virtual plat-idle))
         ((> (-> self sync period) 0) (go-virtual plat-path-active arg0))
@@ -134,11 +132,9 @@
 (defstate plat-idle (plat)
   :virtual #t
   :event plat-event
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (baseplat-method-20 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (plat-trans)
       (rider-post)
       (suspend)
@@ -157,11 +153,9 @@
 (defstate plat-path-active (plat)
   :virtual #t
   :event plat-event
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (sound-stop (-> self sound-id)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self path-pos)
             (if (logtest? (-> self fact options) (fact-options wrap-phase))
               (get-current-phase (-> self sync))
@@ -170,8 +164,7 @@
       (if (< (vector-vector-distance (-> self root trans) (ear-trans)) 81920.0)
         (sound-play "eco-plat-hover" :id (-> self sound-id) :position (the-as symbol (-> self root trans))))
       (plat-trans))
-  :code
-    (the-as (function plat object)
+  :code (the-as (function plat object)
             anim-loop)
   :post plat-post)
 

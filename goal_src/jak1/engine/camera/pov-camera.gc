@@ -23,14 +23,12 @@
 
 (defstate pov-camera-startup (pov-camera)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual pov-camera-start-playing)))
 
 (defstate pov-camera-start-playing (pov-camera)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause))
       (while (not (target-grabbed? self))
         (suspend))
@@ -55,24 +53,20 @@
 
 (defstate pov-camera-playing (pov-camera)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('abort)
          (when (logtest? (-> self flags) (pov-camera-flag notify-of-abort))
            (logior! (-> self flags) (pov-camera-flag allow-abort))
            (if (= (-> self anim-name type) string) (go-virtual pov-camera-abort))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self debounce-start-time))
       (if (= (-> self anim-name type) string) (backup-load-state-and-set-cmds *load-state* (-> self command-list))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (= (-> self anim-name type) string) (restore-load-state-and-cleanup *load-state*))
       (remove-setting! 'music-volume)
       (remove-setting! 'sfx-volume))
-  :code
-    (behavior ()
+  :code (behavior ()
       (add-setting! 'music-volume 'rel (-> self music-volume-movie) 0)
       (add-setting! 'sfx-volume 'rel (-> self sfx-volume-movie) 0)
       (cond
@@ -88,18 +82,15 @@
                                (the-as art-joint-anim #f)
                                (method-of-object self check-for-abort))))
       (go-virtual pov-camera-done-playing))
-  :post
-    (behavior ()
+  :post (behavior ()
       (if (= (-> self anim-name type) string) (execute-commands-up-to *load-state* (ja-aframe-num 0)))
       (ja-post)))
 
 (defstate pov-camera-abort (pov-camera)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logior! (-> self flags) (pov-camera-flag allow-abort)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-blackout-frames (seconds 0.035))
       (suspend)
       (suspend)
@@ -107,8 +98,7 @@
 
 (defstate pov-camera-done-playing (pov-camera)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (not (target-released? self))
         (suspend))
       (send-event (handle->process (-> self notify-handle)) 'notify 'die)

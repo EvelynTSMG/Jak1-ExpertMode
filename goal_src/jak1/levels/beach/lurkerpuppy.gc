@@ -21,8 +21,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-notice (lurkerpuppy)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (loop!))
       (ja-channel-push! 1 (seconds 0.17))
       (ja-no-eval :group! lurkerpuppy-celebrate-ja :num! (seek!) :frame-num 0.0)
@@ -35,8 +34,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-chase (lurkerpuppy)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((ja-group? lurkerpuppy-jump-land-ja)
          (ja-channel-push! 1 (seconds 0.17))
@@ -57,8 +55,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-stare (lurkerpuppy)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self rotate-speed) 1456355.5)
       (set! (-> self turn-time) (seconds 0.1))
       (logclear! (-> self nav-enemy-flags) (nav-enemy-flags enable-travel))
@@ -83,8 +80,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-give-up (lurkerpuppy)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self rotate-speed) 218453.33)
       (set! (-> self turn-time) (seconds 0.5))
       (ja-channel-push! 1 (seconds 0.075))
@@ -107,19 +103,16 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-attack (lurkerpuppy)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (sound-play "head-butt")
       (go-virtual nav-enemy-victory)))
 
 (defstate nav-enemy-victory (lurkerpuppy)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self nav-enemy-flags) (nav-enemy-flags enable-travel)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logclear! (-> self nav-enemy-flags) (nav-enemy-flags enable-travel))
       (ja-channel-push! 1 (seconds 0.075))
       (dotimes (gp-0 4)
@@ -147,16 +140,16 @@ nav-enemy-default-event-handler
        :die-anim 11
        :neck-joint -1
        :player-look-at-joint 5
-       :run-travel-speed (meters 5)
+       :run-travel-speed (meters 13.5) ;mod: Lurker Puppies run much faster
        :run-rotate-speed (degrees 3999.9998)
-       :run-acceleration (meters 1)
-       :run-turn-time (seconds 0.15)
-       :walk-travel-speed (meters 2)
+       :run-acceleration (meters 5.0)
+       :run-turn-time (seconds 0.05)
+       :walk-travel-speed (meters 4.5)
        :walk-rotate-speed (degrees 1999.9999)
-       :walk-acceleration (meters 1)
+       :walk-acceleration (meters 1.9)
        :walk-turn-time (seconds 0.1)
-       :attack-shove-back (meters 3)
-       :attack-shove-up (meters 2)
+       :attack-shove-back (meters 12)
+       :attack-shove-up (meters 2.5)
        :shadow-size (meters 2)
        :notice-nav-radius (meters 1)
        :nav-nearest-y-threshold (meters 10)

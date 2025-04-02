@@ -27,17 +27,14 @@
 
 (defstate pov-camera-playing (maincavecam)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((zero? (-> self seq))
          (let ((gp-1 (ppointer->handle (process-spawn fuel-cell
-                                                      :init
-                                                      fuel-cell-init-as-clone
+                                                      :init fuel-cell-init-as-clone
                                                       (process->handle self)
                                                       (-> self entity extra perm task)
-                                                      :to
-                                                      (ppointer->process (-> self parent))))))
+                                                      :to (ppointer->process (-> self parent))))))
            (ja-play-spooled-anim (new 'static 'spool-anim :name "maincavecam-gnawer-fuel-cell" :index 3 :parts 1 :command-list '())
                                  (the-as art-joint-anim #f)
                                  (the-as art-joint-anim #f)
@@ -54,8 +51,7 @@
        :count 3
        :converted #f
        :normal-scale 1.0
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.5)
@@ -89,8 +85,7 @@
   :bounds (static-spherem 0 0 0 3))
 
 (defstate cavecrusher-idle (cavecrusher)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch 'attack)
          (when (= (-> proc type) target)
@@ -100,8 +95,7 @@
                 (collide-action solid)
                 (collide-action))
              (target-attack-up *target* 'attack-or-shove 'deadlyup))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! cavecrusher-idle-ja :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -153,16 +147,14 @@
 
 (defstate idle (cavetrapdoor)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch)
          (when (= (-> proc type) target)
            (when (>= (- (-> (target-pos 0) y) (-> self root trans y)) 409.6)
              (send-event proc 'no-look-around (seconds 1.5))
              (go-virtual trigger))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! cavetrapdoor-idle-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (transform-post)
@@ -172,8 +164,7 @@
 
 (defstate trigger (cavetrapdoor)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (nonzero? (-> self delay-before-wiggle))
         (set-time! (-> self state-time))
         (until (time-elapsed? (-> self state-time) (-> self delay-before-wiggle))
@@ -313,8 +304,7 @@
    (:flags (bit2 bit3))))
 
 (defstate caveflamepots-active (caveflamepots)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch 'attack)
          (when (= (-> proc type) target)
@@ -336,8 +326,7 @@
                              'attack-or-shove
                              (-> block param 0)
                              (static-attack-info ((mode 'burn) (shove-up (meters 0)) (shove-back (meters 2)) (vector (-> *target* control poly-normal)) (angle 'shove)))))))))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let* ((v1-0 (-> self cycle-speed))
              (a0-1 (- v1-0 (-> self cycle-pause)))
              (gp-0 (mod (+ (current-time) (the-as time-frame (-> self cycle-offset))) v1-0)))
@@ -360,8 +349,7 @@
            (when (-> self was-deadly?)
              (set! (-> self was-deadly?) #f)
              (clear-collide-with-as (-> self root)))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend))))
@@ -473,14 +461,12 @@
   :bounds (static-spherem 0 -1 0 18))
 
 (defstate cavespatula-idle (cavespatula)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (update! (-> self sound))
       (let ((f0-0 (get-current-phase (-> self sync))))
         (quaternion-axis-angle! (-> self root quat) 0.0 1.0 0.0 (* -65536.0 f0-0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend)))
@@ -549,14 +535,12 @@
   :longest-edge (meters 8.7))
 
 (defstate cavespatulatwo-idle (cavespatulatwo)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (update! (-> self sound))
       (let ((f0-0 (get-current-phase (-> self sync))))
         (quaternion-axis-angle! (-> self root quat) 0.0 1.0 0.0 (* -65536.0 f0-0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend)))
@@ -655,136 +639,109 @@
     (set! (-> gp-0 w) 17408.0)))
 
 (defstate caveelevator-cycle-active (caveelevator)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (activate! (-> self smush) -1.0 60 150 1.0 1.0))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self mask) (process-mask actor-pause)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (caveelevator-method-20 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((f30-1 (* (get-current-phase (-> self sync)) (the float (ja-num-frames 0)))))
           (if (< (-> self prev-frame-num) f30-1) (ja :num! (seek! f30-1 10000.0)) (ja :num-func num-func-identity :frame-num f30-1))
           (set! (-> self prev-frame-num) f30-1))
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (rider-post)
       (caveelevator-method-21 self)))
 
 (defstate caveelevator-one-way-idle-start (caveelevator)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (activate! (-> self smush) -1.0 60 150 1.0 1.0) (go caveelevator-one-way-travel-to-end))
         (('attack 'touch)
          (if (and (= (-> proc type) target) (>= 8192.0 (vector-vector-xz-distance (target-pos 0) (-> self root trans))))
            (go caveelevator-one-way-travel-to-end)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (caveelevator-method-20 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :group!
           (-> (the-as art-joint-anim (+ (* (-> self anim 0) 4) (the-as int (-> self draw art-group)))) master-art-group-name)
           :num!
           min)
       (loop
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (rider-post)
       (caveelevator-method-21 self)))
 
 (defstate caveelevator-one-way-travel-to-end (caveelevator)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (activate! (-> self smush) -1.0 60 150 1.0 1.0))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self mask) (process-mask actor-pause)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (caveelevator-method-20 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :group! (-> self draw art-group data (-> self anim 0)) :num! min)
       (ja-no-eval :num! (seek!))
       (until (ja-done? 0)
         (suspend)
         (ja :num! (seek!)))
       (go caveelevator-one-way-idle-end))
-  :post
-    (behavior ()
+  :post (behavior ()
       (rider-post)
       (caveelevator-method-21 self)))
 
 (defstate caveelevator-one-way-idle-end (caveelevator)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (activate! (-> self smush) -1.0 60 150 1.0 1.0))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((zero? (-> self root riders num-riders))
          (if (time-elapsed? (-> self state-time) (seconds 3)) (go caveelevator-one-way-travel-to-start)))
         (else (set-time! (-> self state-time))))
       (rider-trans)
       (caveelevator-method-20 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :group! (-> self draw art-group data (-> self anim 0)) :num! max)
       (loop
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (rider-post)
       (caveelevator-method-21 self)))
 
 (defstate caveelevator-one-way-travel-to-start (caveelevator)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (activate! (-> self smush) -1.0 60 150 1.0 1.0))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self mask) (process-mask actor-pause)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (caveelevator-method-20 self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :group! (-> self draw art-group data (-> self anim 1)) :num! min)
       (ja-no-eval :num! (seek!))
       (until (ja-done? 0)
         (suspend)
         (ja :num! (seek!)))
       (go caveelevator-one-way-idle-start))
-  :post
-    (behavior ()
+  :post (behavior ()
       (rider-post)
       (caveelevator-method-21 self)))
 

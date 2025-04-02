@@ -412,13 +412,11 @@
 
 (defstate rigid-body-platform-idle (rigid-body-platform)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target*
                (>= (-> self info idle-distance) (vector-vector-distance (-> self root-overlay trans) (-> *target* control trans))))
         (go-virtual rigid-body-platform-float)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post ja-post)
@@ -426,13 +424,11 @@
 (defstate rigid-body-platform-float (rigid-body-platform)
   :virtual #t
   :event rigid-body-platform-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (or (not *target*)
               (< (-> self info idle-distance) (vector-vector-distance (-> self root-overlay trans) (-> *target* control trans))))
         (go-virtual rigid-body-platform-idle)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post rigid-body-platform-post)

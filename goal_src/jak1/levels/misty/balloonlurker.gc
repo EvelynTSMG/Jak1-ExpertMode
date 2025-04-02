@@ -35,8 +35,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 16)
-  :parts
-  ((sp-item 964 :period (seconds 4) :length (seconds 0.1))
+  :parts ((sp-item 964 :period (seconds 4) :length (seconds 0.1))
    (sp-item 965 :fade-after (meters 60) :period (seconds 4) :length (seconds 0.05))
    (sp-item 966 :period (seconds 4) :length (seconds 0.05) :offset 15)
    (sp-item 967 :period (seconds 4) :length (seconds 0.05))
@@ -460,12 +459,9 @@
               (f0-3 (* 3.0 f0-2)))
          (sound-play "propeller"
                      :id (-> self engine-sound-id)
-                     :vol
-                     f1-2
-                     :pitch
-                     f0-3
-                     :position
-                     (the-as symbol (-> self node-list data 4 bone transform vector 3))))
+                     :vol f1-2
+                     :pitch f0-3
+                     :position (the-as symbol (-> self node-list data 4 bone transform vector 3))))
        (sound-play "pedals" :id (-> self pedal-sound-id) :position (the-as symbol (-> self root-overlay trans)))))
     (else
      (when (nonzero? (-> self engine-sound-id))
@@ -534,12 +530,10 @@
 
 (defstate balloonlurker-patrol (balloonlurker)
   :event balloonlurker-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (ja :num! (loop!))
       (set! (-> self anim-frame) (ja-frame-num 0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (not (ja-group? balloonlurker-idle-ja))
         (ja-channel-push! 1 (seconds 0.07))
         (ja :group! balloonlurker-idle-ja)
@@ -550,8 +544,7 @@
 
 (defstate balloonlurker-mine-explode (balloonlurker)
   :event balloonlurker-event-handler
-  :code
-    (behavior ((arg0 int))
+  :code (behavior ((arg0 int))
       (set! (-> self explosion-force-position quad)
             (-> self node-list data (-> self explosion-joint-index-bytes arg0) bone transform vector 3 quad))
       (process-spawn part-tracker
@@ -577,13 +570,11 @@
 
 (defstate balloonlurker-die (balloonlurker)
   :event #f
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self vulnerable) #f)
       (set! (-> self dead) #t))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (v1-27 symbol) (sv-16 symbol) (sv-20 (pointer process-tree)) (sv-24 entity-actor))
       (process-entity-status! self (entity-perm-status bit-4) #t)
       (process-entity-status! self (entity-perm-status dead) #t)
@@ -624,20 +615,17 @@
   (call-parent-method this offset))
 
 (defstate balloonlurker-pilot-idle (balloonlurker-pilot)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack) (send-event (ppointer->process (-> self parent-override)) 'die) (go balloonlurker-pilot-die))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
       (ja :group! balloonlurker-pilot-idle-ja)
       (ja :num-func num-func-identity :frame-num 0.0)
       (loop
         (suspend)
         (ja :num-func num-func-identity :frame-num (-> self parent-override 0 anim-frame))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (set! (-> self root trans quad) (-> self parent-override 0 root-overlay trans quad))
       (quaternion-copy! (-> self root quat) (-> self parent-override 0 root-overlay quat))
       (update-transforms! (-> self root))
@@ -645,8 +633,7 @@
 
 (defstate balloonlurker-pilot-die (balloonlurker-pilot)
   :event process-drawable-death-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-spawn part-tracker
                      :init part-tracker-init
                      (-> *part-group-id-table* 203)
@@ -664,8 +651,7 @@
         (suspend)
         (ja :num! (seek!)))
       (cleanup-for-death self))
-  :post
-    (behavior ()
+  :post (behavior ()
       (vector-v++! (-> self root transv) (compute-acc-due-to-gravity (-> self root) (new-stack-vector0) 0.0))
       (integrate-no-collide! (-> self root) (-> self root transv))
       (ja-post)))

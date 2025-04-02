@@ -153,8 +153,7 @@
 (defpartgroup group-lavatube-green-smoke-down-1
   :id 621
   :bounds (static-bspherem 0 -6 0 8)
-  :parts
-  ((sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
+  :parts ((sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 4.2) :length (seconds 0.25))
    (sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.567) :length (seconds 0.32))
    (sp-item 2516 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 3.12) :length (seconds 0.2))
    (sp-item 2517 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -162,8 +161,7 @@
 (defpartgroup group-lavatube-green-smoke-down-2
   :id 622
   :bounds (static-bspherem 0 -6 0 8)
-  :parts
-  ((sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 5.12) :length (seconds 0.25))
+  :parts ((sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 5.12) :length (seconds 0.25))
    (sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 1.987) :length (seconds 0.32))
    (sp-item 2516 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 3.567) :length (seconds 0.2))
    (sp-item 2517 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -171,8 +169,7 @@
 (defpartgroup group-lavatube-green-smoke-down-3
   :id 623
   :bounds (static-bspherem 0 -6 0 8)
-  :parts
-  ((sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 3.87) :length (seconds 0.25))
+  :parts ((sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 3.87) :length (seconds 0.25))
    (sp-item 2516 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.897) :length (seconds 0.32))
    (sp-item 2516 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 3.43) :length (seconds 0.2))
    (sp-item 2517 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -240,8 +237,7 @@
 (defpartgroup group-lavatube-green-smoke-angle-1
   :id 624
   :bounds (static-bspherem 0 -6 0 8)
-  :parts
-  ((sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 3.5) :length (seconds 0.25))
+  :parts ((sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 3.5) :length (seconds 0.25))
    (sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.955) :length (seconds 0.32))
    (sp-item 2519 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 4.255) :length (seconds 0.2))
    (sp-item 2520 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -249,8 +245,7 @@
 (defpartgroup group-lavatube-green-smoke-angle-2
   :id 625
   :bounds (static-bspherem 0 -6 0 8)
-  :parts
-  ((sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 6.1) :length (seconds 0.25))
+  :parts ((sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 6.1) :length (seconds 0.25))
    (sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 3.235) :length (seconds 0.32))
    (sp-item 2519 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 3.675) :length (seconds 0.2))
    (sp-item 2520 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -258,8 +253,7 @@
 (defpartgroup group-lavatube-green-smoke-angle-3
   :id 626
   :bounds (static-bspherem 0 -6 0 8)
-  :parts
-  ((sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 5.1) :length (seconds 0.25))
+  :parts ((sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 5.1) :length (seconds 0.25))
    (sp-item 2519 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 3.965) :length (seconds 0.32))
    (sp-item 2519 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 2.875) :length (seconds 0.2))
    (sp-item 2520 :fade-after (meters 100) :falloff-to (meters 100))))
@@ -319,8 +313,7 @@
 (defpartgroup group-lavatube-fountain
   :id 627
   :bounds (static-bspherem 0 -10 0 12)
-  :parts
-  ((sp-item 2521 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 2521 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 2522 :fade-after (meters 100) :falloff-to (meters 100))))
 
 (defpart 2522
@@ -468,8 +461,7 @@
 (defpartgroup group-lavatube-heavy-smoke-start
   :id 632
   :bounds (static-bspherem 0 10 0 22)
-  :parts
-  ((sp-item 2534 :fade-after (meters 140) :falloff-to (meters 140))
+  :parts ((sp-item 2534 :fade-after (meters 140) :falloff-to (meters 140))
    (sp-item 2535 :fade-after (meters 200) :falloff-to (meters 200))))
 
 (defpart 2534
@@ -524,8 +516,7 @@
 (defpartgroup group-lavatube-heavy-smoke-end
   :id 633
   :bounds (static-bspherem 0 10 0 22)
-  :parts
-  ((sp-item 2536 :fade-after (meters 140) :falloff-to (meters 140))
+  :parts ((sp-item 2536 :fade-after (meters 140) :falloff-to (meters 140))
    (sp-item 2537 :fade-after (meters 200) :falloff-to (meters 200))))
 
 (defpart 2536

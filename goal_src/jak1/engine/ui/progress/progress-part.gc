@@ -650,8 +650,7 @@
   :id 97
   :flags (use-local-clock screen-space)
   :bounds (static-bspherem 0 0 0 100)
-  :parts
-  ((sp-item 338 :flags (launch-asap))
+  :parts ((sp-item 338 :flags (launch-asap))
    (sp-item 347 :flags (launch-asap) :period (seconds 12) :length (seconds 0.017))
    (sp-item 348 :flags (launch-asap) :period (seconds 12) :length (seconds 0.017))
    (sp-item 343 :flags (launch-asap))

@@ -212,8 +212,7 @@
        :debug-draw-jump #f))
 
 (defstate double-lurker-top-on-shoulders (double-lurker-top)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger)
          (let ((v1-1 (-> self fall-dest))
@@ -228,16 +227,14 @@
                                    0.0
                                    (atan (-> (the-as vector v1-3) x) (-> (the-as vector v1-3) z))))
          (go double-lurker-top-on-shoulders-die))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (clone-anim-once (ppointer->handle (-> self parent-process)) (the-as int (-> self draw origin-joint-index)) #t "")
         (update-transforms! (-> self collide-info))
         (suspend))))
 
 (defstate double-lurker-top-on-shoulders-die (double-lurker-top)
-  :code
-    (behavior ()
+  :code (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause))
       (ja-channel-push! 1 (seconds 0.1))
       (ja-no-eval :group! double-lurker-top-on-shoulders-die-ja :num! (seek!) :frame-num 0.0)
@@ -247,13 +244,11 @@
   :post ja-post)
 
 (defstate double-lurker-top-knocked-down (double-lurker-top)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch)
          (send-event proc 'shove (-> block param 0) (static-attack-info ((shove-up (meters 3)) (shove-back (meters 2))))))))
-  :code
-    (behavior ((arg0 object) (arg1 vector) (arg2 vector))
+  :code (behavior ((arg0 object) (arg1 vector) (arg2 vector))
       (nav-enemy-method-51 self)
       (let ((v1-3 (-> self draw shadow-ctrl))) (logclear! (-> v1-3 settings flags) (shadow-flags disable-draw)))
       0
@@ -276,8 +271,7 @@
   :post transform-post)
 
 (defstate double-lurker-top-resume (double-lurker-top)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((not *target*) (go-virtual nav-enemy-idle))
         ((target-in-range? self (-> self nav-info notice-distance)) (go-virtual nav-enemy-chase))
@@ -292,8 +286,7 @@
 
 (defstate nav-enemy-patrol (double-lurker-top)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (ja :group! (-> self draw art-group data (-> self nav-info walk-anim)))
       (ja :num-func num-func-identity :frame-num 0.0)
@@ -301,8 +294,7 @@
 
 (defstate nav-enemy-die (double-lurker-top)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (let ((v1-2 (-> self entity extra perm)))
         (logior! (-> v1-2 status) (entity-perm-status user-set-from-cstage))
         (set! (-> v1-2 user-int8 1) 1))
@@ -442,17 +434,14 @@
          (else (nav-enemy-set-hit-from-direction arg0) (attack-handler self arg0 arg3)))))))
 
 (defstate double-lurker-show-anims (double-lurker)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       0)
   :post transform-post)
 
 (defstate double-lurker-resume (double-lurker)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((not *target*) (go-virtual nav-enemy-idle))
         ((target-in-range? self (-> self nav-info notice-distance)) (go-virtual nav-enemy-chase))
@@ -472,8 +461,7 @@
 (defstate nav-enemy-patrol (double-lurker)
   :virtual #t
   :event double-lurker-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (ja :group! (-> self draw art-group data (-> self nav-info walk-anim)))
       (ja :num-func num-func-identity :frame-num 0.0)
@@ -482,8 +470,7 @@
 (defstate nav-enemy-notice (double-lurker)
   :virtual #t
   :event double-lurker-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (start-hint-timer (text-id sunken-double-lurker-hint))
       (let ((t9-1 (-> (method-of-type nav-enemy nav-enemy-notice) enter))) (if t9-1 (t9-1)))))
 
@@ -505,8 +492,7 @@
 
 (defstate nav-enemy-die (double-lurker)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (let ((v1-2 (-> self entity extra perm)))
         (logior! (-> v1-2 status) (entity-perm-status user-set-from-cstage))
         (set! (-> v1-2 user-int8 0) 1))
@@ -514,11 +500,9 @@
       (let ((t9-0 (-> (method-of-type nav-enemy nav-enemy-die) enter))) (if t9-0 (t9-0)))))
 
 (defstate double-lurker-both-knocked-back (double-lurker)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self knocked-back-speed) 40960.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (local-vars (at-0 int))
       (rlet ((vf0 :class vf)
              (vf1 :class vf)
@@ -556,8 +540,7 @@
                                                   (-> self nav-info hover-if-no-ground)
                                                   #f)
         (nav-control-method-27 (-> self nav))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (ja-no-eval :group! double-lurker-both-take-hit-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
@@ -592,8 +575,7 @@
   #f)
 
 (defstate double-lurker-buddy-was-hit (double-lurker)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self buddy-on-shoulders?) #f)
       (let ((v1-2 (-> self entity extra perm)))
         (logior! (-> v1-2 status) (entity-perm-status user-set-from-cstage))
@@ -608,8 +590,7 @@
 
 (defstate double-lurker-break-apart (double-lurker)
   :event double-lurker-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! double-lurker-both-break-apart-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -618,11 +599,9 @@
   :post nav-enemy-simple-post)
 
 (defstate double-lurker-knocked-back (double-lurker)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self knocked-back-speed) 40960.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (local-vars (at-0 int))
       (rlet ((vf0 :class vf)
              (vf1 :class vf)
@@ -660,8 +639,7 @@
                                                   (-> self nav-info hover-if-no-ground)
                                                   #f)
         (nav-control-method-27 (-> self nav))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       (ja-no-eval :group! double-lurker-bottom-take-hit-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
@@ -671,8 +649,7 @@
   :post nav-enemy-simple-post)
 
 (defstate double-lurker-waiting-to-die (double-lurker)
-  :code
-    (behavior ()
+  :code (behavior ()
       (clear-collide-with-as (-> self collide-info))
       (logior! (-> self draw status) (draw-status hidden))
       (until (not (-> self child))

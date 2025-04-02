@@ -161,16 +161,14 @@
 
 (defstate idle (sage-villagec)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (case (get-task-status (game-task village3-button))
         (((task-status need-introduction)) (send-event self 'play-anim)))
       ((-> (method-of-type process-taskable idle) trans))))
 
 (defstate play-anim (sage-villagec)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self draw bounds w) 10240.0)
       (send-event (-> self assistant extra process) 'end-mode)
       (let ((a0-2 (handle->process (-> self evilbro)))) (if a0-2 (deactivate a0-2)))

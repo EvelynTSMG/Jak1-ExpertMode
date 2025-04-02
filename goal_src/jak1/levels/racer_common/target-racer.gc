@@ -274,16 +274,14 @@
        (set! (-> self racer shock-offset) -8192.0)
        (set! (-> self racer shock-offsetv) 0.0)
        (process-spawn part-tracker
-                      :init
-                      part-tracker-init
+                      :init part-tracker-init
                       (-> *part-group-id-table* 13)
                       -1
                       #f
                       #f
                       #f
                       (-> self control trans)
-                      :to
-                      self)
+                      :to self)
        (effect-control-method-10 (-> self skel effect) 'effect-land -1.0 -1)))
     (deg-diff (vector-y-angle gp-0) (vector-y-angle (-> self control transv)))
     (let ((f30-2 (vector-xz-length gp-0)))
@@ -365,11 +363,9 @@
   (let ((f0-11 (lerp-scale 100.0 60.0 (-> self racer engine-sound-pitch) 0.8 2.0)))
     (sound-play "zoomer-loop"
                 :id (-> self racer engine-sound-id)
-                :vol
-                f0-11
+                :vol f0-11
                 :pitch (-> self racer engine-sound-pitch)
-                :position
-                (the-as symbol (-> self control trans))))
+                :position (the-as symbol (-> self control trans))))
   (cond
     ((and (!= (-> self current-level name) 'ogre) (!= (-> self current-level name) 'lavatube)) #f)
     ((or (logtest? (-> self control status) (cshape-moving-flags onground))
@@ -405,8 +401,7 @@
     (when (< 0.0 (-> *part-id-table* 2212 init-specs 11 initial-valuef))
       (set! (-> *part-id-table* 2212 init-specs 14 initial-valuef) (the-as float gp-0))
       (set! (-> *part-id-table* 2212 init-specs 3 initial-valuef) 15155.2)
-      (launch-particles :system
-                        *sp-particle-system-3d*
+      (launch-particles :system *sp-particle-system-3d*
                         (-> *part-id-table* 2212)
                         (vector<-cspace! (new 'stack-no-clear 'vector) (-> self manipy 0 node-list data 4)))))
   (let ((gp-2 (vector-y-quaternion! (new 'stack-no-clear 'vector) (-> self control unknown-quaternion00))))
@@ -417,8 +412,7 @@
     (when (< 0.0 (-> *part-id-table* 2212 init-specs 11 initial-valuef))
       (set! (-> *part-id-table* 2212 init-specs 14 initial-valuef) (the-as float gp-2))
       (set! (-> *part-id-table* 2212 init-specs 3 initial-valuef) 10240.0)
-      (launch-particles :system
-                        *sp-particle-system-3d*
+      (launch-particles :system *sp-particle-system-3d*
                         (-> *part-id-table* 2212)
                         (vector<-cspace! (new 'stack-no-clear 'vector) (-> self manipy 0 node-list data 10)))))
   (when (and (racer-on-ground?) (< (-> self control unknown-float01) 90112.0))
@@ -468,8 +462,7 @@
            (a2-7 (vector<-cspace! (new 'stack-no-clear 'vector) (-> self manipy 0 node-list data 10))))
       (set! (-> a2-7 y) (-> self control shadow-pos y))
       (if (nonzero? s5-3)
-        (launch-particles :system
-                          (if gp-5 *sp-particle-system-3d* *sp-particle-system-2d*)
+        (launch-particles :system (if gp-5 *sp-particle-system-3d* *sp-particle-system-2d*)
                           (the-as sparticle-launcher s5-3)
                           a2-7))))
   (when (and (and (= (-> self fact eco-type) (pickup-type eco-yellow)) (>= (-> self fact eco-level) 1.0))
@@ -482,15 +475,13 @@
       (vector-normalize! gp-6 (-> *RACER-bank* yellow-projectile-speed))
       (vector+! gp-6 gp-6 (-> self control transv))
       (process-spawn projectile-yellow
-                     :init
-                     projectile-init-by-other
+                     :init projectile-init-by-other
                      (-> self entity)
                      s5-4
                      gp-6
                      (if (>= (-> self fact eco-level) (-> *FACT-bank* eco-level-max)) 152 136)
                      #f
-                     :to
-                     self))
+                     :to self))
     (set-time! (-> self control unknown-dword82)))
   (let ((f22-0 (-> *RACER-bank* hotcoals-heat-inc))
         (f24-0 (-> *RACER-bank* lava-heat-inc))

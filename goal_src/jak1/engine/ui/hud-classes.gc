@@ -11,8 +11,7 @@
   :id 75
   :flags (screen-space)
   :bounds (static-bspherem 0 0 0 2)
-  :parts
-  ((sp-item 303 :flags (launch-asap) :binding 304)
+  :parts ((sp-item 303 :flags (launch-asap) :binding 304)
    (sp-item 304 :flags (start-dead launch-asap) :binding 305)
    (sp-item 305 :flags (start-dead launch-asap) :binding 306)
    (sp-item 306 :flags (start-dead launch-asap) :binding 307)
@@ -752,8 +751,7 @@
   :id 80
   :flags (use-local-clock screen-space)
   :bounds (static-bspherem 0 0 0 100)
-  :parts
-  ((sp-item 318 :flags (launch-asap))
+  :parts ((sp-item 318 :flags (launch-asap))
    (sp-item 319 :fade-after (meters 35))
    (sp-item 320 :fade-after (meters 20))
    (sp-item 321 :flags (launch-asap) :period (seconds 12) :length (seconds 0.017))

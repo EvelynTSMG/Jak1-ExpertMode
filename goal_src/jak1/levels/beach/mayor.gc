@@ -610,12 +610,10 @@
 
 (defstate idle (mayor)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (should-display? self)) (go-virtual hidden))
       ((-> (method-of-type process-taskable idle) trans)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (let ((t9-0 (-> (method-of-type process-taskable idle) post))) (if t9-0 ((the-as (function none) t9-0))))
       (do-push-aways! (-> self root))))
 

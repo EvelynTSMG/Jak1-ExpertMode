@@ -25,8 +25,7 @@
   :id 457
   :linger-duration (seconds 0)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1773 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 1773 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1774 :fade-after (meters 80))
    (sp-item 1775 :flags (is-3d))
    (sp-item 1776 :flags (is-3d))))
@@ -107,8 +106,7 @@
   :duration (seconds 0.017)
   :linger-duration (seconds 0.47)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1777 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 1777 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1778 :flags (is-3d))
    (sp-item 1779 :flags (is-3d))))
 
@@ -253,8 +251,7 @@
   :id 460
   :linger-duration (seconds 0)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1785 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 1785 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1786 :fade-after (meters 80))
    (sp-item 1787 :flags (is-3d))
    (sp-item 1788 :flags (is-3d))))
@@ -335,8 +332,7 @@
   :duration (seconds 0.017)
   :linger-duration (seconds 0.47)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1789 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 1789 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 1790 :flags (is-3d))
    (sp-item 1791 :flags (is-3d))))
 
@@ -491,8 +487,7 @@
   (not (-> arg0 link next)))
 
 (defstate race-ring-active (race-ring)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 symbol))
       (case message
         (('notify)
@@ -501,36 +496,31 @@
              ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
               (set! (-> self part-track)
                     (ppointer->handle (process-spawn part-tracker
-                                                     :init
-                                                     part-tracker-init
+                                                     :init part-tracker-init
                                                      (-> *part-group-id-table* 460)
                                                      -1
                                                      race-ring-blue-set-particle-rotation-callback
                                                      (-> self ppointer)
                                                      #f
                                                      (-> self root trans)
-                                                     :to
-                                                     self)))
+                                                     :to self)))
               (set! v0-0 #t)
               (set! (-> self keep-part-track-alive) v0-0))
              (else
               (set! (-> self part-track)
                     (ppointer->handle (process-spawn part-tracker
-                                                     :init
-                                                     part-tracker-init
+                                                     :init part-tracker-init
                                                      (-> *part-group-id-table* 457)
                                                      -1
                                                      race-ring-set-particle-rotation-callback
                                                      (-> self ppointer)
                                                      #f
                                                      (-> self root trans)
-                                                     :to
-                                                     self)))
+                                                     :to self)))
               (set! v0-0 #t)
               (set! (-> self keep-part-track-alive) v0-0)))
            v0-0))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (cond
         ((first-ring? self)
          (logior! (-> self mask) (process-mask actor-pause))
@@ -540,67 +530,57 @@
       (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
         (set! (-> self part-track)
               (ppointer->handle (process-spawn part-tracker
-                                               :init
-                                               part-tracker-init
+                                               :init part-tracker-init
                                                (-> *part-group-id-table* 461)
                                                -1
                                                race-ring-blue-set-particle-rotation-callback
                                                (-> self ppointer)
                                                #f
                                                (-> self root trans)
-                                               :to
-                                               self)))
+                                               :to self)))
         (set! (-> self part-track)
               (ppointer->handle (process-spawn part-tracker
-                                               :init
-                                               part-tracker-init
+                                               :init part-tracker-init
                                                (-> *part-group-id-table* 458)
                                                -1
                                                race-ring-set-particle-rotation-callback
                                                (-> self ppointer)
                                                #f
                                                (-> self root trans)
-                                               :to
-                                               self))))
+                                               :to self))))
       (set! (-> self old-hips quad) (-> (target-pos 26) quad))
       (+! (-> self old-hips x) 1.0)
       (set! (-> self state-time) (-> *display* game-frame-counter)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (sound-play "close-racering")
       (let ((a0-3 (handle->process (-> self part-track)))) (if a0-3 (deactivate a0-3)))
       (if (= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
         (set! (-> self part-track)
               (ppointer->handle (process-spawn part-tracker
-                                               :init
-                                               part-tracker-init
+                                               :init part-tracker-init
                                                (-> *part-group-id-table* 462)
                                                -1
                                                race-ring-blue-set-particle-rotation-callback
                                                (-> self ppointer)
                                                #f
                                                (-> self root trans)
-                                               :to
-                                               self)))
+                                               :to self)))
         (set! (-> self part-track)
               (ppointer->handle (process-spawn part-tracker
-                                               :init
-                                               part-tracker-init
+                                               :init part-tracker-init
                                                (-> *part-group-id-table* 459)
                                                -1
                                                race-ring-set-particle-rotation-callback
                                                (-> self ppointer)
                                                #f
                                                (-> self root trans)
-                                               :to
-                                               self))))
+                                               :to self))))
       (cond
         ((first-ring? self)
          (logclear! (-> self mask) (process-mask actor-pause))
          (process-entity-status! self (entity-perm-status bit-3) #t))
         (else (logior! (-> self mask) (process-mask actor-pause)) (process-entity-status! self (entity-perm-status bit-3) #f))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (nonzero? (-> self sound)) (update! (-> self sound)))
       (cond
         ((handle->process (-> self part-track))
@@ -608,38 +588,33 @@
         ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
          (set! (-> self part-track)
                (ppointer->handle (process-spawn part-tracker
-                                                :init
-                                                part-tracker-init
+                                                :init part-tracker-init
                                                 (-> *part-group-id-table* 460)
                                                 -1
                                                 race-ring-blue-set-particle-rotation-callback
                                                 (-> self ppointer)
                                                 #f
                                                 (-> self root trans)
-                                                :to
-                                                self)))
+                                                :to self)))
          (set! (-> self keep-part-track-alive) #t))
         (else
          (set! (-> self part-track)
                (ppointer->handle (process-spawn part-tracker
-                                                :init
-                                                part-tracker-init
+                                                :init part-tracker-init
                                                 (-> *part-group-id-table* 457)
                                                 -1
                                                 race-ring-set-particle-rotation-callback
                                                 (-> self ppointer)
                                                 #f
                                                 (-> self root trans)
-                                                :to
-                                                self)))
+                                                :to self)))
          (set! (-> self keep-part-track-alive) #t)))
       (cond
         ((not (last-ring? self)))
         ((= (-> self entity extra perm task) (game-task rolling-ring-chase-2))
          (spool-push *art-control* "race-ring-second-anim" 0 self -99.0))
         (else (spool-push *art-control* "race-ring-anim" 0 self -99.0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (cond
@@ -711,8 +686,7 @@
   :post ja-post)
 
 (defstate race-ring-wait (race-ring)
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (nonzero? (-> self sound)) (stop! (-> self sound)))
       (loop
         (suspend)
@@ -722,12 +696,10 @@
           (go race-ring-active)))))
 
 (defstate race-ring-idle (race-ring)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('activate) (logclear! (-> self mask) (process-mask actor-pause)) (go race-ring-active))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (nonzero? (-> self sound)) (stop! (-> self sound)))
       (loop
         (suspend))))

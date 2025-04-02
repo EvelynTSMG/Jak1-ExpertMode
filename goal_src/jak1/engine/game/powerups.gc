@@ -472,12 +472,9 @@
            (f0-13 (lerp-scale -0.3 0.3 (-> self control unknown-float01) 0.0 81920.0)))
        (sound-play "ice-loop"
                    :id (-> self control unknown-soundid00)
-                   :vol
-                   f30-0
-                   :pitch
-                   f0-13
-                   :position
-                   (the-as symbol (-> self control trans)))))
+                   :vol f30-0
+                   :pitch f0-13
+                   :position (the-as symbol (-> self control trans)))))
     ((< 0.0 (-> self control unknown-float141))
      (set! (-> self control unknown-float141) 0.0)
      (let ((v1-64 (the-as sound-rpc-set-param (get-sound-buffer-entry))))

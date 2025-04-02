@@ -23,15 +23,13 @@
 
 (defstate floating-launcher-idle (floating-launcher)
   :event plat-event
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (plat-trans)
       (when (< (vector-xz-length (vector-! (new 'stack-no-clear 'vector) (target-pos 0) (-> self root trans))) 81920.0)
         (if (and (>= (-> (target-pos 0) y) (-> self trigger-height))
                  (logtest? (-> *target* control status) (cshape-moving-flags onground)))
           (go floating-launcher-lowering))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (suspend)
       (transform-post)
@@ -43,8 +41,7 @@
 (defstate floating-launcher-lowering (floating-launcher)
   :event plat-event
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((a0-1 (entity-actor-lookup (-> self entity) 'alt-actor 0))) (if a0-1 (entity-birth-no-kill a0-1)))
       (let ((f30-0 1.0))
         (while (!= f30-0 0.0)

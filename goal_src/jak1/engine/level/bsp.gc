@@ -337,8 +337,7 @@
         (b! (>= (the-as int v1-1) 0)
             cfg-1
             ;; in the dealy slot, advance the node
-            :delay
-            (set! next-node (the-as bsp-node (-> real-node front))))
+            :delay (set! next-node (the-as bsp-node (-> real-node front))))
         ;; otherwise, we are on the back side.
         (set! a2-0 (-> real-node back-flags))
         (b! #t cfg-1 :delay (set! next-node (the-as bsp-node (-> real-node back))))

@@ -832,14 +832,11 @@
            (new 'static 'nav-mesh
                 :custom-hacky? #t
                 ;; Our hack. This will neutralize the function that caused trouble.
-                :origin
-                (new 'static 'vector :x (meters -7.2681) :y (meters 1.0468) :z (meters 16.3255) :w 1.0000) ;; Location of the navmesh.
-                :bounds
-                (new 'static 'sphere :x (meters -7.2681) :y (meters 1.0468) :z (meters 16.3255) :w (meters 20.0)) ;; Some kind of boundary. It should cover the whole navmesh. Enemies won't go to parts it doesn't cover.
+                :origin (new 'static 'vector :x (meters -7.2681) :y (meters 1.0468) :z (meters 16.3255) :w 1.0000) ;; Location of the navmesh.
+                :bounds (new 'static 'sphere :x (meters -7.2681) :y (meters 1.0468) :z (meters 16.3255) :w (meters 20.0)) ;; Some kind of boundary. It should cover the whole navmesh. Enemies won't go to parts it doesn't cover.
                 :vertex-count 4
                 ;; If this is missing, then debug drawing of the vertexes will not be possible.
-                :vertex
-                (new 'static 'inline-array
+                :vertex (new 'static 'inline-array
                      nav-vertex
                      4 ;; The vertexes, we can use these to form our triangles.
                      (new 'static 'nav-vertex :x (meters 5.8046) :y (meters 0.1945) :z (meters 6.6462) :w 1.0000) ;; All coordinates are relative to the origin of the navmesh...
@@ -848,23 +845,20 @@
                      (new 'static 'nav-vertex :x (meters -4.5910) :y (meters -0.5481) :z (meters 6.0990) :w 1.0000))
                 :poly-count 2
                 ;; For some weird reason, you need to define this, otherwise it will think that there are 0 polys. Even though it could just tell from the array below...
-                :poly
-                (new 'static 'inline-array
+                :poly (new 'static 'inline-array
                      nav-poly
                      2 ;; Here we define our polygons (only triangles).
                      (new 'static 'nav-poly
                           :id #x0
                           ;; It needs a unique ID, because we need to refer to it at some places. It is possible that this gets assigned automatically if you don't write it here. But it is better to have it here for clarity.
-                          :vertex
-                          (new 'static 'array uint8 3 #x0 #x1 #x3) ;; You pick your 3 vertexes here, from among the ones we defined earlier. You need to pick them in an okay order. Because of the normals. Logs will warn you if it is wrong.
+                          :vertex (new 'static 'array uint8 3 #x0 #x1 #x3) ;; You pick your 3 vertexes here, from among the ones we defined earlier. You need to pick them in an okay order. Because of the normals. Logs will warn you if it is wrong.
                           :adj-poly
                           (new 'static 'array uint8 3 #xff #x1 #xff) ;; You can (or should) define any adjecent triangles here. I am sure this is important. The order may or may not matter - I tried to respect the order here.
                           ;;:pat 0 ;; This is 0 by default. The so called "gap triangles" have it set to 1. But to get gap triangles working properly, you need proper route data. Which we have in existing navmeshes, but not in fully custom ones.
                           )
                      (new 'static 'nav-poly
                           :id #x1
-                          :vertex
-                          (new 'static 'array uint8 3 #x1 #x2 #x3)
+                          :vertex (new 'static 'array uint8 3 #x1 #x2 #x3)
                           :adj-poly
                           (new 'static 'array uint8 3 #xff #xff #x0)))
                 ;; Optional. I don't understand this. It might impact enemy behaviour/movement on the navmesh, but not sure how. Even the smallest navmesh has at least one of these.
@@ -893,8 +887,7 @@
                 ;; Route is essential (game crashes without it), Not sure how it works exactly. Also not sure how to determine the array length. Seems to be poly-count*2?
                 ;; It is needed if you want the gap triangles to work. But it seems gibberish even in existing navmeshes. Maybe the type is wrong?
                 ;; The simplest navmeshese have this exact same route data as seen below, so I am using it in our example.
-                :route
-                (new 'static 'inline-array
+                :route (new 'static 'inline-array
                      vector4ub
                      4
                      (new 'static 'vector4ub :data (new 'static 'array uint8 4 #xff #x0 #x0 #x0))

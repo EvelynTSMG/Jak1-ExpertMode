@@ -58,8 +58,7 @@
                :nloop #x1
                :eop #x1
                :pre #x1
-               :prim
-               (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :tme #x1)
+               :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :tme #x1)
                :nreg #xf))
     ;; set up registers
     (set! (-> tables giftag regs)

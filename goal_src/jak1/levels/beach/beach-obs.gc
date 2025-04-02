@@ -31,17 +31,14 @@
   :longest-edge (meters 7.5))
 
 (defstate windmill-one-idle (windmill-one)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (sound-stop (-> self sound-id)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (let ((t2-0 (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node windmill-one-lod0-jg big))))
         (if (!= (+ (-> t2-0 x) (-> t2-0 y) (-> t2-0 z)) 0.0)
           (sound-play "gears-rumble" :id (-> self sound-id) :position (the-as symbol t2-0)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! windmill-one-idle-ja :num! (seek! max 0.5) :frame-num 0.0)
         (until (ja-done? 0)
@@ -95,8 +92,7 @@
   :id 155
   :flags (use-local-clock)
   :bounds (static-bspherem 0 -12 0 14)
-  :parts
-  ((sp-item 539 :period (seconds 5) :length (seconds 0.05))
+  :parts ((sp-item 539 :period (seconds 5) :length (seconds 0.05))
    (sp-item 539 :period (seconds 5) :length (seconds 0.1))
    (sp-item 539 :period (seconds 5) :length (seconds 0.15))
    (sp-item 539 :period (seconds 5) :length (seconds 0.25))
@@ -177,38 +173,38 @@
   :bounds (static-spherem 0 -8 0 9))
 
 (defstate grottopole-idle (grottopole)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (when (= (-> proc type) target)
         (case message
           (('attack)
-           (let ((v1-2 (-> block param 2)))
-             (when (!= v1-2 (-> self incomming-attack-id))
-               (set! (-> self incomming-attack-id) v1-2)
-               (case (-> block param 1)
-                 (('uppercut)
-                  (when (and (< (-> *target* control trans y) (+ -40960.0 (-> self root trans y)))
-                             (< (-> self position) (-> self max-position))
-                             ((method-of-type touching-shapes-entry prims-touching?)
-                              (the-as touching-shapes-entry (-> block param 0))
-                              (the-as collide-shape-moving (-> self root))
-                              (the-as uint 2)))
-                    (sound-play "grotto-pole-hit")
-                    (sound-play "dirt-crumble")
-                    (increment-success-for-hint (text-id beach-grottopole-increment))
-                    (go grottopole-moving-up)))
-                 (('flop)
-                  (when (and (< (+ -40960.0 (-> self root trans y)) (-> *target* control trans y))
-                             (> (-> self position) 0)
-                             ((method-of-type touching-shapes-entry prims-touching?)
-                              (the-as touching-shapes-entry (-> block param 0))
-                              (the-as collide-shape-moving (-> self root))
-                              (the-as uint 1)))
-                    (sound-play "grotto-pole-hit")
-                    (sound-play "dirt-crumble")
-                    (go grottopole-moving-down))))))))))
-  :code
-    (behavior ()
+            (let ((v1-2 (-> block param 2)))
+              (when (!= v1-2 (-> self incomming-attack-id))
+                (set! (-> self incomming-attack-id) v1-2)
+                (case (-> block param 1)
+                  ;mod: Poles can't be uppercutted
+                  (('flop)
+                    (when (and
+                          (< (+ -40960.0 (-> self root trans y)) (-> *target* control trans y))
+                          (> (-> self position) 0)
+                          ((method-of-type touching-shapes-entry prims-touching?)
+                            (the-as touching-shapes-entry (-> block param 0))
+                            (the-as collide-shape-moving (-> self root))
+                            (the-as uint 1)
+                          )
+                        )
+                      (sound-play "grotto-pole-hit")
+                      (sound-play "dirt-crumble")
+                      (go grottopole-moving-down)
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  :code (behavior ()
       (set-time! (-> self state-time))
       (ja :group! grottopole-idle-ja :num! min)
       (transform-post)
@@ -248,8 +244,7 @@
   (none))
 
 (defstate grottopole-moving-up (grottopole)
-  :code
-    (behavior ()
+  :code (behavior ()
       (+! (-> self position) 1)
       (let ((v1-4 (-> self entity extra perm)))
         (logior! (-> v1-4 status) (entity-perm-status user-set-from-cstage))
@@ -259,8 +254,7 @@
   :post transform-post)
 
 (defstate grottopole-moving-down (grottopole)
-  :code
-    (behavior ()
+  :code (behavior ()
       (+! (-> self position) -1)
       (let ((v1-4 (-> self entity extra perm)))
         (logior! (-> v1-4 status) (entity-perm-status user-set-from-cstage))
@@ -334,8 +328,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 543 :period (seconds 5) :length (seconds 0.017))
+  :parts ((sp-item 543 :period (seconds 5) :length (seconds 0.017))
    (sp-item 544 :period (seconds 5) :length (seconds 0.017))
    (sp-item 545 :period (seconds 5) :length (seconds 0.017))
    (sp-item 546 :period (seconds 5) :length (seconds 0.017))
@@ -452,15 +445,13 @@
   :init-specs ((:fade-a -0.2)))
 
 (defstate ecoventrock-idle (ecoventrock)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack)
          (sound-play "cannon-shot")
          (increment-success-for-hint (text-id sidekick-hint-ecorocks))
          (go ecoventrock-break #f))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (loop
         (logior! (-> self mask) (process-mask sleep))
@@ -468,11 +459,9 @@
 
 (defstate ecoventrock-break (ecoventrock)
   :event process-drawable-fuel-cell-handler
-  :enter
-    (behavior ((arg0 symbol))
+  :enter (behavior ((arg0 symbol))
       (set-time! (-> self state-time)))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (local-vars (sv-128 symbol))
       (ja-channel-set! 0)
       (clear-collide-with-as (-> self root))
@@ -481,16 +470,14 @@
       (let ((v1-2 (entity-actor-lookup (-> self entity) 'alt-actor 0))) (send-event (if v1-2 (-> v1-2 extra process)) 'update))
       (when (not arg0)
         (process-spawn part-tracker
-                       :init
-                       part-tracker-init
+                       :init part-tracker-init
                        (-> *part-group-id-table* 156)
                        -1
                        #f
                        #f
                        #f
                        (-> self root root-prim prim-core)
-                       :to
-                       *entity-pool*)
+                       :to *entity-pool*)
         (let* ((s5-1 (-> self root trans))
                (v1-14 (target-pos 0))
                (f0-1 (- (-> s5-1 x) (-> v1-14 x)))
@@ -582,11 +569,9 @@
   :bounds (static-spherem 0 0 0 10))
 
 (defstate flying-rock-rolling (flying-rock)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 #f)
             (f30-0 0.99)
             (s5-0 0))
@@ -624,14 +609,12 @@
         (quaternion*! (-> self root quat) (-> self tumble) (-> self root quat))
         (suspend))
       (go flying-rock-idle))
-  :post
-    (behavior ()
+  :post (behavior ()
       (if (time-elapsed? (-> self state-time) (seconds 3)) (go flying-rock-idle))
       (ja-post)))
 
 (defstate flying-rock-idle (flying-rock)
-  :code
-    (behavior ()
+  :code (behavior ()
       (clear-collide-with-as (-> self root))
       (while (or (logtest? (-> self draw status) (draw-status was-drawn))
                  (and *target* (>= 204800.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))))
@@ -689,8 +672,7 @@
   :longest-edge (meters 10))
 
 (defstate bladeassm-idle (bladeassm)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (+! (-> self angle) (* 3640.889 (seconds-per-frame)))
         (set! (-> self angle) (the float (sar (shl (the int (-> self angle)) 48) 48)))
@@ -783,8 +765,7 @@
   (none))
 
 (defstate flutflutegg-idle (flutflutegg)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (when (and (= message 'attack)
                  (or (= (-> block param 1) 'punch) (= (-> block param 1) 'spin) (= (-> block param 1) 'spin-air))
                  (!= (-> self incomming-attack-id) (-> block param 2)))
@@ -799,8 +780,7 @@
               (flutflutegg-method-20 self 24576.0 (* -8192.0 f1-2) (* -8192.0 f0-2))
               (flutflutegg-method-20 self 0.0 (* -8192.0 f1-2) (* -8192.0 f0-2)))))
         (go flutflutegg-physics)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let* ((gp-0 (vector-for-ambient-limited (-> self ambient) (new 'stack-no-clear 'vector) (seconds 3) 368640.0 self))
              (v1-2 (/ (the-as int (rand-uint31-gen *random-generator*)) 256))
              (v1-3 (the-as number (logior #x3f800000 v1-2)))
@@ -824,15 +804,13 @@
           ((< 0.4 f30-0) (play-ambient (-> self ambient) "BIR-AM09" #f (-> self root trans)))
           ((< 0.2 f30-0) (play-ambient (-> self ambient) "BIR-AM12" #f (-> self root trans)))
           (else (play-ambient (-> self ambient) "BIR-AM13" #f (-> self root trans))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-post)
       (loop
         (suspend))))
 
 (defstate flutflutegg-physics (flutflutegg)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (when (and (time-elapsed? (-> self state-time) (seconds 0.5))
                  (= message 'attack)
                  (or (= (-> block param 1) 'punch) (= (-> block param 1) 'spin) (= (-> block param 1) 'spin-air))
@@ -844,11 +822,10 @@
           (vector-normalize! s5-1 1.0)
           (let ((f0-2 (vector-dot s5-1 (-> self dir)))
                 (f1-2 (- (* (-> s5-1 x) (-> self dir z)) (* (-> s5-1 z) (-> self dir x)))))
-            (if (< f0-2 -0.7)
-              (flutflutegg-method-20 self 24576.0 (* -8192.0 f1-2) (* -8192.0 f0-2))
-              (flutflutegg-method-20 self 0.0 (* -8192.0 f1-2) (* -8192.0 f0-2)))))))
-  :code
-    (behavior ()
+            (if (< f0-2 -0.7) ;mod: flutflutegg takes significantly more knockback (6.0 -> 24.0)
+              (flutflutegg-method-20 self (meters 24.0) (* (meters -2.0) f1-2) (* (meters -2.0) f0-2))
+              (flutflutegg-method-20 self 0.0 (* (meters -2.0) f1-2) (* (meters -2.0) f0-2)))))))
+  :code (behavior ()
       (set-time! (-> self state-time))
       (loop
         (+! (-> self pos) (* (-> self vel) (seconds-per-frame)))
@@ -870,12 +847,10 @@
   :post ja-post)
 
 (defstate flutflutegg-physics-fall (flutflutegg)
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (v1-25 symbol))
       (process-spawn camera-tracker
-                     :init
-                     camera-tracker-init
+                     :init camera-tracker-init
                      (lambda :behavior camera-tracker ()
                        (while (not (process-grab? *target*))
                          (suspend))
@@ -888,8 +863,7 @@
                        (send-event *camera* 'blend-from-as-fixed)
                        (camera-change-to (the-as string 'base) 75 #f)
                        (none))
-                     :to
-                     self)
+                     :to self)
       (close-specific-task! (game-task beach-flutflut) (task-status need-reminder))
       (loop
         (vector-float*! (-> self root transv) (-> self dir) (-> self vel))
@@ -915,8 +889,7 @@
   :post ja-post)
 
 (defstate flutflutegg-break (flutflutegg)
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (when arg0
         (set-vector! (-> self root trans) -231190.94 64559.105 -1164727.5 1.0)
         (quaternion-axis-angle! (-> self root quat) 0.0 1.0 0.0 -18204.445))
@@ -1009,14 +982,12 @@
   :bounds (static-spherem 0 7 0 11))
 
 (defstate harvester-idle (harvester)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('update)
          (if (and (-> self alt-actor) (logtest? (-> self alt-actor extra perm status) (entity-perm-status complete)))
            (go harvester-inflate #f)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (and (-> self alt-actor) (logtest? (-> self alt-actor extra perm status) (entity-perm-status complete)))
         (go harvester-inflate #t))
       (ja :group! harvester-inflate-ja :num! (identity (ja-aframe 1.0 0)))
@@ -1026,8 +997,7 @@
         (suspend))))
 
 (defstate harvester-inflate (harvester)
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (when (not arg0)
         (ja-no-eval :group! harvester-inflate-ja :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -1113,8 +1083,7 @@
                                                       0
                                                       #f
                                                       '()
-                                                      :to
-                                                      pp)))
+                                                      :to pp)))
                (s5-2 (ppointer->handle (process-spawn fuel-cell :init fuel-cell-init-as-clone gp-1 (-> pp entity extra perm task) :to pp))))
           (let ((v1-13 (handle->process gp-1)))
             (if v1-13 (set! (-> (the-as pov-camera v1-13) notify-handle) (the-as handle s5-2))))

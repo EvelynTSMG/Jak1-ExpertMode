@@ -336,17 +336,14 @@
 
 (defstate light-eco-child-appear (light-eco-child)
   :event light-eco-child-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self falling-start-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((f30-0 (fmin (the float (- (current-time) (-> self falling-start-time))) (-> self traj time))))
         (eval-position! (-> self traj) f30-0 (-> self root trans))
         (if (= f30-0 (-> self traj time)) (go light-eco-child-hit-ground)))
       (common-trans self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (ja :num! (loop!))))
@@ -354,11 +351,9 @@
 
 (defstate light-eco-child-hit-ground (light-eco-child)
   :event light-eco-child-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((f30-0 (+ (-> self root transv y) (* -544768.0 (seconds-per-frame)))))
         (when (and (< f30-0 0.0) (>= (-> self ground-y) (-> self root trans y)))
           (if (>= 4096.0 (fabs f30-0)) (go light-eco-child-idle))
@@ -377,8 +372,7 @@
             (set! (-> gp-1 y) (-> self root trans y))
             (set! (-> self root trans quad) (-> gp-1 quad)))))
       (common-trans self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (ja :num! (loop!))))
@@ -386,23 +380,19 @@
 
 (defstate light-eco-child-idle (light-eco-child)
   :event light-eco-child-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (time-elapsed? (-> self state-time) (seconds 4)) (go light-eco-child-die))
       (common-trans self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (ja :num! (loop!))))
   :post transform-post)
 
 (defstate light-eco-child-die (light-eco-child)
-  :code
-    (behavior ()
+  :code (behavior ()
       (send-event (ppointer->process (-> self parent)) 'untrigger (-> self angle-bit))
       (clear-collide-with-as (-> self root))
       (logior! (-> self draw status) (draw-status hidden))
@@ -411,8 +401,7 @@
         (suspend))))
 
 (defstate light-eco-child-grabbed (light-eco-child)
-  :code
-    (behavior ()
+  :code (behavior ()
       (suspend)
       0))
 
@@ -520,12 +509,10 @@
 
 (defstate light-eco-mother-appear (light-eco-mother)
   :event light-eco-mother-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (common-trans self)
       (spawn (-> self part2) (-> self root trans)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (!= (-> self root scale x) 12.0)
         (let ((f0-3 (seek-with-smooth (-> self root scale x) 12.0 (* 6.0 (seconds-per-frame)) 0.25 0.001)))
           (set-vector! (-> self root scale) f0-3 f0-3 f0-3 1.0))
@@ -536,13 +523,11 @@
 
 (defstate light-eco-mother-active (light-eco-mother)
   :event light-eco-mother-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (common-trans self)
       (spawn (-> self part) (-> self root trans))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (ja :num! (loop!))))
@@ -550,11 +535,9 @@
 
 (defstate light-eco-mother-discipate (light-eco-mother)
   :event light-eco-mother-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (common-trans self))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (!= (-> self root scale x) 0.0)
         (let ((f0-3 (seek-with-smooth (-> self root scale x) 0.0 (* 12.0 (seconds-per-frame)) 0.5 0.001)))
           (set-vector! (-> self root scale) f0-3 f0-3 f0-3 1.0))

@@ -123,8 +123,7 @@
         (set! (-> this targ-local-path-offset x) (fmax (+ -12288.0 f0-8) (- (-> this max-local-path-offset x))))))))
 
 (defstate sunkenfisha-idle (sunkenfisha)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (local-vars (at-0 int))
       (rlet ((vf0 :class vf)
              (vf1 :class vf)
@@ -145,8 +144,7 @@
           (.mul.x.vf.xyz vf1 vf1 vf2)
           (.svf (&-> v1-16 quad) vf1))
         (sunkenfisha-method-23 self)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! sunkenfisha-idle-ja :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)

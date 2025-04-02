@@ -84,8 +84,7 @@
 (defpartgroup group-beach-sack-fuse
   :id 117
   :bounds (static-bspherem 0 0 0 1)
-  :parts
-  ((sp-item 517 :fade-after (meters 30))
+  :parts ((sp-item 517 :fade-after (meters 30))
    (sp-item 518 :fade-after (meters 120) :falloff-to (meters 120))
    (sp-item 519 :fade-after (meters 80) :falloff-to (meters 80))))
 
@@ -148,8 +147,7 @@
   :id 118
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 16)
-  :parts
-  ((sp-item 520 :period (seconds 4) :length (seconds 0.1))
+  :parts ((sp-item 520 :period (seconds 4) :length (seconds 0.1))
    (sp-item 521 :fade-after (meters 60) :period (seconds 4) :length (seconds 0.05))
    (sp-item 522 :period (seconds 4) :length (seconds 0.05) :offset 15)
    (sp-item 523 :period (seconds 4) :length (seconds 0.05))
@@ -316,8 +314,7 @@
   :id 119
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 24)
-  :parts
-  ((sp-item 529 :fade-after (meters 200) :falloff-to (meters 200) :period (seconds 4) :length (seconds 0.1))
+  :parts ((sp-item 529 :fade-after (meters 200) :falloff-to (meters 200) :period (seconds 4) :length (seconds 0.1))
    (sp-item 530 :fade-after (meters 100) :falloff-to (meters 100) :period (seconds 4) :length (seconds 0.05))
    (sp-item 531 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 4) :length (seconds 0.05))
    (sp-item 532 :period (seconds 4) :length (seconds 0.05) :offset 15)
@@ -556,20 +553,16 @@
   (none))
 
 (defstate mistycannon-missile-idle (mistycannon-missile)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack) (go mistycannon-missile-explode))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self sfx) (the-as uint 0))
       0)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (< (-> self root trans y) (-> self water-height)) (go mistycannon-missile-in-water)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (clear-collide-with-as (-> self root))
       (while (not (time-elapsed? (-> self state-time) (the int (* 300.0 (-> self muzzle-time)))))
         (quaternion*! (-> self root quat) (-> self root quat) (-> self tumble-quat))
@@ -617,8 +610,7 @@
         (suspend)
         (ja :num! (seek!)))
       (go mistycannon-missile-explode))
-  :post
-    (behavior ()
+  :post (behavior ()
       (vector-v++! (-> self root transv) (compute-acc-due-to-gravity (-> self root) (new-stack-vector0) 1.0))
       (set! (-> self root root-prim prim-core offense) (collide-offense touch))
       (fill-cache-integrate-and-collide! (-> self root) (-> self root transv) (-> self root root-prim collide-with))
@@ -642,8 +634,7 @@
       (ja-post)))
 
 (defstate mistycannon-missile-in-water (mistycannon-missile)
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (nonzero? (-> self sfx))
         (sound-stop (the-as sound-id (-> self sfx)))
         (set! (-> self sfx) (the-as uint 0))
@@ -669,8 +660,7 @@
   :post ja-post)
 
 (defstate mistycannon-missile-explode (mistycannon-missile)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touched)
          (let* ((s4-0 proc)
@@ -704,8 +694,7 @@
                       (let ((v1-18 (+ *global-attack-id* 1))) (set! *global-attack-id* v1-18) (set! (-> a1-4 param 2) (the-as uint v1-18)))
                       (set! (-> a1-4 param 3) (the-as uint 0))
                       (send-event-function proc a1-4)))))))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (and *target* (= (-> *target* next-state name) 'target-periscope))
         (sound-play-by-spec (static-sound-spec "explosion" :fo-min 200 :fo-max 400) (new-sound-id) (the-as vector #t))
         (sound-play-by-spec (static-sound-spec "explosion") (new-sound-id) (the-as vector #t)))
@@ -948,8 +937,7 @@
   (none))
 
 (defstate mistycannon-idle (mistycannon)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (and (-> self entity) (logtest? (-> self entity extra perm status) (entity-perm-status complete))))
         (go mistycannon-waiting-for-player))
       (if (and (-> self postbindinfo-ok)
@@ -957,8 +945,7 @@
                (>= (-> self fact idle-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (go mistycannon-aim-at-player))
       (rider-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (mistycannon-method-23 self)
         (suspend)))
@@ -1063,19 +1050,16 @@
   (none))
 
 (defstate mistycannon-aim-at-player (mistycannon)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (and (-> self entity) (logtest? (-> self entity extra perm status) (entity-perm-status complete))))
         (go mistycannon-waiting-for-player))
       (if (not (and *target*
                     (>= (-> self fact idle-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans)))))
         (go mistycannon-idle))
       (rider-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (< (vector-vector-xz-distance (target-pos 0) (-> self center-point)) (-> self center-point w))
           (mistycannon-do-aim (-> *target* control trans) (-> *target* control transv))
@@ -1085,8 +1069,7 @@
   :post rider-post)
 
 (defstate mistycannon-waiting-for-player (mistycannon)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch)
          (when ((method-of-type touching-shapes-entry prims-touching?)
@@ -1095,13 +1078,11 @@
                 (the-as uint 1))
            (let ((v0-1 (the-as object #t))) (set! (-> self player-touching-grips?) (the-as symbol v0-1)) v0-1)))
         (('change-mode) (go mistycannon-player-control))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (-> self entity) (logtest? (-> self entity extra perm status) (entity-perm-status complete)))
         (go mistycannon-aim-at-player))
       (rider-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self player-touching-grips?) #f)
       (loop
         (let ((f0-0 2730.6667)
@@ -1130,16 +1111,13 @@
 
 (defstate cam-mistycannon (camera-slave)
   :event cam-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self blend-from-type) (the-as uint 1))
         (set! (-> self blend-to-type) (the-as uint 1))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((v1-0 (-> self change-event-from)))
           (set! (-> self trans quad) (-> (the-as mistycannon (-> v1-0 0)) goggles quad))
@@ -1150,20 +1128,25 @@
         (suspend))))
 
 (defstate mistycannon-player-control (mistycannon)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
-        (('change-mode) (send-event *camera* 'change-state cam-mistycannon 0))))
-  :exit
-    (behavior ()
+        (('change-mode) (send-event *camera* 'change-state cam-mistycannon 0))
+        (('yeet-player)
+          (when (send-event *target* 'end-mode)
+            (send-event *camera* 'change-state *camera-base-mode* 0)
+            (process-entity-status! self (entity-perm-status bit-3) #f)
+            (go mistycannon-waiting-for-player-to-fuck-off)
+          )
+        )
+      )
+    )
+  :exit (behavior ()
       (sound-stop (-> self sound-id))
       (sound-stop (-> self aim-sound-id)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (mistycannon-method-23 self)
       (rider-trans))
-  :code
-    (behavior ()
+  :code (behavior ()
       (send-event *camera* 'change-state cam-mistycannon 0)
       (suspend)
       (set-time! (-> self state-time))
@@ -1209,8 +1192,7 @@
   :post rider-post)
 
 (defstate mistycannon-waiting-for-player-to-fuck-off (mistycannon)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch)
          (when ((method-of-type touching-shapes-entry prims-touching?)
@@ -1218,12 +1200,10 @@
                 (-> self root)
                 (the-as uint 1))
            (let ((v0-0 (current-time))) (set! (-> self state-time) v0-0) v0-0)))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (mistycannon-method-23 self)

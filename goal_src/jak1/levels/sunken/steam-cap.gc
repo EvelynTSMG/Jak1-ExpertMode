@@ -34,8 +34,7 @@
 (defpartgroup group-steam-cap-sides
   :id 441
   :bounds (static-bspherem 0 0 0 10)
-  :parts
-  ((sp-item 1718 :fade-after (meters 100) :falloff-to (meters 160) :period (seconds 0.6) :length (seconds 0.25))
+  :parts ((sp-item 1718 :fade-after (meters 100) :falloff-to (meters 160) :period (seconds 0.6) :length (seconds 0.25))
    (sp-item 1719 :fade-after (meters 100) :falloff-to (meters 160) :period (seconds 0.6) :length (seconds 0.25) :offset 60)
    (sp-item 1720
             :fade-after (meters 100)
@@ -242,8 +241,7 @@
 (defpartgroup group-steam-cap-plume
   :id 442
   :bounds (static-bspherem 0 0 0 32)
-  :parts
-  ((sp-item 1727 :fade-after (meters 120) :falloff-to (meters 160))
+  :parts ((sp-item 1727 :fade-after (meters 120) :falloff-to (meters 160))
    (sp-item 1728 :fade-after (meters 120) :falloff-to (meters 160))
    (sp-item 1729 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1730 :fade-after (meters 60) :falloff-to (meters 60) :flags (start-dead))))
@@ -251,8 +249,7 @@
 (defpartgroup group-steam-cap-plume-spread
   :id 443
   :bounds (static-bspherem 0 0 0 32)
-  :parts
-  ((sp-item 1731 :fade-after (meters 120) :falloff-to (meters 160))
+  :parts ((sp-item 1731 :fade-after (meters 120) :falloff-to (meters 160))
    (sp-item 1732 :fade-after (meters 120) :falloff-to (meters 160))))
 
 (defpart 1730
@@ -523,8 +520,7 @@
 
 (defstate steam-cap-idle (steam-cap)
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (steam-cap-method-20 self)
         (steam-cap-method-21 self)

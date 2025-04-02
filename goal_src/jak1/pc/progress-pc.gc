@@ -111,9 +111,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define *main-options-pc*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id game-options)
@@ -152,9 +150,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *main-options-secrets*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id game-options)
@@ -198,9 +194,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *game-options-pc*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id input-options)
@@ -227,9 +221,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *graphic-options-pc*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id game-resolution)
@@ -266,9 +258,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *sound-options-pc*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type slider)
             :name (text-id sfx-volume)
@@ -306,9 +296,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *camera-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type normal-inverted)
             :name (text-id camera-controls-first-horz)
@@ -336,9 +324,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *controller-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id input-opts-select-controller)
@@ -402,9 +388,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *mouse-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type on-off)
             :name (text-id input-opts-mouse-enable-camera)
@@ -467,9 +451,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *reassign-binds-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id input-opts-binds-controller)
@@ -497,9 +479,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *input-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id camera-options)
@@ -569,9 +549,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *misc-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id money-starburst) :scale #t)
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id skip-cells) :scale #t)
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id discord-rpc) :scale #t)
@@ -580,9 +558,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *gfx-ps2-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option :option-type (game-option-type lod-bg) :name (text-id lod-bg) :scale #t)
        (new 'static 'game-option :option-type (game-option-type lod-fg) :name (text-id lod-fg) :scale #t)
        (new 'static 'game-option :option-type (game-option-type on-off) :name (text-id ps2-parts) :scale #t)
@@ -598,9 +574,7 @@
 
 ;; TODO - aspect ratios are hard-coded
 (define *aspect-ratio-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option :option-type (game-option-type aspect-new) :name (text-id fit-to-screen) :scale #t)
        (new 'static 'game-option
             :option-type (game-option-type aspect-new)
@@ -641,9 +615,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *title-pc*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id new-game)
@@ -672,9 +644,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *speedrun-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-reset-current-run) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-full-game) :scale #t)
        (new 'static 'game-option
@@ -690,9 +660,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *speedrun-il-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-training) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-village1) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-il-beach) :scale #t)
@@ -712,9 +680,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *speedrun-cat-ext-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-full-game) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-new-game-plus) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id speedrun-hub1-100) :scale #t)
@@ -724,9 +690,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *secrets-title*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id music-player)
@@ -740,9 +704,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *secrets*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type menu)
             :name (text-id cheats)
@@ -759,9 +721,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *checkpoint-select-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id training-level-name) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id village1-level-name) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id beach-level-name) :scale #t)
@@ -782,9 +742,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *cheats*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option
             :option-type (game-option-type cheat-toggle)
             :name (text-id cheat-sidekick-alt)
@@ -847,9 +805,7 @@
        (new 'static 'game-option :option-type (game-option-type button) :name (text-id back) :scale #t)))
 
 (define *music-player-options*
-  (new 'static 'boxed-array
-       :type
-       game-option
+  (new 'static 'boxed-array :type game-option
        (new 'static 'game-option :option-type (game-option-type button-music) :name (text-id village1-level-name) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button-music) :name (text-id beach-level-name) :scale #t)
        (new 'static 'game-option :option-type (game-option-type button-music) :name (text-id jungle-level-name) :scale #t)
@@ -913,8 +869,7 @@
   `(new 'static 'boxed-array :type text-id ,@(apply (lambda (x) `(text-id ,x)) texts)))
 
 (define *music-flava-name-list*
-  (new 'static 'boxed-array
-       :type (array text-id)
+  (new 'static 'boxed-array :type (array text-id)
        (static-text-list-array village1-level-name
                                flava-vi1-unused0
                                flava-sage
@@ -1145,9 +1100,7 @@
   *temp-options*)
 
 (define *analog-bind-names*
-  (new 'static 'boxed-array
-       :type
-       string
+  (new 'static 'boxed-array :type string
        "L ANALOG LEFT"
        "L ANALOG RIGHT"
        "L ANALOG UP"
@@ -1158,9 +1111,7 @@
        "R ANALOG DOWN"))
 
 (define *button-bind-names*
-  (new 'static 'boxed-array
-       :type
-       string
+  (new 'static 'boxed-array :type string
        "SELECT"
        "L3"
        "R3"

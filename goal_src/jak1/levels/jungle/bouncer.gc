@@ -25,8 +25,7 @@
   :bounds (static-spherem 0 0 0 4))
 
 (defstate bouncer-wait (springbox)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk)
          (when (send-event proc 'jump (-> self spring-height) (-> self spring-height) #f)
@@ -38,8 +37,7 @@
          (when (and (= (-> block param 1) 'flop) (send-event proc 'jump (-> self spring-height) (-> self spring-height) #f))
            (go bouncer-fire)
            #f))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :group! bounceytarp-idle-ja :num! min)
       (transform-post)
       (loop
@@ -47,13 +45,11 @@
         (suspend))))
 
 (defstate bouncer-smush (springbox)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch) (set-time! (-> self state-time)) #f)
         (else ((-> bouncer-wait event) proc argc message block))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self smush) 0.0)
       (loop
@@ -71,8 +67,7 @@
   :post transform-post)
 
 (defstate bouncer-fire (springbox)
-  :code
-    (behavior ()
+  :code (behavior ()
       (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 178 (seconds 0.1))
       (ja-no-eval :group! bounceytarp-idle-ja :num! (seek!) :frame-num (ja-aframe 6.0 0))
       (until (ja-done? 0)

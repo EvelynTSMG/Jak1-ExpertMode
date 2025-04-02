@@ -56,8 +56,7 @@
       s5-0)))
 
 (defstate sidekick-clone (sidekick)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (case message
         (('matrix)
@@ -90,8 +89,7 @@
             (set! (-> self skel status) (the-as janim-status v0-0))))
          v0-0)))
   :code looping-code
-  :post
-    (behavior ()
+  :post (behavior ()
       (let ((v1-0 'process-drawable-art-error)
             (a0-0 (-> self parent-override)))
         (when (!= (-> (if a0-0 (-> a0-0 0 self-override)) next-state name) v1-0)

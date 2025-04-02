@@ -225,8 +225,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 -12 0 14)
-  :parts
-  ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
+  :parts ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
    (sp-item 125 :period (seconds 3) :length (seconds 0.05))
    (sp-item 126 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
    (sp-item 127 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
@@ -262,8 +261,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 -12 0 14)
-  :parts
-  ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
+  :parts ((sp-item 124 :flags (is-3d) :period (seconds 3) :length (seconds 0.21))
    (sp-item 125 :period (seconds 3) :length (seconds 0.05))
    (sp-item 126 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
    (sp-item 127 :flags (is-3d) :period (seconds 3) :length (seconds 0.05))
@@ -890,16 +888,14 @@
 
 (defun splash-spawn ((arg0 basic) (arg1 basic) (arg2 int))
   (process-spawn part-tracker
-                 :init
-                 part-tracker-init
+                 :init part-tracker-init
                  (if (zero? arg2) (-> *part-group-id-table* 41) (-> *part-group-id-table* 40))
                  -1
                  part-water-splash-callback
                  arg0
                  #f
                  arg1
-                 :to
-                 *entity-pool*)
+                 :to *entity-pool*)
   0
   (none))
 
@@ -965,21 +961,17 @@
 
 (defstate water-vol-startup (water-vol)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (go-virtual water-vol-idle)))
 
 (defstate water-vol-idle (water-vol)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('update) (update! self))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (on-exit-water self))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! self))
   :code anim-loop)
 

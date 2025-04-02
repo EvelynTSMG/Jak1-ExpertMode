@@ -28,14 +28,12 @@
   :bounds (static-spherem 0 0 0 8))
 
 (defstate plat-flip-idle (plat-flip)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (activate! (-> self smush) -1.0 90 300 1.0 1.0))
         (('touch) (send-event proc 'no-look-around (seconds 1.5)) (the-as smush-control #f))))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (f30-0 float) (f30-1 float))
       (let ((gp-0 #f))
         (loop

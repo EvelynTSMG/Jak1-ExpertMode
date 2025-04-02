@@ -14,8 +14,7 @@
   :id 657
   :flags (screen-space)
   :bounds (static-bspherem 0 0 0 2)
-  :parts
-  ((sp-item 2665 :period (seconds 1) :length (seconds 0.017) :binding 2663)
+  :parts ((sp-item 2665 :period (seconds 1) :length (seconds 0.017) :binding 2663)
    (sp-item 2663 :flags (start-dead launch-asap) :binding 2664)
    (sp-item 2663 :flags (start-dead launch-asap) :binding 2664)
    (sp-item 2664 :flags (start-dead))
@@ -127,8 +126,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2345 :period (seconds 5) :length (seconds 0.067) :offset 1500)
+  :parts ((sp-item 2345 :period (seconds 5) :length (seconds 0.067) :offset 1500)
    (sp-item 2346 :period (seconds 5) :length (seconds 0.067) :offset 1500)
    (sp-item 2347 :period (seconds 5) :length (seconds 0.017) :offset 1500)
    (sp-item 2348 :period (seconds 5) :length (seconds 0.067) :offset 1500)
@@ -603,8 +601,7 @@
   :id 558
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2386 :binding 2385)
+  :parts ((sp-item 2386 :binding 2385)
    (sp-item 2385 :flags (bit1 start-dead launch-asap) :binding 2384)
    (sp-item 2385 :flags (bit1 start-dead launch-asap) :binding 2384)
    (sp-item 2385 :flags (bit1 start-dead launch-asap) :binding 2384)
@@ -785,8 +782,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2785 :period (seconds 6) :length (seconds 0.017))
+  :parts ((sp-item 2785 :period (seconds 6) :length (seconds 0.017))
    (sp-item 2786 :period (seconds 6) :length (seconds 0.135))
    (sp-item 2787 :period (seconds 6) :length (seconds 0.067))
    (sp-item 2788 :period (seconds 6) :length (seconds 0.067))
@@ -961,8 +957,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 295 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017) :binding 296)
+  :parts ((sp-item 295 :fade-after (meters 100) :period (seconds 2) :length (seconds 0.017) :binding 296)
    (sp-item 296 :flags (start-dead launch-asap) :binding 297)
    (sp-item 297 :fade-after (meters 80) :falloff-to (meters 100) :flags (start-dead))
    (sp-item 296 :flags (start-dead launch-asap) :binding 297)
@@ -1093,50 +1088,41 @@
 
 
 (define *lurker-army*
-  (new 'static 'boxed-array
-       :type
-       army-info
+  (new 'static 'boxed-array :type army-info
        (new 'static 'army-info :pos (new 'static 'vector :x -920633.4 :y 83546.11 :z 4210409.5) :rot 28556.04 :skel 'babak)
        (new 'static 'army-info
-            :pos
-            (new 'static 'vector :x -873488.4 :y 86441.984 :z 4225454.0)
+            :pos (new 'static 'vector :x -873488.4 :y 86441.984 :z 4225454.0)
             :rot 37861.24
             :start-frame 5.0
             :skel 'babak)
        (new 'static 'army-info
-            :pos
-            (new 'static 'vector :x -905871.4 :y 83132.414 :z 4231934.0)
+            :pos (new 'static 'vector :x -905871.4 :y 83132.414 :z 4231934.0)
             :rot 32054.021
             :start-frame 10.0
             :skel 'babak)
        (new 'static 'army-info
-            :pos
-            (new 'static 'vector :x -926765.06 :y 83496.96 :z 4236230.5)
+            :pos (new 'static 'vector :x -926765.06 :y 83496.96 :z 4236230.5)
             :rot 30001.652
             :start-frame 15.0
             :skel 'babak)
        (new 'static 'army-info
-            :pos
-            (new 'static 'vector :x -893345.8 :y 83517.44 :z 4212961.5)
+            :pos (new 'static 'vector :x -893345.8 :y 83517.44 :z 4212961.5)
             :rot 32755.074
             :start-frame 20.0
             :skel 'babak)
        (new 'static 'army-info :pos (new 'static 'vector :x -842797.06 :y 84041.73 :z 4218855.5) :rot 43916.402 :skel 'bonelurker)
        (new 'static 'army-info
-            :pos
-            (new 'static 'vector :x -839274.5 :y 82644.99 :z 4248723.5)
+            :pos (new 'static 'vector :x -839274.5 :y 82644.99 :z 4248723.5)
             :rot 40510.715
             :start-frame 6.0
             :skel 'bonelurker)
        (new 'static 'army-info
-            :pos
-            (new 'static 'vector :x -871485.44 :y 85909.51 :z 4243181.5)
+            :pos (new 'static 'vector :x -871485.44 :y 85909.51 :z 4243181.5)
             :rot 37046.043
             :start-frame 12.0
             :skel 'bonelurker)
        (new 'static 'army-info
-            :pos
-            (new 'static 'vector :x -947523.56 :y 85835.77 :z 4219314.0)
+            :pos (new 'static 'vector :x -947523.56 :y 85835.77 :z 4219314.0)
             :rot 26980.078
             :start-frame 18.0
             :skel 'bonelurker)))
@@ -1148,16 +1134,14 @@
 (defbehavior evilsib-trans-hook-wait evilbro ()
   (when (>= (ja-aframe-num 0) 425.0)
     (process-spawn part-tracker
-                   :init
-                   part-tracker-init
+                   :init part-tracker-init
                    (-> *part-group-id-table* 557)
                    -1
                    #f
                    #f
                    #f
                    (-> self draw origin)
-                   :to
-                   *entity-pool*)
+                   :to *entity-pool*)
     (send-event self 'trans-hook evilsib-trans-hook-hover))
   0
   (none))
@@ -1299,8 +1283,7 @@
 
 (defstate play-anim (sequenceB)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('offset-army)
          (dotimes (gp-0 9)
@@ -1341,8 +1324,7 @@
                            'eval
                            (lambda :behavior sequenceB ()
                              (let ((v0-0 (create-launch-control (-> *part-group-id-table* 558) self))) (set! (-> self part) v0-0) v0-0)))))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (send-event *target* 'sidekick #t)
       (let ((a0-2 (handle->process (-> self bonelurker)))) (if a0-2 (deactivate a0-2)))
       (let ((a0-6 (handle->process (-> self evilbro)))) (if a0-6 (deactivate a0-6)))
@@ -1365,8 +1347,7 @@
         (send-event *camera* 'clear-entity)
         (entity-birth-no-kill gp-1)
         (send-event (if gp-1 (-> gp-1 extra process)) 'play-anim)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (spool-push *art-control* "sidekick-human-intro-sequence-c" 0 self (the-as float -1.0))
       ((-> (method-of-type process-taskable play-anim) trans))))
 
@@ -1388,16 +1369,14 @@
   (let ((gp-0 (new 'stack-no-clear 'vector))) (vector<-cspace! gp-0 (-> self node-list data 4)) (spawn (-> self part) gp-0))
   (when (>= (ja-aframe-num 0) 1590.0)
     (process-spawn part-tracker
-                   :init
-                   part-tracker-init
+                   :init part-tracker-init
                    (-> *part-group-id-table* 561)
                    -1
                    #f
                    #f
                    #f
                    (-> self draw origin)
-                   :to
-                   *entity-pool*)
+                   :to *entity-pool*)
     (send-event self 'trans-hook nothing))
   0
   (none))
@@ -1495,8 +1474,7 @@
 
 (defstate play-anim (sequenceC)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-1 (handle->process (-> self bonelurker)))) (if a0-1 (deactivate a0-1)))
       (let ((a0-5 (handle->process (-> self darkecocan)))) (if a0-5 (deactivate a0-5)))
       ((-> (method-of-type process-taskable play-anim) exit))
@@ -1511,8 +1489,7 @@
           (set! (-> *time-of-day-proc* 0 hour) 7)
           (return #f)))
       (start 'play (get-continue-by-name *game-info* "village1-intro")))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (spool-push *art-control* "sage-intro-sequence-d1" 0 self (the-as float -1.0))
       ((-> (method-of-type process-taskable play-anim) trans))))
 

@@ -38,8 +38,7 @@
 
 (defstate hidden (assistant-lavatube-start)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> (method-of-type process-taskable hidden) trans))
       (when (and (cond
                    ((and *target* (>= 61440.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))) #t)
@@ -65,8 +64,7 @@
 
 (defstate idle (assistant-lavatube-start)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (!= (ja-group) (get-art-elem self))
           (ja-channel-push! 1 (seconds 0.05))

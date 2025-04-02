@@ -8,8 +8,7 @@
 (defpartgroup group-village1-sagehut-rings
   :id 136
   :bounds (static-bspherem 7 4 -4.5 12)
-  :parts
-  ((sp-item 480 :fade-after (meters 60) :flags (is-3d))
+  :parts ((sp-item 480 :fade-after (meters 60) :flags (is-3d))
    (sp-item 481 :fade-after (meters 60) :flags (is-3d))
    (sp-item 482 :fade-after (meters 50) :binding 483)
    (sp-item 483 :fade-after (meters 50) :flags (start-dead launch-asap) :period (seconds 4) :length (seconds 0.017))
@@ -378,8 +377,7 @@
 (defpartgroup group-village1-sagehut-rings-2
   :id 137
   :bounds (static-bspherem 7 4 -4.5 12)
-  :parts
-  ((sp-item 488 :fade-after (meters 50) :binding 489)
+  :parts ((sp-item 488 :fade-after (meters 50) :binding 489)
    (sp-item 489 :fade-after (meters 50) :flags (start-dead launch-asap) :period (seconds 4) :length (seconds 0.017))
    (sp-item 489 :fade-after (meters 50) :flags (start-dead launch-asap) :period (seconds 4) :length (seconds 0.017))
    (sp-item 489 :fade-after (meters 50) :flags (start-dead launch-asap) :period (seconds 4) :length (seconds 0.017))
@@ -746,8 +744,7 @@
 (defpartgroup group-village1-sagehut-rings-3
   :id 138
   :bounds (static-bspherem 7 4 -4.5 12)
-  :parts
-  ((sp-item 494 :fade-after (meters 50) :binding 495)
+  :parts ((sp-item 494 :fade-after (meters 50) :binding 495)
    (sp-item 495 :fade-after (meters 50) :flags (start-dead launch-asap) :period (seconds 4) :length (seconds 0.017))
    (sp-item 495 :fade-after (meters 50) :flags (start-dead launch-asap) :period (seconds 4) :length (seconds 0.017))
    (sp-item 495 :fade-after (meters 50) :flags (start-dead launch-asap) :period (seconds 4) :length (seconds 0.017))
@@ -1470,8 +1467,7 @@
 (defpartgroup group-village1-sagehut-drips
   :id 139
   :bounds (static-bspherem 7 4 -4.5 12)
-  :parts
-  ((sp-item 500 :fade-after (meters 40) :period (seconds 2.245) :length (seconds 0.017))
+  :parts ((sp-item 500 :fade-after (meters 40) :period (seconds 2.245) :length (seconds 0.017))
    (sp-item 500 :fade-after (meters 50) :period (seconds 3.455) :length (seconds 0.017))
    (sp-item 500 :fade-after (meters 60) :period (seconds 5.24) :length (seconds 0.017))
    (sp-item 500 :fade-after (meters 40) :period (seconds 7.195) :length (seconds 0.017))
@@ -1586,8 +1582,7 @@
 (defpartgroup group-village1-sagehut-warpgate
   :id 140
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 1970 :fade-after (meters 60) :falloff-to (meters 60))
+  :parts ((sp-item 1970 :fade-after (meters 60) :falloff-to (meters 60))
    (sp-item 1971 :fade-after (meters 60) :falloff-to (meters 100) :binding 1968)
    (sp-item 1968 :flags (bit1 start-dead launch-asap))
    (sp-item 1968 :flags (bit1 start-dead launch-asap))
@@ -1902,8 +1897,7 @@
   :id 684
   :flags (always-draw)
   :bounds (static-bspherem 0 10 0 12)
-  :parts
-  ((sp-item 2844 :period (seconds 15) :length (seconds 4))
+  :parts ((sp-item 2844 :period (seconds 15) :length (seconds 4))
    (sp-item 2845 :period (seconds 15) :length (seconds 4) :offset 4050)
    (sp-item 2846 :period (seconds 15) :length (seconds 4) :offset 1500)
    (sp-item 2847 :period (seconds 15) :length (seconds 4) :offset 1050)
@@ -2081,8 +2075,7 @@
 (defpartgroup group-village1-trans-pad
   :id 142
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 514 :fade-after (meters 160))
+  :parts ((sp-item 514 :fade-after (meters 160))
    (sp-item 515 :fade-after (meters 160))
    (sp-item 516 :fade-after (meters 60) :falloff-to (meters 60) :flags (is-3d))))
 

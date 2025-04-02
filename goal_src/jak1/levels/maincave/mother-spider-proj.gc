@@ -14,8 +14,7 @@
   :id 326
   :duration (seconds 1)
   :bounds (static-bspherem 0 0 0 3)
-  :parts
-  ((sp-item 718 :flags (launch-asap) :binding 716)
+  :parts ((sp-item 718 :flags (launch-asap) :binding 716)
    (sp-item 716 :flags (start-dead) :binding 717)
    (sp-item 717 :flags (start-dead launch-asap))
    (sp-item 717 :flags (start-dead launch-asap))
@@ -304,19 +303,16 @@
 
 (defstate projectile-impact (mother-spider-proj)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 327)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (if (nonzero? (-> self sound-id)) (sound-stop (-> self sound-id)))
       (sound-play "mother-hit")
       (suspend)
@@ -324,19 +320,16 @@
 
 (defstate projectile-dissipate (mother-spider-proj)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 328)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (if (nonzero? (-> self sound-id)) (sound-stop (-> self sound-id)))
       (suspend)
       (go-virtual projectile-die)))

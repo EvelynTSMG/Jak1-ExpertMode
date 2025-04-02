@@ -10,8 +10,7 @@
 (defpartgroup group-sunken-heatpipe-383
   :id 378
   :bounds (static-bspherem 0 1 0 3)
-  :parts
-  ((sp-item 1551 :fade-after (meters 80) :falloff-to (meters 80) :binding 1550)
+  :parts ((sp-item 1551 :fade-after (meters 80) :falloff-to (meters 80) :binding 1550)
    (sp-item 1550 :flags (bit1 start-dead launch-asap))
    (sp-item 1550 :flags (bit1 start-dead launch-asap))
    (sp-item 1550 :flags (bit1 start-dead launch-asap))
@@ -100,8 +99,7 @@
 (defpartgroup group-sunken-heatpipe-198
   :id 379
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1554 :fade-after (meters 80) :falloff-to (meters 80) :binding 1553)
+  :parts ((sp-item 1554 :fade-after (meters 80) :falloff-to (meters 80) :binding 1553)
    (sp-item 1553 :flags (bit1 start-dead launch-asap))
    (sp-item 1553 :flags (bit1 start-dead launch-asap))
    (sp-item 1553 :flags (bit1 start-dead launch-asap))
@@ -190,8 +188,7 @@
 (defpartgroup group-sunken-heatpipe-189
   :id 380
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1557 :fade-after (meters 80) :falloff-to (meters 80) :binding 1556)
+  :parts ((sp-item 1557 :fade-after (meters 80) :falloff-to (meters 80) :binding 1556)
    (sp-item 1556 :flags (bit1 start-dead launch-asap))
    (sp-item 1556 :flags (bit1 start-dead launch-asap))
    (sp-item 1556 :flags (bit1 start-dead launch-asap))
@@ -280,8 +277,7 @@
 (defpartgroup group-sunken-heatpipe-193
   :id 381
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1560 :fade-after (meters 80) :falloff-to (meters 80) :binding 1559)
+  :parts ((sp-item 1560 :fade-after (meters 80) :falloff-to (meters 80) :binding 1559)
    (sp-item 1559 :flags (bit1 start-dead launch-asap))
    (sp-item 1559 :flags (bit1 start-dead launch-asap))
    (sp-item 1559 :flags (bit1 start-dead launch-asap))
@@ -389,8 +385,7 @@
 (defpartgroup group-sunken-heatpipe-207
   :id 382
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1564 :fade-after (meters 80) :falloff-to (meters 80) :binding 1563)
+  :parts ((sp-item 1564 :fade-after (meters 80) :falloff-to (meters 80) :binding 1563)
    (sp-item 1563 :flags (bit1 start-dead launch-asap))
    (sp-item 1563 :flags (bit1 start-dead launch-asap))
    (sp-item 1563 :flags (bit1 start-dead launch-asap))
@@ -479,8 +474,7 @@
 (defpartgroup group-sunken-window-bubbles-388
   :id 383
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1566
+  :parts ((sp-item 1566
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -579,8 +573,7 @@
 (defpartgroup group-sunken-window-bubbles-387
   :id 384
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1568
+  :parts ((sp-item 1568
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -679,8 +672,7 @@
 (defpartgroup group-sunken-window-bubbles-386
   :id 385
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1570
+  :parts ((sp-item 1570
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -779,8 +771,7 @@
 (defpartgroup group-sunken-window-bubbles-384
   :id 386
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1572
+  :parts ((sp-item 1572
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -879,8 +870,7 @@
 (defpartgroup group-sunken-window-bubbles-385
   :id 387
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1574
+  :parts ((sp-item 1574
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -979,8 +969,7 @@
 (defpartgroup group-sunken-window-bubbles-394
   :id 388
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1576
+  :parts ((sp-item 1576
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -1079,8 +1068,7 @@
 (defpartgroup group-sunken-window-bubbles-390
   :id 389
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1578
+  :parts ((sp-item 1578
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -1179,8 +1167,7 @@
 (defpartgroup group-sunken-window-bubbles-393
   :id 390
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1582
+  :parts ((sp-item 1582
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -1279,8 +1266,7 @@
 (defpartgroup group-sunken-window-bubbles-392
   :id 391
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1584
+  :parts ((sp-item 1584
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -1379,8 +1365,7 @@
 (defpartgroup group-sunken-window-bubbles-38
   :id 392
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1586
+  :parts ((sp-item 1586
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -1479,8 +1464,7 @@
 (defpartgroup group-sunken-window-bubbles-200
   :id 393
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1588
+  :parts ((sp-item 1588
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)
@@ -1579,8 +1563,7 @@
 (defpartgroup group-sunken-window-bubbles-391
   :id 394
   :bounds (static-bspherem 0 4 0 32)
-  :parts
-  ((sp-item 1580
+  :parts ((sp-item 1580
             :fade-after (meters 100)
             :falloff-to (meters 100)
             :period (seconds 2)

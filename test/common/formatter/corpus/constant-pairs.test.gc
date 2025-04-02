@@ -75,8 +75,7 @@ Function Call Pair - Too Long and Multiline
 (:hello "world"
  :world 123
  :test 456
- :not
-   (println "hello world"
+ :not (println "hello world"
             "hello world"
             "hello world"
             (println "hello world hello world hello world hello world hello world hello world hello world hello world"))
@@ -106,16 +105,11 @@ Within unrelated form
 ===
 
 (new 'static 'gif-tag64
-     :nloop
-     #x1
-     :eop
-     #x1
-     :pre
-     #x1
-     :prim
-     (new 'static 'gs-prim :prim (gs-prim-type line) :iip #x1 :abe #x1)
-     :nreg
-     #x4)
+     :nloop #x1
+     :eop #x1
+     :pre #x1
+     :prim (new 'static 'gs-prim :prim (gs-prim-type line) :iip #x1 :abe #x1)
+     :nreg #x4)
 
 ---
 
@@ -123,8 +117,7 @@ Within unrelated form
      :nloop #x1
      :eop #x1
      :pre #x1
-     :prim
-     (new 'static 'gs-prim :prim (gs-prim-type line) :iip #x1 :abe #x1)
+     :prim (new 'static 'gs-prim :prim (gs-prim-type line) :iip #x1 :abe #x1)
      :nreg #x4)
 
 ===
@@ -135,16 +128,14 @@ Quoted Symbol
      :description "adjust"
      :button-symbol
      'x
-     :action
-     (new 'static 'clm-item-action :button #x4000 :func #f))
+     :action (new 'static 'clm-item-action :button #x4000 :func #f))
 
 ---
 
 (new 'static 'clm-item
      :description "adjust"
      :button-symbol 'x
-     :action
-     (new 'static 'clm-item-action :button #x4000 :func #f))
+     :action (new 'static 'clm-item-action :button #x4000 :func #f))
 
 ===
 Special case forms
@@ -202,8 +193,7 @@ Enums
        :slope-up-traction 1.0
        :align-speed 1.0
        :mode 'air
-       :flags
-       (surface-flags always-rotate-toward-transv)))
+       :flags (surface-flags always-rotate-toward-transv)))
 
 ---
 

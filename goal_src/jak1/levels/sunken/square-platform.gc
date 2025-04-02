@@ -196,32 +196,27 @@
   (none))
 
 (defstate square-platform-lowered (square-platform)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger)
          (if (and (= (-> proc type) square-platform-master) (= (-> (the-as square-platform-master proc) plat-id) (-> self plat-id)))
            (go square-platform-rising)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self pos-u) 0.0)
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend))))
 
 (defstate square-platform-rising (square-platform)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk 'bounce) (baseplat-method-22 self))
         (('untrigger) (go square-platform-lowering))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self start-splash-time) 0)
       (set! (-> self splash-counter) 0)
       0)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self pos-u) (seek-with-smooth (-> self pos-u) 1.0 (/ 1.0 (* 0.75 (-> *display* frames-per-second))) 0.8 0.01))
       (vector-lerp! (-> self basetrans) (-> self down-pos) (-> self up-pos) (-> self pos-u))
       (plat-trans)
@@ -229,22 +224,19 @@
         (plat-post)
         (go square-platform-raised))
       (square-platform-method-27 self #t))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend)))
   :post plat-post)
 
 (defstate square-platform-raised (square-platform)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk 'bounce) (baseplat-method-22 self))
         (('untrigger) (go square-platform-lowering))))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self pos-u) 1.0)
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
@@ -252,19 +244,16 @@
   :post plat-post)
 
 (defstate square-platform-lowering (square-platform)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk 'bounce) (baseplat-method-22 self))
         (('trigger) (go square-platform-rising))
         (('touch) (send-event proc 'no-look-around (seconds 1.5)) #f)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self start-splash-time) 0)
       (set! (-> self splash-counter) 0)
       0)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self pos-u) (seek-with-smooth (-> self pos-u) 0.0 (/ 1.0 (* 0.75 (-> *display* frames-per-second))) 0.8 0.01))
       (vector-lerp! (-> self basetrans) (-> self down-pos) (-> self up-pos) (-> self pos-u))
       (plat-trans)
@@ -272,8 +261,7 @@
         (plat-post)
         (go square-platform-lowered))
       (square-platform-method-27 self #f))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (logior! (-> self mask) (process-mask sleep-code))
         (suspend)))
@@ -342,8 +330,7 @@
   (none))
 
 (defstate square-platform-master-idle (square-platform-master)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger)
          (when (= (-> proc type) square-platform-button)
@@ -351,15 +338,13 @@
            (logclear! (-> self mask) (process-mask actor-pause))
            (process-entity-status! self (entity-perm-status bit-3) #t)
            (go square-platform-master-activate)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self mask) (process-mask sleep-code))
       (suspend)
       0))
 
 (defstate square-platform-master-activate (square-platform-master)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self wiggled?) #f)
       (sleep (-> self ticker) (-> self timeout))
@@ -371,66 +356,56 @@
           (cond
             ((zero? v1-7)
              (let ((a0-4 (process-spawn sunkencam
-                                        :init
-                                        pov-camera-init-by-other
+                                        :init pov-camera-init-by-other
                                         (-> self root trans)
                                         *sunkencam-sg*
                                         "qbert-show-door-open"
                                         0
                                         #f
                                         '()
-                                        :to
-                                        self)))
+                                        :to self)))
                (set! (-> (the-as sunkencam (-> a0-4 0)) seq) (the-as uint 3))))
             ((= v1-7 1)
              (let ((v1-13 (process-spawn sunkencam
-                                         :init
-                                         pov-camera-init-by-other
+                                         :init pov-camera-init-by-other
                                          (-> self root trans)
                                          *sunkencam-sg*
                                          "qbert-show-door-open"
                                          0
                                          #f
                                          '()
-                                         :to
-                                         self)))
+                                         :to self)))
                (set! (-> (the-as sunkencam (-> v1-13 0)) seq) (the-as uint 4)))
              (set! gp-0 -1))
             ((= v1-7 2)
              (let ((a0-17 (process-spawn sunkencam
-                                         :init
-                                         pov-camera-init-by-other
+                                         :init pov-camera-init-by-other
                                          (-> self root trans)
                                          *sunkencam-sg*
                                          "qbert-show-door-open"
                                          0
                                          #f
                                          '()
-                                         :to
-                                         self)))
+                                         :to self)))
                (set! (-> (the-as sunkencam (-> a0-17 0)) seq) (the-as uint 5))))
             ((= v1-7 3)
              (let ((v1-24 (process-spawn sunkencam
-                                         :init
-                                         pov-camera-init-by-other
+                                         :init pov-camera-init-by-other
                                          (-> self root trans)
                                          *sunkencam-sg*
                                          "qbert-show-door-open"
                                          0
                                          #f
                                          '()
-                                         :to
-                                         self)))
+                                         :to self)))
                (set! (-> (the-as sunkencam (-> v1-24 0)) seq) (the-as uint 6)))
              (set! gp-0 -1))))
         (if (< gp-0 0) (set! (-> self plat-id) 32))
         (set! (-> self plat-id-dir) gp-0)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self mask) (process-mask actor-pause))
       (process-entity-status! self (entity-perm-status bit-3) #f))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (completed? (-> self ticker))
         (send-to-all (-> self link) 'untrigger)
         (go square-platform-master-idle))
@@ -453,8 +428,7 @@
                  (set! (-> self plat-id) v1-20)
                  (send-to-all (-> self link) 'trigger)
                  (return #f))))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self mask) (process-mask sleep-code))
       (suspend)
       0))

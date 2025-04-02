@@ -110,40 +110,34 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-idle (bonelurker)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (bonelurker-set-large-bounds-sphere))
-  :code
-    (behavior ()
+  :code (behavior ()
       (bonelurker-set-small-bounds-sphere)
       ((the-as (function none :behavior bonelurker) (-> (method-of-type nav-enemy nav-enemy-idle) code)))))
 
 (defstate nav-enemy-patrol (bonelurker)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.2))
       ((the-as (function none :behavior bonelurker) (-> (method-of-type nav-enemy nav-enemy-patrol) code)))))
 
 (defstate nav-enemy-notice (bonelurker)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (-> (method-of-type nav-enemy nav-enemy-notice)
+  :code (-> (method-of-type nav-enemy nav-enemy-notice)
         code))
 
 (defstate nav-enemy-chase (bonelurker)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> (method-of-type nav-enemy nav-enemy-chase) trans))
       (if (and (not (logtest? (-> self nav-enemy-flags) (nav-enemy-flags navenmf6)))
                (time-elapsed? (-> self bump-player-time) (seconds 0.5)))
         (logior! (-> self nav-enemy-flags) (nav-enemy-flags navenmf6))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self rotate-speed) 524288.0)
       (set! (-> self turn-time) (seconds 0.1))
       (set! (-> self speed-scale) 2.3)
@@ -186,15 +180,13 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-stop-chase (bonelurker)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (-> (method-of-type nav-enemy nav-enemy-stop-chase)
+  :code (-> (method-of-type nav-enemy nav-enemy-stop-chase)
         code))
 
 (defstate nav-enemy-stare (bonelurker)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self rotate-speed) 524288.0)
       (set! (-> self turn-time) (seconds 0.2))
       (let ((f30-0 (rand-vu-float-range 0.8 1.2)))
@@ -231,8 +223,7 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-give-up (bonelurker)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self rotate-speed) 524288.0)
       (set! (-> self turn-time) (seconds 0.1))
       (ja-channel-push! 1 (seconds 0.15))
@@ -267,20 +258,16 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-victory (bonelurker)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (-> (method-of-type nav-enemy nav-enemy-victory)
+  :code (-> (method-of-type nav-enemy nav-enemy-victory)
         code))
 
 (defstate bonelurker-stun (bonelurker)
   :event bonelurker-stunned-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (nav-enemy-neck-control-inactive))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (nav-enemy-neck-control-look-at))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (new 'stack-no-clear 'vector)))
         (vector-normalize-copy! gp-0 (-> self hit-from-dir) 16384.0)
         (vector+! gp-0 (-> self collide-info trans) gp-0)

@@ -18,8 +18,7 @@
   :longest-edge (meters 0.01))
 
 (defstate cam-robotboss (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('set-pivot)
          (let ((v0-0 (the-as object (-> self pivot-pt))))
@@ -27,8 +26,7 @@
            v0-0))
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (cond
         ((-> self enter-has-run))
         (else
@@ -37,13 +35,11 @@
          (set! (-> self pivot-rad) 73728.0)
          (set! (-> self blend-from-type) (the-as uint 2))
          (set! (-> self blend-to-type) (the-as uint 2)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (not (logtest? (-> *camera* master-options) 2))
         (set! *camera-base-mode* cam-string)
         (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when #t
           (let ((a2-0 (new-stack-vector0)))
@@ -143,8 +139,7 @@
 
 (defstate ecoclaw-activate (ecoclaw)
   :event ecoclaw-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (-> self particles 1 kind) (draw-eco-beam (the-as vector (&-> self stack 112)) (the-as vector (&-> self stack 144))))
       (dotimes (gp-0 2)
         (cond
@@ -153,18 +148,15 @@
           ((-> self particles gp-0 kind)
            (set! (-> self particles gp-0 tracker)
                  (ppointer->handle (process-spawn part-tracker
-                                                  :init
-                                                  part-tracker-init
+                                                  :init part-tracker-init
                                                   (-> self particles gp-0 kind)
                                                   -1
                                                   ecoclaw-beam-particle-callback
                                                   (-> self ppointer)
                                                   #f
                                                   (&+ (&-> self stack 80) (* gp-0 32))
-                                                  :to
-                                                  self)))))))
-  :code
-    (behavior ()
+                                                  :to self)))))))
+  :code (behavior ()
       (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -175,8 +167,7 @@
 
 (defstate ecoclaw-idle (ecoclaw)
   :event ecoclaw-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (-> self particles 0 kind) (go ecoclaw-activate))
         (suspend)))
@@ -208,14 +199,12 @@
 
 (defstate idle (silodoor)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('open) (set! (-> self part-opened) (the-as float (-> block param 0))))
         (('hide) (go-virtual hidden))))
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (movie?))
           (ja :num! (seek! (* (-> self part-opened) (the float (ja-num-frames 0))) 0.01))
@@ -224,16 +213,14 @@
              (if (nonzero? (-> self sound)) (update! (-> self sound))))
             ((nonzero? (-> self sound)) (stop! (-> self sound)))))
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (if (and (< (vector-vector-xz-distance (target-pos 0) (-> self root trans)) 57344.0) (not (ja-min? 0)))
         (rider-post)
         (transform-post))))
 
 (defstate hidden (silodoor)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (nonzero? (-> self sound)) (stop! (-> self sound)))
       (logior! (-> self draw status) (draw-status hidden))
       (ja-post)
@@ -343,8 +330,7 @@
 
 (defstate play-anim (finalbosscam)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-1 (handle->process (-> self robotboss)))) (if a0-1 (deactivate a0-1)))
       ((-> (method-of-type process-taskable play-anim) exit))))
 

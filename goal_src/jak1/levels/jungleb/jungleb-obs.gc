@@ -25,8 +25,7 @@
 (defpartgroup group-jungle-blue-eco-room-open
   :id 189
   :bounds (static-bspherem 0 -6 0 8)
-  :parts
-  ((sp-item 899 :fade-after (meters 110))
+  :parts ((sp-item 899 :fade-after (meters 110))
    (sp-item 900 :fade-after (meters 110))
    (sp-item 901 :fade-after (meters 110))
    (sp-item 902 :fade-after (meters 110))
@@ -156,52 +155,43 @@
    (:conerot-radius (meters 4))))
 
 (defstate eggtop-idle (eggtop)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('notify)
          (case (-> block param 0)
            (('pickup)
             (if (type-type? (-> proc type) fuel-cell) (save-reminder (get-task-control (-> self entity extra perm task)) 1 0)))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (sound-stop (-> self sound-id)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (not (-> self child)) (task-complete? *game-info* (-> self entity extra perm task))) (go eggtop-close #f))
       (spawn (-> self part) (-> self root trans))
       (sound-play "electric-loop" :id (-> self sound-id)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (suspend)
       (update-transforms! (-> self root))
       (anim-loop))
   :post ja-post)
 
 (defstate eggtop-close (eggtop)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (hide-hud-quick))
-  :code
-    (behavior ((arg0 symbol))
+  :code (behavior ((arg0 symbol))
       (when (not arg0)
         (sound-play "vent-switch" :vol 200)
         (process-spawn part-tracker
-                       :init
-                       part-tracker-init
+                       :init part-tracker-init
                        (-> *part-group-id-table* 190)
                        -1
                        #f
                        #f
                        #f
                        (-> self root trans)
-                       :to
-                       *entity-pool*)
+                       :to *entity-pool*)
         (set! (-> self cam-tracker)
               (ppointer->handle (process-spawn camera-tracker
-                                               :init
-                                               camera-tracker-init
+                                               :init camera-tracker-init
                                                (lambda :behavior camera-tracker ()
                                                  (while (not (process-grab? *target*))
                                                    (suspend))
@@ -218,8 +208,7 @@
                                                  (camera-change-to (the-as string 'base) 150 #f)
                                                  (send-event (ppointer->process (-> *hud-parts* fuel-cell)) 'show)
                                                  (none))
-                                               :to
-                                               self)))
+                                               :to self)))
         (save-reminder (get-task-control (-> self entity extra perm task)) 2 0)
         (sound-play "jngb-eggtop-seq")
         (ja-no-eval :group! eggtop-idle-ja :num! (seek!) :frame-num 0.0)

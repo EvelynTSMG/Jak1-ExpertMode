@@ -156,12 +156,9 @@
     (vector-float*! (-> obj controller-led-color) (-> obj controller-led-color) (-> obj controller-led-brightness))
     ;; now use it as the controller led color
     (let ((led-rgba (new 'static 'rgba
-                         :r
-                         (the int (lerp-scale 0.0 255.0 (-> obj controller-led-color r) 0.0 1.0))
-                         :g
-                         (the int (lerp-scale 0.0 255.0 (-> obj controller-led-color g) 0.0 1.0))
-                         :b
-                         (the int (lerp-scale 0.0 255.0 (-> obj controller-led-color b) 0.0 1.0))
+                         :r (the int (lerp-scale 0.0 255.0 (-> obj controller-led-color r) 0.0 1.0))
+                         :g (the int (lerp-scale 0.0 255.0 (-> obj controller-led-color g) 0.0 1.0))
+                         :b (the int (lerp-scale 0.0 255.0 (-> obj controller-led-color b) 0.0 1.0))
                          :a #x80)))
       (set! *display-led-rgba* led-rgba)
       (pc-set-controller-led! 0 (the-as int (-> led-rgba r)) (the-as int (-> led-rgba g)) (the-as int (-> led-rgba b)))))

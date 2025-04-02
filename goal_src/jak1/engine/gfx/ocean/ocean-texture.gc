@@ -12,8 +12,7 @@
        (new 'static 'dma-gif-packet
             :dma-vif
             (new 'static 'dma-packet
-                 :dma
-                 (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                 :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
             :gif0
@@ -21,8 +20,7 @@
                  :nloop #x1
                  :eop #x1
                  :pre #x1
-                 :prim
-                 (new 'static 'gs-prim :prim (gs-prim-type sprite) :tme #x1 :fst #x1)
+                 :prim (new 'static 'gs-prim :prim (gs-prim-type sprite) :tme #x1 :fst #x1)
                  :nreg #x5)
             :gif1
             (new 'static 'gif-tag-regs
@@ -35,8 +33,7 @@
        (new 'static 'dma-gif-packet
             :dma-vif
             (new 'static 'dma-packet
-                 :dma
-                 (new 'static 'dma-tag :qwc #x4 :id (dma-tag-id cnt))
+                 :dma (new 'static 'dma-tag :qwc #x4 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x4 :cmd (vif-cmd direct) :msk #x1))
             :gif0
@@ -44,8 +41,7 @@
                  :nloop #x1
                  :eop #x1
                  :pre #x1
-                 :prim
-                 (new 'static 'gs-prim :prim (gs-prim-type sprite) :abe #x1)
+                 :prim (new 'static 'gs-prim :prim (gs-prim-type sprite) :abe #x1)
                  :nreg #x3)
             :gif1
             (new 'static 'gif-tag-regs :regs0 (gif-reg-id rgbaq) :regs1 (gif-reg-id xyz2) :regs2 (gif-reg-id xyz2)))
@@ -53,8 +49,7 @@
        (new 'static 'dma-gif-packet
             :dma-vif
             (new 'static 'dma-packet
-                 :dma
-                 (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                 :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
             :gif0
@@ -74,8 +69,7 @@
              :nloop #x42
              :eop #x1
              :pre #x1
-             :prim
-             (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1)
+             :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1)
              :nreg #x3))
   (set! (-> arg0 giftag regs)
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyz2)))

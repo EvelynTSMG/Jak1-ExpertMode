@@ -9,14 +9,12 @@
 ;; DECOMP BEGINS
 
 (defstate target-load-wait (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('loading) (set-time! (-> self state-time)) #f)
         (else (target-standard-event-handler proc argc message block))))
   :exit target-exit
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self control unknown-surface00) *walk-no-turn-mods*)
       (set-time! (-> self state-time))
       (while (not (time-elapsed? (-> self state-time) (seconds 0.05)))
@@ -44,13 +42,11 @@
   :post target-no-stick-post)
 
 (defstate target-stance-ambient (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('movie) (go target-stance))
         (else (target-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self neck flex-blend) 0.0)
       ((-> target-stance enter))
       (let ((v1-2 (rand-vu-int-count 4)))
@@ -68,8 +64,7 @@
            (set! (-> self control unknown-uint20)
                  (the-as uint (new 'static 'spool-anim :name "eichar-ambient-4" :index #xea :parts 1 :command-list '()))))))
       (set-time! (-> self state-time)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-0 (-> self control unknown-spoolanim00)))
         (when a0-0
           (ja-abort-spooled-anim a0-0 (the-as art-joint-anim #f) -1)
@@ -77,13 +72,11 @@
           (ja :group! eichar-stance-loop-ja :num! min)))
       ((-> target-stance exit))
       (target-exit))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (spool-push *art-control* (-> self control unknown-spoolanim00 name) 0 self (the-as float -99.0))
       (if (or (cpad-hold? (-> self control unknown-cpad-info00 number) start l1 r1 triangle circle x square) *progress-process*)
         (go target-stance)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (let ((v1-13 (file-status *art-control* (-> self control unknown-spoolanim00 name) 0)))
                (not (or (= v1-13 'locked) (= v1-13 'active))))
         (suspend)
@@ -191,15 +184,12 @@
   (none))
 
 (defstate hud-waiting (first-person-hud)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('go-away) (go hud-going-out))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (disable-hud (the-as int (-> *hud-parts* power))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (dotimes (gp-0 (-> self nb-of-particles))
           (if (= (-> self particles gp-0 part matrix) -1) (set! (-> self particles gp-0 part matrix) (sprite-allocate-user-hvdf))))
@@ -209,25 +199,20 @@
         (suspend))))
 
 (defstate hud-coming-in (first-person-hud)
-  :event
-    (-> hud-waiting
+  :event (-> hud-waiting
         event)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (seekl! (-> self in-out-position) 0 (the int (* 350.0 (-> *display* time-adjust-ratio))))
         (if (zero? (-> self in-out-position)) (go hud-normal))
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (spawn-particles! self)))
 
 (defstate hud-normal (first-person-hud)
-  :event
-    (-> hud-waiting
+  :event (-> hud-waiting
         event)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (or (not *progress-process*)
                 (= (-> *progress-process* 0 next-state name) 'progress-going-out)
@@ -237,14 +222,12 @@
         (suspend))))
 
 (defstate hud-going-out (first-person-hud)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (seekl! (-> self in-out-position) 4096 (the int (* 350.0 (-> *display* time-adjust-ratio))))
         (if (= (-> self in-out-position) 4096) (deactivate self))
         (suspend)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (spawn-particles! self)))
 
 (defun part-first-person-hud-left-func ((arg0 sparticle-system) (arg1 sparticle-cpuinfo) (arg2 matrix))
@@ -287,17 +270,13 @@
 
 (defstate target-stance-look-around (target)
   :event target-standard-event-handler
-  :enter
-    (-> target-stance
+  :enter (-> target-stance
         enter)
-  :exit
-    (-> target-stance
+  :exit (-> target-stance
         exit)
-  :trans
-    (-> target-stance
+  :trans (-> target-stance
         trans)
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (let ((a1-0 (new 'stack-no-clear 'event-message-block)))
                (set! (-> a1-0 from) self)
                (set! (-> a1-0 num-params) 0)
@@ -311,15 +290,13 @@
   :post target-post)
 
 (defstate target-look-around (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (cond
         ((and (= message 'query) (= (-> block param 0) 'mode)) (-> self state name))
         ((let ((v1-4 message)) (= v1-4 'end-mode)) (go target-stance-look-around))
         ((-> self control unknown-symbol30) (target-dangerous-event-handler proc argc message block))
         (else (target-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self cam-user-mode) 'look-around)
       (set! (-> self control unknown-surface00) *duck-mods*)
       (logior! (-> self state-flags) (state-flags first-person-mode))
@@ -329,8 +306,7 @@
       (let ((a0-5 (handle->process (-> self fp-hud)))) (if a0-5 (deactivate a0-5)))
       (set! (-> self fp-hud)
             (ppointer->handle (process-spawn first-person-hud :to *dproc* :stack (&+ *fp-hud-stack* #x3800)))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-1 (handle->process (-> self fp-hud)))) (if a0-1 (send-event a0-1 'go-away)))
       (set! (-> self cam-user-mode) 'normal)
       (target-exit)
@@ -339,8 +315,7 @@
         (send-event *camera* 'force-blend (seconds 0.2))
         (send-event *camera* 'clear-entity)
         (camera-change-to (the-as string 'base) 60 #f)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (local-vars (sv-48 vector))
       (rlet ((vf0 :class vf)
              (vf4 :class vf)
@@ -379,8 +354,7 @@
           (logclear! (-> *cpad-list* cpads (-> self control unknown-cpad-info00 number) button0-abs 0) (pad-buttons triangle))
           (logclear! (-> *cpad-list* cpads (-> self control unknown-cpad-info00 number) button0-rel 0) (pad-buttons triangle))
           (set! (-> self cam-user-mode) 'normal))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (let ((f30-0 8192.0)) (< f30-0 (send-event *camera* 'dist-from-interp-dest)))
         (if (!= (-> self cam-user-mode) 'look-around) (go target-stance))
         (suspend))
@@ -392,14 +366,12 @@
   :post target-no-move-post)
 
 (defstate target-billy-game (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (cond
         ((and (= message 'query) (= (-> block param 0) 'mode)) (-> self state name))
         ((let ((v1-4 message)) (= v1-4 'end-mode)) (go target-stance))
         (else (target-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self neck flex-blend) 0.0)
       (set! (-> self control unknown-surface00) *duck-mods*)
       (logior! (-> self state-flags) (state-flags first-person-mode))
@@ -410,16 +382,14 @@
       (let ((a0-6 (handle->process (-> self fp-hud)))) (if a0-6 (deactivate a0-6)))
       (set! (-> self fp-hud)
             (ppointer->handle (process-spawn first-person-hud :to *dproc* :stack (&+ *fp-hud-stack* #x3800)))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((a0-1 (handle->process (-> self fp-hud)))) (if a0-1 (send-event a0-1 'go-away)))
       (when (send-event *camera* 'query-state cam-billy)
         (send-event *camera* 'no-intro)
         (send-event *camera* 'force-blend 0)
         (camera-change-to (the-as string 'base) 0 #f))
       (target-exit))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (local-vars (sv-48 vector))
       (rlet ((vf0 :class vf)
              (vf4 :class vf)
@@ -454,16 +424,14 @@
                     ((the-as (function object object object object object object object none) s3-0) s2-0 s1-0 s0-0 sv-48 gp-1 t1-0 t2-0)))
                 (-> s4-0 ppointer))))
           (set-time! (-> self control unknown-dword82)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (set! (-> self control transv quad) (the-as uint128 0))
       (anim-loop))
   :post target-no-move-post)
 
 (defstate target-grab (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (cond
         ((and (= message 'query) (= (-> block param 0) 'mode)) (-> self state name))
         (else
@@ -479,18 +447,15 @@
                    (the-as basic (process->handle (the-as process (-> block param 1))))
                    (process->handle (the-as process (-> block param 2)))))))
            (else (target-generic-event-handler proc argc message block))))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self control unknown-surface00) *grab-mods*)
       (set! (-> self neck flex-blend) 0.0)
       (logior! (-> self state-flags) (state-flags invulnerable grabbed))
       (set! (-> self control unknown-uint20) (the-as uint 'stance)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self state-flags) (state-flags invulnerable))
       (target-exit))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-forward-vel (the-as float 0.0))
       (let ((gp-0 0))
         (while (not (logtest? (-> self control status) (cshape-moving-flags onsurf)))
@@ -560,20 +525,17 @@
                (ja :num! (seek!)))
              (set! (-> self control unknown-uint20) (the-as uint 'stance)))))
         (label cfg-94)))
-  :post
-    (behavior ()
+  :post (behavior ()
       (if (logtest? (-> self control status) (cshape-moving-flags onsurf))
         (set! (-> self control transv quad) (the-as uint128 0)))
       (target-no-stick-post)))
 
 (defstate target-pole-cycle (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (if (and (= message 'query) (= (-> block param 0) 'mode))
         (-> self state name)
         (target-standard-event-handler proc argc message block)))
-  :enter
-    (behavior ((arg0 handle))
+  :enter (behavior ((arg0 handle))
       (set! (-> self control unknown-handle10) arg0)
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *pole-mods*)
@@ -583,13 +545,11 @@
       (set! (-> self control transv quad) (the-as uint128 0))
       (send-event *camera* 'ease-in)
       (set! (-> self control unknown-int21) (the-as int #f)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (target-collide-set! 'normal (the-as float 0.0))
       (logclear! (-> self control root-prim prim-core action) (collide-action swingpole-active))
       (set! (-> self control unknown-handle10) (the-as handle #f)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ;; og:preserve-this - High FPS Fix
       (when (and (recently-pressed? x)
                  (not (logtest? (-> self state-flags) (state-flags prevent-jump)))
@@ -614,8 +574,7 @@
            (remove-exit)
            (go target-pole-flip-up 28672.0 28672.0 (* 1024.0 (- 26.0 (ja-aframe-num 0)))))
           (else (remove-exit) (go target-pole-flip-forward (the-as float 14336.0) (the-as float 14336.0) (the-as float 57344.0))))))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (target-compute-pole)
       (set! (-> self control unknown-uint20)
             (the-as uint
@@ -642,11 +601,9 @@
 
 (defstate target-pole-flip-up (target)
   :event target-standard-event-handler
-  :exit
-    (-> target-pole-cycle
+  :exit (-> target-pole-cycle
         exit)
-  :code
-    (behavior ((arg0 object) (arg1 object) (arg2 float))
+  :code (behavior ((arg0 object) (arg1 object) (arg2 float))
       (ja-no-eval :group! eichar-pole-flip-up-ja :num! (seek!) :frame-num (ja-aframe (+ 1.0 (fmin 17.0 (ja-aframe-num 0))) 0))
       (until (ja-done? 0)
         (suspend)
@@ -657,16 +614,13 @@
 
 (defstate target-pole-flip-up-jump (target)
   :event target-standard-event-handler
-  :enter
-    (-> target-jump-forward
+  :enter (-> target-jump-forward
         enter)
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> target-jump-forward trans))
       (vector-flatten! (-> self control transv) (-> self control transv) (-> self control unknown-vector100)))
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (sound-play "jump")
       (send-event *camera* 'damp-up)
       (ja :group! eichar-pole-jump-loop-ja :num! min)
@@ -686,11 +640,9 @@
 
 (defstate target-pole-flip-forward (target)
   :event target-standard-event-handler
-  :exit
-    (-> target-pole-cycle
+  :exit (-> target-pole-cycle
         exit)
-  :code
-    (behavior ((arg0 float) (arg1 float) (arg2 float))
+  :code (behavior ((arg0 float) (arg1 float) (arg2 float))
       (ja-no-eval :group!
                   eichar-pole-flip-forward-ja
                   :num!
@@ -706,17 +658,14 @@
 
 (defstate target-pole-flip-forward-jump (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ((arg0 float) (arg1 float))
+  :enter (behavior ((arg0 float) (arg1 float))
       ((-> target-jump enter) arg0 arg1 (the-as surface #f))
       (set! (-> self control unknown-surface00) *forward-pole-jump-mods*))
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> target-jump-forward trans))
       (vector-flatten! (-> self control transv) (-> self control transv) (-> self control unknown-vector100)))
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (sound-play "jump")
       (until (ja-done? 0)
         (suspend)
@@ -725,13 +674,11 @@
   :post target-post)
 
 (defstate target-edge-grab (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('end-mode) (go target-falling 'target-edge-grab))
         (else (target-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *edge-grab-mods*)
       (set-time! (-> self control unknown-dword41))
@@ -739,13 +686,11 @@
       (set! (-> self control unknown-vector102 quad) (-> self control transv quad))
       (set! (-> self control transv quad) (the-as uint128 0))
       (send-event *camera* 'ease-in))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when (logtest? (-> self control root-prim prim-core action) (collide-action edgegrab-cam))
         (logclear! (-> self control root-prim prim-core action) (collide-action edgegrab-active edgegrab-cam))
         (send-event *camera* 'damp-up)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (and (time-elapsed? (-> self state-time) (seconds 0.2))
                  ;; og:preserve-this - High FPS Fix
                  (recently-pressed? x)
@@ -763,8 +708,7 @@
                (remove-exit)
                (go target-edge-grab-jump (-> *TARGET-bank* edge-grab-jump-height-min) (-> *TARGET-bank* edge-grab-jump-height-max)))))
           (else (remove-exit) (go target-edge-grab-off)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (target-compute-edge)
       (set! (-> self control unknown-uint20)
             (the-as uint
@@ -797,16 +741,13 @@
   :post target-no-move-post)
 
 (defstate target-edge-grab-jump (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('end-mode) (go target-falling 'target-edge-grab))
         (else (target-standard-event-handler proc argc message block))))
-  :exit
-    (-> target-edge-grab
+  :exit (-> target-edge-grab
         exit)
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (ja-channel-set! 1)
       (set-quaternion! (-> self control) (-> self control dir-targ))
       (logclear! (-> self control root-prim prim-core action) (collide-action edgegrab-active edgegrab-cam))
@@ -830,11 +771,9 @@
 
 (defstate target-edge-grab-off (target)
   :event target-standard-event-handler
-  :exit
-    (-> target-edge-grab
+  :exit (-> target-edge-grab
         exit)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 1)
       (set-quaternion! (-> self control) (-> self control dir-targ))
       (send-event *camera* 'damp-up)
@@ -859,11 +798,9 @@
   :post target-no-move-post)
 
 (defstate target-yellow-blast (target)
-  :event
-    (-> target-running-attack
+  :event (-> target-running-attack
         event)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *run-attack-mods*)
       (set! (-> *run-attack-mods* turnv) 655360.0)
@@ -883,14 +820,12 @@
           (vector+! (-> self control transv)
                     (vector-float*! (-> self control transv) (-> self control dynam gravity-normal) f30-0)
                     (vector-float*! gp-0 gp-0 (/ f0-5 f1-0))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> *run-attack-mods* turnv) 0.0)
       (set! (-> *run-attack-mods* turnvv) 0.0)
       (set-time! (-> self control unknown-dword31))
       (target-exit))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (the-as handle #f)))
         (ja-channel-push! 1 (seconds 0.075))
         (level-hint-spawn (text-id swamp-eco-yellow-first-use) "sksp0145" (the-as entity #f) *entity-pool* (game-task none))
@@ -955,8 +890,7 @@
 
 (defstate target-yellow-jump-blast (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set! (-> self control unknown-surface00) *yellow-jump-mods*)
       (let ((gp-0 (new-stack-vector0)))
         (let ((f0-1 (vector-dot (-> self control dynam gravity-normal) (-> self control transv))))
@@ -968,13 +902,11 @@
           (vector+! (-> self control transv)
                     (vector-float*! (-> self control transv) (-> self control dynam gravity-normal) f2-0)
                     (vector-float*! gp-0 gp-0 (/ f0-2 f1-1))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (rot->dir-targ! (-> self control))
       (set-time! (-> self control unknown-dword31))
       (target-exit))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.075))
       (ja-no-eval :group! eichar-yellow-jumping-blast-ja :num! (seek! (ja-aframe (the-as float 15.0) 0)) :frame-num 0.0)
       (until (ja-done? 0)
@@ -993,8 +925,7 @@
                     (vector-float*! gp-2 gp-2 (/ f0-7 f1-1)))))
       (ja :num! (seek!))
       (process-spawn projectile-yellow
-                     :init
-                     projectile-init-by-other
+                     :init projectile-init-by-other
                      (-> self entity)
                      (-> self control unknown-vector90)
                      (vector-float*! (new 'stack-no-clear 'vector)
@@ -1002,8 +933,7 @@
                                      (the-as float (-> *TARGET-bank* yellow-projectile-speed)))
                      (if (>= (-> self fact eco-level) (-> *FACT-bank* eco-level-max)) 16 0)
                      #f
-                     :to
-                     self)
+                     :to self)
       (set-time! (-> self control unknown-dword82))
       (suspend-for (seconds 0.1))
       (ja-no-eval :group! eichar-yellow-jumping-blast-ja :num! (seek!) :frame-num (ja-frame-num 0))
@@ -1016,11 +946,9 @@
 (defstate target-eco-powerup (target)
   :event target-standard-event-handler
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (slide-down-test))
-  :code
-    (behavior ((arg0 object) (arg1 float))
+  :code (behavior ((arg0 object) (arg1 float))
       (set! (-> self neck flex-blend) 0.0)
       (set-time! (-> self state-time))
       (if (= arg1 (-> *FACT-bank* eco-full-inc))
@@ -1057,19 +985,16 @@
 
 (defstate target-wade-stance (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *wade-mods*)
       (set-zero! (-> self water bob)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (target-state-hook-exit)
       (target-exit)
       (let ((v1-1 (-> self skel effect))) (set! (-> v1-1 channel-offset) 0))
       0)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (when (and (not (logtest? (-> self water flags) (water-flags wt10))) (time-elapsed? (-> self water wade-time) (seconds 0.05)))
         (if (logtest? (-> self water flags) (water-flags wt11)) (go target-swim-stance) (go target-stance)))
@@ -1083,21 +1008,17 @@
         (create-splash (-> self water) (the-as float 1.4) (-> self control trans) 0 (-> self control transv))
         (go target-attack))
       (if (can-hands? #t) (go target-running-attack)))
-  :code
-    (-> target-stance
+  :code (-> target-stance
         code)
   :post target-post)
 
 (defstate target-wade-walk (target)
   :event target-standard-event-handler
-  :enter
-    (-> target-wade-stance
+  :enter (-> target-wade-stance
         enter)
-  :exit
-    (-> target-wade-stance
+  :exit (-> target-wade-stance
         exit)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (when (and (not (logtest? (-> self water flags) (water-flags wt10))) (time-elapsed? (-> self water wade-time) (seconds 0.1)))
         (if (logtest? (-> self water flags) (water-flags wt11)) (go target-swim-stance) (go target-stance)))
@@ -1111,8 +1032,7 @@
         (create-splash (-> self water) (the-as float 1.4) (-> self control trans) 0 (-> self control transv))
         (go target-attack))
       (if (can-hands? #t) (go target-running-attack)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 105)
             (f30-0 0.0))
         (let ((v1-2 (ja-group)))
@@ -1226,13 +1146,11 @@
 
 (defstate target-swim-stance (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *swim-mods*)
       (logior! (-> self water flags) (water-flags wt04)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (target-state-hook-exit)
       (set! (-> self control unknown-surface00 target-speed) 28672.0)
       (target-exit)
@@ -1242,8 +1160,7 @@
                      (= (-> self next-state name) 'target-swim-up)))
         (quaternion-identity! (-> self control unknown-quaternion01))
         (set! (-> self control unknown-float00) 0.0)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (if (and (logtest? (-> self control status) (cshape-moving-flags onsurf))
                (not (logtest? (-> self control status) (cshape-moving-flags on-water))))
@@ -1262,8 +1179,7 @@
                  (if (or (and (= gp-0 eichar-swim-up-ja) #t) (and (= gp-0 eichar-swim-down-to-up-ja) #t)) #f #t)))
         (go target-swim-walk))
       (target-swim-tilt (the-as float 0.0) (the-as float 2.0) (the-as float 0.0) (the-as float 1.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((v1-2 (ja-group)))
         (cond
           ((or (= v1-2 eichar-swim-up-ja) (= v1-2 eichar-swim-down-to-up-ja))
@@ -1292,16 +1208,13 @@
 
 (defstate target-swim-walk (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       ((-> target-swim-stance enter))
       (die-on-next-update! (-> self water bob))
       (set! (-> self control unknown-uint20) (the-as uint (current-time))))
-  :exit
-    (-> target-swim-stance
+  :exit (-> target-swim-stance
         exit)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       ((-> self state-hook))
       (if (and (logtest? (-> self control status) (cshape-moving-flags onsurf))
                (not (logtest? (-> self control status) (cshape-moving-flags on-water))))
@@ -1320,8 +1233,7 @@
            (go target-swim-stance)))
         (else (set! (-> self control unknown-uint20) (the-as uint (current-time)))))
       (target-swim-tilt (the-as float 0.0) (the-as float 2.0) (the-as float 0.0) (the-as float 1.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((v1-2 (ja-group)))
         (cond
           ((or (= v1-2 eichar-swim-up-ja) (= v1-2 eichar-swim-down-to-up-ja) (= v1-2 eichar-swim-up-to-stance-ja))
@@ -1349,8 +1261,7 @@
   :post target-swim-post)
 
 (defstate target-swim-down (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack 'attack-invinc)
          (let ((v1-2 (the-as attack-info (-> block param 1))))
@@ -1360,8 +1271,7 @@
              (logior! (-> v1-2 mask) (attack-mask mode))
              (set! (-> self control unknown-uint20) (the-as uint #t))))))
       (target-standard-event-handler proc argc message block))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (logclear! (-> self water flags) (water-flags wt04))
       (set! (-> self control unknown-surface00) *dive-mods*)
@@ -1370,8 +1280,7 @@
       (set-time! (-> self water swim-time))
       (set! (-> self control unknown-uint20) (the-as uint #f))
       (if (= (-> self next-state name) 'target-swim-down) (set! (-> self control unknown-float130) 0.0)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self control dynam gravity-max) (-> self control unknown-dynamics00 gravity-max))
       (set! (-> self control dynam gravity-length) (-> self control unknown-dynamics00 gravity-length))
       (target-exit)
@@ -1381,8 +1290,7 @@
                      (= (-> self next-state name) 'target-swim-up)))
         (quaternion-identity! (-> self control unknown-quaternion01))
         (set! (-> self control unknown-float00) 0.0)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (time-elapsed? (-> self water swim-time) (seconds 0.5)) (go target-stance))
       (cond
         ((time-elapsed? (-> self control unknown-dword11) (seconds 0.1))
@@ -1393,8 +1301,7 @@
          (set! (-> self control unknown-surface00) *dive-bottom-mods*)
          (if (or (= (-> self next-state name) 'target-swim-down) (= (-> self next-state name) 'target-swim-stance))
            (target-swim-tilt (the-as float 0.0) (the-as float 2.0) (the-as float -1.0) (the-as float 1.0))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 60)
             (s5-0 3000)
             (f30-0 0.0))
@@ -1457,17 +1364,13 @@
   :post target-swim-post)
 
 (defstate target-swim-up (target)
-  :event
-    (-> target-swim-down
+  :event (-> target-swim-down
         event)
-  :enter
-    (-> target-swim-down
+  :enter (-> target-swim-down
         enter)
-  :exit
-    (-> target-swim-down
+  :exit (-> target-swim-down
         exit)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (cpad-pressed? (-> self control unknown-cpad-info00 number) x)
                (not (logtest? (-> self state-flags) (state-flags prevent-jump)))
                (not (logtest? (-> self water flags) (water-flags wt13 wt14))))
@@ -1479,8 +1382,7 @@
                (< (target-move-dist (-> *TARGET-bank* stuck-time)) (-> *TARGET-bank* stuck-distance)))
         (send-event self 'attack #f (static-attack-info ((mode 'drown-death)))))
       ((-> target-swim-down trans)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.1))
       (let ((f30-0 1.0))
         (let ((gp-0 #t))
@@ -1526,39 +1428,32 @@
   :post target-swim-post)
 
 (defstate target-swim-jump-jump (target)
-  :event
-    (-> target-jump
+  :event (-> target-jump
         event)
-  :enter
-    (-> target-jump
+  :enter (-> target-jump
         enter)
   :exit target-exit
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((not (time-elapsed? (-> self state-time) (seconds 0.5)))
          (logior! (-> self water flags) (water-flags wt16))
          (logclear! (-> self control status) (cshape-moving-flags onsurf onground tsurf)))
         (else (set! (-> self trans-hook) (-> target-jump trans))))
       ((-> target-jump trans)))
-  :code
-    (-> target-jump
+  :code (-> target-jump
         code)
   :post target-post)
 
 (defstate target-swim-jump (target)
   :event target-standard-event-handler
-  :enter
-    (-> target-swim-stance
+  :enter (-> target-swim-stance
         enter)
-  :exit
-    (behavior ()
+  :exit (behavior ()
       ((-> target-swim-stance exit))
       (die-on-next-update! (-> self water bob))
       (set! (-> self water align-offset) 0.0)
       (logior! (-> self water flags) (water-flags wt16)))
-  :code
-    (behavior ((arg0 float) (arg1 float))
+  :code (behavior ((arg0 float) (arg1 float))
       (die-on-next-update! (-> self water bob))
       (ja-channel-push! 1 (seconds 0.05))
       (ja :group! eichar-swim-jump-ja :num! min)
@@ -1584,14 +1479,12 @@
 
 (defstate target-hit-ground-hard (target)
   :event target-standard-event-handler
-  :enter
-    (behavior ((arg0 float))
+  :enter (behavior ((arg0 float))
       (set! (-> self control unknown-dword31) 0)
       (set! (-> self control unknown-dword33) 0)
       (set-forward-vel (the-as float 0.0))
       (set! (-> self control unknown-surface00) *walk-mods*))
-  :code
-    (behavior ((arg0 float))
+  :code (behavior ((arg0 float))
       (when (!= arg0 0.0)
         (let ((f0-5 (the float (the int (+ 1.0 (/ (- arg0 (-> *TARGET-bank* fall-far)) (-> *TARGET-bank* fall-far-inc)))))))
           (pickup-collectable! (-> self fact)
@@ -1618,13 +1511,11 @@
   :post target-no-stick-post)
 
 (defstate target-launch (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (if (and (= message 'query) (= (-> block param 0) 'mode))
         'target-launch
         (target-standard-event-handler proc argc message block)))
-  :code
-    (behavior ((arg0 float) (arg1 symbol) (arg2 vector) (arg3 int))
+  :code (behavior ((arg0 float) (arg1 symbol) (arg2 vector) (arg3 int))
       (set-time! (-> self state-time))
       (set! (-> self control unknown-surface00) *turn-around-mods*)
       (ja-channel-push! 1 (seconds 0.15))
@@ -1672,28 +1563,24 @@
           arg2
           arg3
           143360.0
-          :to
-          self))
+          :to self))
       ;; og:preserve-this PAL patch (sound plays elsewhere)
       ;(sound-play "launch-fire")
       (go target-high-jump arg0 arg0 'launch))
   :post target-no-stick-post)
 
 (defstate target-periscope (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('change-mode) #f)
         (('end-mode) (when (-> self control unknown-spoolanim00) (set! (-> self control unknown-uint20) (the-as uint #f)) #t))
         (else (target-generic-event-handler proc argc message block))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (target-exit)
       (set! (-> self cam-user-mode) 'normal)
       ;; og:preserve-this PAL patch here
       (logclear! (-> self state-flags) (state-flags invulnerable grabbed)))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (set! (-> self neck flex-blend) 0.0)
       (target-exit)
       (logior! (-> self state-flags) (state-flags invulnerable do-not-notice))
@@ -1719,8 +1606,7 @@
 
 (defstate target-play-anim (target)
   :event target-generic-event-handler
-  :enter
-    (behavior ((arg0 string) (arg1 handle))
+  :enter (behavior ((arg0 string) (arg1 handle))
       (set! (-> self control unknown-handle10) arg1)
       (move-to-ground (-> self control)
                       (the-as float 40960.0)
@@ -1729,12 +1615,10 @@
                       (-> self control root-prim collide-with))
       (logior! (-> self state-flags) (state-flags grabbed))
       (set! (-> self neck flex-blend) 0.0))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (send-event (handle->process (-> self control unknown-handle10)) 'end-mode)
       (target-exit))
-  :code
-    (behavior ((arg0 string) (arg1 handle))
+  :code (behavior ((arg0 string) (arg1 handle))
       (let ((gp-0 (the-as art-joint-anim (lookup-art (-> self draw art-group) arg0 art-joint-anim))))
         (when gp-0
           (send-event (ppointer->process (-> self sidekick)) 'matrix 'play-anim)
@@ -1748,12 +1632,10 @@
   :post target-no-stick-post)
 
 (defstate target-clone-anim (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (if (and (= message 'trans) (= (-> block param 0) 'restore)) (set! (-> self control unknown-uint20) (the-as uint #f)))
       ((-> target-grab event) proc argc message block))
-  :enter
-    (behavior ((arg0 handle))
+  :enter (behavior ((arg0 handle))
       (set! (-> self control unknown-handle10) arg0)
       (set! (-> self control unknown-vector102 quad) (-> self control trans quad))
       (set! (-> self control unknown-uint20) (the-as uint #t))
@@ -1762,8 +1644,7 @@
       (vector-reset! (-> self control transv))
       (set! (-> self neck flex-blend) 0.0)
       (send-event (ppointer->process (-> self sidekick)) 'shadow #t))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (send-event (ppointer->process (-> self sidekick)) 'matrix 'normal)
       (send-event (ppointer->process (-> self sidekick)) 'shadow #t)
       (let ((gp-0 (joint-node eichar-lod0-jg main))
@@ -1796,8 +1677,7 @@
       (ja-channel-set! 0)
       (ja-post)
       (target-exit))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (clone-anim arg0 (the-as int (-> self draw origin-joint-index)) #t "")
       (go target-stance))
   :post target-no-ja-move-post)

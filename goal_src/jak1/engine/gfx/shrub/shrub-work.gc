@@ -60,36 +60,30 @@
             (new 'static 'vector4w :x #x20000000 :z #x60010175 :w 9))
        :mscalf-tmpl
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id next))
+            :dma (new 'static 'dma-tag :id (dma-tag-id next))
             :vif0
             (new 'static 'vif-tag :cmd (vif-cmd mscalf) :msk #x1))
        :mscalf-ret-tmpl
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id ret))
+            :dma (new 'static 'dma-tag :id (dma-tag-id ret))
             :vif0
             (new 'static 'vif-tag :cmd (vif-cmd mscalf) :msk #x1))
        :adgif-tmpl
        (new 'static 'dma-gif-packet
             :dma-vif
             (new 'static 'dma-packet
-                 :dma
-                 (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id next))
+                 :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id next))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
-            :gif
-            (new 'static 'array uint64 2 #x1000000000008005 #xe))
+            :gif (new 'static 'array uint64 2 #x1000000000008005 #xe))
        :billboard-tmpl
        (new 'static 'dma-gif-packet
             :dma-vif
             (new 'static 'dma-packet
-                 :dma
-                 (new 'static 'dma-tag :qwc #xd :id (dma-tag-id next))
+                 :dma (new 'static 'dma-tag :qwc #xd :id (dma-tag-id next))
                  :vif1
                  (new 'static 'vif-tag :imm #xd :cmd (vif-cmd direct) :msk #x1))
-            :gif
-            (new 'static 'array uint64 2 #x303e400000008004 #x412))
+            :gif (new 'static 'array uint64 2 #x303e400000008004 #x412))
        :shrub-near-packets
        (new 'static 'inline-array
             shrub-near-packet
@@ -97,50 +91,43 @@
             (new 'static 'shrub-near-packet
                  :matrix-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                      :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x345 :num #x6 :cmd (vif-cmd unpack-v4-32)))
                  :header-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x34c :cmd (vif-cmd unpack-v4-32)))
                  :stq-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif0
                       (new 'static 'vif-tag :imm #x103 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x9 :cmd (vif-cmd unpack-v2-16)))
                  :color-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x400a :cmd (vif-cmd unpack-v3-8)))
                  :vertex-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #xb :cmd (vif-cmd unpack-v3-16)))
                  :mscal-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #xa :cmd (vif-cmd mscal) :msk #x1))
                  :init-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
@@ -150,50 +137,43 @@
             (new 'static 'shrub-near-packet
                  :matrix-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                      :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x363 :num #x6 :cmd (vif-cmd unpack-v4-32)))
                  :header-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x36a :cmd (vif-cmd unpack-v4-32)))
                  :stq-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif0
                       (new 'static 'vif-tag :imm #x103 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x120 :cmd (vif-cmd unpack-v2-16)))
                  :color-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x4121 :cmd (vif-cmd unpack-v3-8)))
                  :vertex-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x122 :cmd (vif-cmd unpack-v3-16)))
                  :mscal-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #xa :cmd (vif-cmd mscal) :msk #x1))
                  :init-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
@@ -203,50 +183,43 @@
             (new 'static 'shrub-near-packet
                  :matrix-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                      :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x345 :num #x6 :cmd (vif-cmd unpack-v4-32)))
                  :header-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x34c :cmd (vif-cmd unpack-v4-32)))
                  :stq-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif0
                       (new 'static 'vif-tag :imm #x103 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x237 :cmd (vif-cmd unpack-v2-16)))
                  :color-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x4238 :cmd (vif-cmd unpack-v3-8)))
                  :vertex-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x239 :cmd (vif-cmd unpack-v3-16)))
                  :mscal-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #xa :cmd (vif-cmd mscal) :msk #x1))
                  :init-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
@@ -256,50 +229,43 @@
             (new 'static 'shrub-near-packet
                  :matrix-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                      :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x363 :num #x6 :cmd (vif-cmd unpack-v4-32)))
                  :header-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x36a :cmd (vif-cmd unpack-v4-32)))
                  :stq-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif0
                       (new 'static 'vif-tag :imm #x103 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x9 :cmd (vif-cmd unpack-v2-16)))
                  :color-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x400a :cmd (vif-cmd unpack-v3-8)))
                  :vertex-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #xb :cmd (vif-cmd unpack-v3-16)))
                  :mscal-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #xa :cmd (vif-cmd mscal) :msk #x1))
                  :init-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
@@ -309,50 +275,43 @@
             (new 'static 'shrub-near-packet
                  :matrix-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                      :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x345 :num #x6 :cmd (vif-cmd unpack-v4-32)))
                  :header-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x34c :cmd (vif-cmd unpack-v4-32)))
                  :stq-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif0
                       (new 'static 'vif-tag :imm #x103 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x120 :cmd (vif-cmd unpack-v2-16)))
                  :color-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x4121 :cmd (vif-cmd unpack-v3-8)))
                  :vertex-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x122 :cmd (vif-cmd unpack-v3-16)))
                  :mscal-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #xa :cmd (vif-cmd mscal) :msk #x1))
                  :init-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
@@ -362,50 +321,43 @@
             (new 'static 'shrub-near-packet
                  :matrix-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
+                      :dma (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x363 :num #x6 :cmd (vif-cmd unpack-v4-32)))
                  :header-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x36a :cmd (vif-cmd unpack-v4-32)))
                  :stq-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif0
                       (new 'static 'vif-tag :imm #x103 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #x237 :cmd (vif-cmd unpack-v2-16)))
                  :color-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x4238 :cmd (vif-cmd unpack-v3-8)))
                  :vertex-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id ref))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id ref))
                       :vif1
                       (new 'static 'vif-tag :imm #x239 :cmd (vif-cmd unpack-v3-16)))
                  :mscal-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
                       (new 'static 'vif-tag :imm #xa :cmd (vif-cmd mscal) :msk #x1))
                  :init-tmpl
                  (new 'static 'dma-packet
-                      :dma
-                      (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
+                      :dma (new 'static 'dma-tag :qwc #x2 :id (dma-tag-id next))
                       :vif0
                       (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
                       :vif1
@@ -418,8 +370,7 @@
        (new 'static 'dma-packet :dma (new 'static 'dma-tag :id (dma-tag-id end)))
        :wind-const
        (new 'static 'vector :x 0.5 :y 100.0 :z 0.0166 :w -1.0)
-       :constants
-       (new 'static 'vector :x 128.0 :y 1.0)
+       :constants (new 'static 'vector :x 128.0 :y 1.0)
        :color-constant
        (new 'static 'vector4w :x #x47000000 :y #x47000000 :z #x47000000)
        :start-bank

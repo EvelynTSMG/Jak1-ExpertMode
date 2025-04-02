@@ -19,8 +19,7 @@
    wedge-plat-master-idle))
 
 (defstate wedge-plat-master-idle (wedge-plat-master)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (set! (-> self rotate-inner)
               (the float (sar (shl (the int (+ (-> self rotate-inner) (* (-> self rotspeed) (seconds-per-frame)))) 48) 48)))
@@ -72,13 +71,11 @@
         s5-0))))
 
 (defstate wedge-plat-idle (wedge-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (baseplat-method-22 self))))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja :num-func num-func-identity :frame-num (ja-aframe 0.0 0))
       (loop
         (if (wedge-plat-method-27 self) (go wedge-plat-tip))
@@ -86,14 +83,12 @@
   :post plat-post)
 
 (defstate wedge-plat-tip (wedge-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (baseplat-method-22 self))
         (('touch) (send-event proc 'no-look-around (seconds 1.5)) #f)))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! wedge-plat-tip-ja :num! (seek! (ja-aframe 60.0 0)) :frame-num (ja-aframe 0.0 0))
       (until (ja-done? 0)
         (wedge-plat-method-27 self)
@@ -175,13 +170,11 @@
         s5-0))))
 
 (defstate wedge-plat-outer-idle (wedge-plat-outer)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (baseplat-method-22 self))))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja :num-func num-func-identity :frame-num (ja-aframe 0.0 0))
         (if (wedge-plat-method-27 self) (go wedge-plat-outer-tip))
@@ -189,14 +182,12 @@
   :post plat-post)
 
 (defstate wedge-plat-outer-tip (wedge-plat-outer)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('bonk) (baseplat-method-22 self))
         (('touch) (send-event proc 'no-look-around (seconds 1.5)))))
   :trans plat-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! wedge-plat-outer-tip-ja :num! (seek! (ja-aframe 60.0 0)) :frame-num (ja-aframe 0.0 0))
       (until (ja-done? 0)
         (wedge-plat-method-27 self)

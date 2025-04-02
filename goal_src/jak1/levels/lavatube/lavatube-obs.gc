@@ -22,8 +22,7 @@
   :longest-edge (meters 9.4))
 
 (defstate lavabase-idle (lavabase)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -52,8 +51,7 @@
   :longest-edge (meters 5.4))
 
 (defstate lavafall-idle (lavafall)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -82,8 +80,7 @@
   :longest-edge (meters 11.9))
 
 (defstate lavashortcut-idle (lavashortcut)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -132,8 +129,7 @@
   :id 541
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2125 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2125 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2126 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2127 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2128 :period (seconds 2) :length (seconds 0.067))
@@ -401,8 +397,7 @@
   (none))
 
 (defstate darkecobarrel-mover-die (darkecobarrel-mover)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (clear-collide-with-as (-> self root))
       (ja-post)
@@ -419,8 +414,7 @@
       (deactivate self)))
 
 (defstate darkecobarrel-mover-move (darkecobarrel-mover)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch 'attack)
          (cond
@@ -452,15 +446,13 @@
                       (else
                        (set! (-> self leak (+ (-> self hits) -1) offset quad) (-> self root trans quad))
                        (set! (-> self leak (+ (-> self hits) -1) offset y) (+ -49152.0 (-> self leak (+ (-> self hits) -1) offset y)))))))))))))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (update! (-> self y-offset) 0.0)
       (if (and (at-min? (-> self y-offset)) (< (-> self y-offset osc vel) 0.03))
         (set! (-> self y-offset osc vel) (fabs (update! (-> self y-offset-tgt)))))
       (update! (-> self down) (update-with-delay! (-> self down-tgt)))
       (darkecobarrel-mover-pos))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((f30-0 0.9)
             (f28-0 0.25))
         (+ f30-0 (* f28-0 (rand-float-gen))))
@@ -530,8 +522,7 @@
   (-> self spawn-array (+ (-> self spawn-array length) -1)))
 
 (defstate darkecobarrel-spawner (darkecobarrel)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((gp-1 (mod (darkecobarrel-base-time) (darkecobarrel-cycle-time))))
         (if (and (> (-> self cur-spawn) 0) (< gp-1 (-> self spawn-array (+ (-> self cur-spawn) -1))))
           (+! gp-1 (darkecobarrel-cycle-time)))
@@ -542,12 +533,10 @@
                            (-> self speed)
                            (- (darkecobarrel-base-time) (the-as time-frame gp-2))
                            (-> self sync)
-                           :to
-                           self)
+                           :to self)
             (darkecobarrel-advance-curspawn))))
       (if (nonzero? (-> self sound)) (update! (-> self sound))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -611,8 +600,7 @@
   :bounds (static-spherem -15 0 -5 185))
 
 (defstate lavafallsewera-idle (lavafallsewera)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -640,8 +628,7 @@
   :bounds (static-spherem 0 0 0 120))
 
 (defstate lavafallsewerb-idle (lavafallsewerb)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -667,8 +654,7 @@
   :id 542
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2132 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2132 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2133 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2134 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2135 :period (seconds 2) :length (seconds 0.067))))
@@ -787,8 +773,7 @@
 
 (defstate die (chainmine)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (clear-collide-with-as (-> self root))
       (ja-post)
@@ -806,12 +791,10 @@
 
 (defstate idle (chainmine)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack 'touch) (send-event proc 'attack (-> block param 0) (static-attack-info ((mode 'deadly)))) (go-virtual die))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -923,40 +906,34 @@
 
 (defstate die (lavaballoon)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (clear-collide-with-as (-> self root))
       (ja-post)
       (sound-play "cool-balloon")
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 543)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (suspend)
       (cleanup-for-death self)
       (deactivate self)))
 
 (defstate idle (lavaballoon)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack) (send-event proc 'heat -10.0) (go-virtual die))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (not (logtest? (-> self path flags) (path-control-flag not-found)))
         (let ((f0-4 (* 0.5 (+ 1.0 (sin (* (-> self move-per-tick) (the float (current-time))))))))
           (eval-path-curve! (-> self path) (-> self root trans) f0-4 'interp))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -994,8 +971,7 @@
   (new 'static 'ripple-wave-set
        :count 2
        :converted #f
-       :wave
-       (new 'static 'inline-array
+       :wave (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 2 :speed 3.0)
@@ -1005,8 +981,7 @@
 
 (defstate water-vol-idle (lavatube-lava)
   :virtual #t
-  :post
-    (behavior ()
+  :post (behavior ()
       (let ((t9-0 (-> (method-of-type water-anim water-vol-idle) post)))
         (if t9-0 ((the-as (function none :behavior lavatube-lava) t9-0))))
       (ja-post)))
@@ -1035,8 +1010,7 @@
   :bounds (static-spherem 0 0 0 5))
 
 (defstate lavayellowtarp-idle (lavayellowtarp)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)

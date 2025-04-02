@@ -16,8 +16,7 @@
 (defpartgroup group-snow-snowdrops1
   :id 528
   :bounds (static-bspherem 0 -16 0 32)
-  :parts
-  ((sp-item 1924 :fade-after (meters 100) :falloff-to (meters 130) :period (seconds 9) :length (seconds 0.5))
+  :parts ((sp-item 1924 :fade-after (meters 100) :falloff-to (meters 130) :period (seconds 9) :length (seconds 0.5))
    (sp-item 1924 :fade-after (meters 100) :falloff-to (meters 130) :period (seconds 9) :length (seconds 0.335))
    (sp-item 1924 :fade-after (meters 100) :falloff-to (meters 130) :period (seconds 9) :length (seconds 0.2))
    (sp-item 1924 :fade-after (meters 100) :falloff-to (meters 130) :period (seconds 9) :length (seconds 0.1))
@@ -36,8 +35,7 @@
 (defpartgroup group-snow-snowdrops2
   :id 529
   :bounds (static-bspherem 0 -16 0 32)
-  :parts
-  ((sp-item 1924
+  :parts ((sp-item 1924
             :fade-after (meters 100)
             :falloff-to (meters 130)
             :period (seconds 10.227)
@@ -131,8 +129,7 @@
 (defpartgroup group-snow-snowdrops3
   :id 530
   :bounds (static-bspherem 0 -16 0 32)
-  :parts
-  ((sp-item 1924
+  :parts ((sp-item 1924
             :fade-after (meters 100)
             :falloff-to (meters 130)
             :period (seconds 11.15)
@@ -226,8 +223,7 @@
 (defpartgroup group-snow-snowdrops4
   :id 531
   :bounds (static-bspherem 0 -16 0 32)
-  :parts
-  ((sp-item 1924
+  :parts ((sp-item 1924
             :fade-after (meters 100)
             :falloff-to (meters 130)
             :period (seconds 13.45)
@@ -321,8 +317,7 @@
 (defpartgroup group-snow-snowdrops5
   :id 532
   :bounds (static-bspherem 0 -16 0 32)
-  :parts
-  ((sp-item 1924
+  :parts ((sp-item 1924
             :fade-after (meters 100)
             :falloff-to (meters 130)
             :period (seconds 17.95)
@@ -416,8 +411,7 @@
 (defpartgroup group-snow-snowdrops6
   :id 533
   :bounds (static-bspherem 0 -16 0 32)
-  :parts
-  ((sp-item 1924
+  :parts ((sp-item 1924
             :fade-after (meters 100)
             :falloff-to (meters 130)
             :period (seconds 20.43)
@@ -576,8 +570,7 @@
 (defpartgroup group-part-snow-torch
   :id 534
   :bounds (static-bspherem 0 3 0 4)
-  :parts
-  ((sp-item 2041 :fade-after (meters 200) :falloff-to (meters 220))
+  :parts ((sp-item 2041 :fade-after (meters 200) :falloff-to (meters 220))
    (sp-item 2042 :fade-after (meters 140) :falloff-to (meters 1400))
    (sp-item 2043 :fade-after (meters 50) :falloff-to (meters 50) :period (seconds 2) :length (seconds 0.3))
    (sp-item 2044 :fade-after (meters 50) :falloff-to (meters 50) :period (seconds 1.23) :length (seconds 0.23))
@@ -760,8 +753,7 @@
 (defpartgroup group-snow-door-torch
   :id 536
   :bounds (static-bspherem 0 5 0 6)
-  :parts
-  ((sp-item 2113 :fade-after (meters 240) :falloff-to (meters 240))
+  :parts ((sp-item 2113 :fade-after (meters 240) :falloff-to (meters 240))
    (sp-item 2114 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 1.641) :length (seconds 0.2))
    (sp-item 2115 :fade-after (meters 240) :falloff-to (meters 240))
    (sp-item 2116 :fade-after (meters 40) :falloff-to (meters 40) :period (seconds 1.23) :length (seconds 0.73))
@@ -1011,8 +1003,7 @@
 (defpartgroup group-snow-birds
   :id 537
   :bounds (static-bspherem 0 8 0 45)
-  :parts
-  ((sp-item 2245 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 2243)
+  :parts ((sp-item 2245 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 2243)
    (sp-item 2245 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 2243)
    (sp-item 2245 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 2243)
    (sp-item 2245 :fade-after (meters 120) :flags (bit1 launch-asap) :binding 2243)

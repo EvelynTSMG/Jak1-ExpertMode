@@ -78,18 +78,15 @@
 
 (defstate idle (static-screen)
   :virtual #t
-  :enter
-    (behavior ((arg0 int) (arg1 time-frame) (arg2 symbol))
+  :enter (behavior ((arg0 int) (arg1 time-frame) (arg2 symbol))
       (set! (-> *setting-control* current bg-a) 1.0)
       (set! (-> *setting-control* default bg-a) 0.0)
       (add-setting! 'common-page 'set 0.0 (ash 1 (+ arg0 1))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (hide-hud-quick)
       (spawn (-> self part 0) *zero-vector*)
       0)
-  :code
-    (behavior ((arg0 int) (arg1 time-frame) (arg2 symbol))
+  :code (behavior ((arg0 int) (arg1 time-frame) (arg2 symbol))
       (local-vars (v1-6 symbol))
       (set-time! (-> self state-time))
       (until v1-6

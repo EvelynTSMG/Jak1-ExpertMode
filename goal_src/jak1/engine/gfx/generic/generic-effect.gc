@@ -14,8 +14,7 @@
   (new 'static 'generic-consts
        :dma-header
        (new 'static 'dma-packet
-            :dma
-            (new 'static 'dma-tag :id (dma-tag-id cnt))
+            :dma (new 'static 'dma-tag :id (dma-tag-id cnt))
             :vif0
             (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl))
             :vif1
@@ -26,10 +25,8 @@
        (new 'static 'dma-packet :dma (new 'static 'dma-tag :id (dma-tag-id ref)))
        :dma-cnt-call
        (new 'static 'dma-packet :dma (new 'static 'dma-tag :id (dma-tag-id cnt)))
-       :matrix
-       (new 'static 'matrix
-            :vector
-            (new 'static 'inline-array
+       :matrix (new 'static 'matrix
+            :vector (new 'static 'inline-array
                  vector
                  4
                  (new 'static 'vector :x 1.0)
@@ -55,14 +52,10 @@
        :mscal-tag #x14000006
        :reset-cycle-tag #x1000404
        :dma-tag-cnt #x10000000
-       :envmap
-       (new 'static 'generic-envmap-consts
-            :consts
-            (new 'static 'vector :x 1.0 :z 0.5 :w 0.5)
-            :strgif
-            (new 'static 'generic-gif-tag :data (new 'static 'array uint32 4 #x302ec000 #x302e4000 #x412 #x0))
-            :colors
-            (new 'static 'vector4w :x -2139062144 :y -2139062144 :z -2139062144 :w -2139062144))
+       :envmap (new 'static 'generic-envmap-consts
+            :consts (new 'static 'vector :x 1.0 :z 0.5 :w 0.5)
+            :strgif (new 'static 'generic-gif-tag :data (new 'static 'array uint32 4 #x302ec000 #x302e4000 #x412 #x0))
+            :colors (new 'static 'vector4w :x -2139062144 :y -2139062144 :z -2139062144 :w -2139062144))
        :light-consts
        (new 'static 'vector :x 255.0 :y 8388608.0)))
 

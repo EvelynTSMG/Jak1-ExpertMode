@@ -10,8 +10,7 @@
 (defpartgroup group-flut-trans-pad
   :id 120
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 746 :fade-after (meters 160))
+  :parts ((sp-item 746 :fade-after (meters 160))
    (sp-item 747 :fade-after (meters 160))
    (sp-item 748 :fade-after (meters 60) :falloff-to (meters 60) :flags (is-3d))))
 

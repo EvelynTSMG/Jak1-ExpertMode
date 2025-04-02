@@ -9,8 +9,7 @@
   :id 682
   :flags (screen-space)
   :bounds (static-bspherem 0 0 0 2)
-  :parts
-  ((sp-item 2825 :period (seconds 1) :length (seconds 0.017) :binding 2823)
+  :parts ((sp-item 2825 :period (seconds 1) :length (seconds 0.017) :binding 2823)
    (sp-item 2823 :flags (start-dead launch-asap) :binding 2824)
    (sp-item 2823 :flags (start-dead launch-asap) :binding 2824)
    (sp-item 2824 :flags (start-dead))
@@ -122,8 +121,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2921)
+  :parts ((sp-item 2921)
    (sp-item 2922 :flags (is-3d))
    (sp-item 2923 :flags (is-3d))
    (sp-item 2924 :flags (is-3d))
@@ -441,8 +439,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2936 :period (seconds 0.12) :length (seconds 0.017))
+  :parts ((sp-item 2936 :period (seconds 0.12) :length (seconds 0.017))
    (sp-item 2936 :period (seconds 0.467) :length (seconds 0.017))
    (sp-item 2936 :period (seconds 0.205) :length (seconds 0.017))
    (sp-item 2894 :period (seconds 0.05) :length (seconds 0.017))
@@ -520,8 +517,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2939 :period (seconds 4) :length (seconds 0.067) :binding 2938)
+  :parts ((sp-item 2939 :period (seconds 4) :length (seconds 0.067) :binding 2938)
    (sp-item 2940 :period (seconds 4) :length (seconds 0.017))
    (sp-item 2941 :period (seconds 4) :length (seconds 0.135))
    (sp-item 2942 :period (seconds 4) :length (seconds 0.067))
@@ -784,8 +780,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2952 :flags (is-3d))
+  :parts ((sp-item 2952 :flags (is-3d))
    (sp-item 2953 :flags (is-3d))
    (sp-item 2954 :flags (is-3d))
    (sp-item 2955)

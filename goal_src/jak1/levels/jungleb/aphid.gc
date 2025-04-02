@@ -37,8 +37,7 @@
 (defstate nav-enemy-chase (aphid)
   :virtual #t
   :exit aphid-vulnerable
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (cond
                     ((>= (-> self try) 15) 450)
                     ((>= (-> self try) 10) 300)
@@ -80,8 +79,7 @@
 
 (defstate nav-enemy-stare (aphid)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self turn-time) (seconds 0.2))
       (let ((f30-0 (nav-enemy-rnd-float-range 0.8 1.2)))
         (when (or (logtest? (-> self nav-enemy-flags) (nav-enemy-flags navenmf8))
@@ -112,8 +110,7 @@
 
 (defstate nav-enemy-give-up (aphid)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self rotate-speed) 218453.33)
       (set! (-> self turn-time) (seconds 0.5))
       (ja-channel-push! 1 (seconds 0.15))

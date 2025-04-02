@@ -14,19 +14,16 @@
 (define *CAM_POINT_WATCH-bank* (new 'static 'cam-point-watch-bank :speed 1600.0 :rot-speed (degrees 0.6)))
 
 (defstate cam-point-watch (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self pivot-rad) 40960.0)
         (set! (-> self blend-from-type) (the-as uint 1))
         (set! (-> self blend-to-type) (the-as uint 1))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((s5-0 (new-stack-vector0))
               (gp-0 (new-stack-vector0)))
@@ -275,19 +272,16 @@
     (vector+! arg1 arg1 (-> s3-0 tv))))
 
 (defstate cam-free-floating (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self blend-from-type) (the-as uint 1))
         (set! (-> self blend-to-type) (the-as uint 1))
         (send-event *camera-combiner* 'stop-tracking)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((a2-0 (-> *camera* local-down)))
           (if (logtest? (-> self options) 8) (set! a2-0 (the-as vector #f)))
@@ -321,13 +315,11 @@
 (set! (-> *camera-orbit-info* orbit-off y) 4096.0)
 
 (defstate cam-orbit (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (if (not *camera-orbit-target*) (cam-slave-go cam-free-floating))
         (let ((v1-4 (new-stack-vector0)))
@@ -335,11 +327,9 @@
           (set! (-> *camera-orbit-info* rot) (atan (-> v1-4 x) (-> v1-4 z))))
         (set! (-> self blend-from-type) (the-as uint 1))
         (set! (-> self blend-to-type) (the-as uint 1))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       '())
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (not *camera-orbit-target*) (cam-slave-go cam-free-floating))
         (when *camera-read-analog*

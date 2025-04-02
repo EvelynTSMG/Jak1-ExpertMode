@@ -18,13 +18,11 @@
   :bounds (static-spherem 0 0 0 30))
 
 (defstate blocking-plane-b-idle (blocking-plane-b)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *debug-segment* *display-path-marks*)
         (logclear! (-> self draw status) (draw-status skip-bones)) ;; in debug, show blocking planes when path marks on
         (logior! (-> self draw status) (draw-status skip-bones))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (loop
         (when (not *debug-segment*)

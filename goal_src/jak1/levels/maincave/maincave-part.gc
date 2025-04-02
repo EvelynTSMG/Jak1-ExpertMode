@@ -15,8 +15,7 @@
 (defpartgroup group-part-maincave-torch
   :id 318
   :bounds (static-bspherem 0 3 0 4)
-  :parts
-  ((sp-item 706 :fade-after (meters 200) :falloff-to (meters 220))
+  :parts ((sp-item 706 :fade-after (meters 200) :falloff-to (meters 220))
    (sp-item 707 :fade-after (meters 140) :falloff-to (meters 140))
    (sp-item 708 :fade-after (meters 50) :falloff-to (meters 50) :period (seconds 2) :length (seconds 0.3))
    (sp-item 709 :fade-after (meters 50) :falloff-to (meters 50) :period (seconds 1.23) :length (seconds 0.23))
@@ -166,8 +165,7 @@
 (defpartgroup group-cave-cavedrip-1
   :id 319
   :bounds (static-bspherem 0 8 0 8.25)
-  :parts
-  ((sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 1.23) :length (seconds 0.017))
+  :parts ((sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 1.23) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 2.56) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 3.89) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 5.67) :length (seconds 0.017))
@@ -177,8 +175,7 @@
 (defpartgroup group-cave-cavedrip-2
   :id 320
   :bounds (static-bspherem 0 8 0 8.25)
-  :parts
-  ((sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 1.557) :length (seconds 0.017))
+  :parts ((sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 1.557) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 2.781) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 3.281) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 7.457) :length (seconds 0.017))
@@ -188,8 +185,7 @@
 (defpartgroup group-cave-cavedrip-3
   :id 321
   :bounds (static-bspherem 0 8 0 8.25)
-  :parts
-  ((sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 2.67) :length (seconds 0.017))
+  :parts ((sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 2.67) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 2.89) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 4.23) :length (seconds 0.017))
    (sp-item 2230 :fade-after (meters 60) :falloff-to (meters 60) :period (seconds 6.61) :length (seconds 0.017))

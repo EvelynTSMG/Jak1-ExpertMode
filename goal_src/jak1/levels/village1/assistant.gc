@@ -128,8 +128,7 @@
 
 (defstate idle (assistant)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (!= (ja-group) assistant-idle-leaning-right-ja) (ja-channel-push! 1 (seconds 0.2)))
       (loop
         (do-idle-ambience self)
@@ -189,8 +188,7 @@
 (defpartgroup group-assistant-torch
   :id 122
   :bounds (static-bspherem 0 0 0 15)
-  :parts
-  ((sp-item 365 :fade-after (meters 30) :falloff-to (meters 30))
+  :parts ((sp-item 365 :fade-after (meters 30) :falloff-to (meters 30))
    (sp-item 366 :fade-after (meters 60) :falloff-to (meters 80))))
 
 (defpart 365

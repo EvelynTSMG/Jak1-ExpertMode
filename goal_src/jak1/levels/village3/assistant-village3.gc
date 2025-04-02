@@ -80,8 +80,7 @@
 
 (defstate idle (assistant-villagec)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (!= (ja-group) (get-art-elem self)) (ja-channel-push! 1 (seconds 0.05)))
       (loop
         (do-idle-ambience self)

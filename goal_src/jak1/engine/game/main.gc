@@ -319,8 +319,7 @@
                  (!= *master-exit* #t))
         ;; spawn a process that blacks out the screen, turns things off, and kills the game.
         (if (process-spawn-function process
-              :stack
-              *scratch-memory-top*
+              :stack *scratch-memory-top*
               (lambda :behavior process ()
                 (set-blackout-frames (seconds 100))
                 (set! (-> *setting-control* default allow-pause) #f)

@@ -83,16 +83,14 @@
 
 (defstate idle (test-actor)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack 'touch)
          ; (if (= (-> proc type) target)
          ;   (send-event proc 'attack #f (static-attack-info ((shove-up (meters 2.5)) (shove-back (meters 7.5)))))
          ;   )
          #t)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* (degrees 45) (seconds-per-frame)))
         (let ((bob (-> self bob-amount)))

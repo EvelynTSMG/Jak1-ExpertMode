@@ -19,8 +19,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2340 :period (seconds 0.25) :length (seconds 0.035))
+  :parts ((sp-item 2340 :period (seconds 0.25) :length (seconds 0.035))
    (sp-item 2341 :period (seconds 0.25) :length (seconds 0.035))
    (sp-item 2289 :period (seconds 0.25) :length (seconds 0.035))))
 
@@ -140,8 +139,7 @@
   :duration (seconds 3)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 64)
-  :parts
-  ((sp-item 2342 :period (seconds 3) :length (seconds 0.135))
+  :parts ((sp-item 2342 :period (seconds 3) :length (seconds 0.135))
    (sp-item 2343 :period (seconds 3) :length (seconds 0.135))
    (sp-item 2291 :period (seconds 3) :length (seconds 0.135))))
 
@@ -247,13 +245,11 @@
 
 (defstate idle (beach-rock)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (set! (-> self trigger) #t) (go-virtual falling))
         (('loading) (go-virtual loading))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (-> self trigger) (go-virtual falling))
       (ja-channel-set! 0)
       (ja-post)
@@ -263,19 +259,16 @@
 
 (defstate loading (beach-rock)
   :virtual #t
-  :event
-    (-> (the-as state (method-of-type beach-rock idle))
+  :event (-> (the-as state (method-of-type beach-rock idle))
         event)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (spool-push *art-control* "lrocklrg-falling" 0 self -1.0)
         (suspend))))
 
 (defstate falling (beach-rock)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self draw bounds w) 819200.0)
       (let ((f30-0 (ja-aframe-num 0)))
         (when (and (< -50.0 f30-0) (< f30-0 158.0))
@@ -296,8 +289,7 @@
         (if (and (< 240.0 f30-0) (< f30-0 270.0))
           (spawn (-> self part-falling) (vector<-cspace! (new 'stack-no-clear 'vector) (joint-node lrocklrg-lod0-jg smlrock))))
         (set! (-> self prev-frame) f30-0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (v1-3 symbol) (v1-49 symbol))
       (until v1-3
         (spool-push *art-control* "lrocklrg-falling" 0 self -1.0)
@@ -329,8 +321,7 @@
 
 (defstate fallen (beach-rock)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (level-hint-spawn (text-id beach-seagulls-avalanche) "sksp0025" (the-as entity #f) *entity-pool* (game-task none))
       (ja :group! lrocklrg-fallen-ja)
       (compute-alignment! (-> self align))

@@ -332,10 +332,8 @@
       (set! (-> (the-as dma-packet a0-26) dma)
             (new 'static 'dma-tag
                  :id (dma-tag-id ref)
-                 :addr
-                 (the-as int (+ (+ (* 160 (the-as int arg5)) 0) (the-as int *ocean-trans-strip-array*)))
-                 :qwc
-                 a1-17))
+                 :addr (the-as int (+ (+ (* 160 (the-as int arg5)) 0) (the-as int *ocean-trans-strip-array*)))
+                 :qwc a1-17))
       (set! (-> (the-as dma-packet a0-26) vif0) (new 'static 'vif-tag :imm #x404 :cmd (vif-cmd stcycl)))
       (set! (-> (the-as dma-packet a0-26) vif1) (new 'static 'vif-tag :imm #x8011 :cmd (vif-cmd unpack-v4-32) :num a1-17))
       (set! (-> v1-11 base) (&+ (the-as pointer a0-26) 16)))

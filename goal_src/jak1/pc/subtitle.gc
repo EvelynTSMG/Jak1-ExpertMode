@@ -427,17 +427,14 @@
       (draw-debug-text-box (-> self font)))))
 
 (defstate subtitle-process (subtitle)
-  :event
-    (behavior ((from process) (argc int) (msg symbol) (block event-message-block))
+  :event (behavior ((from process) (argc int) (msg symbol) (block event-message-block))
       (case msg
         (('subtitle-start) 0)
         (('debug) (go subtitle-debug))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (load-level-subtitle-files 0)
       ;; reset params
       (set! (-> self want-subtitle) (the subtitle-keyframe #f))
@@ -520,8 +517,7 @@
           (cpad-clear! 0 start)
           (send-event self 'debug)))
       (none))
-  :post
-    (behavior ()
+  :post (behavior ()
       (setup-subtitle-font)
       (draw-subtitle)
       (cond
@@ -538,16 +534,13 @@
       0))
 
 (defstate subtitle-debug (subtitle)
-  :event
-    (behavior ((from process) (argc int) (msg symbol) (block event-message-block))
+  :event (behavior ((from process) (argc int) (msg symbol) (block event-message-block))
       (case msg
         (('debug) (go subtitle-process))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (mem-copy! (the pointer (-> self bank-backup)) (the pointer *SUBTITLE-bank*) (size-of subtitle-bank))
       (set-master-mode 'pause))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) (bucket-id debug))
         (draw-string-xy "~3LSUBTITLE DEBUG!~0L"
                         buf
@@ -709,23 +702,19 @@
         (cpad-clear! 0 start)
         (send-event self 'debug))
       (none))
-  :code
-    (-> subtitle-process
+  :code (-> subtitle-process
         code)
-  :post
-    (behavior ()
+  :post (behavior ()
       (setup-subtitle-font)
       (draw-subtitle)
       (draw-debug-text-box (-> self font))
       0))
 
 (defstate subtitle-debug-checking-lines (subtitle)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (setup-subtitle-font)
       (none))
-  :code
-    (behavior ()
+  :code (behavior ()
       (protect ((-> *pc-settings* subtitle-speaker?))
         (set! (-> *pc-settings* subtitle-speaker?) #t)
         (let ((lines-so-far 0)
@@ -746,8 +735,7 @@
           (suspend)
           (if (> bad-lines 0) (format 0 "~D bad lines detected.~%" bad-lines) (format 0 "no bad lines detected!~%" bad-lines))))
       (go subtitle-debug))
-  :post
-    (behavior ()
+  :post (behavior ()
       (with-dma-buffer-add-bucket ((buf (-> (current-frame) debug-buf)) (bucket-id debug))
         (draw-string-xy "Checking for bad lines... See console for info"
                         buf

@@ -10,8 +10,7 @@
 
 (defstate target-demo (target)
   :event target-generic-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (if *time-of-day-proc* (set! (-> *time-of-day-proc* 0 hour) 12))
       (set-setting! 'allow-pause #f 0.0 0)
       (set-setting! 'allow-progress #f 0.0 0)

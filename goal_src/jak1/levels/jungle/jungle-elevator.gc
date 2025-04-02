@@ -16,19 +16,16 @@
 
 (defstate plat-button-move-downward (jungle-elevator)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (let ((t9-0 (-> (method-of-type plat-button plat-button-move-downward) enter))) (if t9-0 (t9-0)))
       (set! (-> self draw light-index) (the-as uint 255))
       (set! (-> self bottom-height) (-> jungle bottom-height))
       (set! (-> jungle bottom-height) (-> jungleb bottom-height))
       (send-event *target* 'reset-pickup 'eco))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> jungle bottom-height) (-> self bottom-height))
       (let ((t9-0 (-> (method-of-type plat-button plat-button-move-downward) exit))) (if t9-0 (t9-0))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((s5-0 (new 'stack-no-clear 'vector))
             (gp-0 (new 'stack-no-clear 'vector)))
         (set! (-> s5-0 quad) (-> self root trans quad))
@@ -42,27 +39,23 @@
 
 (defstate plat-button-move-upward (jungle-elevator)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (let ((t9-0 (-> (method-of-type plat-button plat-button-move-upward) enter))) (if t9-0 (t9-0)))
       (set! (-> self draw light-index) (the-as uint 255))
       (set! (-> self bottom-height) (-> jungle bottom-height))
       (set! (-> jungle bottom-height) (-> jungleb bottom-height))
       (set! (-> self grab-player?) (process-grab? *target*)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> jungle bottom-height) (-> self bottom-height))
       (let ((t9-0 (-> (method-of-type plat-button plat-button-move-upward) exit))) (if t9-0 (t9-0))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((t9-0 (-> (method-of-type plat-button plat-button-move-upward) trans))) (if t9-0 (t9-0)))
       (if (and (< (-> self path-pos) 0.8) (not (time-elapsed? (-> self state-time) (seconds 0.2))))
         (load-commands-set! *level* (load-command-get-index *level* 'jungle 1)))))
 
 (defstate plat-button-at-end (jungle-elevator)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((!= (-> self path-pos) 0.0)
          (set! (-> self draw light-index) (the-as uint 1))

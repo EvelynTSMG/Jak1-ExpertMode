@@ -526,8 +526,7 @@
   :id 180
   :flags (always-draw)
   :bounds (static-bspherem 0 25 0 100)
-  :parts
-  ((sp-item 833)
+  :parts ((sp-item 833)
    (sp-item 833 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 834)
    (sp-item 834 :fade-after (meters 120) :falloff-to (meters 120))
@@ -539,8 +538,7 @@
   :id 181
   :flags (always-draw)
   :bounds (static-bspherem 2 9 4 90)
-  :parts
-  ((sp-item 838)
+  :parts ((sp-item 838)
    (sp-item 838 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 841)
    (sp-item 841 :fade-after (meters 120) :falloff-to (meters 120))
@@ -552,8 +550,7 @@
   :id 182
   :flags (always-draw)
   :bounds (static-bspherem 0 8 0 90)
-  :parts
-  ((sp-item 843)
+  :parts ((sp-item 843)
    (sp-item 843 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 846)
    (sp-item 846 :fade-after (meters 120) :falloff-to (meters 120))
@@ -565,8 +562,7 @@
   :id 183
   :flags (always-draw)
   :bounds (static-bspherem 0 10 8 90)
-  :parts
-  ((sp-item 848)
+  :parts ((sp-item 848)
    (sp-item 848 :fade-after (meters 160) :falloff-to (meters 160))
    (sp-item 851)
    (sp-item 851 :fade-after (meters 120) :falloff-to (meters 120))
@@ -719,15 +715,13 @@
 (defpartgroup group-jungle-dapple-light-1
   :id 184
   :bounds (static-bspherem 0 0 0 55)
-  :parts
-  ((sp-item 864 :hour-mask #b111111100000000000111111)
+  :parts ((sp-item 864 :hour-mask #b111111100000000000111111)
    (sp-item 853 :fade-after (meters 130) :falloff-to (meters 160) :hour-mask #b11111111111000000)))
 
 (defpartgroup group-jungle-tower-spewer
   :id 185
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 866 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 866 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 866 :fade-after (meters 50) :falloff-to (meters 50))
    (sp-item 867 :fade-after (meters 300) :falloff-to (meters 300))
    (sp-item 868 :fade-after (meters 400) :falloff-to (meters 400))))
@@ -824,8 +818,7 @@
 (defpartgroup group-jungle-lurkermachine-3
   :id 186
   :bounds (static-bspherem 0 6 6 16)
-  :parts
-  ((sp-item 872 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 1) :length (seconds 0.86))
+  :parts ((sp-item 872 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 1) :length (seconds 0.86))
    (sp-item 872 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 0.675) :length (seconds 0.12))
    (sp-item 872 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 1.5) :length (seconds 0.127))
    (sp-item 872 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.857) :length (seconds 0.355))
@@ -1603,8 +1596,7 @@
 (defpartgroup group-jungle-lurkermachine-1
   :id 187
   :bounds (static-bspherem 0 10 0 12)
-  :parts
-  ((sp-item 896 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 1) :length (seconds 0.86))
+  :parts ((sp-item 896 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 1) :length (seconds 0.86))
    (sp-item 896 :fade-after (meters 140) :falloff-to (meters 160) :period (seconds 0.675) :length (seconds 0.12))
    (sp-item 896 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 1.5) :length (seconds 0.127))
    (sp-item 896 :fade-after (meters 100) :falloff-to (meters 120) :period (seconds 2.857) :length (seconds 0.355))

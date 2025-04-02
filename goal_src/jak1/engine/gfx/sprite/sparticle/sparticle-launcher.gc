@@ -728,16 +728,14 @@
                   (set! (-> a3-0 spawn-time) (the-as uint s4-0))
                   (logior! (-> a3-0 flags) (sp-launch-state-flags particles-active))
                   (if (< 0.0 f0-2)
-                    (launch-particles :system
-                                      (if (logtest? (-> v1-29 flags) (sp-group-item-flag is-3d)) *sp-particle-system-3d* *sp-particle-system-2d*)
+                    (launch-particles :system (if (logtest? (-> v1-29 flags) (sp-group-item-flag is-3d)) *sp-particle-system-3d* *sp-particle-system-2d*)
                                       a1-4
                                       (-> a3-0 origin)
                                       :launch-state
                                       a3-0
                                       :launch-control
                                       this
-                                      :rate
-                                      f0-2)))
+                                      :rate f0-2)))
                 (b! #t cfg-77 :delay (nop!))
                 (label cfg-36)
                 ;; reject if bad time of day
@@ -773,16 +771,14 @@
                   (set! (-> a3-0 spawn-time) (the-as uint s4-0))
                   (logior! (-> a3-0 flags) (sp-launch-state-flags particles-active))
                   (if (< 0.0 f0-4)
-                    (launch-particles :system
-                                      (if (logtest? (-> v1-29 flags) (sp-group-item-flag is-3d)) *sp-particle-system-3d* *sp-particle-system-2d*)
+                    (launch-particles :system (if (logtest? (-> v1-29 flags) (sp-group-item-flag is-3d)) *sp-particle-system-3d* *sp-particle-system-2d*)
                                       a1-4
                                       (-> a3-0 origin)
                                       :launch-state
                                       a3-0
                                       :launch-control
                                       this
-                                      :rate
-                                      f0-4))))
+                                      :rate f0-4))))
               (label cfg-77)
               (b! #t cfg-79 :delay (nop!))
               (label cfg-78)

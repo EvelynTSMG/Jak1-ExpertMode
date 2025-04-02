@@ -76,34 +76,29 @@
    (:flags (bit2 bit3))))
 
 (defstate balloon-popping (balloon)
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (clear-collide-with-as (-> self root))
       (ja-post)
       (sound-play "cool-balloon")
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 227)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (suspend)
       (cleanup-for-death self)
       (deactivate self)))
 
 (defstate balloon-idle (balloon)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack) (send-event proc 'heat -10.0) (go balloon-popping))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
@@ -147,12 +142,10 @@
   :longest-edge (meters 5))
 
 (defstate spike-up (spike)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('go-spike-up) #t)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (nonzero? (-> self num-alts))
         (let ((s5-0 (/ (-> self num-alts) 2))
               (gp-0 #t))
@@ -163,8 +156,7 @@
           (when gp-0
             (set! (-> self num-alts) 0)
             0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (transform-post)
@@ -174,12 +166,10 @@
         (suspend))))
 
 (defstate spike-down (spike)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('go-spike-up) (go spike-up) #t)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (nonzero? (-> self num-alts))
         (let ((s5-0 0)
               (gp-0 #t))
@@ -190,15 +180,13 @@
           (when gp-0
             (set! (-> self num-alts) 0)
             0))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (loop
         (suspend))))
 
 (defstate spike-idle (spike)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (and *target*
                  (= (send-event *target* 'query 'mode) 'racer)
                  (< (vector-vector-distance (-> self root trans) (target-pos 0)) 225280.0))
@@ -209,8 +197,7 @@
             ((>= 1 v1-8) (go spike-up))
             ((< (rand-float-gen) 0.5) (go spike-down))
             (else (go spike-up))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (loop
         (suspend))))
@@ -286,8 +273,7 @@
   :duration (seconds 2)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 12)
-  :parts
-  ((sp-item 2100 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2100 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2101 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2102 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2103 :period (seconds 2) :length (seconds 0.067))
@@ -461,35 +447,30 @@
 
 (defstate die (crate-darkeco-cluster)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 0)
       (clear-collide-with-as (-> self root))
       (ja-post)
       (sound-play "dcrate-break")
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 228)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (suspend)
       (cleanup-for-death self)
       (deactivate self)))
 
 (defstate idle (crate-darkeco-cluster)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('attack 'touch) (send-event proc 'attack (-> block param 0) (static-attack-info ((mode 'darkeco)))) (go-virtual die))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (logior! (-> self mask) (process-mask sleep))
       (suspend)

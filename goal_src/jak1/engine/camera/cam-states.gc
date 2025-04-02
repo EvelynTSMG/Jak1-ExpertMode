@@ -14,20 +14,17 @@
 ;; DECOMP BEGINS
 
 (defstate cam-fixed (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self saved-pt quad) (-> self trans quad))
         (set! (-> self blend-from-type) (the-as uint 1))
         (set! (-> self blend-to-type) (the-as uint 0))
         0))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (paused?))
           (let ((gp-0 (new 'stack-no-clear 'vector)))
@@ -39,13 +36,11 @@
         (suspend))))
 
 (defstate cam-fixed-read-entity (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (cond
         ((-> self enter-has-run))
         ((-> self cam-entity)
@@ -59,30 +54,25 @@
         (if (cam-slave-get-vector-with-offset (the-as entity-actor (-> self cam-entity)) gp-0 'interesting)
           (send-event *camera* 'point-of-interest gp-0)))
       (go cam-fixed))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (format *stdcon* "ERROR <GMJ>: stayed in cam-fixed-read-entity~%")
         (suspend))))
 
 (defstate cam-pov (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self blend-from-type) (the-as uint 1))
         (set! (-> self blend-to-type) (the-as uint 1))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (not (handle->process (-> *camera* pov-handle)))
         (set! (-> self blend-from-type) (the-as uint 0))
         (cam-slave-go cam-fixed)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (paused?))
           (vector<-cspace! (-> self trans)
@@ -101,23 +91,19 @@
         (suspend))))
 
 (defstate cam-pov180 (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self blend-from-type) (the-as uint 1))
         (set! (-> self blend-to-type) (the-as uint 1))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (not (handle->process (-> *camera* pov-handle)))
         (set! (-> self blend-from-type) (the-as uint 0))
         (cam-slave-go cam-fixed)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (new 'stack-no-clear 'vector))
             (s5-0 (new 'stack-no-clear 'vector))
             (s4-0 #t))
@@ -151,20 +137,17 @@
 
 (defstate cam-pov-track (camera-slave)
   :event cam-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self blend-from-type) (the-as uint 2))
         (set! (-> self blend-to-type) (the-as uint 2)))
       (let ((gp-0 (new 'stack-no-clear 'vector)))
         (if (cam-slave-get-vector-with-offset (the-as entity-actor (-> self cam-entity)) gp-0 'interesting)
           (send-event *camera* 'point-of-interest gp-0))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (or (not (handle->process (-> *camera* pov-handle))) (not (logtest? (-> *camera* master-options) 2)))
         (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (not (paused?))
           (vector<-cspace! (-> self trans)
@@ -177,8 +160,7 @@
     (vector+! (-> self trans) (-> self tracking follow-pt) (-> self pivot-pt))))
 
 (defstate cam-standoff (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('set-standoff-dist) (vector-normalize! (-> self pivot-pt) (the-as float (-> block param 0))) (cam-standoff-calc-trans))
         (('set-standoff-height)
@@ -186,8 +168,7 @@
          (vector--float*! (-> self pivot-pt) (-> self pivot-pt) (-> *camera* local-down) (the-as float (-> block param 0)))
          (cam-standoff-calc-trans))
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (vector-! (-> self pivot-pt) (-> self trans) (-> *camera* tpos-curr-adj))
         (cond
@@ -197,11 +178,9 @@
            0)
           (else (set! (-> self blend-from-type) (the-as uint 2)) (set! (-> self blend-to-type) (the-as uint 2)))))
       (cam-calc-follow! (-> self tracking) (-> self trans) #f))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (paused?))
           (cam-calc-follow! (-> self tracking) (-> self trans) #t)
@@ -210,8 +189,7 @@
 
 (defstate cam-standoff-read-entity (camera-slave)
   :event cam-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (cond
         ((-> self enter-has-run))
         ((-> self cam-entity)
@@ -233,8 +211,7 @@
         (if (cam-slave-get-vector-with-offset (the-as entity-actor (-> self cam-entity)) gp-2 'interesting)
           (send-event *camera* 'point-of-interest gp-2)))
       (go cam-standoff))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (format *stdcon* "ERROR <GMJ>: stayed in cam-standoff-read-entity~%")
         (suspend))))
@@ -252,13 +229,11 @@
 ;; main first-person camera
 ;; og:preserve-this modified for high fps
 (defstate cam-eye (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (let ((v1-3 (vector-float*! (new-stack-vector0) (-> *camera* local-down) (+ 1024.0 (-> *camera* target-height)))))
           (vector-! (-> self trans) (-> *camera* tpos-curr) v1-3))
@@ -266,17 +241,14 @@
         (set! (-> self blend-to-type) (the-as uint 0))
         0)
       (set! (-> self fov) 11650.845))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (and *target*
                (logtest? (-> *camera* master-options) 2)
                (logtest? (-> *target* state-flags) (state-flags first-person-mode)))
         (send-event *target* 'end-mode)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (current-time)))
         (loop
           (when (not (paused?))
@@ -358,13 +330,11 @@
 (define *CAM_BILLY-bank* (new 'static 'cam-billy-bank :rot-speed 364.0889 :tilt-degrees -1820.4445))
 
 (defstate cam-billy (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (let ((v1-3 (vector-float*! (new-stack-vector0) (-> *camera* local-down) (-> *camera* target-height))))
           (vector-! (-> self trans) (-> *camera* tpos-curr) v1-3))
@@ -373,14 +343,11 @@
         0)
       (set! (-> self fov) 9830.4)
       (matrix-rotate-y! (the-as matrix (-> self tracking)) (the-as float -32768.0)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       '())
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (paused?))
           (let ((s5-0 (vector-reset! (new-stack-vector0)))
@@ -432,8 +399,7 @@
 
 (defstate cam-spline (camera-slave)
   :event cam-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (cond
         ((-> self enter-has-run))
         ((-> self cam-entity)
@@ -480,11 +446,9 @@
       (let ((gp-2 (new 'stack-no-clear 'vector)))
         (if (cam-slave-get-vector-with-offset (the-as entity-actor (-> self cam-entity)) gp-2 'interesting)
           (send-event *camera* 'point-of-interest gp-2))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (paused?))
           (cam-calc-follow! (-> self tracking) (-> self trans) #t)
@@ -494,16 +458,13 @@
         (suspend))))
 
 (defstate cam-decel (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (if (not (-> self enter-has-run)) (set! (-> self saved-pt quad) (-> self trans quad))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (paused?))
           (let ((s5-0 (new-stack-vector0))
@@ -526,18 +487,15 @@
         (suspend))))
 
 (defstate cam-endlessfall (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self blend-from-type) (the-as uint 2))
         (set! (-> self blend-to-type) (the-as uint 2))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (new 'stack-no-clear 'cam-vector-seeker))
             (f30-0 (-> self velocity y)))
         (let ((s4-0 (new 'stack-no-clear 'vector))
@@ -665,14 +623,12 @@
                       (parameter-ease-sin-clamp (cam-index-method-10 (-> self fov-index) (-> *camera* tpos-curr-adj)))))))
 
 (defstate cam-circular (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (('outro-done) (set! (-> self trans quad) (-> *camera-combiner* trans quad)) (cam-circular-position #f))
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (cond
         ((-> self enter-has-run))
         (else
@@ -722,27 +678,22 @@
       (let ((gp-3 (new 'stack-no-clear 'vector)))
         (if (cam-slave-get-vector-with-offset (the-as entity-actor (-> self cam-entity)) gp-3 'interesting)
           (send-event *camera* 'point-of-interest gp-3))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (not (paused?)) (cam-circular-code))
         (suspend))))
 
 (defstate cam-lookat (camera-slave)
   :event cam-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self blend-from-type) (the-as uint 2))
         (set! (-> self blend-to-type) (the-as uint 2))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend))))
 
@@ -1606,8 +1557,7 @@
     (let ((v0-0 (-> self string-max-val))) (set! (-> v0-0 quad) (-> *camera* string-max value quad)) v0-0)))
 
 (defstate cam-string (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) (let ((gp-0 (new-stack-vector0))) (cam-string-find-position-rel! gp-0) (cam-string-set-position-rel! gp-0)))
         (('joystick)
@@ -1626,8 +1576,7 @@
            (else (set! (-> self string-val-locked) #f) #f)))
         (('blocked-side?) (-> self los-state))
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set-string-parms)
         (set! *camera-base-mode* cam-string)
@@ -1716,11 +1665,9 @@
         (tracking-spline-method-10 (-> self position-spline) (-> self string-trans))
         (set! (-> self blend-from-type) (the-as uint 2))
         (set! (-> self blend-to-type) (the-as uint 2))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (not (paused?))
           (set-string-parms)
@@ -1800,8 +1747,7 @@
 ;; third person camera (in debug menu, and fishermans-boat-player-control w/o autopilot?)
 (defstate cam-stick (camera-slave)
   :event cam-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> self view-off-param) (-> *camera* view-off-param-save))
         (set! (-> self view-off x) 0.0)
@@ -1818,8 +1764,7 @@
         (set! (-> self blend-from-type) (the-as uint 2))
         (set! (-> self blend-to-type) (the-as uint 2))
         (slave-set-rotation! (-> self tracking) (-> self trans) (the-as float (-> self options)) (-> self fov) #f)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating))
       (when (not (paused?))
         (when *camera-read-analog*
@@ -1861,8 +1806,7 @@
                (vector-normalize-copy! s4-0 s3-0 (the-as float 1.0))
                (matrix-from-two-vectors-max-angle-partial! gp-0 s5-0 s4-0 (* 10922.667 (seconds-per-frame)) (the-as float 0.05))
                (vector-matrix*! (-> self view-flat) (-> self view-flat) gp-0)))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (not (paused?)) (cam-stick-code))
         (suspend))))
@@ -1952,8 +1896,7 @@
 
 (defstate cam-bike (camera-slave)
   :event cam-standard-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (set! (-> *camera* foot-offset) 4096.0)
         (set! (-> *camera* head-offset) 16384.0)
@@ -1971,11 +1914,9 @@
         (set! (-> self blend-to-type) (the-as uint 1))
         (cam-calc-bike-follow! (-> self tracking) (-> self trans) #f)
         (slave-set-rotation! (-> self tracking) (-> self trans) (the-as float (-> self options)) (-> self fov) #f)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (not (paused?)) (cam-bike-code))
         (suspend))))

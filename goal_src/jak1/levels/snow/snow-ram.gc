@@ -152,8 +152,7 @@
   #f)
 
 (defstate ram-idle (ram)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch 'attack)
          (if ((method-of-type touching-shapes-entry prims-touching?)
@@ -161,15 +160,12 @@
               (-> self root)
               (the-as uint 1))
            (send-event proc 'attack (-> block param 0) (static-attack-info ((shove-up (meters 0.5)) (shove-back (meters 2)))))))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logior! (-> self mask) (process-mask actor-pause)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (rider-trans)
       (if (-> self give-fuel-cell-anim) (spool-push *art-control* (-> self give-fuel-cell-anim name) 0 self -99.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (sv-16 symbol))
       (ja-channel-push! 1 (seconds 0.075))
       (loop
@@ -202,15 +198,12 @@
   :post rider-post)
 
 (defstate ram-fun-idle (ram)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('notify) (when (= (-> proc type) ram-boss) (if (ram-method-22 self) (go ram-give-fuel-cell))))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (-> self give-fuel-cell-anim) (spool-push *art-control* (-> self give-fuel-cell-anim name) 0 self -99.0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (-> self give-fuel-cell?) (go ram-give-fuel-cell))
       (ja-channel-push! 1 0)
       (ja :group! ram-idle-ja :num! min)
@@ -220,16 +213,13 @@
       0))
 
 (defstate ram-give-fuel-cell (ram)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('notify) (if (and (= (-> proc type) snowcam) (= (-> block param 0) 'die)) (go ram-fun-idle)))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #f)
       (logior! (-> self mask) (process-mask actor-pause)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self give-fuel-cell?) #f)
       (ja-channel-push! 1 0)
       (ja :group! ram-idle-ja :num! min)
@@ -238,16 +228,14 @@
         (logclear! (-> self mask) (process-mask actor-pause))
         (process-entity-status! self (entity-perm-status bit-3) #t)
         (let ((v1-14 (process-spawn snowcam
-                                    :init
-                                    pov-camera-init-by-other
+                                    :init pov-camera-init-by-other
                                     (-> self root trans)
                                     *snowcam-sg*
                                     (-> self give-fuel-cell-anim)
                                     0
                                     self
                                     '()
-                                    :to
-                                    self)))
+                                    :to self)))
           (set! (-> (the-as (pointer snowcam) v1-14) 0 seq) (the-as uint 1)))
         (sound-play "cell-prize")
         (logior! (-> self mask) (process-mask sleep-code))

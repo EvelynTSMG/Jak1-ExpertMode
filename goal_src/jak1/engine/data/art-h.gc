@@ -294,8 +294,7 @@
                    :version 6
                    :max-lod
                    ,(- (length lods) 1)
-                   :shadow
-                   ,(art-elt-index (string->symbol-format "{}-ag" art-name) shadow)
+                   :shadow ,(art-elt-index (string->symbol-format "{}-ag" art-name) shadow)
                    :texture-level ,texture-level
                    :sort ,sort)))
     ;; set joint geometry and joint bones

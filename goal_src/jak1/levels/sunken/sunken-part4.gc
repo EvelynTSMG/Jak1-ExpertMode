@@ -10,8 +10,7 @@
 (defpartgroup group-sunken-heatpipe-282
   :id 395
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1591 :fade-after (meters 80) :falloff-to (meters 80) :binding 1590)
+  :parts ((sp-item 1591 :fade-after (meters 80) :falloff-to (meters 80) :binding 1590)
    (sp-item 1590 :flags (bit1 start-dead launch-asap))
    (sp-item 1590 :flags (bit1 start-dead launch-asap))
    (sp-item 1590 :flags (bit1 start-dead launch-asap))
@@ -100,8 +99,7 @@
 (defpartgroup group-sunken-heatpipe-285
   :id 396
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1594 :fade-after (meters 80) :falloff-to (meters 80) :binding 1593)
+  :parts ((sp-item 1594 :fade-after (meters 80) :falloff-to (meters 80) :binding 1593)
    (sp-item 1593 :flags (bit1 start-dead launch-asap))
    (sp-item 1593 :flags (bit1 start-dead launch-asap))
    (sp-item 1593 :flags (bit1 start-dead launch-asap))
@@ -190,8 +188,7 @@
 (defpartgroup group-sunken-heatpipe-288
   :id 397
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1597 :fade-after (meters 80) :falloff-to (meters 80) :binding 1596)
+  :parts ((sp-item 1597 :fade-after (meters 80) :falloff-to (meters 80) :binding 1596)
    (sp-item 1596 :flags (bit1 start-dead launch-asap))
    (sp-item 1596 :flags (bit1 start-dead launch-asap))
    (sp-item 1596 :flags (bit1 start-dead launch-asap))
@@ -280,8 +277,7 @@
 (defpartgroup group-sunken-heatpipe-299
   :id 398
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1600 :fade-after (meters 80) :falloff-to (meters 80) :binding 1599)
+  :parts ((sp-item 1600 :fade-after (meters 80) :falloff-to (meters 80) :binding 1599)
    (sp-item 1599 :flags (bit1 start-dead launch-asap))
    (sp-item 1599 :flags (bit1 start-dead launch-asap))
    (sp-item 1599 :flags (bit1 start-dead launch-asap))
@@ -370,8 +366,7 @@
 (defpartgroup group-sunken-heatpipe-302
   :id 399
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1603 :fade-after (meters 80) :falloff-to (meters 80) :binding 1602)
+  :parts ((sp-item 1603 :fade-after (meters 80) :falloff-to (meters 80) :binding 1602)
    (sp-item 1602 :flags (bit1 start-dead launch-asap))
    (sp-item 1602 :flags (bit1 start-dead launch-asap))
    (sp-item 1602 :flags (bit1 start-dead launch-asap))
@@ -460,8 +455,7 @@
 (defpartgroup group-sunken-heatpipe-367
   :id 400
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1606 :fade-after (meters 80) :falloff-to (meters 80) :binding 1605)
+  :parts ((sp-item 1606 :fade-after (meters 80) :falloff-to (meters 80) :binding 1605)
    (sp-item 1605 :flags (bit1 start-dead launch-asap))
    (sp-item 1605 :flags (bit1 start-dead launch-asap))
    (sp-item 1605 :flags (bit1 start-dead launch-asap))
@@ -550,8 +544,7 @@
 (defpartgroup group-sunken-heatpipe-371
   :id 401
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1609 :fade-after (meters 80) :falloff-to (meters 80) :binding 1608)
+  :parts ((sp-item 1609 :fade-after (meters 80) :falloff-to (meters 80) :binding 1608)
    (sp-item 1608 :flags (bit1 start-dead launch-asap))
    (sp-item 1608 :flags (bit1 start-dead launch-asap))
    (sp-item 1608 :flags (bit1 start-dead launch-asap))
@@ -640,8 +633,7 @@
 (defpartgroup group-sunken-heatpipe-308
   :id 402
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1612 :fade-after (meters 80) :falloff-to (meters 80) :binding 1611)
+  :parts ((sp-item 1612 :fade-after (meters 80) :falloff-to (meters 80) :binding 1611)
    (sp-item 1611 :flags (bit1 start-dead launch-asap))
    (sp-item 1611 :flags (bit1 start-dead launch-asap))
    (sp-item 1611 :flags (bit1 start-dead launch-asap))
@@ -730,8 +722,7 @@
 (defpartgroup group-sunken-heatpipe-312
   :id 403
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1615 :fade-after (meters 80) :falloff-to (meters 80) :binding 1614)
+  :parts ((sp-item 1615 :fade-after (meters 80) :falloff-to (meters 80) :binding 1614)
    (sp-item 1614 :flags (bit1 start-dead launch-asap))
    (sp-item 1614 :flags (bit1 start-dead launch-asap))
    (sp-item 1614 :flags (bit1 start-dead launch-asap))
@@ -820,8 +811,7 @@
 (defpartgroup group-sunken-heatpipe-316
   :id 404
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1618 :fade-after (meters 80) :falloff-to (meters 80) :binding 1617)
+  :parts ((sp-item 1618 :fade-after (meters 80) :falloff-to (meters 80) :binding 1617)
    (sp-item 1617 :flags (bit1 start-dead launch-asap))
    (sp-item 1617 :flags (bit1 start-dead launch-asap))
    (sp-item 1617 :flags (bit1 start-dead launch-asap))
@@ -910,8 +900,7 @@
 (defpartgroup group-sunken-heatpipe-320
   :id 405
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1621 :fade-after (meters 80) :falloff-to (meters 80) :binding 1620)
+  :parts ((sp-item 1621 :fade-after (meters 80) :falloff-to (meters 80) :binding 1620)
    (sp-item 1620 :flags (bit1 start-dead launch-asap))
    (sp-item 1620 :flags (bit1 start-dead launch-asap))
    (sp-item 1620 :flags (bit1 start-dead launch-asap))
@@ -1000,8 +989,7 @@
 (defpartgroup group-sunken-heatpipe-324
   :id 406
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1624 :fade-after (meters 80) :falloff-to (meters 80) :binding 1623)
+  :parts ((sp-item 1624 :fade-after (meters 80) :falloff-to (meters 80) :binding 1623)
    (sp-item 1623 :flags (bit1 start-dead launch-asap))
    (sp-item 1623 :flags (bit1 start-dead launch-asap))
    (sp-item 1623 :flags (bit1 start-dead launch-asap))
@@ -1090,8 +1078,7 @@
 (defpartgroup group-sunken-heatpipe-328
   :id 407
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1627 :fade-after (meters 80) :falloff-to (meters 80) :binding 1626)
+  :parts ((sp-item 1627 :fade-after (meters 80) :falloff-to (meters 80) :binding 1626)
    (sp-item 1626 :flags (bit1 start-dead launch-asap))
    (sp-item 1626 :flags (bit1 start-dead launch-asap))
    (sp-item 1626 :flags (bit1 start-dead launch-asap))
@@ -1180,8 +1167,7 @@
 (defpartgroup group-sunken-heatpipe-332
   :id 408
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1630 :fade-after (meters 80) :falloff-to (meters 80) :binding 1629)
+  :parts ((sp-item 1630 :fade-after (meters 80) :falloff-to (meters 80) :binding 1629)
    (sp-item 1629 :flags (bit1 start-dead launch-asap))
    (sp-item 1629 :flags (bit1 start-dead launch-asap))
    (sp-item 1629 :flags (bit1 start-dead launch-asap))
@@ -1270,8 +1256,7 @@
 (defpartgroup group-sunken-heatpipe-333
   :id 409
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1633 :fade-after (meters 80) :falloff-to (meters 80) :binding 1632)
+  :parts ((sp-item 1633 :fade-after (meters 80) :falloff-to (meters 80) :binding 1632)
    (sp-item 1632 :flags (bit1 start-dead launch-asap))
    (sp-item 1632 :flags (bit1 start-dead launch-asap))
    (sp-item 1632 :flags (bit1 start-dead launch-asap))
@@ -1360,8 +1345,7 @@
 (defpartgroup group-sunken-heatpipe-334
   :id 410
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1636 :fade-after (meters 80) :falloff-to (meters 80) :binding 1635)
+  :parts ((sp-item 1636 :fade-after (meters 80) :falloff-to (meters 80) :binding 1635)
    (sp-item 1635 :flags (bit1 start-dead launch-asap))
    (sp-item 1635 :flags (bit1 start-dead launch-asap))
    (sp-item 1635 :flags (bit1 start-dead launch-asap))
@@ -1450,8 +1434,7 @@
 (defpartgroup group-sunken-heatpipe-335
   :id 411
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1639 :fade-after (meters 80) :falloff-to (meters 80) :binding 1638)
+  :parts ((sp-item 1639 :fade-after (meters 80) :falloff-to (meters 80) :binding 1638)
    (sp-item 1638 :flags (bit1 start-dead launch-asap))
    (sp-item 1638 :flags (bit1 start-dead launch-asap))
    (sp-item 1638 :flags (bit1 start-dead launch-asap))
@@ -1540,8 +1523,7 @@
 (defpartgroup group-sunken-heatpipe-336
   :id 412
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1642 :fade-after (meters 80) :falloff-to (meters 80) :binding 1641)
+  :parts ((sp-item 1642 :fade-after (meters 80) :falloff-to (meters 80) :binding 1641)
    (sp-item 1641 :flags (bit1 start-dead launch-asap))
    (sp-item 1641 :flags (bit1 start-dead launch-asap))
    (sp-item 1641 :flags (bit1 start-dead launch-asap))
@@ -1630,8 +1612,7 @@
 (defpartgroup group-sunken-heatpipe-337
   :id 413
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1645 :fade-after (meters 80) :falloff-to (meters 80) :binding 1644)
+  :parts ((sp-item 1645 :fade-after (meters 80) :falloff-to (meters 80) :binding 1644)
    (sp-item 1644 :flags (bit1 start-dead launch-asap))
    (sp-item 1644 :flags (bit1 start-dead launch-asap))
    (sp-item 1644 :flags (bit1 start-dead launch-asap))
@@ -1720,8 +1701,7 @@
 (defpartgroup group-sunken-heatpipe-338
   :id 414
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1648 :fade-after (meters 80) :falloff-to (meters 80) :binding 1647)
+  :parts ((sp-item 1648 :fade-after (meters 80) :falloff-to (meters 80) :binding 1647)
    (sp-item 1647 :flags (bit1 start-dead launch-asap))
    (sp-item 1647 :flags (bit1 start-dead launch-asap))
    (sp-item 1647 :flags (bit1 start-dead launch-asap))
@@ -1810,8 +1790,7 @@
 (defpartgroup group-sunken-heatpipe-339
   :id 415
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1651 :fade-after (meters 80) :falloff-to (meters 80) :binding 1650)
+  :parts ((sp-item 1651 :fade-after (meters 80) :falloff-to (meters 80) :binding 1650)
    (sp-item 1650 :flags (bit1 start-dead launch-asap))
    (sp-item 1650 :flags (bit1 start-dead launch-asap))
    (sp-item 1650 :flags (bit1 start-dead launch-asap))
@@ -1900,8 +1879,7 @@
 (defpartgroup group-sunken-heatpipe-340
   :id 416
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1654 :fade-after (meters 80) :falloff-to (meters 80) :binding 1653)
+  :parts ((sp-item 1654 :fade-after (meters 80) :falloff-to (meters 80) :binding 1653)
    (sp-item 1653 :flags (bit1 start-dead launch-asap))
    (sp-item 1653 :flags (bit1 start-dead launch-asap))
    (sp-item 1653 :flags (bit1 start-dead launch-asap))
@@ -1990,8 +1968,7 @@
 (defpartgroup group-sunken-heatpipe-341
   :id 417
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1657 :fade-after (meters 80) :falloff-to (meters 80) :binding 1656)
+  :parts ((sp-item 1657 :fade-after (meters 80) :falloff-to (meters 80) :binding 1656)
    (sp-item 1656 :flags (bit1 start-dead launch-asap))
    (sp-item 1656 :flags (bit1 start-dead launch-asap))
    (sp-item 1656 :flags (bit1 start-dead launch-asap))
@@ -2080,8 +2057,7 @@
 (defpartgroup group-sunken-heatpipe-357
   :id 418
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1660 :fade-after (meters 80) :falloff-to (meters 80) :binding 1659)
+  :parts ((sp-item 1660 :fade-after (meters 80) :falloff-to (meters 80) :binding 1659)
    (sp-item 1659 :flags (bit1 start-dead launch-asap))
    (sp-item 1659 :flags (bit1 start-dead launch-asap))
    (sp-item 1659 :flags (bit1 start-dead launch-asap))
@@ -2170,8 +2146,7 @@
 (defpartgroup group-sunken-heatpipe-356
   :id 419
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1663 :fade-after (meters 80) :falloff-to (meters 80) :binding 1662)
+  :parts ((sp-item 1663 :fade-after (meters 80) :falloff-to (meters 80) :binding 1662)
    (sp-item 1662 :flags (bit1 start-dead launch-asap))
    (sp-item 1662 :flags (bit1 start-dead launch-asap))
    (sp-item 1662 :flags (bit1 start-dead launch-asap))
@@ -2260,8 +2235,7 @@
 (defpartgroup group-sunken-heatpipe-354
   :id 420
   :bounds (static-bspherem 0 1 0 3.5)
-  :parts
-  ((sp-item 1666 :fade-after (meters 80) :falloff-to (meters 80) :binding 1665)
+  :parts ((sp-item 1666 :fade-after (meters 80) :falloff-to (meters 80) :binding 1665)
    (sp-item 1665 :flags (bit1 start-dead launch-asap))
    (sp-item 1665 :flags (bit1 start-dead launch-asap))
    (sp-item 1665 :flags (bit1 start-dead launch-asap))

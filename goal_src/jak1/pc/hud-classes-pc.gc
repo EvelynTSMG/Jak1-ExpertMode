@@ -418,12 +418,9 @@
 (defmethod init-particles! ((obj hud-battle-enemy) (arg0 int))
   (hud-pc-make-icon obj
                     HUD_ICON_COUNT
-                    :skel
-                    *fuelcell-naked-sg*
-                    :x
-                    (the int (* 0.84 512))
-                    :y
-                    (the int (* 0.51 448))
+                    :skel *fuelcell-naked-sg*
+                    :x (the int (* 0.84 512))
+                    :y (the int (* 0.51 448))
                     :z (meters 0.5)
                     :scale-x 0.004
                     :scale-y

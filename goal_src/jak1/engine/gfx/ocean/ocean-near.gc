@@ -43,8 +43,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :fge #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :fge #x1 :abe #x1)
                   :nreg #x3)))
       ((= v1-5 1)
        (set! (-> arg0 drw-fan tag)
@@ -52,8 +51,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :fge #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :fge #x1 :abe #x1)
                   :nreg #x3)))
       ((= v1-5 2)
        (set! (-> arg0 drw-fan tag)
@@ -61,8 +59,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :fge #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :fge #x1 :abe #x1)
                   :nreg #x3)))))
   (set! (-> arg0 drw-fan regs)
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
@@ -74,8 +71,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :abe #x1)
                   :nreg #x3)))
       ((= v1-14 1)
        (set! (-> arg0 drw2-fan tag)
@@ -83,8 +79,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :abe #x1)
                   :nreg #x3)))
       ((= v1-14 2)
        (set! (-> arg0 drw2-fan tag)
@@ -92,8 +87,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :abe #x1)
                   :nreg #x3)))))
   (set! (-> arg0 drw2-fan regs)
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
@@ -105,8 +99,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :abe #x1)
                   :nreg #x3)))
       ((= v1-23 1)
        (set! (-> arg0 env-fan tag)
@@ -114,8 +107,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :abe #x1)
                   :nreg #x3)))
       ((= v1-23 2)
        (set! (-> arg0 env-fan tag)
@@ -123,8 +115,7 @@
                   :nloop #x4
                   :eop #x1
                   :pre #x1
-                  :prim
-                  (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :abe #x1)
+                  :prim (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :abe #x1)
                   :nreg #x3)))))
   (set! (-> arg0 env-fan regs)
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
@@ -155,8 +146,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :fge #x1 :abe #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :fge #x1 :abe #x1)
                     :nreg #x3)))
         ((= v1-60 1)
          (set! (-> arg0 drw-strip tag)
@@ -164,8 +154,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :fge #x1 :abe #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :fge #x1 :abe #x1)
                     :nreg #x3)))
         ((= v1-60 2)
          (set! (-> arg0 drw-strip tag)
@@ -173,8 +162,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :fge #x1 :abe #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :fge #x1 :abe #x1)
                     :nreg #x3)))))
     (set! (-> arg0 drw-strip regs)
           (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
@@ -191,8 +179,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :abe #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :abe #x1)
                     :nreg #x3)))
         ((= v1-72 1)
          (set! (-> arg0 env-strip tag)
@@ -200,8 +187,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :abe #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :abe #x1)
                     :nreg #x3)))
         ((= v1-72 2)
          (set! (-> arg0 env-strip tag)
@@ -209,8 +195,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1)
                     :nreg #x3)))))
     (set! (-> arg0 env-strip regs)
           (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
@@ -231,8 +216,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :abe #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :abe #x1)
                     :nreg #x3)))
         ((= v1-94 1)
          (set! (-> arg0 drw2-strip tag)
@@ -240,8 +224,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :abe #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :abe #x1)
                     :nreg #x3)))
         ((= v1-94 2)
          (set! (-> arg0 drw2-strip tag)
@@ -249,8 +232,7 @@
                     :nloop #x12
                     :eop #x1
                     :pre #x1
-                    :prim
-                    (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :abe #x1)
+                    :prim (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :abe #x1)
                     :nreg #x3)))))
     (set! (-> arg0 drw2-strip regs)
           (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))

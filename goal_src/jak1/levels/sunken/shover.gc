@@ -23,8 +23,7 @@
   :bounds (static-spherem 0 0 0 2))
 
 (defstate shover-idle (shover)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch 'attack)
          (when (= (-> proc type) target)

@@ -58,12 +58,9 @@
   "draw a memory usage bar for a kheap"
   `(let ((heap ,heap))
     (draw-memory-bar-generic ,buf
-                             :remain
-                             (&- (-> heap top) (-> heap current))
-                             :total
-                             (&- (-> heap top-base) (-> heap base))
-                             :name
-                             ,(if name name (symbol->string heap))
+                             :remain (&- (-> heap top) (-> heap current))
+                             :total (&- (-> heap top-base) (-> heap base))
+                             :name ,(if name name (symbol->string heap))
                              :idx ,idx
                              :color ,color)))
 
@@ -72,11 +69,8 @@
   `(let* ((heap ,heap)
          (pool-total (memory-total heap)))
     (draw-memory-bar-generic ,buf
-                             :remain
-                             (- pool-total (memory-used heap))
-                             :total
-                             pool-total
-                             :name
-                             ,(if name name (symbol->string heap))
+                             :remain (- pool-total (memory-used heap))
+                             :total pool-total
+                             :name ,(if name name (symbol->string heap))
                              :idx ,idx
                              :color ,color)))

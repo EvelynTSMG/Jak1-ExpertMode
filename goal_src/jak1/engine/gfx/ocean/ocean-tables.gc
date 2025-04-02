@@ -19,8 +19,7 @@
 
 (define *ocean-spheres-village1*
   (new 'static 'ocean-spheres
-       :spheres
-       (new 'static 'inline-array
+       :spheres (new 'static 'inline-array
             sphere
             36
             (new 'static 'sphere :x -7864320.0 :z -7864320.0 :w 2224365.5)
@@ -62,8 +61,7 @@
 
 (define *ocean-colors-village1*
   (new 'static 'ocean-colors
-       :colors
-       (new 'static 'array rgba 2548
+       :colors (new 'static 'array rgba 2548
             (new 'static 'rgba :r #x1 :g #x2d :b #x38 :a #x80)
             (new 'static 'rgba :r #x1 :g #x2c :b #x38 :a #x80)
             (new 'static 'rgba :r #x1 :g #x2d :b #x38 :a #x80)
@@ -2615,17 +2613,14 @@
 
 (define *ocean-near-indices-village1*
   (new 'static 'ocean-near-indices
-       :data
-       (new 'static 'inline-array
+       :data (new 'static 'inline-array
             ocean-near-index
             68
             (new 'static 'ocean-near-index)
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x1 #xffff #xffff #x0 #x2 #xffff #xffff #x0 #x0 #x3 #xffff #x0 #x0 #x3 #xffff))
+                 :data (new 'static 'array uint16 16 #x0 #x1 #xffff #xffff #x0 #x2 #xffff #xffff #x0 #x0 #x3 #xffff #x0 #x0 #x3 #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2643,8 +2638,7 @@
                       #x7
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2662,11 +2656,9 @@
                       #x8
                       #x9))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #xa #xb #x0 #x0 #x0 #x14 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #xa #xb #x0 #x0 #x0 #x14 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2684,20 +2676,15 @@
                       #x21
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xc #xd #xe #xf #xffff #xffff #x16 #x17 #xffff #x1b #x1c #x0 #x22 #x23 #x24 #x0))
+                 :data (new 'static 'array uint16 16 #xc #xd #xe #xf #xffff #xffff #x16 #x17 #xffff #x1b #x1c #x0 #x22 #x23 #x24 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x10 #x11 #x12 #x13 #x0 #x0 #x18 #x19 #x1d #x1e #x0 #x1f #x0 #x0 #x0 #x25))
+                 :data (new 'static 'array uint16 16 #x10 #x11 #x12 #x13 #x0 #x0 #x18 #x19 #x1d #x1e #x0 #x1f #x0 #x0 #x0 #x25))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x26 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x26 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x27 #x0 #x17 #x0 #x0 #x0 #x0 #x2b #x0 #x0 #x0 #x2e #x0 #x0 #x0 #x32))
+                 :data (new 'static 'array uint16 16 #x27 #x0 #x17 #x0 #x0 #x0 #x0 #x2b #x0 #x0 #x0 #x2e #x0 #x0 #x0 #x32))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #x0
                       #x28
                       #x29
@@ -2715,8 +2702,7 @@
                       #xffff
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2734,8 +2720,7 @@
                       #x34
                       #x35))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2753,11 +2738,9 @@
                       #xffff
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x38 #x0 #x0 #x0 #x38 #x0 #x0 #x0 #x48 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x38 #x0 #x0 #x0 #x38 #x0 #x0 #x0 #x48 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2775,8 +2758,7 @@
                       #x51
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2794,8 +2776,7 @@
                       #xffff
                       #x52))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #x39
                       #x3a
                       #x2d
@@ -2813,17 +2794,13 @@
                       #xffff
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x3b #x3c #xffff #xffff #xffff #x44 #x45 #x46 #xffff #xffff #x4e #x0 #xffff #xffff #x53 #x0))
+                 :data (new 'static 'array uint16 16 #x3b #x3c #xffff #xffff #xffff #x44 #x45 #x46 #xffff #xffff #x4e #x0 #xffff #xffff #x53 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x3d #x0 #x0 #x0 #x47 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x3d #x0 #x0 #x0 #x47 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x54 #xffff #x0 #x0 #x59 #xffff #x0 #x0 #x5c #x56 #x0 #x62 #x63 #x64))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x54 #xffff #x0 #x0 #x59 #xffff #x0 #x0 #x5c #x56 #x0 #x62 #x63 #x64))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2841,14 +2818,11 @@
                       #x65
                       #x66))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #x55 #x56 #xffff #xffff #x5a #x5b #xffff #xffff #x5d #x5e #x5f #x67 #x68 #x69 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #x55 #x56 #xffff #xffff #x5a #x5b #xffff #xffff #x5d #x5e #x5f #x67 #x68 #x69 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #xffff #xffff #xffff #xffff #xffff #xffff #xffff #x60 #x60 #x60 #x61 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #xffff #xffff #xffff #xffff #xffff #xffff #xffff #x60 #x60 #x60 #x61 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2866,14 +2840,11 @@
                       #xffff
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x58 #x0 #x0 #x0 #x3d #x0 #x0 #x0 #x3d #x0 #x0 #x0 #x3d #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x58 #x0 #x0 #x0 #x3d #x0 #x0 #x0 #x3d #x0 #x0 #x0 #x3d #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x6c #xffff #xffff #x0 #x70 #xffff #xffff #x0 #x70 #xffff #xffff #x0 #x7e #x7f #x80))
+                 :data (new 'static 'array uint16 16 #x0 #x6c #xffff #xffff #x0 #x70 #xffff #xffff #x0 #x70 #xffff #xffff #x0 #x7e #x7f #x80))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -2891,62 +2862,43 @@
                       #x82
                       #x83))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #xffff #xffff #x6d #xffff #x71 #x72 #x17 #x77 #x78 #x79 #x7a #x0 #x0 #x84 #x85))
+                 :data (new 'static 'array uint16 16 #xffff #xffff #xffff #x6d #xffff #x71 #x72 #x17 #x77 #x78 #x79 #x7a #x0 #x0 #x84 #x85))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x6e #x41 #x6f #x0 #x73 #x74 #x75 #x76 #x7b #x7c #x7d #x17 #x86 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x6e #x41 #x6f #x0 #x73 #x74 #x75 #x76 #x7b #x7c #x7d #x17 #x86 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x87 #x88 #x0 #x0 #x8e #xffff #x0 #x0 #x91 #xffff #x0 #x0 #x95 #x96))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x87 #x88 #x0 #x0 #x8e #xffff #x0 #x0 #x91 #xffff #x0 #x0 #x95 #x96))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #x89 #x20 #x8a #xffff #x8f #x0 #x0 #xffff #x92 #x0 #x0 #xffff #x97 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #x89 #x20 #x8a #xffff #x8f #x0 #x0 #xffff #x92 #x0 #x0 #xffff #x97 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x8b #x0 #x0 #x8c #x0 #x0 #x0 #x90 #x0 #x0 #x0 #x93 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x8b #x0 #x0 #x8c #x0 #x0 #x0 #x90 #x0 #x0 #x0 #x93 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #x8d #x0 #x0 #x66 #x0 #x0 #x0 #x94 #x0 #x0 #x0 #x98 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #x8d #x0 #x0 #x66 #x0 #x0 #x0 #x94 #x0 #x0 #x0 #x98 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x20 #x0 #x0 #x0 #x9b #x0 #x0 #x0 #x0 #x0 #x9d #x9e #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x20 #x0 #x0 #x0 #x9b #x0 #x0 #x0 #x0 #x0 #x9d #x9e #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x99 #x9a #x0 #x0 #x9c #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x99 #x9a #x0 #x0 #x9c #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x9f #xa0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x9f #xa0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #xa1 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #xa1 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x79 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x79 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #xb2 #xb3 #xb4 #xb5))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #xb2 #xb3 #xb4 #xb5))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #xb6 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #xb6 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #xab #xac #x0 #xb7 #xb8 #xb9))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #xab #xac #x0 #xb7 #xb8 #xb9))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #xa2 #xa3 #x0 #xa6 #xa7 #xffff #xad #xae #xaf #xffff #xba #xbb #xbc #xffff))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #xa2 #xa3 #x0 #xa6 #xa7 #xffff #xad #xae #xaf #xffff #xba #xbb #xbc #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xa4 #xa5 #x0 #x0 #xffff #xffff #xa8 #x0 #xffff #xffff #xb0 #xb1 #xffff #xffff #xbd #xbe))
+                 :data (new 'static 'array uint16 16 #xa4 #xa5 #x0 #x0 #xffff #xffff #xa8 #x0 #xffff #xffff #xb0 #xb1 #xffff #xffff #xbd #xbe))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #xa9 #xaa #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #xa9 #xaa #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #xbf #xc0 #xc1 #x0 #xcc #xffff #xffff #x0 #xd3 #xffff #xffff #xd8 #xd9 #xffff #xffff))
+                 :data (new 'static 'array uint16 16 #x0 #xbf #xc0 #xc1 #x0 #xcc #xffff #xffff #x0 #xd3 #xffff #xffff #xd8 #xd9 #xffff #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xc2
                       #xffff
                       #xffff
@@ -2964,14 +2916,11 @@
                       #xffff
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #xc3 #x0 #x0 #xffff #xcd #x0 #x0 #xffff #xd4 #xc3 #x0 #xffff #xda #x12 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #xc3 #x0 #x0 #xffff #xcd #x0 #x0 #xffff #xd4 #xc3 #x0 #xffff #xda #x12 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #xc4 #x0 #x0 #x70 #x3b #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #xc4 #x0 #x0 #x70 #x3b #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #x0
                       #xc5
                       #xc6
@@ -2989,11 +2938,9 @@
                       #xffff
                       #xdb))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xc8 #xc9 #xca #xffff #xc2 #xffff #xffff #xffff #xd5 #xd6 #xd7 #xffff #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xc8 #xc9 #xca #xffff #xc2 #xffff #xffff #xffff #xd5 #xd6 #xd7 #xffff #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -3011,14 +2958,11 @@
                       #xffff
                       #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xcb #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xcb #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #xdc #xdd #xde #xe3 #xe4 #xffff #xffff #x5c #x56 #xffff #xffff #xf0 #x2d #x40 #xf1))
+                 :data (new 'static 'array uint16 16 #x0 #xdc #xdd #xde #xe3 #xe4 #xffff #xffff #x5c #x56 #xffff #xffff #xf0 #x2d #x40 #xf1))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #x64
                       #xffff
                       #xffff
@@ -3036,8 +2980,7 @@
                       #xffff
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -3055,14 +2998,11 @@
                       #xf4
                       #xf5))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #xdf #x0 #x0 #xffff #xe5 #xe6 #x0 #xea #xeb #xec #x0 #xf6 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #xdf #x0 #x0 #xffff #xe5 #xe6 #x0 #xea #xeb #xec #x0 #xf6 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xe0
@@ -3080,23 +3020,17 @@
                       #xf7
                       #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xe2 #xffff #xffff #x0 #x0 #xe8 #xffff #xe9 #x0 #x0 #xee #xef #x0 #xf8 #xf9 #x12))
+                 :data (new 'static 'array uint16 16 #xe2 #xffff #xffff #x0 #x0 #xe8 #xffff #xe9 #x0 #x0 #xee #xef #x0 #xf8 #xf9 #x12))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xfa #xfb #xfc #xfd #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xfa #xfb #xfc #xfd #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xfe #xffff #xffff #xffff #x105 #xb #xffff #xffff #x0 #x0 #x4f #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xfe #xffff #xffff #xffff #x105 #xb #xffff #xffff #x0 #x0 #x4f #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xff #x100 #x0 #x0 #x106 #x107 #x0 #x0 #x10d #x10e #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xff #x100 #x0 #x0 #x106 #x107 #x0 #x0 #x10d #x10e #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x101 #xffff #x0 #x0 #x0 #xfa #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x101 #xffff #x0 #x0 #x0 #xfa #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -3114,22 +3048,17 @@
                       #x114
                       #x115))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x10a #x0 #x0 #x10b #xffff #xffff #x110 #x111 #xffff #x116 #xfd #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x10a #x0 #x0 #x10b #xffff #xffff #x110 #x111 #xffff #x116 #xfd #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x103 #x104 #xc3 #x0 #xffff #x10c #x17 #x0 #x112 #x113 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x103 #x104 #xc3 #x0 #xffff #x10c #x17 #x0 #x112 #x113 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x117 #x0 #x118 #x0 #x11a #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x0 #x117 #x0 #x118 #x0 #x11a #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x119 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0)))))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x119 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0)))))
 
 (define *ocean-trans-indices-village1*
   (new 'static 'ocean-trans-indices
-       :data
-       (new 'static 'inline-array
+       :data (new 'static 'inline-array
             ocean-trans-index
             2304
             (new 'static 'ocean-trans-index :parent -1 :child -1)
@@ -5439,8 +5368,7 @@
 
 (define *ocean-mid-indices-village1*
   (new 'static 'ocean-mid-indices
-       :data
-       (new 'static 'array uint16 36
+       :data (new 'static 'array uint16 36
             #x138
             #xffff
             #x139
@@ -5480,8 +5408,7 @@
 
 (define *ocean-mid-masks-village1*
   (new 'static 'ocean-mid-masks
-       :data
-       (new 'static 'inline-array
+       :data (new 'static 'inline-array
             ocean-mid-mask
             322
             (new 'static 'ocean-mid-mask)
@@ -5809,8 +5736,7 @@
 
 (define *ocean-spheres-village2*
   (new 'static 'ocean-spheres
-       :spheres
-       (new 'static 'inline-array
+       :spheres (new 'static 'inline-array
             sphere
             36
             (new 'static 'sphere :x -6320128.0 :z -14385152.0 :w 2224365.5)
@@ -5852,8 +5778,7 @@
 
 (define *ocean-colors-village2*
   (new 'static 'ocean-colors
-       :colors
-       (new 'static 'array rgba 2548
+       :colors (new 'static 'array rgba 2548
             (new 'static 'rgba :r #x1f :g #x32 :b #x42 :a #x80)
             (new 'static 'rgba :r #x1f :g #x32 :b #x42 :a #x80)
             (new 'static 'rgba :r #x1f :g #x32 :b #x42 :a #x80)
@@ -8405,14 +8330,12 @@
 
 (define *ocean-near-indices-village2*
   (new 'static 'ocean-near-indices
-       :data
-       (new 'static 'inline-array
+       :data (new 'static 'inline-array
             ocean-near-index
             23
             (new 'static 'ocean-near-index)
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #x1
                       #xffff
                       #xffff
@@ -8430,11 +8353,9 @@
                       #xffff
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x1 #x0 #x0 #x0 #xffff #x0 #x0 #x0 #xffff #x0 #x0 #x0 #xffff #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x1 #x0 #x0 #x0 #xffff #x0 #x0 #x0 #xffff #x0 #x0 #x0 #xffff #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -8452,35 +8373,25 @@
                       #xffff
                       #x2))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #x0 #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff #xffff #x0 #xffff #xffff #xffff #x3))
+                 :data (new 'static 'array uint16 16 #xffff #x0 #x0 #x0 #xffff #xffff #x0 #x0 #xffff #xffff #xffff #x0 #xffff #xffff #xffff #x3))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #x4 #x5 #x6 #xffff #x7 #x0 #x0 #xffff #x8 #x0 #x0 #xffff #x9 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #x4 #x5 #x6 #xffff #x7 #x0 #x0 #xffff #x8 #x0 #x0 #xffff #x9 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xa #xb #x0 #x0 #xc #x0 #x0 #x0 #xd #x0 #x0 #x0 #xe #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xa #xb #x0 #x0 #xc #x0 #x0 #x0 #xd #x0 #x0 #x0 #xe #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #xf #xf #xf #xffff #xf #xf #xf #xffff #xffff #x2 #x13 #xffff #xffff #x15 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #xf #xf #xf #xffff #xf #xf #xf #xffff #xffff #x2 #x13 #xffff #xffff #x15 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xf #xf #x10 #x11 #xf #xf #xf #x12 #x0 #x0 #xf #x14 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xf #xf #x10 #x11 #xf #xf #xf #x12 #x0 #x0 #xf #x14 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #xffff #xffff #xffff #xffff #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #xffff #xffff #xffff #xffff #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x16 #xffff #xffff #x0 #x0 #x1d #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x16 #xffff #xffff #x0 #x0 #x1d #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x17 #x18 #x19 #x1a #x0 #x0 #x1e #x1f #x0 #x0 #x0 #x22 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x17 #x18 #x19 #x1a #x0 #x0 #x1e #x1f #x0 #x0 #x0 #x22 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #x1b #x1c #x0 #x20 #x21 #x0 #x0 #x0 #x0 #x0 #x0 #x23 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #xffff #x1b #x1c #x0 #x20 #x21 #x0 #x0 #x0 #x0 #x0 #x0 #x23 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #xffff
                       #xffff
                       #xffff
@@ -8498,29 +8409,21 @@
                       #xffff
                       #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x25 #x2a #x2b #x2c #x2d #xffff #x33 #x0 #x34 #xffff #x38 #x39 #x3a))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x25 #x2a #x2b #x2c #x2d #xffff #x33 #x0 #x34 #xffff #x38 #x39 #x3a))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x26 #x27 #x0 #x2e #x2f #x30 #x0 #xffff #x35 #x36 #x0 #x3b #x3c #x6 #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x26 #x27 #x0 #x2e #x2f #x30 #x0 #xffff #x35 #x36 #x0 #x3b #x3c #x6 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x28 #x0 #x0 #x31 #x32 #x0 #x0 #x37 #x0 #x0 #x0 #x3d #x0))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x28 #x0 #x0 #x31 #x32 #x0 #x0 #x37 #x0 #x0 #x0 #x3d #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x29 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
+                 :data (new 'static 'array uint16 16 #x29 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #x3e #x3f #x40 #xffff #x42 #x0 #x0 #xffff #x47 #x48 #x49 #xffff #xffff #xffff #xffff))
+                 :data (new 'static 'array uint16 16 #xffff #x3e #x3f #x40 #xffff #x42 #x0 #x0 #xffff #x47 #x48 #x49 #xffff #xffff #xffff #xffff))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x41 #x0 #x0 #x0 #x0 #x0 #x0 #x43 #x4a #x4b #x0 #x4c #x4e #x4f #x50 #x51))
+                 :data (new 'static 'array uint16 16 #x41 #x0 #x0 #x0 #x0 #x0 #x0 #x43 #x4a #x4b #x0 #x4c #x4e #x4f #x50 #x51))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x44 #x45 #x46 #x0 #xffff #xffff #x4d #x46 #xffff #xffff #xffff #x52))
+                 :data (new 'static 'array uint16 16 #x0 #x0 #x0 #x0 #x44 #x45 #x46 #x0 #xffff #xffff #x4d #x46 #xffff #xffff #xffff #x52))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16
+                 :data (new 'static 'array uint16 16
                       #x53
                       #x54
                       #xffff
@@ -8538,13 +8441,11 @@
                       #xffff
                       #x0))
             (new 'static 'ocean-near-index
-                 :data
-                 (new 'static 'array uint16 16 #xffff #xffff #x0 #x0 #xffff #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0)))))
+                 :data (new 'static 'array uint16 16 #xffff #xffff #x0 #x0 #xffff #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0 #x0)))))
 
 (define *ocean-trans-indices-village2*
   (new 'static 'ocean-trans-indices
-       :data
-       (new 'static 'inline-array
+       :data (new 'static 'inline-array
             ocean-trans-index
             2304
             (new 'static 'ocean-trans-index :parent -1 :child -1)
@@ -10854,8 +10755,7 @@
 
 (define *ocean-mid-indices-village2*
   (new 'static 'ocean-mid-indices
-       :data
-       (new 'static 'array uint16 36
+       :data (new 'static 'array uint16 36
             #xffff
             #xffff
             #xffff
@@ -10895,8 +10795,7 @@
 
 (define *ocean-mid-masks-village2*
   (new 'static 'ocean-mid-masks
-       :data
-       (new 'static 'inline-array
+       :data (new 'static 'inline-array
             ocean-mid-mask
             102
             (new 'static 'ocean-mid-mask)
@@ -11011,8 +10910,7 @@
 
 (define *ocean-mid-masks-sunken*
   (new 'static 'ocean-mid-masks
-       :data
-       (new 'static 'inline-array ocean-mid-mask 2 (new 'static 'ocean-mid-mask) (new 'static 'ocean-mid-mask))))
+       :data (new 'static 'inline-array ocean-mid-mask 2 (new 'static 'ocean-mid-mask) (new 'static 'ocean-mid-mask))))
 
 (define *ocean-map-village1*
   (new 'static 'ocean-map

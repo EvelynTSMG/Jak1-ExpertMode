@@ -945,8 +945,7 @@
 )
 
 (defstate fisher-fish-fall (fisher-fish)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-heading-vec!
         (-> self root)
         (eval-path-curve-angle (-> (fisher-parent) path) (-> self dir) (-> self pos))
@@ -980,8 +979,7 @@
 )
 
 (defstate fisher-fish-caught (fisher-fish)
-  :code
-    (behavior ()
+  :code (behavior ()
       (case (-> self fish-type)
         (('deadly 'assassin)
           (sound-play "caught-eel" :vol (if (-> (fisher-parent) hard) 75.0 100.0)) ;mod: Reduce sfx volume in hard mode
@@ -1371,8 +1369,7 @@
 )
 
 (defstate fisher-done (fisher)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (init! (-> self query)
         (lookup-text! *common-text* (text-id play-again?) #f)
         40 150
@@ -1484,16 +1481,14 @@
       )
     )
 
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (when (and *target* (the-as target #f))
         (send-event *target* 'end-mode)
         (process-grab? *target*)
       )
     )
 
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! *camera-look-through-other* 2)
 
       (cond
@@ -1712,8 +1707,7 @@
 )
 
 (defstate fisher-playing (fisher)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
 
       (case message
         (('fisher-fish-die)
@@ -1731,8 +1725,7 @@
         )
       )
     )
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-setting! 'ambient-volume 'rel 50.0 0)
       (send-event *target* 'reset-pickup 'eco)
       (ja-channel-set! 0)
@@ -1757,8 +1750,7 @@
         (lookup-text! *common-text* (text-id quit) #f)
       )
     )
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (remove-setting! 'ambient-volume)
       (let* (
             (inv-cam-rot (-> *camera-combiner* inv-camera-rot))
@@ -1781,13 +1773,11 @@
       (send-event *camera* 'clear-entity)
       0
     )
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (spool-push *art-control* "fisher-resolution" 0 self -99.0)
       (spool-push *art-control* "fisher-reject" 0 self -99.0)
     )
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! *display-profile* #f)
 
       (set! (-> self paddle) 0.5)
@@ -1829,16 +1819,14 @@
         (suspend)
       )
     )
-  :post
-    (behavior ()
+  :post (behavior ()
       (ja-post)
     )
 )
 
 (defstate enter-playing (fisher)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set-blackout-frames (seconds 0.017))
       (if (send-event *target* 'change-mode 'fishing self)
         (go fisher-playing)
@@ -1864,15 +1852,13 @@
 
   (defstate play-anim (fisher)
     :virtual #t
-    :enter
-      (behavior ()
+    :enter (behavior ()
         (set! *fisher-camera-use-backup* #f)
         ((-> (method-of-type process-taskable play-anim) enter))
 
         (none)
       )
-    :exit
-      (behavior ()
+    :exit (behavior ()
         (set! *fisher-camera-use-backup*
           (and
             (= (get-response (-> self query)) 'no)
@@ -1903,8 +1889,7 @@
 
 (defstate query (fisher)
   :virtual #t
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (init! (-> self query)
         (lookup-text! *common-text* (text-id fish?) #f)
         40 150
@@ -1914,8 +1899,7 @@
       )
     )
   ;; og:preserve-this needed for cutscene skipping
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (#when PC_PORT
         (set! (-> self cur-trans-hook) nothing)
       )
@@ -1972,8 +1956,7 @@
 
 (defstate play-accept (fisher)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('emissive-on)
           (set-vector! (-> self draw color-mult) 0.6 0.6 0.6 1.0)
@@ -1987,8 +1970,7 @@
         )
       )
     )
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (-> self training)
         (let ((gp-0 (new-stack-vector0)))
           (vector<-cspace! gp-0 (joint-node fisher-lod0-jg mainA))
@@ -2010,8 +1992,7 @@
 
 (defstate idle (fisher)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (call-parent-state-handler trans)
       (when (or #t (task-complete? *game-info* (-> (fisher-get-perm) task)))
         (when (nonzero? (-> *cpad-list* cpads 0 button0-rel 0))
@@ -2044,8 +2025,7 @@
         )
       )
     )
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (!= (ja-group) (get-art-elem self))
         (ja-channel-push! 1 (seconds 0.2))
       )
@@ -2154,8 +2134,7 @@
 )
 
 (defstate target-fishing (target)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (cond
         ((= message 'bounce)
          (set-zero! (-> self control unknown-smush00))
@@ -2169,15 +2148,13 @@
         )
       )
     )
-  :enter
-    (behavior ((arg0 handle))
+  :enter (behavior ((arg0 handle))
       (set! (-> self control unknown-surface00) *empty-mods*)
       (logior! (-> self state-flags) (state-flags invulnerable))
       (set-zero! (-> self control unknown-smush00))
       (set! (-> self control unknown-uint20) (the-as uint #f))
     )
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (logclear! (-> self state-flags) (state-flags invulnerable))
       (let ((v1-2 (-> self manipy)))
         (when v1-2
@@ -2187,8 +2164,7 @@
       )
       (-> target-periscope exit)
     )
-  :code
-    (behavior ((fisher-handle handle))
+  :code (behavior ((fisher-handle handle))
       (let ((fisherman (handle->process fisher-handle)))
         (when (and fisherman (type-type? (-> fisherman type) fisher))
           (set-vector! (-> self control trans) (meters 260.7) (meters 2.3) (meters -233.3) 1.0)

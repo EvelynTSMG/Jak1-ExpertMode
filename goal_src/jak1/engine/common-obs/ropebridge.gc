@@ -534,8 +534,7 @@
   :longest-edge (meters 3.6))
 
 (defstate ropebridge-idle (ropebridge)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (let ((f0-0 -1.0))
         (cond
           ((= message 'bonk)
@@ -564,8 +563,7 @@
               (let ((v1-37 (-> self spring-point s5-1))) (new 'stack-no-clear 'vector) (&+ v1-37 48))
               (set-vel-from-impact self s5-1 gp-1 -1 f30-0)
               (set-vel-from-impact self (+ s5-1 1) gp-1 1 f30-0))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)
         (detect-riders! (-> self root))
@@ -583,8 +581,7 @@
             (dotimes (i old-time-ratio)
               (do-integration self))
             (set-time-ratios *display* (the float old-time-ratio))))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (ja-post)
       (let ((gp-0 (-> self root)))
         (update-transforms! gp-0)

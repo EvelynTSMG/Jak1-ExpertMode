@@ -339,13 +339,11 @@
 
 (defstate idle (sage)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (case (get-task-status (game-task intro))
         (((task-status need-reward-speech)) (if (process-grab? *target*) (send-event self 'play-anim))))
       ((-> (method-of-type process-taskable idle) trans)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (!= (ja-group) (get-art-elem self)) (ja-channel-push! 1 (seconds 0.2)))
       (loop
         (ja :group! (get-art-elem self))
@@ -368,8 +366,7 @@
 
 (defstate play-anim (sage)
   :virtual #t
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self draw bounds w) 10240.0)
       (let ((a0-1 (handle->process (-> self assistant)))) (if a0-1 (deactivate a0-1)))
       ((-> (method-of-type process-taskable play-anim) exit))
@@ -390,8 +387,7 @@
          (remove-setting! 'music-volume-movie)
          (close-specific-task! (game-task intro) (task-status need-resolution))
          (start 'play (get-continue-by-name *game-info* "game-start")))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (case (get-task-status (game-task intro))
         (((task-status need-reward-speech)) (spool-push *art-control* "sage-intro-sequence-d2" 0 self -1.0)))
       ((-> (method-of-type process-taskable play-anim) trans))))

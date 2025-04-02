@@ -21,8 +21,7 @@
 
 (defmacro manipy-spawn (trans entity skel arg &key (from *default-dead-pool*) &key (to *default-pool*) &key (name #f) &key (stack-size #x4000) &key (stack *scratch-memory-top*))
   `(process-spawn manipy
-                 :init
-                 manipy-init
+                 :init manipy-init
                  ,trans
                  ,entity
                  ,skel
@@ -80,8 +79,7 @@
   (none))
 
 (defstate swingpole-stance (swingpole)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (and *target*
                    (< (vector-vector-distance (-> self root trans) (-> *target* control unknown-vector90)) (-> self range))
@@ -91,8 +89,7 @@
         (suspend))))
 
 (defstate swingpole-active (swingpole)
-  :code
-    (behavior ()
+  :code (behavior ()
       (suspend)
       (while (and *target* (= (handle->process (-> *target* control unknown-handle10)) self))
         (suspend))
@@ -132,8 +129,7 @@
 
 
 (defstate manipy-idle (manipy)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (case message
         (('attackable)
@@ -234,8 +230,7 @@
            (set! (-> v1-73 num-func) num-func-identity)
            (set! (-> v1-73 frame-num) (the-as float (-> block param 0)))))
         (else (if (-> self cur-event-hook) ((-> self cur-event-hook))))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (!= (-> self cur-trans-hook) (-> self new-trans-hook)) (set! (-> self cur-trans-hook) (-> self new-trans-hook)))
       (if (!= (-> self cur-post-hook) (-> self new-post-hook)) (set! (-> self cur-post-hook) (-> self new-post-hook)))
       (when (and (-> self new-joint-anim)
@@ -252,8 +247,7 @@
               (vector+! (-> self root trans) (-> self root trans) (vector-! (new 'stack-no-clear 'vector) gp-1 (-> self old-grab-pos))))
             (set! (-> self old-grab-pos quad) (-> gp-1 quad)))))
       ((-> self cur-trans-hook)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logclear! (-> self mask) (process-mask heap-shrunk))
       (loop
         ((-> self cur-post-hook))
@@ -357,8 +351,7 @@
       (s5-0 (if (and (nonzero? s4-0) (type-type? (-> s4-0 type) process)) s4-0) gp-0))))
 
 (defstate part-tracker-process (part-tracker)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self start-time))
       (while (not (time-elapsed? (-> self start-time) (-> self duration)))
         (let ((gp-0 (handle->process (-> self target))))
@@ -616,26 +609,22 @@
       (the-as process gp-0))))
 
 (defstate camera-tracker-process (camera-tracker)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 uint))
       (case message
         (('message) (set! v0-0 (-> block param 0)) (set! (-> self message) (the-as basic v0-0)) v0-0)
         (('mask) (set! v0-0 (-> block param 0)) (set! (-> self mask-to-clear) (the-as process-mask v0-0)) v0-0)
         (('border) (set! v0-0 (-> block param 0)) (set! (-> self border-value) (the-as basic v0-0)) v0-0)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (if (-> self entity) (set-or-clear-status! (-> self entity) (entity-perm-status bit-3) #t))
       (if (not (-> self border-value)) (add-setting! 'border-mode (-> self border-value) 0.0 0))
       (add-setting! 'process-mask 'set 0.0 (-> self mask-to-clear))
       (add-setting! 'movie (process->ppointer self) 0.0 0)
       (hide-hud-quick))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (-> self entity) (set-or-clear-status! (-> self entity) (entity-perm-status bit-3) #f))
       (send-event *camera* 'clear-entity))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((-> self script-func) ((-> self script-func)))
         (else
@@ -686,8 +675,7 @@
 
 
 (defstate med-res-level-idle (med-res-level)
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (v1-37 float))
       (rlet ((vf0 :class vf)
              (vf16 :class vf)
@@ -763,8 +751,7 @@
   (sphere-in-view-frustum? (-> this world-sphere)))
 
 (defstate part-spawner-active (part-spawner)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('stop) (process-entity-status! self (entity-perm-status complete) #t) (set! (-> self enable) #f) #t)
         (('start) (process-entity-status! self (entity-perm-status complete) #f) (set! (-> self enable) #t) #t)
@@ -772,8 +759,7 @@
          (let ((v0-1 (the-as object (-> (the-as vector (-> block param 0)) quad))))
            (set! (-> self root trans quad) (the-as uint128 v0-1))
            v0-1))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (when (-> self enable)
           (spawn (-> self part) (-> self root trans))
@@ -837,8 +823,7 @@
 (defpartgroup group-beach-launcher
   :id 37
   :bounds (static-bspherem 0 3 0 5)
-  :parts
-  ((sp-item 45 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 45 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 46 :fade-after (meters 70) :falloff-to (meters 100) :flags (is-3d))
    (sp-item 47 :fade-after (meters 70) :falloff-to (meters 100) :flags (is-3d))
    (sp-item 48 :fade-after (meters 50) :falloff-to (meters 80))
@@ -955,8 +940,7 @@
 (defpartgroup group-jungle-launcher
   :id 38
   :bounds (static-bspherem 0 3 0 5)
-  :parts
-  ((sp-item 45 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 45 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 52 :fade-after (meters 70) :falloff-to (meters 100) :flags (is-3d))
    (sp-item 53 :fade-after (meters 70) :falloff-to (meters 100) :flags (is-3d))
    (sp-item 54 :fade-after (meters 70) :falloff-to (meters 100))))
@@ -1027,8 +1011,7 @@
 (defpartgroup group-swamp-launcher
   :id 39
   :bounds (static-bspherem 0 3 0 5)
-  :parts
-  ((sp-item 45 :fade-after (meters 100) :falloff-to (meters 100))
+  :parts ((sp-item 45 :fade-after (meters 100) :falloff-to (meters 100))
    (sp-item 46 :fade-after (meters 70) :falloff-to (meters 100) :flags (is-3d))
    (sp-item 47 :fade-after (meters 70) :falloff-to (meters 100) :flags (is-3d))
    (sp-item 55 :fade-after (meters 70) :falloff-to (meters 100))))
@@ -1072,13 +1055,11 @@
       (vector+! (-> self trans) gp-0 (-> *camera* tpos-curr)))))
 
 (defstate cam-launcher-shortfall (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (let ((gp-0 (new 'stack-no-clear 'vector)))
           (vector--float*! (-> self trans) (-> *camera* tpos-curr) (-> *camera* local-down) 28672.0)
@@ -1093,11 +1074,9 @@
         (set! (-> self blend-from-type) (the-as uint 0))
         (set! (-> self blend-to-type) (the-as uint 0))
         0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (current-time)))
         (loop
           (when (not (paused?))
@@ -1122,13 +1101,11 @@
     (vector-normalize! (-> self view-flat) 4096.0)))
 
 (defstate cam-launcher-longfall (camera-slave)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('teleport) #f)
         (else (cam-standard-event-handler proc argc message block))))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (when (not (-> self enter-has-run))
         (new 'stack-no-clear 'vector)
         (vector-negate! (-> self view-flat) (-> self tracking inv-mat vector 2))
@@ -1139,12 +1116,10 @@
         (set! (-> self blend-to-type) (the-as uint 0))
         (cam-calc-follow! (-> self tracking) (-> self trans) #f)
         (slave-set-rotation! (-> self tracking) (-> self trans) (the-as float (-> self options)) (-> self fov) #f)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (not (logtest? (-> *camera* master-options) 2)) (cam-slave-go cam-free-floating))
       (cam-launcher-long-joystick))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (current-time)))
         (loop
           (when (not (paused?))
@@ -1183,13 +1158,11 @@
           (suspend)))))
 
 (defstate launcher-idle (launcher)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('instant-death) (go launcher-deactivated))
         (('trans) (move-to-point! (-> self root) (the-as vector (-> block param 0))) (update-transforms! (-> self root)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (and *target* (>= (-> self active-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (cond
           ((send-event *target* 'query 'powerup (pickup-type eco-blue)) (go launcher-active))
@@ -1200,8 +1173,7 @@
   :code anim-loop)
 
 (defstate launcher-active (launcher)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (when (or (= message 'touch) (= message 'attack))
         (set-time! (-> self state-time))
         (send-event proc 'launch (-> self spring-height) (-> self camera) (-> self dest) (-> self seek-time)))
@@ -1210,8 +1182,7 @@
         ((= message 'trans)
          (move-to-point! (-> self root) (the-as vector (-> block param 0)))
          (update-transforms! (-> self root)))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (let ((v1-0 (the-as sound-rpc-set-param (get-sound-buffer-entry))))
         (set! (-> v1-0 command) (sound-command set-param))
         (set! (-> v1-0 id) (-> self sound-id))
@@ -1220,8 +1191,7 @@
         (set! (-> v1-0 auto-from) 2)
         (set! (-> v1-0 parms mask) (sound-mask volume time))
         (-> v1-0 id)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (or (or (not *target*)
                   (< (-> self active-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
               (not (send-event *target* 'query 'powerup (pickup-type eco-blue))))
@@ -1233,8 +1203,7 @@
                         (vector-vector-distance (-> self root trans) (-> *target* control trans))))
                (not (time-elapsed? (-> self state-time) (seconds 0.5))))
         (send-event *target* 'launch (-> self spring-height) (-> self camera) (-> self dest) (-> self seek-time))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (sound-play "launch-start")
       (anim-loop)))
 
@@ -1315,8 +1284,7 @@
   (none))
 
 (defstate touch-tracker-idle (touch-tracker)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-0 object))
       (case message
         (('touched)
@@ -1375,8 +1343,7 @@
         (('exit) (set! v0-0 (-> block param 0)) (set! (-> self run-function) (the-as (function object) v0-0)) v0-0)
         (('eval) ((the-as (function touch-tracker none) (-> block param 0)) self))
         (('function) (set! v0-0 (-> block param 0)) (set! (-> self callback) (the-as (function touch-tracker none) v0-0)) v0-0)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (while ((-> self run-function))
         (let* ((gp-0 (handle->process (-> self target)))

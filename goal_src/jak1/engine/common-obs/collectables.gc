@@ -282,15 +282,13 @@
 
 (defstate blocked (eco-collectable)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (task-complete? *game-info* (-> self entity extra perm task)) (go-virtual wait)))
   :code anim-loop)
 
 (defstate jump (eco-collectable)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (if (type-type? (-> self type) fuel-cell) (sound-play "cell-prize"))
       (logclear! (-> self mask) (process-mask actor-pause))
       (let ((gp-1 (new 'stack 'trajectory)))
@@ -314,8 +312,7 @@
 
 (defstate wait (eco-collectable)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-3 object))
       (when (and (or (= message 'touch) (= message 'attack))
                  (and (logtest? (-> self flags) (collectable-flags can-collect))
@@ -364,15 +361,13 @@
          (set! v0-3 (current-time))
          (set! (-> self birth-time) (the-as time-frame v0-3))
          v0-3)))
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (if (and (logtest? (-> self fact options) (fact-options instant-collect can-collect))
                (logtest? (-> self flags) (collectable-flags can-collect))
                (!= (-> self next-state name) 'pickup)
                (send-event *target* 'get-pickup (-> self fact pickup-type) (-> self fact pickup-amount)))
         (go-virtual pickup #f (process->handle *target*))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((logtest? (-> self flags) (collectable-flags trans))
          (vector-v++! (-> self root transv) (compute-acc-due-to-gravity (-> self root) (new-stack-vector0) (the-as float 0.0)))
@@ -396,8 +391,7 @@
                 (go-virtual pickup #f (process->handle *target*)))))))
         (else (set! (-> self trans-hook) #f)))
       (update-transforms! (-> self root)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((gp-0 (-> self part))
               (s5-0 (-> self root root-prim prim-core)))
@@ -417,8 +411,7 @@
 
 (defstate notice-blue (eco-collectable)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (when (and (or (= message 'touch) (= message 'attack))
                  (and (logtest? (-> self flags) (collectable-flags can-collect))
                       (time-elapsed? (-> self birth-time) (-> self collect-timeout))
@@ -426,18 +419,15 @@
                       (send-event proc 'get-pickup (-> self fact pickup-type) (-> self fact pickup-amount))))
         (logclear! (-> self mask) (process-mask actor-pause))
         (go-virtual pickup #f (process->handle proc))))
-  :enter
-    (behavior ((arg0 handle))
+  :enter (behavior ((arg0 handle))
       (set! (-> self target) arg0)
       (set! (-> self speed quad) (the-as uint128 0))
       (set! (-> self speed z) (the-as float (if (rand-vu-percent? (the-as float 0.5)) 1.0 -1.0)))
       (set! (-> self suck-y-offset) 0.0)
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (-> self actor-pause) (logior! (-> self mask) (process-mask actor-pause))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((a1-0 (new 'stack-no-clear 'event-message-block)))
         (set! (-> a1-0 from) self)
         (set! (-> a1-0 num-params) 2)
@@ -446,8 +436,7 @@
         (set! (-> a1-0 param 1) (the-as uint 3))
         (if (and (not (send-event-function *target* a1-0)) (not (logtest? (-> self flags) (collectable-flags suck))))
           (go-virtual wait))))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (loop
         (set! (-> self root trans quad) (-> self base quad))
         (add-blue-motion #t #f #t #f)
@@ -461,8 +450,7 @@
 
 (defstate pickup (eco-collectable)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (the-as symbol
               (case message
                 (('set-movie-pos)
@@ -476,8 +464,7 @@
                             (let ((v0-1 #t)) (set! (-> self actor-pause) v0-1) v0-1))
                            (else (logclear! (-> self mask) (process-mask actor-pause)) (set! (-> self actor-pause) #f) #f))))
                 (('fade) (process-entity-status! self (entity-perm-status dead) #t) (the-as symbol (deactivate self))))))
-  :enter
-    (behavior ((arg0 object) (arg1 handle))
+  :enter (behavior ((arg0 object) (arg1 handle))
       (set! (-> self pickup-handle) arg1)
       (when (-> self notify-parent)
         (let ((gp-0 (new 'stack-no-clear 'event-message-block)))
@@ -489,8 +476,7 @@
                 (s4-0 (ppointer->process (-> self parent))))
             (s5-0 (if (and (nonzero? s4-0) (type-type? (-> s4-0 type) process)) s4-0) gp-0))))
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :code
-    (behavior ((arg0 object) (arg1 handle))
+  :code (behavior ((arg0 object) (arg1 handle))
       (clear-collide-with-as (-> self root))
       (if (not (or (= (-> self fact pickup-type) (pickup-type eco-pill)) (logtest? (-> self fact options) (fact-options powerup))))
         (send-event (handle->process arg1) 'powerup (-> self fact pickup-type) (-> self fact pickup-amount)))
@@ -510,20 +496,17 @@
       (let ((gp-6 (handle->process (-> self pickup-handle))))
         (if (nonzero? (-> self collect-effect))
           (process-spawn part-tracker
-                         :init
-                         part-tracker-init
+                         :init part-tracker-init
                          (-> self collect-effect)
                          -1
                          part-tracker-track-target
                          #f
                          #f
                          (-> self root root-prim prim-core)
-                         :to
-                         gp-6)))
+                         :to gp-6)))
       (if (nonzero? (-> self collect-effect2))
         (process-spawn part-tracker
-                       :init
-                       part-tracker-init
+                       :init part-tracker-init
                        (-> self collect-effect2)
                        -1
                        (lambda ((arg0 part-tracker))
@@ -542,16 +525,14 @@
                        (process->handle self)
                        #f
                        (-> self root root-prim prim-core)
-                       :to
-                       self))
+                       :to self))
       (while (-> self child)
         (suspend))
       (go-virtual die)))
 
 (defstate die (eco-collectable)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-entity-status! self (entity-perm-status dead) #t)))
 
 (deftype eco (eco-collectable) ())
@@ -567,17 +548,14 @@
 
 (defstate die (eco)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('fade) (process-entity-status! self (entity-perm-status dead) #t) (deactivate self))
         (('die) (go-virtual die))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #f)
       (if (-> self actor-pause) (logior! (-> self mask) (process-mask actor-pause))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (process-entity-status! self (entity-perm-status bit-3) #t)
       (logclear! (-> self mask) (process-mask actor-pause))
       (logclear! (-> self fact options) (fact-options instant-collect can-collect))
@@ -708,8 +686,7 @@
 
 (defstate wait (money)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* 40049.777 (seconds-per-frame)))
         (let ((f30-0 (-> self bob-amount)))
@@ -727,8 +704,7 @@
 
 (defstate notice-blue (money)
   :virtual #t
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (loop
         (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* 91022.22 (seconds-per-frame)))
         (set! (-> self root trans quad) (-> self base quad))
@@ -747,8 +723,7 @@
 
 (defstate pickup (money)
   :virtual #t
-  :code
-    (behavior ((arg0 object) (arg1 handle))
+  :code (behavior ((arg0 object) (arg1 handle))
       ;; og:preserve-this added
       (if (nonzero? (-> self part)) (kill-and-free-particles (-> self part)))
       (logclear! (-> self mask) (process-mask actor-pause))
@@ -756,8 +731,7 @@
       (process-entity-status! self (entity-perm-status dead) #t)
       (runs-on-orb-pickup (ppointer->process (-> self parent))) ;; trigger hook for mod base
       (convert-to-hud-object self (the-as hud (ppointer->process (-> *hud-parts* money)))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       ;; refresh orb-placer list in debug mode
       (when *debug-segment*
         (orb-placer-list-maintenace #t))))
@@ -904,8 +878,7 @@
 
 (defstate wait (fuel-cell)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (local-vars (v0-3 object))
       (when (and (or (= message 'touch) (= message 'attack))
                  (and (logtest? (-> self flags) (collectable-flags can-collect))
@@ -941,8 +914,7 @@
             (set! v0-3 (logior (-> self flags) (collectable-flags anim)))
             (set! (-> self flags) (the-as collectable-flags v0-3))))
          v0-3)))
-  :code
-    (behavior ()
+  :code (behavior ()
       0.5
       (let ((f28-0 0.0))
         (ja :group! fuel-cell-idle-ja)
@@ -961,13 +933,11 @@
 
 (defstate pickup (fuel-cell)
   :virtual #t
-  :enter
-    (behavior ((arg0 object) (arg1 handle))
+  :enter (behavior ((arg0 object) (arg1 handle))
       (set-time! (-> self state-time))
       (set! (-> self state-object) #t)
       (let ((t9-1 (-> (the-as (state eco-collectable) (find-parent-state)) enter))) (if t9-1 (t9-1))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((f30-0 (the-as float
                            (cond
                              ((string= (-> self victory-anim name) "fuel-cell-victory") 97.0)
@@ -989,8 +959,7 @@
                                  (fact-options powerup))
                        (and *target* (logtest? (-> *target* control root-prim prim-core action) (collide-action racer)))))
             (send-event *camera* 'teleport-to-other-start-string)))))
-  :code
-    (behavior ((arg0 object) (arg1 handle))
+  :code (behavior ((arg0 object) (arg1 handle))
       (local-vars (sv-96 res-tag))
       (sound-play "pu-powercell")
       (clear-collide-with-as (-> self root))
@@ -1126,8 +1095,7 @@
              (level-hint-spawn (text-id sidekick-buzzer-resolution) "sksp009k" (the-as entity #f) *entity-pool* (game-task none))))
           (none))
         (the int (-> self fact pickup-amount))
-        :to
-        self)
+        :to self)
       (case (the int (-> self fact pickup-amount))
         (((game-task citadel-sage-blue)) (send-event (process-by-name "blue-sagecage-1" *active-pool*) 'play-anim))
         (((game-task citadel-sage-red)) (send-event (process-by-name "red-sagecage-1" *active-pool*) 'play-anim))
@@ -1137,8 +1105,7 @@
         (else (send-event (ppointer->process (-> *hud-parts* fuel-cell)) 'show)))
       (runs-on-cell-pickup 'cutscene-end)
       (convert-to-hud-object self (the-as hud (ppointer->process (-> *hud-parts* fuel-cell)))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (transform-post)
       (if (-> self state-object) (spawn (-> self part) (the-as vector (-> self root root-prim prim-core))))))
 
@@ -1214,8 +1181,7 @@
   (none))
 
 (defstate fuel-cell-clone-anim (fuel-cell)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('pickup)
          (when (!= (-> self next-state name) 'pickup)
@@ -1234,18 +1200,15 @@
          (logclear! (-> self draw status) (draw-status hidden))
          (vector-reset! (-> self draw origin))
          (go-virtual wait))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (if (-> self actor-pause) (logior! (-> self mask) (process-mask actor-pause)))
       (logclear! (-> self skel status) (janim-status spool)))
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (logclear! (-> self mask) (process-mask actor-pause))
       (clone-anim arg0 3 #t "")
       (format #t "ERROR<GMJ>: clone-anim returned in fuel-cell~%")
       (deactivate self))
-  :post
-    (behavior ()
+  :post (behavior ()
       (update-transforms! (-> self root))
       (animate self)))
 
@@ -1289,8 +1252,7 @@
 
 (defstate wait (buzzer)
   :virtual #t
-  :code
-    (behavior ()
+  :code (behavior ()
       (case (get-reminder (get-task-control (the-as game-task (logand (the int (-> self fact pickup-amount)) #xffff))) 0)
         ((127) (go-virtual pickup #t (the-as handle #f))))
       (loop
@@ -1300,16 +1262,13 @@
 
 (defstate pickup (buzzer)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('notify) (process-entity-status! self (entity-perm-status dead) #t))))
-  :enter
-    (behavior ((arg0 object) (arg1 handle))
+  :enter (behavior ((arg0 object) (arg1 handle))
       (set! (-> self pickup-handle) arg1)
       (logclear! (-> self mask) (process-mask actor-pause)))
-  :code
-    (behavior ((arg0 object) (arg1 handle))
+  :code (behavior ((arg0 object) (arg1 handle))
       (logclear! (-> self mask) (process-mask actor-pause))
       (process-entity-status! self (entity-perm-status complete) #t)
       (sound-play "buzzer-pickup")
@@ -1628,8 +1587,7 @@
   :texture-level 2)
 
 (defstate ecovalve-idle (ecovalve)
-  :code
-    (behavior ()
+  :code (behavior ()
       (transform-post)
       (suspend)
       (transform-post)
@@ -1760,8 +1718,7 @@
     (('hide) (set! (-> self block-func) (the-as (function vent symbol) true-func)) (go vent-blocked))))
 
 (defstate vent-wait-for-touch (vent)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (if (and (or (= message 'touch) (= message 'attack))
                (let ((a1-1 (new 'stack-no-clear 'event-message-block)))
                  (set! (-> a1-1 from) self)
@@ -1774,8 +1731,7 @@
                       (or (logtest? (-> self fact options) (fact-options powerup)) (send-event proc 'powerup)))))
         (go vent-pickup (process->handle proc)))
       (vent-standard-event-handler proc argc message block))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (let ((a0-0 (-> self part))
               (a1-0 (-> self root trans))
@@ -1785,20 +1741,17 @@
         (suspend))))
 
 (defstate vent-blocked (vent)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('show) (go vent-wait-for-touch))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (not ((-> self block-func) self)) (go vent-wait-for-touch))
         (suspend))))
 
 (defstate vent-pickup (vent)
   :event vent-standard-event-handler
-  :code
-    (behavior ((arg0 handle))
+  :code (behavior ((arg0 handle))
       (when (-> self show-particles)
         (when (nonzero? (-> self collect-effect))
           (let* ((s5-0 (handle->process arg0))
@@ -1808,27 +1761,23 @@
                      (s5-1 (if (and (nonzero? s4-0) (type-type? (-> s4-0 type) collide-shape)) s4-0)))
                 (when s5-1
                   (process-spawn part-tracker
-                                 :init
-                                 part-tracker-init
+                                 :init part-tracker-init
                                  (-> self collect-effect)
                                  -1
                                  part-tracker-track-target
                                  #f
                                  #f
                                  (-> (the-as collide-shape s5-1) root-prim prim-core)
-                                 :to
-                                 gp-0)
+                                 :to gp-0)
                   (process-spawn part-tracker
-                                 :init
-                                 part-tracker-init
+                                 :init part-tracker-init
                                  (-> self collect-effect2)
                                  -1
                                  part-tracker-move-to-target
                                  #f
                                  #f
                                  (-> self root root-prim prim-core)
-                                 :to
-                                 self)))))))
+                                 :to self)))))))
       (go vent-wait-for-touch)))
 
 (deftype ventyellow (vent) ())

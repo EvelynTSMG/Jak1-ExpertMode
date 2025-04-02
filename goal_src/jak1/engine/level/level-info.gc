@@ -24,14 +24,11 @@
        :ocean '*ocean-map-village1*
        :sky #t
        :sun-fade 1.0
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "training-start"
              :level 'training
-             :trans
-             (new 'static 'vector :x -5393626.5 :y 28072.346 :z 4332472.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9995 :w 0.0297)
+             :trans (new 'static 'vector :x -5393626.5 :y 28072.346 :z 4332472.5 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.9995 :w 0.0297)
              :camera-trans
              (new 'static 'vector :x -5426915.0 :y 45930.906 :z 4353156.0 :w 1.0)
              :camera-rot
@@ -56,10 +53,8 @@
              :name "training-warp"
              :level 'training
              :flags (continue-flags warp)
-             :trans
-             (new 'static 'vector :x -5383524.0 :y 28019.098 :z 4360302.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.084 :w 0.9964)
+             :trans (new 'static 'vector :x -5383524.0 :y 28019.098 :z 4360302.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.084 :w 0.9964)
              :camera-trans
              (new 'static 'vector :x -5366765.0 :y 45646.234 :z 4325889.0 :w 1.0)
              :camera-rot
@@ -84,10 +79,8 @@
              :name "game-start"
              :level 'training
              :flags (continue-flags warp game-start)
-             :trans
-             (new 'static 'vector :x -5393740.5 :y 28259.533 :z 4360945.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9993 :w 0.0359)
+             :trans (new 'static 'vector :x -5393740.5 :y 28259.533 :z 4360945.5 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.9993 :w 0.0359)
              :camera-trans
              (new 'static 'vector :x -5434444.5 :y 47050.344 :z 4372832.5 :w 1.0)
              :camera-rot
@@ -108,16 +101,14 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'special))
-       :tasks
-       '(92 93 94 95)
+       :tasks '(92 93 94 95)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x -5079040.0 :z 4055040.0 :w 1024000.0)
+       :bsphere (new 'static 'sphere :x -5079040.0 :z 4055040.0 :w 1024000.0)
        :buzzer 95
        :bottom-height (meters -114)
        :run-packages
@@ -140,14 +131,11 @@
        :ocean '*ocean-map-village1*
        :sky #t
        :sun-fade 1.0
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "village1-hut"
              :level 'village1
-             :trans
-             (new 'static 'vector :x -638860.06 :y 139319.7 :z 769990.6 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9889 :w -0.148)
+             :trans (new 'static 'vector :x -638860.06 :y 139319.7 :z 769990.6 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9889 :w -0.148)
              :camera-trans
              (new 'static 'vector :x -668114.1 :y 164536.31 :z 828633.06 :w 1.0)
              :camera-rot
@@ -163,10 +151,8 @@
              :name "village1-intro"
              :level 'village1
              :flags (continue-flags warp sage-intro)
-             :trans
-             (new 'static 'vector :x -518468.8 :y 189424.03 :z 868568.7 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.591 :w 0.8066)
+             :trans (new 'static 'vector :x -518468.8 :y 189424.03 :z 868568.7 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.591 :w 0.8066)
              :camera-trans
              (new 'static 'vector :x -559109.3 :y 200461.92 :z 826073.06 :w 1.0)
              :camera-rot
@@ -182,10 +168,8 @@
              :name "village1-warp"
              :level 'village1
              :flags (continue-flags warp sage-ecorocks)
-             :trans
-             (new 'static 'vector :x -518468.8 :y 189424.03 :z 868568.7 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.591 :w 0.8066)
+             :trans (new 'static 'vector :x -518468.8 :y 189424.03 :z 868568.7 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.591 :w 0.8066)
              :camera-trans
              (new 'static 'vector :x -559109.3 :y 200461.92 :z 826073.06 :w 1.0)
              :camera-rot
@@ -201,10 +185,8 @@
              :name "village1-demo-convo"
              :level 'village1
              :flags (continue-flags sage-demo-convo)
-             :trans
-             (new 'static 'vector :x -542529.1 :y 189424.03 :z 847101.94 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.1717 :w -0.9851)
+             :trans (new 'static 'vector :x -542529.1 :y 189424.03 :z 847101.94 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.1717 :w -0.9851)
              :camera-trans
              (new 'static 'vector :x -559085.2 :y 202996.53 :z 826054.25 :w 1.0)
              :camera-rot
@@ -220,10 +202,8 @@
              :name "intro-start"
              :level 'village1
              :flags (continue-flags intro)
-             :trans
-             (new 'static 'vector :x 164316.78 :y 15128.576 :z 3390588.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.2339 :w 0.9722)
+             :trans (new 'static 'vector :x 164316.78 :y 15128.576 :z 3390588.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.2339 :w 0.9722)
              :camera-trans
              (new 'static 'vector :x 204089.34 :y 36257.793 :z 3358341.0 :w 1.0)
              :camera-rot
@@ -246,16 +226,14 @@
              :disp0 'display
              :lev1 'misty
              :disp1 #f))
-       :tasks
-       '(10 11 12 13 14 75)
+       :tasks '(10 11 12 13 14 75)
        :priority #xc8
        :load-commands
        '()
        :alt-load-commands
        '(((display village1) (load misty)) ((special village1) (display misty)) ((display village1) (load beach)))
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x -444416.0 :y 133120.0 :z 360448.0 :w 843776.0)
+       :bsphere (new 'static 'sphere :x -444416.0 :y 133120.0 :z 360448.0 :w 843776.0)
        :buzzer 75
        :bottom-height (meters -20)
        :run-packages
@@ -278,35 +256,46 @@
        :ocean '*ocean-map-village1*
        :sky #t
        :sun-fade 1.0
-       :continues
-       '((new 'static 'continue-point
-             :name "beach-start"
-             :level 'beach
-             :trans
-             (new 'static 'vector :x -504960.22 :y 9477.325 :z -223513.81 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9486 :w -0.3163)
-             :camera-trans
-             (new 'static 'vector :x -487550.16 :y 28354.15 :z -184211.05 :w 1.0)
-             :camera-rot
-             (new 'static 'array float 9 -0.9139 0.0 0.4058 -0.0551 0.9907 -0.1241 -0.4021 -0.1358 -0.9054)
-             :load-commands
-             '()
-             :vis-nick 'bea
-             :lev0 'beach
-             :disp0 'display
-             :lev1 'village1
-             :disp1 'display))
-       :tasks
-       '(15 16 17 18 19 20 21 22)
+       :continues '((new 'static 'continue-point
+            :name "beach-start"
+            :level 'beach
+            :trans (new 'static 'vector :x -504960.22 :y 9477.325 :z -223513.81 :w 1.0)
+            :quat (new 'static 'quaternion :y 0.9486 :w -0.3163)
+            :camera-trans
+            (new 'static 'vector :x -487550.16 :y 28354.15 :z -184211.05 :w 1.0)
+            :camera-rot
+            (new 'static 'array float 9 -0.9139 0.0 0.4058 -0.0551 0.9907 -0.1241 -0.4021 -0.1358 -0.9054)
+            :load-commands
+            '()
+            :vis-nick 'bea
+            :lev0 'beach
+            :disp0 'display
+            :lev1 'village1
+            :disp1 'display
+          )
+          (new 'static 'continue-point
+            :name "beach-sentinel"
+            :level 'beach
+            :trans (new 'static 'vector :x -991856.64 :y 34618.5728 :z -1675948.8512 :w 1.0)
+            :quat (new 'static 'quaternion :y 0.85 :w -0.5266)
+            :camera-trans (new 'static 'vector :x -945357.2096 :y 55484.0064 :z -1670194.7904 :w 1.0)
+            :camera-rot (new 'static 'array float 9 -0.2848 0.0000 0.9585 -0.1099 0.9933 -0.0326 -0.9522 -0.1147 -0.2829)
+            :load-commands '()
+            :vis-nick 'bea
+            :lev0 'beach
+            :disp0 'display
+            :lev1 'village1
+            :disp1 'display
+          )
+        )
+       :tasks '(15 16 17 18 19 20 21 22)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x -819200.0 :z -1556480.0 :w 1474560.0)
+       :bsphere (new 'static 'sphere :x -819200.0 :z -1556480.0 :w 1474560.0)
        :buzzer 20
        :bottom-height (meters -20)
        :run-packages
@@ -329,14 +318,11 @@
        :ocean '*ocean-map-village1*
        :sky #t
        :sun-fade 1.0
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "jungle-start"
              :level 'jungle
-             :trans
-             (new 'static 'vector :x 1057631.9 :y 86404.305 :z -647140.56 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9009 :w -0.4339)
+             :trans (new 'static 'vector :x 1057631.9 :y 86404.305 :z -647140.56 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9009 :w -0.4339)
              :camera-trans
              (new 'static 'vector :x 1004424.8 :y 111181.82 :z -611527.9 :w 1.0)
              :camera-rot
@@ -348,16 +334,14 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'display))
-       :tasks
-       '(2 3 4 5 7 8 9)
+       :tasks '(2 3 4 5 7 8 9)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '(((display jungle) (display jungleb)) ((display jungle) (display village1)))
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 1474560.0 :y 2519040.0 :z -983040.0 :w 2457600.0)
+       :bsphere (new 'static 'sphere :x 1474560.0 :y 2519040.0 :z -983040.0 :w 2457600.0)
        :buzzer 7
        :bottom-height (meters -20)
        :run-packages
@@ -379,14 +363,11 @@
        :mood-func 'update-mood-jungleb
        :ocean 'none
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "jungle-tower"
              :level 'jungleb
-             :trans
-             (new 'static 'vector :x 1469510.0 :y -204745.52 :z -959058.3 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.6194 :w -0.785)
+             :trans (new 'static 'vector :x 1469510.0 :y -204745.52 :z -959058.3 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.6194 :w -0.785)
              :camera-trans
              (new 'static 'vector :x 1485298.5 :y -189972.08 :z -936548.75 :w 1.0)
              :camera-rot
@@ -398,15 +379,13 @@
              :disp0 'display
              :lev1 'jungleb
              :disp1 'display))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
-       :bsphere
-       (new 'static 'sphere :x 1486848.0 :y -1269760.0 :z -1064960.0 :w 1228800.0)
+       :bsphere (new 'static 'sphere :x 1486848.0 :y -1269760.0 :z -1064960.0 :w 1228800.0)
        :buzzer 7
        :bottom-height (meters -80)
        :run-packages
@@ -429,14 +408,11 @@
        :ocean '*ocean-map-village1*
        :sky #t
        :sun-fade 0.25
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "misty-start"
              :level 'misty
-             :trans
-             (new 'static 'vector :x 164316.78 :y 15128.576 :z 3390588.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.2339 :w 0.9722)
+             :trans (new 'static 'vector :x 164316.78 :y 15128.576 :z 3390588.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.2339 :w 0.9722)
              :camera-trans
              (new 'static 'vector :x 204089.34 :y 36257.793 :z 3358341.0 :w 1.0)
              :camera-rot
@@ -462,10 +438,8 @@
         (new 'static 'continue-point
              :name "misty-silo"
              :level 'misty
-             :trans
-             (new 'static 'vector :x -672503.0 :y 82131.35 :z 3651465.8 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.0878 :w 0.9961)
+             :trans (new 'static 'vector :x -672503.0 :y 82131.35 :z 3651465.8 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.0878 :w 0.9961)
              :camera-trans
              (new 'static 'vector :x -675754.0 :y 102028.91 :z 3604800.8 :w 1.0)
              :camera-rot
@@ -491,10 +465,8 @@
         (new 'static 'continue-point
              :name "misty-bike"
              :level 'misty
-             :trans
-             (new 'static 'vector :x 302533.44 :y 35901.848 :z 4138967.8 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.2809 :w 0.9597)
+             :trans (new 'static 'vector :x 302533.44 :y 35901.848 :z 4138967.8 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.2809 :w 0.9597)
              :camera-trans
              (new 'static 'vector :x 338476.25 :y 55700.684 :z 4109729.0 :w 1.0)
              :camera-rot
@@ -520,10 +492,8 @@
         (new 'static 'continue-point
              :name "misty-backside"
              :level 'misty
-             :trans
-             (new 'static 'vector :x -304192.72 :y 33270.99 :z 4646525.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.8443 :w -0.5357)
+             :trans (new 'static 'vector :x -304192.72 :y 33270.99 :z 4646525.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.8443 :w -0.5357)
              :camera-trans
              (new 'static 'vector :x -346989.78 :y 54377.676 :z 4674685.5 :w 1.0)
              :camera-rot
@@ -549,10 +519,8 @@
         (new 'static 'continue-point
              :name "misty-silo2"
              :level 'misty
-             :trans
-             (new 'static 'vector :x -898000.06 :y 98038.17 :z 4162091.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.1102 :w 0.9938)
+             :trans (new 'static 'vector :x -898000.06 :y 98038.17 :z 4162091.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.1102 :w 0.9938)
              :camera-trans
              (new 'static 'vector :x -931459.9 :y 118198.68 :z 4196081.0 :w 1.0)
              :camera-rot
@@ -575,16 +543,14 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'special))
-       :tasks
-       '(23 24 25 26 27 28 29 30)
+       :tasks '(23 24 25 26 27 28 29 30)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :z 4096000.0 :w 1269760.0)
+       :bsphere (new 'static 'sphere :z 4096000.0 :w 1269760.0)
        :buzzer 28
        :bottom-height (meters -20)
        :run-packages
@@ -606,14 +572,11 @@
        :mood-func 'update-mood-firecanyon
        :ocean 'none
        :sky #t
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "firecanyon-start"
              :level 'firecanyon
-             :trans
-             (new 'static 'vector :x -87377.1 :y 126444.75 :z -681697.25 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9921 :w -0.1246)
+             :trans (new 'static 'vector :x -87377.1 :y 126444.75 :z -681697.25 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.9921 :w -0.1246)
              :camera-trans
              (new 'static 'vector :x -84559.055 :y 144685.47 :z -641194.0 :w 1.0)
              :camera-rot
@@ -628,10 +591,8 @@
         (new 'static 'continue-point
              :name "firecanyon-end"
              :level 'firecanyon
-             :trans
-             (new 'static 'vector :x 1360576.1 :y 126976.0 :z -5839533.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.1666 :w 0.986)
+             :trans (new 'static 'vector :x 1360576.1 :y 126976.0 :z -5839533.5 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.1666 :w 0.986)
              :camera-trans
              (new 'static 'vector :x 1378912.6 :y 144452.81 :z -5872527.0 :w 1.0)
              :camera-rot
@@ -643,16 +604,14 @@
              :disp0 'display
              :lev1 'firecanyon
              :disp1 'display))
-       :tasks
-       '(68 69)
+       :tasks '(68 69)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 419840.0 :y 151552.0 :z -3006464.0 :w 2048000.0)
+       :bsphere (new 'static 'sphere :x 419840.0 :y 151552.0 :z -3006464.0 :w 2048000.0)
        :buzzer 68
        :bottom-height (meters -20)
        :run-packages
@@ -674,14 +633,11 @@
        :mood-func 'update-mood-village2
        :ocean '*ocean-map-village2*
        :sky #t
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "village2-start"
              :level 'village2
-             :trans
-             (new 'static 'vector :x 1460961.2 :y 108562.02 :z -6161391.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9917 :w 0.1278)
+             :trans (new 'static 'vector :x 1460961.2 :y 108562.02 :z -6161391.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.9917 :w 0.1278)
              :camera-trans
              (new 'static 'vector :x 1468018.8 :y 133790.92 :z -6096227.0 :w 1.0)
              :camera-rot
@@ -697,10 +653,8 @@
              :name "village2-warp"
              :level 'village2
              :flags (continue-flags warp)
-             :trans
-             (new 'static 'vector :x 1592492.9 :y 91648.0 :z -6328677.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.7469 :w 0.6648)
+             :trans (new 'static 'vector :x 1592492.9 :y 91648.0 :z -6328677.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.7469 :w 0.6648)
              :camera-trans
              (new 'static 'vector :x 1555766.1 :y 103759.46 :z -6318964.5 :w 1.0)
              :camera-rot
@@ -715,10 +669,8 @@
         (new 'static 'continue-point
              :name "village2-dock"
              :level 'village2
-             :trans
-             (new 'static 'vector :x 1264346.8 :y 19451.494 :z -6833563.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.0258 :w 0.9996)
+             :trans (new 'static 'vector :x 1264346.8 :y 19451.494 :z -6833563.5 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.0258 :w 0.9996)
              :camera-trans
              (new 'static 'vector :x 1265547.2 :y 34647.656 :z -6862636.5 :w 1.0)
              :camera-rot
@@ -730,16 +682,14 @@
              :disp0 'display
              :lev1 'rolling
              :disp1 #f))
-       :tasks
-       '(31 32 34 35 76)
+       :tasks '(31 32 34 35 76)
        :priority #xc8
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 1392640.0 :y 81920.0 :z -6770688.0 :w 696320.0)
+       :bsphere (new 'static 'sphere :x 1392640.0 :y 81920.0 :z -6770688.0 :w 696320.0)
        :buzzer 76
        :bottom-height (meters -20)
        :run-packages
@@ -761,14 +711,11 @@
        :mood-func 'update-mood-sunken
        :ocean '*ocean-map-sunken*
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "sunken-start"
              :level 'sunken
-             :trans
-             (new 'static 'vector :x 2172095.2 :y -591749.94 :z -6721553.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.5083 :w 0.8611)
+             :trans (new 'static 'vector :x 2172095.2 :y -591749.94 :z -6721553.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.5083 :w 0.8611)
              :camera-trans
              (new 'static 'vector :x 2138871.5 :y -572296.4 :z -6751967.5 :w 1.0)
              :camera-rot
@@ -783,10 +730,8 @@
         (new 'static 'continue-point
              :name "sunken1"
              :level 'sunken
-             :trans
-             (new 'static 'vector :x 3062988.5 :y -536575.56 :z -6527484.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.5304 :w 0.8477)
+             :trans (new 'static 'vector :x 3062988.5 :y -536575.56 :z -6527484.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.5304 :w 0.8477)
              :camera-trans
              (new 'static 'vector :x 3015461.2 :y -515480.38 :z -6546573.5 :w 1.0)
              :camera-rot
@@ -801,10 +746,8 @@
         (new 'static 'continue-point
              :name "sunken2"
              :level 'sunken
-             :trans
-             (new 'static 'vector :x 3133625.5 :y -569343.56 :z -6909587.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9512 :w 0.3083)
+             :trans (new 'static 'vector :x 3133625.5 :y -569343.56 :z -6909587.5 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9512 :w 0.3083)
              :camera-trans
              (new 'static 'vector :x 3170833.2 :y -548244.25 :z -6874378.0 :w 1.0)
              :camera-rot
@@ -819,10 +762,8 @@
         (new 'static 'continue-point
              :name "sunken-tube1"
              :level 'sunken
-             :trans
-             (new 'static 'vector :x 2649601.8 :y -569343.56 :z -7132970.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9936 :w 0.1124)
+             :trans (new 'static 'vector :x 2649601.8 :y -569343.56 :z -7132970.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.9936 :w 0.1124)
              :camera-trans
              (new 'static 'vector :x 2636150.2 :y -555656.4 :z -7114732.5 :w 1.0)
              :camera-rot
@@ -834,16 +775,14 @@
              :disp0 'display
              :lev1 'sunkenb
              :disp1 #f))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 2867200.0 :y -2048000.0 :z -6553600.0 :w 2048000.0)
+       :bsphere (new 'static 'sphere :x 2867200.0 :y -2048000.0 :z -6553600.0 :w 2048000.0)
        :buzzer 49
        :bottom-height (meters -500)
        :run-packages
@@ -856,8 +795,7 @@
        :name 'sunkenb
        :visname 'sunkenb-vis
        :nickname 'sub
-       :packages
-       '()
+       :packages '()
        :sound-banks '(sunken)
        :music-bank 'sunken
        :ambient-sounds
@@ -866,14 +804,11 @@
        :mood-func 'update-mood-sunken
        :ocean '*ocean-map-sunken*
        :sky #t
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "sunkenb-start"
              :level 'sunkenb
-             :trans
-             (new 'static 'vector :x 2229231.2 :y -1019912.2 :z -6788748.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.895 :w 0.446)
+             :trans (new 'static 'vector :x 2229231.2 :y -1019912.2 :z -6788748.5 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.895 :w 0.446)
              :camera-trans
              (new 'static 'vector :x 2187840.0 :y -998915.7 :z -6759328.0 :w 1.0)
              :camera-rot
@@ -888,10 +823,8 @@
         (new 'static 'continue-point
              :name "sunkenb-helix"
              :level 'sunkenb
-             :trans
-             (new 'static 'vector :x 2466572.8 :y -1838989.2 :z -7299582.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.8841 :w 0.4672)
+             :trans (new 'static 'vector :x 2466572.8 :y -1838989.2 :z -7299582.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.8841 :w 0.4672)
              :camera-trans
              (new 'static 'vector :x 2515616.2 :y -1817888.4 :z -7284843.5 :w 1.0)
              :camera-rot
@@ -903,16 +836,14 @@
              :disp0 'display
              :lev1 'sunkenb
              :disp1 'display))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 2867200.0 :y -2048000.0 :z -6553600.0 :w 2048000.0)
+       :bsphere (new 'static 'sphere :x 2867200.0 :y -2048000.0 :z -6553600.0 :w 2048000.0)
        :buzzer 49
        :bottom-height (meters -500)
        :run-packages
@@ -934,14 +865,11 @@
        :mood-func 'update-mood-swamp
        :ocean '*ocean-map-village2*
        :sky #t
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "swamp-start"
              :level 'swamp
-             :trans
-             (new 'static 'vector :x 1842537.2 :y 21027.227 :z -7333297.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9933 :w 0.1153)
+             :trans (new 'static 'vector :x 1842537.2 :y 21027.227 :z -7333297.5 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9933 :w 0.1153)
              :camera-trans
              (new 'static 'vector :x 1862529.9 :y 44371.56 :z -7277995.5 :w 1.0)
              :camera-rot
@@ -961,10 +889,8 @@
         (new 'static 'continue-point
              :name "swamp-dock1"
              :level 'swamp
-             :trans
-             (new 'static 'vector :x 1360386.9 :y 5823.693 :z -8218890.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.585 :w -0.811)
+             :trans (new 'static 'vector :x 1360386.9 :y 5823.693 :z -8218890.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.585 :w -0.811)
              :camera-trans
              (new 'static 'vector :x 1314475.6 :y 26164.838 :z -8234152.5 :w 1.0)
              :camera-rot
@@ -984,10 +910,8 @@
         (new 'static 'continue-point
              :name "swamp-cave1"
              :level 'swamp
-             :trans
-             (new 'static 'vector :x 1553700.5 :y 1835.4176 :z -8258429.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9871 :w -0.1599)
+             :trans (new 'static 'vector :x 1553700.5 :y 1835.4176 :z -8258429.5 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9871 :w -0.1599)
              :camera-trans
              (new 'static 'vector :x 1556873.2 :y 22715.598 :z -8208106.0 :w 1.0)
              :camera-rot
@@ -1007,10 +931,8 @@
         (new 'static 'continue-point
              :name "swamp-dock2"
              :level 'swamp
-             :trans
-             (new 'static 'vector :x 1645872.4 :y 36495.77 :z -8427323.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.8294 :w -0.5586)
+             :trans (new 'static 'vector :x 1645872.4 :y 36495.77 :z -8427323.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.8294 :w -0.5586)
              :camera-trans
              (new 'static 'vector :x 1599338.9 :y 57590.168 :z -8405954.0 :w 1.0)
              :camera-rot
@@ -1030,10 +952,8 @@
         (new 'static 'continue-point
              :name "swamp-cave2"
              :level 'swamp
-             :trans
-             (new 'static 'vector :x 2037539.2 :y 1103.872 :z -8560013.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.0559 :w 0.9984)
+             :trans (new 'static 'vector :x 2037539.2 :y 1103.872 :z -8560013.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.0559 :w 0.9984)
              :camera-trans
              (new 'static 'vector :x 1995208.2 :y 21832.908 :z -8586304.0 :w 1.0)
              :camera-rot
@@ -1053,10 +973,8 @@
         (new 'static 'continue-point
              :name "swamp-game"
              :level 'swamp
-             :trans
-             (new 'static 'vector :x 2612289.2 :y -2047.5905 :z -8315907.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.6975 :w 0.7165)
+             :trans (new 'static 'vector :x 2612289.2 :y -2047.5905 :z -8315907.5 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.6975 :w 0.7165)
              :camera-trans
              (new 'static 'vector :x 2661940.5 :y 20693.81 :z -8317980.5 :w 1.0)
              :camera-rot
@@ -1076,10 +994,8 @@
         (new 'static 'continue-point
              :name "swamp-cave3"
              :level 'swamp
-             :trans
-             (new 'static 'vector :x 2011811.4 :y 3711.7952 :z -7923027.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.5269 :w 0.8499)
+             :trans (new 'static 'vector :x 2011811.4 :y 3711.7952 :z -7923027.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.5269 :w 0.8499)
              :camera-trans
              (new 'static 'vector :x 2053120.4 :y 22242.51 :z -7927784.5 :w 1.0)
              :camera-rot
@@ -1096,16 +1012,14 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'special-vis))
-       :tasks
-       '(36 37 38 39 40 41 42 43)
+       :tasks '(36 37 38 39 40 41 42 43)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 1986560.0 :z -8417280.0 :w 1003520.0)
+       :bsphere (new 'static 'sphere :x 1986560.0 :z -8417280.0 :w 1003520.0)
        :buzzer 43
        :bottom-height (meters -20)
        :run-packages
@@ -1127,14 +1041,11 @@
        :mood-func 'update-mood-rolling
        :ocean 'none
        :sky #t
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "rolling-start"
              :level 'rolling
-             :trans
-             (new 'static 'vector :x 432272.6 :y 42821.633 :z -6737529.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.545 :w 0.8383)
+             :trans (new 'static 'vector :x 432272.6 :y 42821.633 :z -6737529.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.545 :w 0.8383)
              :camera-trans
              (new 'static 'vector :x 494105.8 :y 67237.48 :z -6748524.0 :w 1.0)
              :camera-rot
@@ -1146,16 +1057,14 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'display))
-       :tasks
-       '(52 53 54 55 56 57 58 59)
+       :tasks '(52 53 54 55 56 57 58 59)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x -753664.0 :y 131072.0 :z -6569984.0 :w 974848.0)
+       :bsphere (new 'static 'sphere :x -753664.0 :y 131072.0 :z -6569984.0 :w 974848.0)
        :buzzer 57
        :bottom-height (meters -20)
        :run-packages
@@ -1177,14 +1086,11 @@
        :mood-func 'update-mood-ogre
        :ocean 'none
        :sky #t
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "ogre-start"
              :level 'ogre
-             :trans
-             (new 'static 'vector :x 849775.8 :y 163962.88 :z -7301166.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9931 :w 0.1166)
+             :trans (new 'static 'vector :x 849775.8 :y 163962.88 :z -7301166.5 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9931 :w 0.1166)
              :camera-trans
              (new 'static 'vector :x 848906.25 :y 185056.88 :z -7249962.0 :w 1.0)
              :camera-rot
@@ -1199,10 +1105,8 @@
         (new 'static 'continue-point
              :name "ogre-race"
              :level 'ogre
-             :trans
-             (new 'static 'vector :x 841424.9 :y 163801.1 :z -8205419.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9857 :w 0.168)
+             :trans (new 'static 'vector :x 841424.9 :y 163801.1 :z -8205419.5 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9857 :w 0.168)
              :camera-trans
              (new 'static 'vector :x 860479.9 :y 183815.38 :z -8162368.0 :w 1.0)
              :camera-rot
@@ -1217,10 +1121,8 @@
         (new 'static 'continue-point
              :name "ogre-end"
              :level 'ogre
-             :trans
-             (new 'static 'vector :x 3971233.5 :y 141227.62 :z -13935735.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.8721 :w 0.4892)
+             :trans (new 'static 'vector :x 3971233.5 :y 141227.62 :z -13935735.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.8721 :w 0.4892)
              :camera-trans
              (new 'static 'vector :x 3997892.2 :y 159604.73 :z -13904449.0 :w 1.0)
              :camera-rot
@@ -1232,16 +1134,14 @@
              :disp0 'display
              :lev1 'ogre
              :disp1 'display))
-       :tasks
-       '(86 87 110 88)
+       :tasks '(86 87 110 88)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 2334720.0 :y 180224.0 :z -10653696.0 :w 3653632.0)
+       :bsphere (new 'static 'sphere :x 2334720.0 :y 180224.0 :z -10653696.0 :w 3653632.0)
        :buzzer 88
        :bottom-height (meters -20)
        :run-packages
@@ -1263,14 +1163,11 @@
        :mood-func 'update-mood-village3
        :ocean #f
        :sky #t
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "village3-start"
              :level 'village3
-             :trans
-             (new 'static 'vector :x 4468021.5 :y 186608.03 :z -14054268.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9999 :w 0.005)
+             :trans (new 'static 'vector :x 4468021.5 :y 186608.03 :z -14054268.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.9999 :w 0.005)
              :camera-trans
              (new 'static 'vector :x 4469439.5 :y 207701.2 :z -14003077.0 :w 1.0)
              :camera-rot
@@ -1286,10 +1183,8 @@
              :name "village3-warp"
              :level 'village3
              :flags (continue-flags warp)
-             :trans
-             (new 'static 'vector :x 4549776.0 :y 215375.88 :z -14285922.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.681 :w 0.7322)
+             :trans (new 'static 'vector :x 4549776.0 :y 215375.88 :z -14285922.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.681 :w 0.7322)
              :camera-trans
              (new 'static 'vector :x 4543255.0 :y 226776.67 :z -14313317.0 :w 1.0)
              :camera-rot
@@ -1304,10 +1199,8 @@
         (new 'static 'continue-point
              :name "village3-farside"
              :level 'village3
-             :trans
-             (new 'static 'vector :x 4423744.0 :y 198723.58 :z -14530641.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.6611 :w 0.7502)
+             :trans (new 'static 'vector :x 4423744.0 :y 198723.58 :z -14530641.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.6611 :w 0.7502)
              :camera-trans
              (new 'static 'vector :x 4381844.0 :y 218599.83 :z -14551361.0 :w 1.0)
              :camera-rot
@@ -1319,16 +1212,14 @@
              :disp0 'display
              :lev1 'snow
              :disp1 #f))
-       :tasks
-       '(96 97 98 99 100 101 74 77)
+       :tasks '(96 97 98 99 100 101 74 77)
        :priority #xc8
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 4571136.0 :y 389120.0 :z -14323712.0 :w 409600.0)
+       :bsphere (new 'static 'sphere :x 4571136.0 :y 389120.0 :z -14323712.0 :w 409600.0)
        :buzzer 77
        :bottom-height (meters -20)
        :run-packages
@@ -1351,14 +1242,11 @@
        :ocean #f
        :sky #t
        :sun-fade 0.5
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "snow-start"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 4256260.0 :y 983713.8 :z -14182752.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.7906 :w -0.6122)
+             :trans (new 'static 'vector :x 4256260.0 :y 983713.8 :z -14182752.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.7906 :w -0.6122)
              :camera-trans
              (new 'static 'vector :x 4303859.5 :y 1012363.7 :z -14156672.0 :w 1.0)
              :camera-rot
@@ -1373,10 +1261,8 @@
         (new 'static 'continue-point
              :name "snow-fort"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 3430875.2 :y 897149.3 :z -13397581.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.0968 :w 0.9952)
+             :trans (new 'static 'vector :x 3430875.2 :y 897149.3 :z -13397581.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.0968 :w 0.9952)
              :camera-trans
              (new 'static 'vector :x 3428789.8 :y 918241.25 :z -13448724.0 :w 1.0)
              :camera-rot
@@ -1391,10 +1277,8 @@
         (new 'static 'continue-point
              :name "snow-flut-flut"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 2481850.0 :y 1054709.4 :z -13922438.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.8628 :w -0.5055)
+             :trans (new 'static 'vector :x 2481850.0 :y 1054709.4 :z -13922438.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.8628 :w -0.5055)
              :camera-trans
              (new 'static 'vector :x 2497063.0 :y 1069339.9 :z -13900353.0 :w 1.0)
              :camera-rot
@@ -1409,10 +1293,8 @@
         (new 'static 'continue-point
              :name "snow-pass-to-fort"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 3751044.8 :y 917612.1 :z -13828696.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.3387 :w -0.9408)
+             :trans (new 'static 'vector :x 3751044.8 :y 917612.1 :z -13828696.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.3387 :w -0.9408)
              :camera-trans
              (new 'static 'vector :x 3779776.0 :y 933972.8 :z -13845825.0 :w 1.0)
              :camera-rot
@@ -1427,10 +1309,8 @@
         (new 'static 'continue-point
              :name "snow-by-ice-lake"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 3151164.5 :y 1049638.1 :z -14246464.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.6226 :w 0.7824)
+             :trans (new 'static 'vector :x 3151164.5 :y 1049638.1 :z -14246464.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.6226 :w 0.7824)
              :camera-trans
              (new 'static 'vector :x 3203905.2 :y 1080037.8 :z -14270850.0 :w 1.0)
              :camera-rot
@@ -1445,10 +1325,8 @@
         (new 'static 'continue-point
              :name "snow-by-ice-lake-alt"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 3053335.0 :y 1048927.9 :z -14058945.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9997 :w 0.022)
+             :trans (new 'static 'vector :x 3053335.0 :y 1048927.9 :z -14058945.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.9997 :w 0.022)
              :camera-trans
              (new 'static 'vector :x 3045845.5 :y 1068868.0 :z -14012568.0 :w 1.0)
              :camera-rot
@@ -1463,10 +1341,8 @@
         (new 'static 'continue-point
              :name "snow-outside-fort"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 3431014.0 :y 901474.7 :z -13600187.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.0954 :w -0.9954)
+             :trans (new 'static 'vector :x 3431014.0 :y 901474.7 :z -13600187.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.0954 :w -0.9954)
              :camera-trans
              (new 'static 'vector :x 3429969.0 :y 922565.44 :z -13651353.0 :w 1.0)
              :camera-rot
@@ -1481,10 +1357,8 @@
         (new 'static 'continue-point
              :name "snow-outside-cave"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 3200864.2 :y 907400.4 :z -13676660.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.5867 :w -0.8097)
+             :trans (new 'static 'vector :x 3200864.2 :y 907400.4 :z -13676660.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.5867 :w -0.8097)
              :camera-trans
              (new 'static 'vector :x 3247600.8 :y 928464.06 :z -13697606.0 :w 1.0)
              :camera-rot
@@ -1499,10 +1373,8 @@
         (new 'static 'continue-point
              :name "snow-across-from-flut"
              :level 'snow
-             :trans
-             (new 'static 'vector :x 2721898.5 :y 1049845.0 :z -13743428.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.7688 :w -0.6394)
+             :trans (new 'static 'vector :x 2721898.5 :y 1049845.0 :z -13743428.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.7688 :w -0.6394)
              :camera-trans
              (new 'static 'vector :x 2712702.5 :y 1070288.5 :z -13791593.0 :w 1.0)
              :camera-rot
@@ -1514,16 +1386,14 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display))
-       :tasks
-       '(60 61 62 63 64 66 67 65)
+       :tasks '(60 61 62 63 64 66 67 65)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 3072000.0 :y 1142784.0 :z -14028800.0 :w 1290240.0)
+       :bsphere (new 'static 'sphere :x 3072000.0 :y 1142784.0 :z -14028800.0 :w 1290240.0)
        :buzzer 65
        :bottom-height (meters 128)
        :run-packages
@@ -1545,14 +1415,11 @@
        :mood-func 'update-mood-maincave
        :ocean #f
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "maincave-start"
              :level 'maincave
-             :trans
-             (new 'static 'vector :x 4420967.0 :y 33006.387 :z -13154230.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.0174 :w -0.9998)
+             :trans (new 'static 'vector :x 4420967.0 :y 33006.387 :z -13154230.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.0174 :w -0.9998)
              :camera-trans
              (new 'static 'vector :x 4428164.5 :y 54074.164 :z -13204933.0 :w 1.0)
              :camera-rot
@@ -1567,10 +1434,8 @@
         (new 'static 'continue-point
              :name "maincave-to-darkcave"
              :level 'maincave
-             :trans
-             (new 'static 'vector :x 4172175.8 :y 154223.83 :z -12445165.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.2093 :w 0.9778)
+             :trans (new 'static 'vector :x 4172175.8 :y 154223.83 :z -12445165.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.2093 :w 0.9778)
              :camera-trans
              (new 'static 'vector :x 4193893.2 :y 175317.81 :z -12491520.0 :w 1.0)
              :camera-rot
@@ -1585,10 +1450,8 @@
         (new 'static 'continue-point
              :name "maincave-to-robocave"
              :level 'maincave
-             :trans
-             (new 'static 'vector :x 4760896.5 :y 44221.234 :z -12409880.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.548 :w 0.8364)
+             :trans (new 'static 'vector :x 4760896.5 :y 44221.234 :z -12409880.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.548 :w 0.8364)
              :camera-trans
              (new 'static 'vector :x 4745230.0 :y 57869.926 :z -12426885.0 :w 1.0)
              :camera-rot
@@ -1600,16 +1463,14 @@
              :disp0 'display
              :lev1 'robocave
              :disp1 #f))
-       :tasks
-       '(78 79 80 81 82 83 84 85)
+       :tasks '(78 79 80 81 82 83 84 85)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 4517888.0 :y 114688.0 :z -12484608.0 :w 655360.0)
+       :bsphere (new 'static 'sphere :x 4517888.0 :y 114688.0 :z -12484608.0 :w 655360.0)
        :buzzer 85
        :bottom-height (meters -60)
        :run-packages
@@ -1631,14 +1492,11 @@
        :mood-func 'update-mood-darkcave
        :ocean #f
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "darkcave-start"
              :level 'darkcave
-             :trans
-             (new 'static 'vector :x 3813246.2 :y 129487.664 :z -12114304.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.1439 :w 0.9895)
+             :trans (new 'static 'vector :x 3813246.2 :y 129487.664 :z -12114304.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.1439 :w 0.9895)
              :camera-trans
              (new 'static 'vector :x 3793301.0 :y 145573.48 :z -12139847.0 :w 1.0)
              :camera-rot
@@ -1650,16 +1508,14 @@
              :disp0 'display
              :lev1 'darkcave
              :disp1 'display))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 3620864.0 :y 266240.0 :z -11935744.0 :w 368640.0)
+       :bsphere (new 'static 'sphere :x 3620864.0 :y 266240.0 :z -11935744.0 :w 368640.0)
        :buzzer 85
        :bottom-height (meters -60)
        :run-packages
@@ -1681,14 +1537,11 @@
        :mood-func 'update-mood-robocave
        :ocean #f
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "robocave-start"
              :level 'robocave
-             :trans
-             (new 'static 'vector :x 5208223.5 :y 69697.945 :z -11781496.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.3654 :w -0.9308)
+             :trans (new 'static 'vector :x 5208223.5 :y 69697.945 :z -11781496.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.3654 :w -0.9308)
              :camera-trans
              (new 'static 'vector :x 5171715.0 :y 90796.85 :z -11817413.0 :w 1.0)
              :camera-rot
@@ -1703,10 +1556,8 @@
         (new 'static 'continue-point
              :name "robocave-bottom"
              :level 'robocave
-             :trans
-             (new 'static 'vector :x 5435461.5 :y -97111.24 :z -11588379.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.1086 :w 0.994)
+             :trans (new 'static 'vector :x 5435461.5 :y -97111.24 :z -11588379.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.1086 :w 0.994)
              :camera-trans
              (new 'static 'vector :x 5409966.5 :y -76017.664 :z -11632764.0 :w 1.0)
              :camera-rot
@@ -1718,16 +1569,14 @@
              :disp0 'display
              :lev1 'robocave
              :disp1 'display))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 5529600.0 :y 81920.0 :z -11468800.0 :w 512000.0)
+       :bsphere (new 'static 'sphere :x 5529600.0 :y 81920.0 :z -11468800.0 :w 512000.0)
        :buzzer 85
        :bottom-height (meters -60)
        :run-packages
@@ -1749,14 +1598,11 @@
        :mood-func 'update-mood-lavatube
        :ocean #f
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "lavatube-start"
              :level 'lavatube
-             :trans
-             (new 'static 'vector :x 5511317.0 :y 159871.8 :z -14621239.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.3753 :w -0.9268)
+             :trans (new 'static 'vector :x 5511317.0 :y 159871.8 :z -14621239.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.3753 :w -0.9268)
              :camera-trans
              (new 'static 'vector :x 5510636.5 :y 197720.06 :z -14663128.0 :w 1.0)
              :camera-rot
@@ -1771,10 +1617,8 @@
         (new 'static 'continue-point
              :name "lavatube-middle"
              :level 'lavatube
-             :trans
-             (new 'static 'vector :x 9081441.0 :y -3935.8464 :z -14056285.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.7002 :w -0.7139)
+             :trans (new 'static 'vector :x 9081441.0 :y -3935.8464 :z -14056285.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.7002 :w -0.7139)
              :camera-trans
              (new 'static 'vector :x 9055362.0 :y 10606.592 :z -14050822.0 :w 1.0)
              :camera-rot
@@ -1789,10 +1633,8 @@
         (new 'static 'continue-point
              :name "lavatube-after-ribbon"
              :level 'lavatube
-             :trans
-             (new 'static 'vector :x 9954895.0 :y 390513.06 :z -16548614.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.7485 :w -0.663)
+             :trans (new 'static 'vector :x 9954895.0 :y 390513.06 :z -16548614.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.7485 :w -0.663)
              :camera-trans
              (new 'static 'vector :x 9923721.0 :y 406466.16 :z -16541633.0 :w 1.0)
              :camera-rot
@@ -1807,10 +1649,8 @@
         (new 'static 'continue-point
              :name "lavatube-end"
              :level 'lavatube
-             :trans
-             (new 'static 'vector :x 11479892.0 :y -163656.5 :z -18266490.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9589 :w -0.2836)
+             :trans (new 'static 'vector :x 11479892.0 :y -163656.5 :z -18266490.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9589 :w -0.2836)
              :camera-trans
              (new 'static 'vector :x 11526721.0 :y -143482.47 :z -18257412.0 :w 1.0)
              :camera-rot
@@ -1822,16 +1662,14 @@
              :disp0 'display
              :lev1 'citadel
              :disp1 'display))
-       :tasks
-       '(89 90)
+       :tasks '(89 90)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 8806400.0 :y 131072.0 :z -15564800.0 :w 3174400.0)
+       :bsphere (new 'static 'sphere :x 8806400.0 :y 131072.0 :z -15564800.0 :w 3174400.0)
        :buzzer 90
        :bottom-height (meters -70)
        :run-packages
@@ -1853,14 +1691,11 @@
        :mood-func 'update-mood-citadel
        :ocean #f
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "citadel-start"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 11442706.0 :y -142755.84 :z -18869044.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.9992 :w 0.0392)
+             :trans (new 'static 'vector :x 11442706.0 :y -142755.84 :z -18869044.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.9992 :w 0.0392)
              :camera-trans
              (new 'static 'vector :x 11441183.0 :y -122509.31 :z -18820882.0 :w 1.0)
              :camera-rot
@@ -1875,10 +1710,8 @@
         (new 'static 'continue-point
              :name "citadel-entrance"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 11443969.0 :y -154216.03 :z -18472782.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9728 :w 0.2314)
+             :trans (new 'static 'vector :x 11443969.0 :y -154216.03 :z -18472782.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9728 :w 0.2314)
              :camera-trans
              (new 'static 'vector :x 11436929.0 :y -134244.36 :z -18426254.0 :w 1.0)
              :camera-rot
@@ -1894,10 +1727,8 @@
              :name "citadel-warp"
              :level 'citadel
              :flags (continue-flags warp)
-             :trans
-             (new 'static 'vector :x 11454895.0 :y -161791.6 :z -18204690.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.7511 :w 0.6601)
+             :trans (new 'static 'vector :x 11454895.0 :y -161791.6 :z -18204690.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.7511 :w 0.6601)
              :camera-trans
              (new 'static 'vector :x 11406872.0 :y -141278.0 :z -18194638.0 :w 1.0)
              :camera-rot
@@ -1912,10 +1743,8 @@
         (new 'static 'continue-point
              :name "citadel-launch-start"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 10827551.0 :y -94047.02 :z -18946718.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.8377 :w -0.546)
+             :trans (new 'static 'vector :x 10827551.0 :y -94047.02 :z -18946718.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.8377 :w -0.546)
              :camera-trans
              (new 'static 'vector :x 10862150.0 :y -75343.875 :z -18922316.0 :w 1.0)
              :camera-rot
@@ -1930,10 +1759,8 @@
         (new 'static 'continue-point
              :name "citadel-launch-end"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 11047507.0 :y -81514.086 :z -19495960.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.0292 :w 0.9995)
+             :trans (new 'static 'vector :x 11047507.0 :y -81514.086 :z -19495960.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.0292 :w 0.9995)
              :camera-trans
              (new 'static 'vector :x 11033498.0 :y -63027.2 :z -19534916.0 :w 1.0)
              :camera-rot
@@ -1948,10 +1775,8 @@
         (new 'static 'continue-point
              :name "citadel-plat-start"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 11443470.0 :y -120194.664 :z -19845628.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.9907 :w -0.1355)
+             :trans (new 'static 'vector :x 11443470.0 :y -120194.664 :z -19845628.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.9907 :w -0.1355)
              :camera-trans
              (new 'static 'vector :x 11443545.0 :y -99100.266 :z -19794374.0 :w 1.0)
              :camera-rot
@@ -1966,10 +1791,8 @@
         (new 'static 'continue-point
              :name "citadel-plat-end"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 11269726.0 :y -12132.352 :z -19614712.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.0419 :w 0.9991)
+             :trans (new 'static 'vector :x 11269726.0 :y -12132.352 :z -19614712.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.0419 :w 0.9991)
              :camera-trans
              (new 'static 'vector :x 11264449.0 :y 7920.8447 :z -19661710.0 :w 1.0)
              :camera-rot
@@ -1984,10 +1807,8 @@
         (new 'static 'continue-point
              :name "citadel-generator-start"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 12138031.0 :y -36900.863 :z -18933304.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.7487 :w 0.6628)
+             :trans (new 'static 'vector :x 12138031.0 :y -36900.863 :z -18933304.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.7487 :w 0.6628)
              :camera-trans
              (new 'static 'vector :x 12101831.0 :y -19811.123 :z -18933632.0 :w 1.0)
              :camera-rot
@@ -2002,10 +1823,8 @@
         (new 'static 'continue-point
              :name "citadel-generator-end"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 11837483.0 :y -20177.715 :z -19506848.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.3564 :w 0.9342)
+             :trans (new 'static 'vector :x 11837483.0 :y -20177.715 :z -19506848.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.3564 :w 0.9342)
              :camera-trans
              (new 'static 'vector :x 11872697.0 :y 887.6032 :z -19544198.0 :w 1.0)
              :camera-rot
@@ -2020,10 +1839,8 @@
         (new 'static 'continue-point
              :name "citadel-elevator"
              :level 'citadel
-             :trans
-             (new 'static 'vector :x 11447961.0 :y 234055.27 :z -19169000.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.2351 :w 0.9719)
+             :trans (new 'static 'vector :x 11447961.0 :y 234055.27 :z -19169000.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.2351 :w 0.9719)
              :camera-trans
              (new 'static 'vector :x 11454465.0 :y 252947.66 :z -19126656.0 :w 1.0)
              :camera-rot
@@ -2035,16 +1852,14 @@
              :disp0 'display
              :lev1 'finalboss
              :disp1 #f))
-       :tasks
-       '(70 71 72 73 91)
+       :tasks '(70 71 72 73 91)
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 11436032.0 :y -462848.0 :z -19750912.0 :w 1228800.0)
+       :bsphere (new 'static 'sphere :x 11436032.0 :y -462848.0 :z -19750912.0 :w 1228800.0)
        :buzzer 91
        :bottom-height (meters -114)
        :run-packages
@@ -2067,14 +1882,11 @@
        :ocean #f
        :sky #t
        :sun-fade 1.0
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "finalboss-start"
              :level 'finalboss
-             :trans
-             (new 'static 'vector :x 11548456.0 :y 2215872.0 :z -19409498.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.7325 :w 0.6807)
+             :trans (new 'static 'vector :x 11548456.0 :y 2215872.0 :z -19409498.0 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.7325 :w 0.6807)
              :camera-trans
              (new 'static 'vector :x 11513311.0 :y 2234999.5 :z -19435708.0 :w 1.0)
              :camera-rot
@@ -2089,10 +1901,8 @@
         (new 'static 'continue-point
              :name "finalboss-fight"
              :level 'finalboss
-             :trans
-             (new 'static 'vector :x 12288335.0 :y 1970461.9 :z -19848522.0 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.5359 :w -0.8442)
+             :trans (new 'static 'vector :x 12288335.0 :y 1970461.9 :z -19848522.0 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.5359 :w -0.8442)
              :camera-trans
              (new 'static 'vector :x 12265366.0 :y 1984228.5 :z -19842574.0 :w 1.0)
              :camera-rot
@@ -2104,16 +1914,14 @@
              :disp0 'display
              :lev1 'citadel
              :disp1 'special))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x 11837440.0 :y 2129920.0 :z -19578880.0 :w 778240.0)
+       :bsphere (new 'static 'sphere :x 11837440.0 :y 2129920.0 :z -19578880.0 :w 778240.0)
        :buzzer 91
        :bottom-height (meters -114)
        :run-packages
@@ -2136,10 +1944,8 @@
        :mood-func 'update-mood-default
        :ocean #f
        :sky #f
-       :continues
-       '()
-       :tasks
-       '()
+       :continues '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
@@ -2158,8 +1964,7 @@
        :name 'demo
        :visname 'demo-vis
        :nickname 'dem
-       :packages
-       '()
+       :packages '()
        :sound-banks '(village1)
        :music-bank 'village1
        :ambient-sounds
@@ -2168,15 +1973,12 @@
        :mood-func 'update-mood-default
        :ocean #f
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "demo-start"
              :level 'demo
              :flags (continue-flags demo)
-             :trans
-             (new 'static 'vector :x 66396.16 :y 29782.016 :z -919973.5 :w 1.0)
-             :quat
-             (new 'static 'quaternion :w 1.0)
+             :trans (new 'static 'vector :x 66396.16 :y 29782.016 :z -919973.5 :w 1.0)
+             :quat (new 'static 'quaternion :w 1.0)
              :camera-trans
              (new 'static 'vector :x 76871.68 :y 55061.707 :z -938752.0 :w 1.0)
              :camera-rot
@@ -2188,8 +1990,7 @@
              :disp0 'special
              :lev1 #f
              :disp1 #f))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
@@ -2208,8 +2009,7 @@
        :name 'title
        :visname 'title-vis
        :nickname 'tit
-       :packages
-       '()
+       :packages '()
        :sound-banks
        '()
        :music-bank 'village1
@@ -2219,15 +2019,12 @@
        :mood-func 'update-mood-village1
        :ocean #f
        :sky #f
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "title-start"
              :level 'title
              :flags (continue-flags title)
-             :trans
-             (new 'static 'vector :x -635598.9 :y 222551.66 :z 710496.25 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y -0.3323 :w -0.9431)
+             :trans (new 'static 'vector :x -635598.9 :y 222551.66 :z 710496.25 :w 1.0)
+             :quat (new 'static 'quaternion :y -0.3323 :w -0.9431)
              :camera-trans
              (new 'static 'vector :x -665644.25 :y 250803.0 :z 668470.9 :w 1.0)
              :camera-rot
@@ -2239,16 +2036,14 @@
              :disp0 'special
              :lev1 'village1
              :disp1 #f))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :x -40960.0 :z 40960.0 :w 1126400.0)
+       :bsphere (new 'static 'sphere :x -40960.0 :z 40960.0 :w 1126400.0)
        :bottom-height (meters -10000000)
        :run-packages
        '("common")
@@ -2260,8 +2055,7 @@
        :name 'halfpipe
        :visname 'halfpipe-vis
        :nickname 'none
-       :packages
-       '()
+       :packages '()
        :sound-banks
        '()
        :music-bank #f
@@ -2272,14 +2066,11 @@
        :ocean #f
        :sky #t
        :sun-fade 1.0
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "halfpipe"
              :level 'halfpipe
-             :trans
-             (new 'static 'vector :x -1048.9856 :y -172047.97 :z -212555.78 :w 1.0)
-             :quat
-             (new 'static 'quaternion :y 0.061 :w 0.9981)
+             :trans (new 'static 'vector :x -1048.9856 :y -172047.97 :z -212555.78 :w 1.0)
+             :quat (new 'static 'quaternion :y 0.061 :w 0.9981)
              :camera-trans
              (new 'static 'vector :x -9941.401 :y -150049.17 :z -159587.94 :w 1.0)
              :camera-rot
@@ -2291,16 +2082,14 @@
              :disp0 'display
              :lev1 #f
              :disp1 #f))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :w 167772160000.0)
+       :bsphere (new 'static 'sphere :w 167772160000.0)
        :bottom-height (meters -10000000)
        :run-packages
        '()
@@ -2312,8 +2101,7 @@
        :name 'default-level
        :visname 'default-level-vis
        :nickname 'none
-       :packages
-       '()
+       :packages '()
        :sound-banks
        '()
        :music-bank #f
@@ -2323,18 +2111,15 @@
        :mood-func 'update-mood-default
        :ocean #f
        :sky #t
-       :continues
-       '()
-       :tasks
-       '()
+       :continues '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :w 167772160000.0)
+       :bsphere (new 'static 'sphere :w 167772160000.0)
        :bottom-height (meters -20)
        :run-packages
        '()
@@ -2376,8 +2161,7 @@
        ;; name + -vis
        :nickname 'tsz
        ;; nickname
-       :packages
-       '()
+       :packages '()
        :sound-banks
        '()
        :music-bank #f
@@ -2388,14 +2172,11 @@
        :ocean '*ocean-map-village1*
        :sky #t
        :sun-fade 1.0
-       :continues
-       '((new 'static 'continue-point
+       :continues '((new 'static 'continue-point
              :name "test-zone-start"
              :level 'test-zone
-             :trans
-             (new 'static 'vector :x 0.0 :y (meters 10.) :z (meters 10.) :w 1.0)
-             :quat
-             (new 'static 'quaternion :w 1.0)
+             :trans (new 'static 'vector :x 0.0 :y (meters 10.) :z (meters 10.) :w 1.0)
+             :quat (new 'static 'quaternion :w 1.0)
              :camera-trans
              (new 'static 'vector :x 0.0 :y 4096.0 :z 0.0 :w 1.0)
              :camera-rot
@@ -2407,16 +2188,14 @@
              :disp0 'display
              :lev1 #f
              :disp1 #f))
-       :tasks
-       '()
+       :tasks '()
        :priority 100
        :load-commands
        '()
        :alt-load-commands
        '()
        :bsp-mask #xffffffffffffffff
-       :bsphere
-       (new 'static 'sphere :w 167772160000.0)
+       :bsphere (new 'static 'sphere :w 167772160000.0)
        :bottom-height (meters -20)
        :run-packages
        '()

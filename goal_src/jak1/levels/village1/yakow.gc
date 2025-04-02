@@ -160,8 +160,7 @@ yakow-default-event-handler
              (while (or (-> *setting-control* current ambient) (-> *setting-control* current movie) (-> *setting-control* current hint))
                (suspend))
              (level-hint-spawn (text-id village1-yakow-resolution) "sksp018a" (the-as entity #f) *entity-pool* (game-task none)))
-           :to
-           self))
+           :to self))
         (else (open-specific-task! (-> self entity extra perm task) (task-status need-reminder))))
       sv-16)))
 
@@ -298,19 +297,16 @@ yakow-default-event-handler
 
 (defstate yakow-idle (yakow)
   :event yakow-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self travel-speed) 0.0))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (time-elapsed? (-> self state-time) (-> *YAKOW-bank* default-patrol-time))
                (and *target*
                     (>= (-> self fact idle-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
                (not (yakow-facing-player? 21845.334)))
         (go yakow-notice)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-push! 1 (seconds 0.15))
       (loop
         (cond
@@ -332,26 +328,22 @@ yakow-default-event-handler
 
 (defstate yakow-notice (yakow)
   :event yakow-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self travel-speed) 0.0))
-  :code
-    (behavior ()
+  :code (behavior ()
       (go yakow-run-away))
   :post yakow-simple-post)
 
 (defstate yakow-walk-to (yakow)
   :event yakow-default-event-handler
-  :enter
-    (behavior ((arg0 vector))
+  :enter (behavior ((arg0 vector))
       (set-time! (-> self state-time))
       (logior! (-> self nav flags) (nav-control-flags navcf10))
       (set! (-> self nav destination-pos quad) (-> arg0 quad))
       (set! (-> self rotate-speed) (-> *YAKOW-bank* walk-rotate-speed))
       (set! (-> self turn-time) (-> *YAKOW-bank* walk-turn-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and (time-elapsed? (-> self state-time) (-> *YAKOW-bank* default-patrol-time))
                (not (-> self in-pen))
                (and *target*
@@ -363,25 +355,21 @@ yakow-default-event-handler
                   (< (vector-vector-xz-distance (-> self root trans) (-> self nav destination-pos)) 4096.0))
           (if (-> self in-pen) (go yakow-graze) (go yakow-idle))))
       (seek! (-> self travel-speed) (-> *YAKOW-bank* walk-speed) (* (-> *YAKOW-bank* acceleration) (seconds-per-frame))))
-  :code
-    (the-as (function vector object)
+  :code (the-as (function vector object)
             yakow-blend-walk-run)
-  :post
-    (behavior ()
+  :post (behavior ()
       (nav-control-method-19 (-> self nav) (-> self nav target-pos) (-> self root) (-> self nav destination-pos) 131072.0)
       (if (logtest? (nav-control-flags navcf21) (-> self nav flags)) (logclear! (-> self nav flags) (nav-control-flags navcf10)))
       (yakow-post)))
 
 (defstate yakow-graze (yakow)
   :event yakow-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self travel-speed) 0.0)
       (set! (-> self grazing) #t)
       (let ((v1-3 (entity-actor-lookup (-> self entity) 'alt-actor 0))) (send-event (if v1-3 (-> v1-3 extra process)) 'update)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (while (< 546.13336 (fabs (deg-diff (-> self dest-rot) (y-angle (-> self root)))))
         (if (not (ja-group? yakow-walk-ja)) (ja-channel-push! 1 (seconds 0.075)))
         (seek-toward-yaw-angle! (-> self root) (-> self dest-rot) 16384.0 (seconds 0.5))
@@ -404,8 +392,7 @@ yakow-default-event-handler
 
 (defstate yakow-graze-kicked (yakow)
   :event #f
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! yakow-kicked-in-place-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -415,14 +402,12 @@ yakow-default-event-handler
 
 (defstate yakow-run-away (yakow)
   :event yakow-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (logior! (-> self nav flags) (nav-control-flags navcf10))
       (set! (-> self rotate-speed) (-> *YAKOW-bank* run-rotate-speed))
       (set! (-> self turn-time) (-> *YAKOW-bank* run-turn-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (or (not *target*)
                 (< (-> *YAKOW-bank* safe-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (if (-> self in-pen) (go yakow-walk-to (-> self dest-base)) (go yakow-walk-to (-> self home-base))))
@@ -440,23 +425,19 @@ yakow-default-event-handler
 
 (defstate yakow-kicked (yakow)
   :event #f
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (if (-> self grazing) (go yakow-graze-kicked))
       (set! (-> self travel-speed)
             (fmax (fmin (+ (-> self travel-speed) (-> *YAKOW-bank* speed-boost-impulse)) (-> *YAKOW-bank* max-run-speed))
                   (-> *YAKOW-bank* run-speed))))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       '())
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (time-elapsed? (-> self state-time) (seconds 0.2))
         (seek! (-> self travel-speed) (-> *YAKOW-bank* run-speed) (* (-> *YAKOW-bank* acceleration) (seconds-per-frame))))
       0)
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self enable-turn-around) #t)
       1.0
       (suspend)
@@ -484,8 +465,7 @@ yakow-default-event-handler
 
 (defstate yakow-die (yakow)
   :event #f
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((v1-1 (-> self root root-prim)))
         (set! (-> v1-1 collide-with) (collide-kind))
         (set! (-> v1-1 prim-core collide-as) (collide-kind)))

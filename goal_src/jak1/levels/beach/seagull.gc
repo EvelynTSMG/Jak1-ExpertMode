@@ -109,71 +109,61 @@
        air-box
        10
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1146880.0 :y 143360.0 :z -1638400.0 :w -0.6427)
                  (new 'static 'vector :x 286720.0 :z 716800.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1277952.0 :y 14336.0 :z -1306624.0 :w -0.6427)
                  (new 'static 'vector :x 675840.0 :z 114688.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1474560.0 :y 10240.0 :z -1024000.0 :w -0.6427)
                  (new 'static 'vector :x 1228800.0 :z 339968.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1822720.0 :y 27033.6 :z -1961984.0 :w -0.6427)
                  (new 'static 'vector :x 143360.0 :z 245760.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1589248.0 :y 43417.6 :z -1933312.0 :w -0.6427)
                  (new 'static 'vector :x 204800.0 :z 184320.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1597440.0 :y 24985.6 :z -1757184.0 :w -0.6427)
                  (new 'static 'vector :x 133120.0 :z 491520.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1323008.0 :y 44236.8 :z -1771520.0 :w -0.6427)
                  (new 'static 'vector :x 360448.0 :z 221184.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1441792.0 :y 24985.6 :z -1564672.0 :w -0.6427)
                  (new 'static 'vector :x 81920.0 :z 421888.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -1124352.0 :y 27975.68 :z -1581465.6 :w -0.8533)
                  (new 'static 'vector :x 204800.0 :z 221184.0 :w -0.5214)))
        (new 'static 'air-box
-            :vecs
-            (new 'static 'inline-array
+            :vecs (new 'static 'inline-array
                  vector
                  2
                  (new 'static 'vector :x -737280.0 :y 122880.0 :z -1396736.0 :w -0.8533)
@@ -258,15 +248,13 @@
   (none))
 
 (defstate seagull-idle (seagull)
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (let* ((v1-0 (-> self flock))
              (f30-0 (seagullflock-method-16 (if v1-0 (-> v1-0 0 self-override)) self))
              (f28-0 21845.334)
              (f26-0 -0.5))
         (set! (-> self heading) (the float (sar (shl (the int (+ f30-0 (* f28-0 (+ f26-0 (rand-float-gen))))) 48) 48)))))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (nonzero? (-> self scared))
         (+! (-> self scared) -1)
         (when (zero? (-> self scared))
@@ -276,8 +264,7 @@
         (let ((v1-12 (vector-! (new 'stack-no-clear 'vector) (-> *target* control trans) (-> self root trans))))
           (when (< (vector-dot v1-12 v1-12) 1677721600.0)
             (let ((v1-14 (-> self flock))) (play-hint (if v1-14 (-> v1-14 0 self-override)) (-> self index)))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (+! (-> self root trans y) 20480.0)
       (move-to-ground (-> self root) 40960.0 40960.0 #t (collide-kind background))
       (update-transforms! (-> self root))
@@ -412,13 +399,11 @@
     (none)))
 
 (defstate seagull-takeoff (seagull)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (< (+ (current-time) (seconds -2)) (-> self part-time))
         (-> self part)
         (-> self root root-prim prim-core)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self part-time))
       (ja-no-eval :group! seagull-takeoff-ja :num! (seek! (ja-aframe 4.0 0)) :frame-num (ja-aframe 1.0 0))
       (until (ja-done? 0)
@@ -450,13 +435,11 @@
   :post seagull-post)
 
 (defstate seagull-flying (seagull)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (< (+ (current-time) (seconds -2)) (-> self part-time))
         (-> self part)
         (-> self root root-prim prim-core)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self max-tilt) 1820.4445)
       (let ((gp-0 0))
         (loop
@@ -557,13 +540,11 @@
   :post seagull-post)
 
 (defstate seagull-soaring (seagull)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (< (+ (current-time) (seconds -2)) (-> self part-time))
         (-> self part)
         (-> self root root-prim prim-core)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self max-tilt) 4551.1113)
       (loop
@@ -648,8 +629,7 @@
   :post seagull-post)
 
 (defstate seagull-landing (seagull)
-  :code
-    (behavior ((arg0 float))
+  :code (behavior ((arg0 float))
       (let ((s5-0 (new 'stack 'collide-tri-result)))
         0.0
         (let ((gp-0 (new 'stack-no-clear 'vector)))
@@ -810,8 +790,7 @@
     (atan (-> gp-0 x) (-> gp-0 z))))
 
 (defstate seagullflock-at-waterfall (seagullflock)
-  :code
-    (behavior ()
+  :code (behavior ()
       (local-vars (a0-2 process) (a1-0 event-message-block) (t9-1 (function process-tree event-message-block object)))
       (aybabtu 2)
       (set-time! (-> self state-time))
@@ -845,8 +824,7 @@
       (process-entity-status! self (entity-perm-status dead) #t)))
 
 (defstate seagullflock-idle (seagullflock)
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (> (-> self teleport-frames) 0) (go seagullflock-at-waterfall))
         (if (and *target* (>= 102400.0 (vector-vector-distance (-> self trans) (-> *target* control trans))))

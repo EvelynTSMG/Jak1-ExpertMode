@@ -129,15 +129,13 @@ nav-enemy-default-event-handler
 
 (defstate muse-idle (muse)
   :event nav-enemy-default-event-handler
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (seek! (-> self sprint-distance) 61440.0 (* 8192.0 (seconds-per-frame)))
       (if (and *target* (>= 102400.0 (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
         (level-hint-spawn (text-id zero) (the-as string #f) (-> self entity) *entity-pool* (game-task none)))
       (if (and *target* (>= 81920.0 (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
         (go-virtual nav-enemy-chase)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (when (ja-group? muse-run-ja)
         (ja-channel-push! 1 (seconds 0.1))
         (ja-no-eval :num! (loop!))
@@ -158,11 +156,9 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-chase (muse)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((or (not *target*) (< 102400.0 (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
          (set! (-> self target-speed) 0.0)
@@ -173,8 +169,7 @@ nav-enemy-default-event-handler
         (else (set! (-> self target-speed) (meters 25.0)))) ;mod: Increased muse speed
       (seek! (-> self sprint-distance) 0.0 (* (meters 1.0) (seconds-per-frame)))
       (muse-check-dest-point))
-  :code
-    (behavior ()
+  :code (behavior ()
       (cond
         ((ja-group? muse-idle-ja)
          (ja-channel-push! 1 (seconds 0.1))
@@ -189,8 +184,7 @@ nav-enemy-default-event-handler
       (loop
         (suspend)
         (ja :num! (loop! (/ (-> self momentum-speed) (meters 15))))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (set! (-> self nav destination-pos quad) (-> self dest-point quad))
       (nav-control-method-19 (-> self nav)
                              (-> self nav target-pos)
@@ -203,19 +197,16 @@ nav-enemy-default-event-handler
 (defstate nav-enemy-jump (muse)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       ((-> (method-of-type nav-enemy nav-enemy-jump) enter))
       (logclear! (-> self nav-enemy-flags) (nav-enemy-flags standing-jump)))
-  :code
-    (-> (method-of-type nav-enemy nav-enemy-jump)
+  :code (-> (method-of-type nav-enemy nav-enemy-jump)
         code))
 
 (defstate nav-enemy-jump-land (muse)
   :virtual #t
   :event nav-enemy-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (seek!))
       (ja-channel-push! 1 (seconds 0.075))
       (ja-no-eval :group! muse-run-ja :num! (seek! max 0.8) :frame-num (ja-aframe 6.0 0))
@@ -227,11 +218,9 @@ nav-enemy-default-event-handler
 
 (defstate muse-caught (muse)
   :event #f
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (spool-push *art-control* (-> self anim name) 0 self -1.0))
-  :code
-    (behavior ()
+  :code (behavior ()
       (sound-play "money-pickup")
       (close-specific-task! (game-task misty-muse) (task-status need-reminder))
       (process-entity-status! self (entity-perm-status dead) #t)
@@ -287,8 +276,7 @@ nav-enemy-default-event-handler
            (send-event *target* 'trans 'restore (-> self old-target-pos))
            (set-blackout-frames 0)
            (set-blackout-frames (seconds 0.1))))))
-  :post
-    (behavior ()
+  :post (behavior ()
       (nav-enemy-method-51 self)
       (level-hint-surpress!)
       (kill-current-level-hint '() '() 'exit)

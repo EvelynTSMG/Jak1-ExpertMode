@@ -49,8 +49,7 @@
   :id 157
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 656 :fade-after (meters 90) :period (seconds 3) :length (seconds 1))
+  :parts ((sp-item 656 :fade-after (meters 90) :period (seconds 3) :length (seconds 1))
    (sp-item 657 :fade-after (meters 100) :period (seconds 3) :length (seconds 1.3))
    (sp-item 658 :fade-after (meters 150) :period (seconds 3) :length (seconds 1.4) :offset 120)
    (sp-item 659 :fade-after (meters 60) :period (seconds 3) :length (seconds 1.4) :offset 120)))
@@ -59,8 +58,7 @@
   :id 158
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 6)
-  :parts
-  ((sp-item 656 :fade-after (meters 90) :period (seconds 3) :length (seconds 1))
+  :parts ((sp-item 656 :fade-after (meters 90) :period (seconds 3) :length (seconds 1))
    (sp-item 658 :fade-after (meters 150) :period (seconds 3) :length (seconds 1.4) :offset 120)
    (sp-item 659 :fade-after (meters 60) :period (seconds 3) :length (seconds 1.4) :offset 120)))
 
@@ -217,7 +215,8 @@
 
 (defbehavior lurkerworm-default-event-handler lurkerworm ((arg0 process) (arg1 int) (arg2 symbol) (arg3 event-message-block))
   (case arg2
-    (('attack) (-> arg3 param 1) (go lurkerworm-die))
+    ;mod: Lurker Worm can't be killed, sinks into the sand when attacked
+    (('attack) (-> arg3 param 1) (when (not (= (-> self next-state name) 'lurkerworm-sink)) (go lurkerworm-sink)))
     (('touch)
      (if ((method-of-type touching-shapes-entry prims-touching?)
           (the-as touching-shapes-entry (-> arg3 param 0))
@@ -237,12 +236,10 @@ lurkerworm-default-post-behavior
 
 (defstate lurkerworm-idle (lurkerworm)
   :event lurkerworm-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (ja-channel-set! 0)
       (set-time! (-> self state-time)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (if (and (time-elapsed? (-> self state-time) (seconds 1))
                  *target*
@@ -253,12 +250,10 @@ lurkerworm-default-post-behavior
 
 (defstate lurkerworm-spot (lurkerworm)
   :event lurkerworm-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (sound-play "worm-rise1"))
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self part local-clock) 0)
       (loop
         (spawn (-> self part) (-> self root trans))
@@ -272,11 +267,9 @@ lurkerworm-default-post-behavior
 
 (defstate lurkerworm-rise (lurkerworm)
   :event lurkerworm-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-channel-set! 1)
       (ja-no-eval :group! lurkerworm-rise-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
@@ -290,15 +283,12 @@ lurkerworm-default-post-behavior
 
 (defstate lurkerworm-rest (lurkerworm)
   :event lurkerworm-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time))
       (set! (-> self vulnerable) #t))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (set! (-> self vulnerable) #f))
-  :code
-    (behavior ()
+  :code (behavior ()
       (let* ((f30-0 10.0)
              (f28-0 100.0)
              (v1-1 (/ (the-as int (rand-uint31-gen *random-generator*)) 256))
@@ -326,8 +316,7 @@ lurkerworm-default-post-behavior
 
 (defstate lurkerworm-strike (lurkerworm)
   :event lurkerworm-default-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :num! (loop!))
       (ja-channel-push! 1 (seconds 0.135))
       (ja-no-eval :group! lurkerworm-chomp-ja :num! (seek! (ja-aframe 13.0 0)) :frame-num 0.0)
@@ -343,24 +332,23 @@ lurkerworm-default-post-behavior
 
 (defstate lurkerworm-sink (lurkerworm)
   :event lurkerworm-default-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! lurkerworm-sink-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (spawn (-> self part2) (-> self root trans))
         (particle-effect self)
         (suspend)
+        (ja :num! (seek!)) ;mod: Lurker Worm sinks into the sand much faster
+        (ja :num! (seek!))
         (ja :num! (seek!)))
       (go lurkerworm-idle))
   :post lurkerworm-default-post-behavior)
 
 (defstate lurkerworm-die (lurkerworm)
   :event process-drawable-death-event-handler
-  :code
-    (behavior ()
+  :code (behavior ()
       (logclear! (-> self mask) (process-mask actor-pause))
       (let ((v1-3 (-> self root root-prim)))
         (set! (-> v1-3 collide-with) (collide-kind))

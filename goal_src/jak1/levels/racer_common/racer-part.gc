@@ -373,8 +373,7 @@
 (defpartgroup group-racer-trans-pad
   :id 115
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 742 :fade-after (meters 160))
+  :parts ((sp-item 742 :fade-after (meters 160))
    (sp-item 743 :fade-after (meters 160))
    (sp-item 744 :fade-after (meters 60) :falloff-to (meters 60) :flags (is-3d))))
 
@@ -828,8 +827,7 @@
   :linger-duration (seconds 10)
   :flags (use-local-clock)
   :bounds (static-bspherem 0 0 0 8)
-  :parts
-  ((sp-item 2279 :period (seconds 2) :length (seconds 0.017))
+  :parts ((sp-item 2279 :period (seconds 2) :length (seconds 0.017))
    (sp-item 2280 :period (seconds 2) :length (seconds 0.135))
    (sp-item 2281 :period (seconds 2) :length (seconds 0.067))
    (sp-item 2282 :period (seconds 2) :length (seconds 0.067))))

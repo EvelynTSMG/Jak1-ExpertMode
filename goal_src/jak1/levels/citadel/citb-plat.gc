@@ -51,8 +51,7 @@
 
 (defstate citb-base-plat-idle (citb-base-plat)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target* (>= (-> self idle-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (go-virtual citb-base-plat-active)))
   :code anim-loop
@@ -60,8 +59,7 @@
 
 (defstate citb-base-plat-active (citb-base-plat)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (or (not *target*)
               (< (+ 8192.0 (-> self idle-distance)) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (go-virtual citb-base-plat-idle))
@@ -148,8 +146,7 @@
 
 (defstate plat-path-active (citb-plat)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self path-pos)
             (if (logtest? (-> self fact options) (fact-options wrap-phase))
               (get-current-phase (-> self sync))
@@ -212,13 +209,11 @@
 
 (defstate citb-base-plat-idle (citb-stair-plat)
   :virtual #t
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger) (logclear! (-> self mask) (process-mask actor-pause)) (let ((v0-0 #t)) (set! (-> self rise) v0-0) v0-0))))
   :trans #f
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self draw status) (draw-status hidden))
       (while (not (-> self rise))
         (suspend))
@@ -246,8 +241,7 @@
 (defstate citb-base-plat-active (citb-stair-plat)
   :virtual #t
   :trans #f
-  :code
-    (behavior ()
+  :code (behavior ()
       (set! (-> self root trans y) (-> self rise-height))
       (suspend)
       (update-transforms! (-> self root))
@@ -341,30 +335,25 @@
 
 (defstate rigid-body-platform-idle (citb-chain-plat)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (when (time-elapsed? (-> self state-time) (seconds 0.1))
         (set-time! (-> self state-time))
         (if (and (and *target*
                       (>= (-> self info idle-distance) (vector-vector-distance (-> self root-overlay trans) (-> *target* control trans))))
                  (send-event *target* 'query 'powerup (pickup-type eco-blue)))
           (go-virtual rigid-body-platform-float))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (anim-loop))
   :post ja-post)
 
 (defstate rigid-body-platform-float (citb-chain-plat)
   :virtual #t
   :event rigid-body-platform-event-handler
-  :enter
-    (behavior ()
+  :enter (behavior ()
       (set-time! (-> self state-time)))
-  :exit
-    (behavior ()
+  :exit (behavior ()
       (stop! (-> self sound)))
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (cond
         ((and (and *target*
                    (>= (-> self info idle-distance) (vector-vector-distance (-> self root-overlay trans) (-> *target* control trans))))
@@ -379,15 +368,13 @@
          (seek! (-> self float-height-offset) (-> self idle-offset) (* 16384.0 (seconds-per-frame)))
          (stop! (-> self sound))
          (if (= (-> self float-height-offset) (-> self idle-offset)) (go citb-chain-plat-settle)))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (anim-loop))
   :post rigid-body-platform-post)
 
 (defstate citb-chain-plat-settle (citb-chain-plat)
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (let ((gp-0 (new 'stack-no-clear 'vector))
             (s5-0 (new 'stack-no-clear 'quaternion)))
         (set! (-> gp-0 quad) (-> self root-overlay trans quad))
@@ -465,8 +452,7 @@
 (defstate citb-base-plat-active (citb-rotatebox)
   :virtual #t
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
         (until (ja-done? 0)
@@ -514,8 +500,7 @@
 
 (defstate citb-base-plat-active (citb-donut)
   :virtual #t
-  :post
-    (behavior ()
+  :post (behavior ()
       (update! (-> self sound))
       (quaternion-axis-angle! (-> self root quat) 0.0 1.0 0.0 (* 65536.0 (get-current-phase (-> self sync))))
       (rider-post)))
@@ -560,8 +545,7 @@
 
 (defstate plat-path-active (citb-stopbox)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (set! (-> self path-pos) (get-current-phase (-> self sync)))
       (eval-path-curve! (-> self path) (-> self basetrans) (-> self path-pos) 'interp)
       (if (< (vector-vector-distance (-> self root trans) (ear-trans)) 81920.0)
@@ -617,19 +601,16 @@
   :bounds (static-spherem 0 3 0 15))
 
 (defstate citb-firehose-idle (citb-firehose)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (and *target* (>= (-> self idle-distance) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (go citb-firehose-active)))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post ja-post)
 
 (defstate citb-firehose-active (citb-firehose)
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (if (or (not *target*)
               (< (+ 8192.0 (-> self idle-distance)) (vector-vector-distance (-> self root trans) (-> *target* control trans))))
         (go citb-firehose-idle))
@@ -637,8 +618,7 @@
             (f1-1 (-> self last-sync)))
         (set! (-> self last-sync) f0-2)
         (if (< f0-2 f1-1) (go citb-firehose-blast))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (loop
         (suspend)))
   :post ja-post)
@@ -654,16 +634,14 @@
   (spawn (-> self part) (-> self blast-pos)))
 
 (defstate citb-firehose-blast (citb-firehose)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('touch)
          (send-event proc
                      'attack
                      (-> block param 0)
                      (static-attack-info ((mode 'damage) (shove-back (meters 6)) (shove-up (meters 3))))))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (ja-no-eval :group! citb-firehose-start-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -742,16 +720,14 @@
 
 
 (defstate citb-exit-plat-idle (citb-exit-plat)
-  :event
-    (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
         (('trigger)
          (let ((v1-3 (-> self entity extra perm)))
            (logior! (-> v1-3 status) (entity-perm-status user-set-from-cstage))
            (set! (-> v1-3 user-int8 0) 1))
          (go citb-exit-plat-rise))))
-  :code
-    (behavior ()
+  :code (behavior ()
       (logior! (-> self draw status) (draw-status hidden))
       (clear-collide-with-as (-> self root))
       (loop
@@ -759,8 +735,7 @@
 
 (defstate citb-exit-plat-rise (citb-exit-plat)
   :trans rider-trans
-  :code
-    (behavior ()
+  :code (behavior ()
       (logclear! (-> self draw status) (draw-status hidden))
       (restore-collide-with-as (-> self root))
       (set-time! (-> self state-time))
@@ -790,8 +765,7 @@
 
 (defstate plat-button-move-downward (citb-exit-plat)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((gp-0 (new 'stack-no-clear 'vector)))
         (set! (-> gp-0 quad) (-> self root trans quad))
         (let ((t9-1 (-> (the-as (state plat-button) (find-parent-state)) trans))) (if t9-1 (t9-1)))
@@ -800,8 +774,7 @@
 
 (defstate plat-button-move-upward (citb-exit-plat)
   :virtual #t
-  :trans
-    (behavior ()
+  :trans (behavior ()
       (let ((gp-0 (new 'stack-no-clear 'vector)))
         (set! (-> gp-0 quad) (-> self root trans quad))
         (let ((t9-1 (-> (the-as (state plat-button) (find-parent-state)) trans))) (if t9-1 (t9-1)))
