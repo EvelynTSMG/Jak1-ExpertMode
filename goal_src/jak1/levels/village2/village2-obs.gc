@@ -142,8 +142,7 @@
   (none))
 
 (define *pontoonfive-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 4.0
        :buoyancy-factor 3.0
        :max-buoyancy-depth (meters 3)
@@ -168,8 +167,7 @@
        :sound-name "pontoonten"))
 
 (define *pontoonten-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 4.0
        :buoyancy-factor 3.0
        :max-buoyancy-depth (meters 3)
@@ -1130,14 +1128,12 @@
 
 
 (define ripple-for-villageb-water
-  (new 'static
-       'ripple-wave-set
+  (new 'static 'ripple-wave-set
        :count 3
        :converted #f
        :normal-scale 6.0
        :wave
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 7.0 :xdiv 1 :speed 6.0)

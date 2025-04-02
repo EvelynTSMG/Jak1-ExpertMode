@@ -136,8 +136,7 @@
       (go-virtual nav-enemy-chase)))
 
 (define *babak-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 5
        :walk-anim 6
        :turn-anim 16

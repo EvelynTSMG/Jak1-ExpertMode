@@ -99,8 +99,7 @@
   (case mode
     (('fade)
      (set! second-color
-           (new 'static
-                'rgba
+           (new 'static 'rgba
                 :r
                 (shr (-> second-color r) 1)
                 :g
@@ -570,8 +569,7 @@
 (defun-debug debug-pad-display ((arg0 cpad-info))
   (let ((gp-0
           ;; og:preserve-this
-          (new 'static
-               'inline-array
+          (new 'static 'inline-array
                vector
                32 ;; was originally 8, which is too small and would cause memory corruption
                (new 'static 'vector)
@@ -626,8 +624,7 @@
     (add-debug-vector arg0 arg1 arg3 (-> arg2 direction) (meters 3) (static-rgba #xff #xff #xff #x80))
     (let ((light-vec-end (vector+*! (new-stack-vector0) arg3 (-> arg2 direction) (* (meters 3) (-> arg2 levels x))))
           ;; the original code here uses w for alpha but that looks terrible
-          (light-rgba (new 'static
-                           'rgba
+          (light-rgba (new 'static 'rgba
                            :r
                            (the int (* 128.0 (-> arg2 color x)))
                            :g

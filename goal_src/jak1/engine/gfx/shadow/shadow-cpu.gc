@@ -24,22 +24,19 @@
   obj)
 
 (define *shadow-data*
-  (new 'static
-       'shadow-data
+  (new 'static 'shadow-data
        :texoffset
        (new 'static 'vector :x 256.5 :y 112.5)
        :texscale
        (new 'static 'vector :x 0.001953125 :y 0.00390625)
        :clrs
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             vector
             2
             (new 'static 'vector :x (the-as float #x80) :w (the-as float #x82))
             (new 'static 'vector :y (the-as float #x80) :w (the-as float #x7f)))
        :dma-unpack-template
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id cnt))
             :vif0
@@ -96,8 +93,7 @@
           (set! (-> (the-as (pointer gs-miptbp) t4-2) 16) (new 'static 'gs-miptbp))
           (set! (-> (the-as (pointer gs-reg) t4-2) 152) (gs-reg clamp-1))
           (set! (-> (the-as (pointer gs-clamp) t4-2) 18)
-                (new 'static
-                     'gs-clamp
+                (new 'static 'gs-clamp
                      :wms (gs-tex-wrap-mode region-clamp)
                      :wmt (gs-tex-wrap-mode region-clamp)
                      :maxv
@@ -192,8 +188,7 @@
                (t3-2 (the-as object (-> t2-2 base))))
           (set! (-> (the-as gs-gif-tag t3-2) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x4))
           (set! (-> (the-as gs-gif-tag t3-2) regs)
-                (new 'static
-                     'gif-tag-regs
+                (new 'static 'gif-tag-regs
                      :regs0 (gif-reg-id a+d)
                      :regs1 (gif-reg-id a+d)
                      :regs2 (gif-reg-id a+d)
@@ -246,8 +241,7 @@
             (set! (-> (the-as (inline-array gs-gif-tag) t4-21) 2 tag)
                   (new 'static 'gif-tag64 :eop #x1 :flg (gif-flag reg-list) :nreg #x4 :nloop t1-3))
             (set! (-> (the-as (inline-array gs-gif-tag) t4-21) 2 regs)
-                  (new 'static
-                       'gif-tag-regs
+                  (new 'static 'gif-tag-regs
                        :regs0 (gif-reg-id st)
                        :regs1 (gif-reg-id xyz2)
                        :regs2 (gif-reg-id st)
@@ -292,8 +286,7 @@
                (t0-13 (the-as object (-> a3-4 base))))
           (set! (-> (the-as gs-gif-tag t0-13) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x6))
           (set! (-> (the-as gs-gif-tag t0-13) regs)
-                (new 'static
-                     'gif-tag-regs
+                (new 'static 'gif-tag-regs
                      :regs0 (gif-reg-id a+d)
                      :regs1 (gif-reg-id a+d)
                      :regs2 (gif-reg-id a+d)
@@ -364,8 +357,7 @@
   :flag-assert #x9000000a0)
 
 (define shadow-vu0-block
-  (new 'static
-       'vu-function
+  (new 'static 'vu-function
        #| :length 88 :qlength 44 |#
        ))
 

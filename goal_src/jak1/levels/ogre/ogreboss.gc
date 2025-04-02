@@ -63,11 +63,9 @@
   :bounds (static-spherem 0 0 0 30))
 
 (define *ogreboss-missile-shadow-control*
-  (new 'static
-       'shadow-control
+  (new 'static 'shadow-control
        :settings
-       (new 'static
-            'shadow-settings
+       (new 'static 'shadow-settings
             :flags (shadow-flags disable-fade shdf02 shdf03)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 614400.0)
@@ -77,11 +75,9 @@
             (new 'static 'plane :y 1.0 :w -143360.0))))
 
 (define *ogreboss-shadow-control*
-  (new 'static
-       'shadow-control
+  (new 'static 'shadow-control
        :settings
-       (new 'static
-            'shadow-settings
+       (new 'static 'shadow-settings
             :flags (shadow-flags shdf02 shdf03)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 614400.0)

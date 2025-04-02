@@ -43,8 +43,7 @@
   :longest-edge (meters 1.3))
 
 (define *yeti-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 2
        :walk-anim 3
        :turn-anim -1

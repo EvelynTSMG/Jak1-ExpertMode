@@ -48,8 +48,7 @@
                  (s4-0 (method-of-object s5-1 save-reminder)))
             (s4-0 s5-1 (the int (the-as float (send-event *target* 'query 'pickup (pickup-type fuel-cell)))) 1))
           (close-status! (-> this tasks) (task-status need-introduction)))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "assistant-introduction-blue-eco-switch"
              :index 10
              :parts 11
@@ -82,8 +81,7 @@
               (1216 joint "camera"))))
        (else
         (if arg0 (close-status! (-> this tasks) (task-status need-introduction)))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "assistant-introduction-race-bike"
              :index 12
              :parts 6

@@ -931,8 +931,7 @@
   :post target-post)
 
 (define *yellow-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'run
        :tiltv 65536.0
        :tiltvv 131072.0

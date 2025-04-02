@@ -40,8 +40,7 @@
        (set! (-> this egg)
              (ppointer->handle (manipy-spawn (-> this root trans) (-> this entity) *flutflutegg-sg* #f :to this)))
        (send-event (handle->process (-> this egg)) 'anim-mode 'clone-anim))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "bird-lady-beach-resolution"
           :index 4
           :parts 10

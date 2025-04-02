@@ -45,8 +45,7 @@
   :shadow snow-bunny-shadow-mg)
 
 (define *snow-bunny-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 5
        :walk-anim 5
        :turn-anim 5

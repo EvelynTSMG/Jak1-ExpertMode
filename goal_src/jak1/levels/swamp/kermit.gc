@@ -968,8 +968,7 @@ nav-enemy-default-event-handler
   :post kermit-post)
 
 (define *kermit-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 4
        :walk-anim -1
        :turn-anim -1

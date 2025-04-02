@@ -9,8 +9,7 @@
 ;; DECOMP BEGINS
 
 (define *tube-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'tube
        :turnv 21845.334
        :turnvv 524288.0
@@ -36,8 +35,7 @@
        :align-speed 1.0))
 
 (define *tube-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'tube
        :turnv 21845.334
        :turnvv 262144.0
@@ -64,8 +62,7 @@
        :flags (surface-flags jump)))
 
 (define *tube-hit-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'tube
        :turnv 21845.334
        :turnvv 262144.0
@@ -88,8 +85,7 @@
        :align-speed 1.0
        :mode 'air))
 
-(let ((v1-3 (new 'static
-                 'surface
+(let ((v1-3 (new 'static 'surface
                  :name '*tube-surface*
                  :turnv 1.0
                  :turnvv 1.0

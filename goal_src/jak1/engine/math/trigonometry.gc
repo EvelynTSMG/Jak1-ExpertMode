@@ -215,8 +215,7 @@
 
 ;; taylor series coefficients for sine approximation
 (define *sin-poly-vec*
-  (new 'static
-       'vector
+  (new 'static 'vector
        :x
        (the-as float #xbe2aa8f5) ;; -1/3!
        :y
@@ -319,8 +318,7 @@
   )
 
 (define *cos-poly-vec*
-  (new 'static
-       'vector
+  (new 'static 'vector
        :x
        (the-as float #xbefffd62)
        :y
@@ -847,10 +845,7 @@
 
 ;; magic numbers for exp.
 (define exp-slead
-  (new 'static
-       'array
-       float
-       32
+  (new 'static 'array float 32
        (the-as float #x3f800000)
        (the-as float #x3f82cd80)
        (the-as float #x3f85aac0)
@@ -885,10 +880,7 @@
        (the-as float #x3ffa8380)))
 
 (define exp-strail
-  (new 'static
-       'array
-       float
-       32
+  (new 'static 'array float 32
        (the-as float #x0)
        (the-as float #x35531585)
        (the-as float #x34d9f312)

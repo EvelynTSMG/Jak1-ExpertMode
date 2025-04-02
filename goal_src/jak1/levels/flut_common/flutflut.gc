@@ -36,11 +36,9 @@
   (the-as flutflut ((method-of-type process-drawable relocate) this offset)))
 
 (define *flutflut-shadow-control*
-  (new 'static
-       'shadow-control
+  (new 'static 'shadow-control
        :settings
-       (new 'static
-            'shadow-settings
+       (new 'static 'shadow-settings
             :flags (shadow-flags disable-fade shdf03)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 614400.0)

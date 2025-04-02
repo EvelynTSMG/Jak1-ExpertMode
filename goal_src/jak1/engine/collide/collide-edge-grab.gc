@@ -517,8 +517,7 @@
                                   t1-0)))
   (none))
 
-(let ((v1-1 (new 'static
-                 'surface
+(let ((v1-1 (new 'static 'surface
                  :name '*rotate-surface*
                  :turnv 1.0
                  :turnvv 1.0
@@ -550,8 +549,7 @@
   (set! (-> v1-1 touch-hook) nothing)
   (set! (-> v1-1 active-hook) nothing))
 
-(let ((v1-2 (new 'static
-                 'surface
+(let ((v1-2 (new 'static 'surface
                  :name '*no-walk-surface*
                  :turnv 0.5
                  :turnvv 1.0

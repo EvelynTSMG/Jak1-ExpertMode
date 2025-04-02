@@ -43,10 +43,7 @@
    pc-pi-mapping-button))
 
 (define *pc-pad-button-names*
-  (new 'static
-       'array
-       string
-       16
+  (new 'static 'array string 16
        "SELECT"
        "L3"
        "R3"

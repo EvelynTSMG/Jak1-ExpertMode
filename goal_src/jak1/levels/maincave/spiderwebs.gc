@@ -6,8 +6,7 @@
 ;; DECOMP BEGINS
 
 (define *spider-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 131072.0
        :turnvv 18204.445

@@ -284,8 +284,7 @@
     ;; template:
     (let ((s5-0 (the-as merc-vu1-low-mem (&+ (the-as dma-gif-packet gp-0) 32))))
       (set! (-> s5-0 tri-strip-gif tag)
-            (new 'static
-                 'gif-tag64
+            (new 'static 'gif-tag64
                  :pre #x1
                  :prim
                  (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :fge #x1)
@@ -371,8 +370,7 @@
                           (new 'static 'gs-test :ate #x1 :atst (gs-atest greater-equal) :aref #x26 :zte #x1 :ztst (gs-ztest greater-equal))
                           0)
     (merc-vu1-init-buffer (bucket-id merc-water0)
-                          (new 'static
-                               'gs-test
+                          (new 'static 'gs-test
                                :ate #x1
                                :atst (gs-atest greater-equal)
                                :aref #x80
@@ -381,8 +379,7 @@
                                :ztst (gs-ztest greater-equal))
                           0)
     (merc-vu1-init-buffer (bucket-id merc-water1)
-                          (new 'static
-                               'gs-test
+                          (new 'static 'gs-test
                                :ate #x1
                                :atst (gs-atest greater-equal)
                                :aref #x80

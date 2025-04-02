@@ -127,11 +127,9 @@
   :bounds (static-spherem 0 20 0 20))
 
 (define *plant-boss-shadow-control*
-  (new 'static
-       'shadow-control
+  (new 'static 'shadow-control
        :settings
-       (new 'static
-            'shadow-settings
+       (new 'static 'shadow-settings
             :flags (shadow-flags disable-fade)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 409600.0)

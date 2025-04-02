@@ -19,8 +19,7 @@
   (case (current-status (-> this tasks))
     (((task-status need-reward-speech))
      (if arg0 (close-current! (-> this tasks)))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "assistant-lavatube-start-resolution"
           :index 5
           :parts 11

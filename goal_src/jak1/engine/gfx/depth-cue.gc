@@ -7,21 +7,17 @@
 ;; DECOMP BEGINS
 
 (define *depth-cue-work*
-  (new 'static
-       'depth-cue-work
+  (new 'static 'depth-cue-work
        :texture-strip-tmpl
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
             :gif0
-            (new 'static
-                 'gif-tag64
+            (new 'static 'gif-tag64
                  :nloop 1
                  :eop 1
                  :pre 1
@@ -30,26 +26,22 @@
                  :flg (gif-flag packed)
                  :nreg 5)
             :gif1
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id rgbaq)
                  :regs1 (gif-reg-id uv)
                  :regs2 (gif-reg-id xyzf2)
                  :regs3 (gif-reg-id uv)
                  :regs4 (gif-reg-id xyzf2)))
        :temp-strip-tmpl
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
             :gif0
-            (new 'static
-                 'gif-tag64
+            (new 'static 'gif-tag64
                  :nloop 1
                  :eop 1
                  :pre 1
@@ -58,19 +50,16 @@
                  :flg (gif-flag packed)
                  :nreg 5)
             :gif1
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id rgbaq)
                  :regs1 (gif-reg-id uv)
                  :regs2 (gif-reg-id xyzf2)
                  :regs3 (gif-reg-id uv)
                  :regs4 (gif-reg-id xyzf2)))
        :stencil-tmpl
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x17 :id (dma-tag-id cnt))
                  :vif1
@@ -97,8 +86,7 @@
          (t1-2 (the-as object (-> v1-1 base))))
     (set! (-> (the-as gs-gif-tag t1-2) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x3))
     (set! (-> (the-as gs-gif-tag t1-2) regs)
-          (new 'static
-               'gif-tag-regs
+          (new 'static 'gif-tag-regs
                :regs0 (gif-reg-id a+d)
                :regs1 (gif-reg-id a+d)
                :regs2 (gif-reg-id a+d)
@@ -165,8 +153,7 @@
              (t6-2 (the-as object (-> t5-1 base))))
         (set! (-> (the-as gs-gif-tag t6-2) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x4))
         (set! (-> (the-as gs-gif-tag t6-2) regs)
-              (new 'static
-                   'gif-tag-regs
+              (new 'static 'gif-tag-regs
                    :regs0 (gif-reg-id a+d)
                    :regs1 (gif-reg-id a+d)
                    :regs2 (gif-reg-id a+d)
@@ -214,8 +201,7 @@
              (t6-18 (the-as object (-> t5-8 base))))
         (set! (-> (the-as gs-gif-tag t6-18) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x4))
         (set! (-> (the-as gs-gif-tag t6-18) regs)
-              (new 'static
-                   'gif-tag-regs
+              (new 'static 'gif-tag-regs
                    :regs0 (gif-reg-id a+d)
                    :regs1 (gif-reg-id a+d)
                    :regs2 (gif-reg-id a+d)
@@ -362,8 +348,7 @@
                                ;; no mip
                                (miptbp1-1 (new 'static 'gs-miptbp))
                                ;; set texture wrap mode to clamp
-                               (clamp-1 (new 'static
-                                             'gs-clamp
+                               (clamp-1 (new 'static 'gs-clamp
                                              :wms (gs-tex-wrap-mode clamp)
                                              :wmt (gs-tex-wrap-mode clamp)
                                              :maxu #x1ff

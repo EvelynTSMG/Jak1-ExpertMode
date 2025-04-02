@@ -213,8 +213,7 @@
 
 
 (define *BALLOONLURKER-bank*
-  (new 'static
-       'balloonlurker-bank
+  (new 'static 'balloonlurker-bank
        :buoyancy-depth-offset (meters 30)
        :player-mass 20.0
        :rudder-factor 32.0
@@ -227,8 +226,7 @@
        :mine-weight 53248.0))
 
 (define *balloonlurker-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 1.6
        :buoyancy-factor 1.2
        :max-buoyancy-depth (meters 15)

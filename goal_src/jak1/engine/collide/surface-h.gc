@@ -147,8 +147,7 @@
 ;; The common surfaces:
 
 (define *walk-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'run
        :turnv 131072.0
        :turnvv 524288.0
@@ -175,8 +174,7 @@
        :flags (surface-flags allow-look-around)))
 
 (define *walk-no-turn-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'run
        :tiltv 65536.0
        :tiltvv 131072.0
@@ -200,8 +198,7 @@
        :align-speed 1.0))
 
 (define *turn-around-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'run
        :tiltv 65536.0
        :tiltvv 131072.0
@@ -221,8 +218,7 @@
        :slope-up-traction 1.0
        :align-speed 1.0))
 
-(let ((a0-3 (new 'static
-                 'surface
+(let ((a0-3 (new 'static 'surface
                  :name 'duck
                  :turnv 131072.0
                  :turnvv 524288.0
@@ -252,8 +248,7 @@
   (define *duck-mods* a0-3))
 
 (define *duck-attack-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'duck
        :tiltv 65536.0
        :tiltvv 291271.12
@@ -279,8 +274,7 @@
        :flags (surface-flags attacking ducking)))
 
 (define *jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 131072.0
        :turnvv 18204.445
@@ -308,8 +302,7 @@
        :flags (surface-flags allow-edge-grab jump)))
 
 (define *double-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump-double
        :turnv 131072.0
        :turnvv 18204.445
@@ -337,8 +330,7 @@
        :flags (surface-flags allow-edge-grab jump)))
 
 (define *smack-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 131072.0
        :turnvv 18204.445
@@ -366,8 +358,7 @@
        :flags (surface-flags allow-edge-grab jump)))
 
 (define *high-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'high-jump
        :turnv 131072.0
        :turnvv 65536.0
@@ -395,8 +386,7 @@
        :flags (surface-flags allow-edge-grab jump)))
 
 (define *launch-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'launch-jump
        :turnv 18204.445
        :turnvv 65536.0
@@ -424,8 +414,7 @@
        :flags (surface-flags prevent-attacks-during-launch-jump allow-edge-grab jump)))
 
 (define *forward-high-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'high-jump
        :turnv 131072.0
        :turnvv 65536.0
@@ -453,8 +442,7 @@
        :flags (surface-flags allow-edge-grab jump)))
 
 (define *flip-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'high-jump
        :turnv 131072.0
        :turnvv 65536.0
@@ -482,8 +470,7 @@
        :flags (surface-flags allow-edge-grab jump)))
 
 (define *forward-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 131072.0
        :turnvv 18204.445
@@ -511,8 +498,7 @@
        :flags (surface-flags allow-edge-grab jump)))
 
 (define *forward-pole-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 131072.0
        :turnvv 18204.445
@@ -540,8 +526,7 @@
        :flags (surface-flags allow-edge-grab jump)))
 
 (define *attack-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'attack
        :tiltv 65536.0
        :tiltvv 131072.0
@@ -567,8 +552,7 @@
        :flags (surface-flags attacking)))
 
 (define *jump-attack-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'attack
        :turnvv 18204.445
        :tiltv 32768.0
@@ -594,8 +578,7 @@
        :mode 'air
        :flags (surface-flags allow-edge-grab jump attacking)))
 
-(let ((a0-4 (new 'static
-                 'surface
+(let ((a0-4 (new 'static 'surface
                  :name 'uppercut
                  :turnvv 18204.445
                  :tiltv 32768.0
@@ -625,8 +608,7 @@
   (define *uppercut-jump-mods* a0-4))
 
 (define *run-attack-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'wheel-flip
        :tiltv 32768.0
        :tiltvv 131072.0
@@ -651,8 +633,7 @@
        :flags (surface-flags no-turn-around no-rotate-toward-transv attacking)))
 
 (define *wheel-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'wheel
        :turnv 131072.0
        :turnvv 5461.3335
@@ -678,8 +659,7 @@
        :flags (surface-flags attacking)))
 
 (define *wheel-flip-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'wheel-flip
        :tiltv 32768.0
        :tiltvv 131072.0
@@ -702,8 +682,7 @@
        :flags (surface-flags allow-edge-grab jump attacking)))
 
 (define *flop-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'flop
        :tiltv 32768.0
        :tiltvv 131072.0
@@ -726,8 +705,7 @@
        :mode 'attack
        :flags (surface-flags jump attacking)))
 
-(let ((a0-5 (new 'static
-                 'surface
+(let ((a0-5 (new 'static 'surface
                  :name 'flop
                  :turnv 9102.223
                  :turnvv 9102.223
@@ -758,8 +736,7 @@
   (define *flop-land-mods* a0-5))
 
 (define *wade-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'wade
        :turnv 131072.0
        :turnvv 524288.0
@@ -787,8 +764,7 @@
        :flags (surface-flags allow-look-around)))
 
 (define *swim-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'swim
        :turnv 49152.0
        :turnvv 524288.0
@@ -815,8 +791,7 @@
        :mode 'swim))
 
 (define *dive-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'swim
        :turnv 21845.334
        :turnvv 32768.0
@@ -838,8 +813,7 @@
        :flags (surface-flags dive)))
 
 (define *dive-bottom-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'swim-bottom
        :turnv 21845.334
        :turnvv 32768.0
@@ -887,8 +861,7 @@
 (define *empty-mods* (new 'static 'surface :name 'empty :seek0 1.0 :seek90 1.0 :seek180 1.0 :fric 1.0))
 
 (define *neutral-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'walk
        :turnv 131072.0
        :turnvv 524288.0
@@ -907,8 +880,7 @@
        :slope-up-traction 1.0
        :align-speed 1.0))
 
-(let ((v1-41 (new 'static
-                  'surface
+(let ((v1-41 (new 'static 'surface
                   :name '*stone-surface*
                   :turnv 1.0
                   :turnvv 1.0
@@ -936,8 +908,7 @@
   (set! (-> v1-41 touch-hook) nothing)
   (set! (-> v1-41 active-hook) nothing))
 
-(let ((v1-42 (new 'static
-                  'surface
+(let ((v1-42 (new 'static 'surface
                   :name '*edge-surface*
                   :turnv 1.0
                   :turnvv 1.0
@@ -963,8 +934,7 @@
   (set! (-> v1-42 touch-hook) nothing)
   (set! (-> v1-42 active-hook) nothing))
 
-(let ((v1-43 (new 'static
-                  'surface
+(let ((v1-43 (new 'static 'surface
                   :name '*wade-surface*
                   :turnv 1.0
                   :turnvv 1.0
@@ -992,8 +962,7 @@
   (set! (-> v1-43 touch-hook) nothing)
   (set! (-> v1-43 active-hook) nothing))
 
-(let ((v1-44 (new 'static
-                  'surface
+(let ((v1-44 (new 'static 'surface
                   :name '*slope-surface*
                   :turnv 1.0
                   :turnvv 1.0
@@ -1021,8 +990,7 @@
   (set! (-> v1-44 touch-hook) nothing)
   (set! (-> v1-44 active-hook) nothing))
 
-(let ((v1-45 (new 'static
-                  'surface
+(let ((v1-45 (new 'static 'surface
                   :name '*quicksand-surface*
                   :turnv 0.25
                   :turnvv 1.0
@@ -1050,8 +1018,7 @@
   (set! (-> v1-45 touch-hook) nothing)
   (set! (-> v1-45 active-hook) nothing))
 
-(let ((v1-46 (new 'static
-                  'surface
+(let ((v1-46 (new 'static 'surface
                   :name '*tar-surface*
                   :turnv 0.25
                   :turnvv 1.0
@@ -1079,8 +1046,7 @@
   (set! (-> v1-46 touch-hook) nothing)
   (set! (-> v1-46 active-hook) nothing))
 
-(let ((v1-47 (new 'static
-                  'surface
+(let ((v1-47 (new 'static 'surface
                   :name '*grass-surface*
                   :turnv 1.0
                   :turnvv 1.0
@@ -1106,8 +1072,7 @@
   (set! (-> v1-47 touch-hook) nothing)
   (set! (-> v1-47 active-hook) nothing))
 
-(let ((v1-48 (new 'static
-                  'surface
+(let ((v1-48 (new 'static 'surface
                   :name '*ice-surface*
                   :turnv 0.5
                   :turnvv 1.0
@@ -1133,8 +1098,7 @@
   (set! (-> v1-48 touch-hook) nothing)
   (set! (-> v1-48 active-hook) nothing))
 
-(let ((v1-49 (new 'static
-                  'surface
+(let ((v1-49 (new 'static 'surface
                   :name '*tread-surface*
                   :turnv 1.0
                   :turnvv 1.0

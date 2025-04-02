@@ -408,10 +408,7 @@ junglesnake-default-event-handler
   (none))
 
 (define *junglesnake-twist-max-deltas*
-  (new 'static
-       'array
-       float
-       28
+  (new 'static 'array float 28
        0.0
        0.0
        0.0

@@ -134,8 +134,7 @@
    (yellow-projectile-speed    meters)))
 
 (define *RACER-bank*
-  (new 'static
-       'racer-bank
+  (new 'static 'racer-bank
        :slide-hold-time (seconds 0.2)
        :heat-max 100.0
        :hotcoals-heat-inc 3.0

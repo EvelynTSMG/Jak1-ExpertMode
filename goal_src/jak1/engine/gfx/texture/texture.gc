@@ -223,8 +223,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define ct32-24-block-table
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        int32
        :length 32
@@ -262,8 +261,7 @@
        31))
 
 (define mz32-24-block-table
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        int32
        :length 32
@@ -301,8 +299,7 @@
        15))
 
 (define ct16-block-table
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        int32
        :length 32
@@ -340,8 +337,7 @@
        31))
 
 (define ct16s-block-table
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        int32
        :length 32
@@ -379,8 +375,7 @@
        31))
 
 (define mz16-block-table
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        int32
        :length 32
@@ -418,8 +413,7 @@
        15))
 
 (define mz16s-block-table
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        int32
        :length 32
@@ -457,8 +451,7 @@
        15))
 
 (define mt8-block-table
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        int32
        :length 32
@@ -496,8 +489,7 @@
        31))
 
 (define mt4-block-table
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        int32
        :length 32
@@ -1560,8 +1552,7 @@
           (mip-h (ash (-> tex h) (- mip-level))))
       ;; vif direct
       (dma-buffer-add-gs-set dma-buff
-                             (bitbltbuf (new 'static
-                                             'gs-bitbltbuf
+                             (bitbltbuf (new 'static 'gs-bitbltbuf
                                              :sbp (-> tex dest mip-level)
                                              ;; source VRAM addr
                                              :sbw (-> tex width mip-level)
@@ -1588,8 +1579,7 @@
     ((= (-> tex psm) (gs-psm mt4))
      ;; case for mt4 format texture
      (dma-buffer-add-gs-set dma-buff
-                            (bitbltbuf (new 'static
-                                            'gs-bitbltbuf
+                            (bitbltbuf (new 'static 'gs-bitbltbuf
                                             :sbw 1
                                             :dbw 1
                                             :dpsm (-> tex clutpsm)
@@ -1605,8 +1595,7 @@
     ((= (-> tex psm) (gs-psm mt8))
      ;; 8-bit index
      (dma-buffer-add-gs-set dma-buff
-                            (bitbltbuf (new 'static
-                                            'gs-bitbltbuf
+                            (bitbltbuf (new 'static 'gs-bitbltbuf
                                             :sbw 2
                                             :dbw 2
                                             :dpsm (-> tex clutpsm)
@@ -1925,8 +1914,7 @@
   (set! (-> arg0 tex1 mmin) (shr (-> arg1 tex1-control) 1))
   ;; tex0
   (set! (-> arg0 tex0)
-        (new 'static
-             'gs-tex0
+        (new 'static 'gs-tex0
              :tcc #x1
              :cld #x1
              :cpsm (-> arg1 clutpsm)
@@ -1944,8 +1932,7 @@
              (the-as int (-> arg1 psm))))
   ;; mitptbp1
   (set! (-> arg0 miptbp1)
-        (new 'static
-             'gs-miptbp
+        (new 'static 'gs-miptbp
              :tbp1
              (-> arg1 dest 1)
              :tbw1
@@ -1962,8 +1949,7 @@
   ;; and modify the adgif thing to have a (miptbp2-1 54)
   (when (< (the-as uint 4) (-> arg1 num-mips))
     (set! (-> arg0 alpha-as-miptb2)
-          (new 'static
-               'gs-miptbp
+          (new 'static 'gs-miptbp
                :tbp1
                (-> arg1 dest 4)
                :tbw1

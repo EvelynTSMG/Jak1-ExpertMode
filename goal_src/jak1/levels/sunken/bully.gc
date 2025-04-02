@@ -56,11 +56,9 @@
   :bounds (static-spherem 0 2 0 6))
 
 (define *bully-shadow-control*
-  (new 'static
-       'shadow-control
+  (new 'static 'shadow-control
        :settings
-       (new 'static
-            'shadow-settings
+       (new 'static 'shadow-settings
             :flags (shadow-flags shdf00 shdf03)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 614400.0)

@@ -191,8 +191,7 @@
           (set! (-> *tfrag-work* wait-to-spr) (the-as uint 0))
           (set! (-> *tfrag-work* wait-from-spr) (the-as uint 0))
           (tfrag-init-buffer s2-0
-                             (new 'static
-                                  'gs-test
+                             (new 'static 'gs-test
                                   :ate #x1
                                   :atst (gs-atest greater-equal)
                                   :aref #x7e

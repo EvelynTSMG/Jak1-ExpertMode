@@ -200,8 +200,7 @@
     (send-event (handle->process (-> this boat)) 'origin-joint-index 3))
   ;; og:preserve-this PAL patch here
   (the-as basic
-          (new 'static
-               'spool-anim
+          (new 'static 'spool-anim
                :name "sage-intro-sequence-a"
                :index 17
                :parts 22

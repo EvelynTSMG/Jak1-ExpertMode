@@ -54,8 +54,7 @@
           )))
     ;; set up giftag
     (set! (-> tables giftag tag)
-          (new 'static
-               'gif-tag64
+          (new 'static 'gif-tag64
                :nloop #x1
                :eop #x1
                :pre #x1
@@ -64,8 +63,7 @@
                :nreg #xf))
     ;; set up registers
     (set! (-> tables giftag regs)
-          (new 'static
-               'gif-tag-regs
+          (new 'static 'gif-tag-regs
                :regs0 (gif-reg-id st)
                :regs1 (gif-reg-id rgbaq)
                :regs2 (gif-reg-id xyzf2)
@@ -106,8 +104,7 @@
                          ;; mipmapping
                          (miptbp1-1 (new 'static 'gs-miptbp))
                          ;; set texture wrap mode to clamp
-                         (clamp-1 (new 'static
-                                       'gs-clamp
+                         (clamp-1 (new 'static 'gs-clamp
                                        :wms (gs-tex-wrap-mode region-clamp)
                                        :wmt (gs-tex-wrap-mode region-clamp)
                                        :maxu #x1ff

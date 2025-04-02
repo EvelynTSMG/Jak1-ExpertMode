@@ -22,8 +22,7 @@
 
 
 (define *CAM_LAYOUT-bank*
-  (new 'static
-       'cam-layout-bank
+  (new 'static 'cam-layout-bank
        :spline-t 0.01
        :spline-step 0.0016666667
        :intro-t 0.01
@@ -1634,67 +1633,55 @@
   #t)
 
 (define *clm-focalpull-attr*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---focalpull attributes--"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    ok"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func '*clm-edit*))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "adjust"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :func #f))
-            (new 'static
-                 'clm-list
+            (new 'static 'clm-list
                  :tracker #f
                  :items
-                 (new 'static
-                      'boxed-array
+                 (new 'static 'boxed-array
                       :type
                       clm-list-item
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "radial    "
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 16
                            :val-parm1-basic 'focalpull-flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :options #x1
                                      :func 'clmf-cam-flag-toggle
                                      :parm0 16
                                      :parm1-basic 'focalpull-flags)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "spherical "
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 8
                            :val-parm1-basic 'focalpull-flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :options #x1
                                      :func 'clmf-cam-flag-toggle
@@ -1702,67 +1689,55 @@
                                      :parm1-basic 'focalpull-flags))))))))
 
 (define *clm-index-attr*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---index attributes--"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    ok"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func '*clm-edit*))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "adjust"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :func #f))
-            (new 'static
-                 'clm-list
+            (new 'static 'clm-list
                  :tracker #f
                  :items
-                 (new 'static
-                      'boxed-array
+                 (new 'static 'boxed-array
                       :type
                       clm-list-item
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "radial    "
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 16
                            :val-parm1-basic 'campoints-flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :options #x1
                                      :func 'clmf-cam-flag-toggle
                                      :parm0 16
                                      :parm1-basic 'campoints-flags)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "spherical "
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 8
                            :val-parm1-basic 'campoints-flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :options #x1
                                      :func 'clmf-cam-flag-toggle
@@ -1770,65 +1745,53 @@
                                      :parm1-basic 'campoints-flags))))))))
 
 (define *clm-intro-attr*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---intro attributes--"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    ok"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func '*clm-edit*))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "adjust"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :func #f))
-            (new 'static
-                 'clm-list
+            (new 'static 'clm-list
                  :tracker #f
                  :items
-                 (new 'static
-                      'boxed-array
+                 (new 'static 'boxed-array
                       :type
                       clm-list-item
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "time     "
                            :track-val #f
                            :val-func 'clmf-cam-intro-time
                            :val-parm0-basic 'intro-time
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'intro-time-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 0.01))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "exitValue"
                            :track-val #f
                            :val-func 'clmf-cam-float
                            :val-parm0-basic 'intro-exitValue
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'intro-exitValue-offset
@@ -1836,47 +1799,38 @@
                                      (new 'static 'bfloat :data 0.001)))))))))
 
 (define *clm-spline-attr*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---spline attributes--"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    ok"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func '*clm-edit*))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "adjust"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :func #f))
-            (new 'static
-                 'clm-list
+            (new 'static 'clm-list
                  :tracker #f
                  :items
-                 (new 'static
-                      'boxed-array
+                 (new 'static 'boxed-array
                       :type
                       clm-list-item
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "followDist"
                            :track-val #f
                            :val-func 'clmf-cam-meters
                            :val-parm0-basic 'spline-follow-dist
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'spline-follow-dist-offset
@@ -1884,417 +1838,346 @@
                                      (new 'static 'bfloat :data 409.6)))))))))
 
 (define *clm-vol-attr*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---volume attributes--"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    ok"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func '*clm-edit*))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "adjust"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :func #f))
-            (new 'static
-                 'clm-list
+            (new 'static 'clm-list
                  :tracker #f
                  :items
-                 (new 'static
-                      'boxed-array
+                 (new 'static 'boxed-array
                       :type
                       clm-list-item
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "airSwitch"
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 8
                            :val-parm1-basic 'vol-flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-cam-flag-toggle :parm0 8 :parm1-basic 'vol-flags))))))))
 
 (define *clm-cam-attr*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---camera attributes--"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    ok"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func '*clm-edit*))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "adjust"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :func #f))
-            (new 'static
-                 'clm-list
+            (new 'static 'clm-list
                  :tracker #f
                  :items
-                 (new 'static
-                      'boxed-array
+                 (new 'static 'boxed-array
                       :type
                       clm-list-item
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "drag       "
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 #x400
                            :val-parm1-basic 'flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-cam-flag-toggle :parm0 #x400 :parm1-basic 'flags)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "fov        "
                            :track-val #f
                            :val-func 'clmf-cam-fov
                            :val-parm0-basic 'fov
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'fov-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 91.022224))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "focalPull  "
                            :track-val #f
                            :val-func 'clmf-cam-deg
                            :val-parm0-basic 'focalPull
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'focalPull-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 91.022224))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "interpTime "
                            :track-val #f
                            :val-func 'clmf-cam-interp-time
                            :val-parm0-basic 'interpTime
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'interpTime-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 0.01))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "sameSide   "
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 16
                            :val-parm1-basic 'flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-cam-flag-toggle :parm0 16 :parm1-basic 'flags)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "spherical  "
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 32
                            :val-parm1-basic 'flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-cam-flag-toggle :parm0 32 :parm1-basic 'flags)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "MinLength  "
                            :track-val #f
                            :val-func 'clmf-cam-meters
                            :val-parm0-basic 'stringMinLength
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'stringMinLength-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 409.6))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "MaxLength  "
                            :track-val #f
                            :val-func 'clmf-cam-meters
                            :val-parm0-basic 'stringMaxLength
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'stringMaxLength-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 409.6))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "MinHeight  "
                            :track-val #f
                            :val-func 'clmf-cam-meters
                            :val-parm0-basic 'stringMinHeight
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'stringMinHeight-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 409.6))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "MaxHeight  "
                            :track-val #f
                            :val-func 'clmf-cam-meters
                            :val-parm0-basic 'stringMaxHeight
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'stringMaxHeight-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 409.6))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "cliffHeight"
                            :track-val #f
                            :val-func 'clmf-cam-meters
                            :val-parm0-basic 'stringCliffHeight
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'stringCliffHeight-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 409.6))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "alternates "
                            :track-val #f
                            :val-func 'clmf-cam-string
                            :val-parm0-basic 'alternates
                            :actions
                            (new 'static 'boxed-array :type clm-item-action))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "maxAngle   "
                            :track-val #f
                            :val-func 'clmf-cam-deg
                            :val-parm0-basic 'maxAngle
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'maxAngle-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 91.022224))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "shrinkAngle"
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 #x4000
                            :val-parm1-basic 'flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-cam-flag-toggle :parm0 #x4000 :parm1-basic 'flags)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "noRotate   "
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 #x40000
                            :val-parm1-basic 'flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-cam-flag-toggle :parm0 #x40000 :parm1-basic 'flags)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "tiltAdjust "
                            :track-val #f
                            :val-func 'clmf-cam-deg
                            :val-parm0-basic 'tiltAdjust
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'tiltAdjust-offset
                                      :parm1-basic
                                      (new 'static 'bfloat :data 91.022224))))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "stickyAngle"
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 #x80000
                            :val-parm1-basic 'flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-cam-flag-toggle :parm0 #x80000 :parm1-basic 'flags)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "airExit"
                            :track-val #f
                            :val-func 'clmf-cam-flag
                            :val-parm0 #x100000
                            :val-parm1-basic 'flags
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-cam-flag-toggle :parm0 #x100000 :parm1-basic 'flags))))))))
 
 (define *clm-cam-lookthrough*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---cam-lookthrough---"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "       "
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :options #x4 :func 'clmf-look-through))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "     ok"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func 'clmf-to-edit))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "pos/rot"
                  :button-symbol 'x
                  :action
-                 (new 'static
-                      'clm-item-action
+                 (new 'static 'clm-item-action
                       :button #x4000
                       :options #x8
                       :func 'clmf-pos-rot
                       :parm0-basic 'trans-offset
                       :parm1-basic 'rot-offset))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description " adjust"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :func #f))
-            (new 'static
-                 'clm-list
+            (new 'static 'clm-list
                  :tracker #f
                  :items
-                 (new 'static
-                      'boxed-array
+                 (new 'static 'boxed-array
                       :type
                       clm-list-item
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "fov"
                            :track-val #f
                            :val-func 'clmf-cam-fov
                            :val-parm0-basic 'fov
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
-                                (new 'static
-                                     'clm-item-action
+                                (new 'static 'clm-item-action
                                      :button #x4000
                                      :func 'clmf-cam-float-adjust
                                      :parm0-basic 'fov-offset
@@ -2302,172 +2185,145 @@
                                      (new 'static 'bfloat :data 91.022224)))))))))
 
 (define *clm-edit*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---edit---"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "        ok"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func 'clmf-to-select))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "attributes"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :options #x1 :func #f))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description " edit part"
                  :button-symbol 'circle
                  :action
                  (new 'static 'clm-item-action :button #x2000 :options #x1 :func #f))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "scale/next"
                  :button-symbol 'r2
                  :action
                  (new 'static 'clm-item-action :button #x200 :func #f))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "   pos/rot"
                  :button-symbol 'l2
                  :action
                  (new 'static 'clm-item-action :button #x100 :func #f))
-            (new 'static
-                 'clm-list
+            (new 'static 'clm-list
                  :tracker '*camera-layout-blink*
                  :items
-                 (new 'static
-                      'boxed-array
+                 (new 'static 'boxed-array
                       :type
                       clm-list-item
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "camera   "
                            :track-val 'camera
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func '*clm-cam-attr*)
                                 (new 'static 'clm-item-action :button #x2000 :func '*clm-cam-lookthrough*)
                                 (new 'static 'clm-item-action :button #x200 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-pos-rot :parm0-basic 'trans-offset :parm1-basic 'rot-offset)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "volume   "
                            :track-val 'volume
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-to-vol-attr)
                                 (new 'static 'clm-item-action :button #x2000 :func 'clmf-implement)
                                 (new 'static 'clm-item-action :button #x200 :func 'clmf-next-vol-dpad)
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-implement)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "align    "
                            :track-val 'align
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x2000 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x200 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-pos-rot :parm0-basic 'align-offset :parm1-basic #f)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "pivot    "
                            :track-val 'pivot
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x2000 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x200 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-pos-rot :parm0-basic 'pivot-offset :parm1-basic #f)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "interesting"
                            :track-val 'interesting
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x2000 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x200 :func 'clmf-bna)
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-pos-rot :parm0-basic 'interesting-offset :parm1-basic #f)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "spline   "
                            :track-val 'spline
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :func 'clmf-to-spline-attr)
                                 (new 'static 'clm-item-action :button #x2000 :func 'clmf-implement)
                                 (new 'static 'clm-item-action :button #x200 :func 'clmf-implement)
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-pos-rot :parm0-basic 'spline-offset :parm1-basic #f)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "intro    "
                            :track-val 'intro
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-to-intro-attr)
                                 (new 'static 'clm-item-action :button #x2000 :func 'clmf-implement)
                                 (new 'static 'clm-item-action :button #x200 :func 'clmf-implement)
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-implement)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "index    "
                            :track-val 'index
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-to-index-attr)
                                 (new 'static 'clm-item-action :button #x2000 :func 'clmf-implement)
                                 (new 'static 'clm-item-action :button #x200 :func 'clmf-implement)
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-pos-rot :parm0-basic 'campoints-offset)))
-                      (new 'static
-                           'clm-list-item
+                      (new 'static 'clm-list-item
                            :description "focalpull"
                            :track-val 'focalpull
                            :val-func #f
                            :actions
-                           (new 'static
-                                'boxed-array
+                           (new 'static 'boxed-array
                                 :type
                                 clm-item-action
                                 (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-to-focalpull-attr)
@@ -2476,102 +2332,84 @@
                                 (new 'static 'clm-item-action :button #x100 :func 'clmf-implement))))))))
 
 (define *clm-save-all*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---save all?---"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description " save all"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-save-all :parm0 16))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "print all"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func 'clmf-save-all :parm0 8))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "     done"
                  :button-symbol 'triangle
                  :action
                  (new 'static 'clm-item-action :button #x1000 :options #x1 :func 'clmf-to-select)))))
 
 (define *clm-save-one*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---single save?---"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description " single save"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :options #x1 :func 'clmf-save-one :parm0 16))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "single print"
                  :button-symbol 'square
                  :action
                  (new 'static 'clm-item-action :button #x8000 :options #x1 :func 'clmf-save-one :parm0 8))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "        done"
                  :button-symbol 'triangle
                  :action
                  (new 'static 'clm-item-action :button #x1000 :options #x1 :func 'clmf-to-select)))))
 
 (define *clm-select*
-  (new 'static
-       'clm
+  (new 'static 'clm
        :title "---camera---"
        :items
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             clm-basic
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    edit"
                  :button-symbol 'x
                  :action
                  (new 'static 'clm-item-action :button #x4000 :options #x3 :func 'clmf-to-edit-cam))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "save one"
                  :button-symbol 'triangle
                  :action
                  (new 'static 'clm-item-action :button #x1000 :options #x3 :func '*clm-save-one*))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    next"
                  :button-symbol 'down
                  :action
                  (new 'static 'clm-item-action :button #x40 :options #x3 :func 'clmf-next-entity :parm0 8))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "    prev"
                  :button-symbol 'up
                  :action
                  (new 'static 'clm-item-action :button #x10 :options #x3 :func 'clmf-next-entity :parm0 -8))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "  next 5"
                  :button-symbol 'right
                  :action
                  (new 'static 'clm-item-action :button #x20 :options #x3 :func 'clmf-next-entity :parm0 40))
-            (new 'static
-                 'clm-item
+            (new 'static 'clm-item
                  :description "  prev 5"
                  :button-symbol 'left
                  :action

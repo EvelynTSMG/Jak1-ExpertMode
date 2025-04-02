@@ -417,8 +417,7 @@ nav-enemy-default-event-handler
       (go-virtual nav-enemy-stare)))
 
 (define *sharkey-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 2
        :walk-anim 2
        :turn-anim -1

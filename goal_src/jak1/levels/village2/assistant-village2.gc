@@ -74,8 +74,7 @@
           (close-status! (-> this tasks) (task-status need-introduction))
           (send-event (-> this sage extra process) 'clone (process->handle this))
           (send-event (-> (entity-by-type flutflut-bluehut) extra process) 'clone (process->handle this)))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "assistant-village2-introduction"
              :index 15
              :parts 16
@@ -244,8 +243,7 @@
           (send-event (handle->process (-> this jaws)) 'anim-mode 'clone-anim)
           (send-event (handle->process (-> this jaws)) 'center-joint 3)
           (send-event (-> (entity-by-type flutflut-bluehut) extra process) 'clone (process->handle this)))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "assistant-village2-introduction-room"
              :index 21
              :parts 10
@@ -264,8 +262,7 @@
                  (s4-1 (method-of-object s5-5 save-reminder)))
             (s4-1 s5-5 (the int (the-as float (send-event *target* 'query 'pickup (pickup-type fuel-cell)))) 1))
           (close-status! (-> this tasks) (task-status need-introduction)))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "assistant-village2-introduction-robbers"
              :index 17
              :parts 6
@@ -275,8 +272,7 @@
         (when arg0
           (close-status! (-> this tasks) (task-status need-introduction))
           (send-event (-> (entity-by-type flutflut-bluehut) extra process) 'clone (process->handle this)))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "assistant-village2-introduction-flutflut"
              :index 19
              :parts 8
@@ -1005,8 +1001,7 @@
            (let ((t9-2 send-event-function)
                  (v1-10 (-> this boulder)))
              (t9-2 (if v1-10 (-> v1-10 extra process)) a1-1))))
-       (new 'static
-            'spool-anim
+       (new 'static 'spool-anim
             :name "assistant-village2-resolution"
             :index 16
             :parts 7

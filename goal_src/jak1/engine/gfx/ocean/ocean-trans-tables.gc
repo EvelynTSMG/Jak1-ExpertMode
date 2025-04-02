@@ -9,10 +9,7 @@
 
 ;; definition for symbol *ocean-left-table*, type (pointer float)
 (define *ocean-left-table*
-  (new 'static
-       'array
-       float
-       28
+  (new 'static 'array float 28
        0.0
        1.0
        0.0
@@ -44,10 +41,7 @@
 
 ;; definition for symbol *ocean-right-table*, type (pointer float)
 (define *ocean-right-table*
-  (new 'static
-       'array
-       float
-       28
+  (new 'static 'array float 28
        0.0
        0.0
        1.0
@@ -79,10 +73,7 @@
 
 ;; definition for symbol *ocean-up-table*, type (pointer float)
 (define *ocean-up-table*
-  (new 'static
-       'array
-       float
-       28
+  (new 'static 'array float 28
        0.0
        0.0
        1.0
@@ -114,10 +105,7 @@
 
 ;; definition for symbol *ocean-down-table*, type (pointer float)
 (define *ocean-down-table*
-  (new 'static
-       'array
-       float
-       28
+  (new 'static 'array float 28
        0.0
        1.0
        0.0
@@ -149,10 +137,7 @@
 
 ;; definition for symbol *ocean-down-left-table*, type (pointer float)
 (define *ocean-down-left-table*
-  (new 'static
-       'array
-       float
-       40
+  (new 'static 'array float 40
        0.0
        1.0
        0.0
@@ -196,10 +181,7 @@
 
 ;; definition for symbol *ocean-down-right-table*, type (pointer float)
 (define *ocean-down-right-table*
-  (new 'static
-       'array
-       float
-       40
+  (new 'static 'array float 40
        1.0
        0.0
        0.0
@@ -243,10 +225,7 @@
 
 ;; definition for symbol *ocean-up-right-table*, type (pointer float)
 (define *ocean-up-right-table*
-  (new 'static
-       'array
-       float
-       40
+  (new 'static 'array float 40
        0.0
        0.0
        1.0
@@ -290,10 +269,7 @@
 
 ;; definition for symbol *ocean-up-left-table*, type (pointer float)
 (define *ocean-up-left-table*
-  (new 'static
-       'array
-       float
-       40
+  (new 'static 'array float 40
        0.0
        0.0
        0.0
@@ -337,10 +313,7 @@
 
 ;; definition for symbol *ocean-trans-left-table*, type (pointer float)
 (define *ocean-trans-left-table*
-  (new 'static
-       'array
-       float
-       44
+  (new 'static 'array float 44
        0.0
        1.0
        0.0
@@ -388,10 +361,7 @@
 
 ;; definition for symbol *ocean-trans-right-table*, type (pointer float)
 (define *ocean-trans-right-table*
-  (new 'static
-       'array
-       float
-       44
+  (new 'static 'array float 44
        0.0
        0.0
        1.0
@@ -439,10 +409,7 @@
 
 ;; definition for symbol *ocean-trans-up-table*, type (pointer float)
 (define *ocean-trans-up-table*
-  (new 'static
-       'array
-       float
-       44
+  (new 'static 'array float 44
        0.0
        0.0
        1.0
@@ -490,10 +457,7 @@
 
 ;; definition for symbol *ocean-trans-down-table*, type (pointer float)
 (define *ocean-trans-down-table*
-  (new 'static
-       'array
-       float
-       44
+  (new 'static 'array float 44
        0.0
        1.0
        0.0
@@ -541,10 +505,7 @@
 
 ;; definition for symbol *ocean-trans-down-left-table*, type (pointer float)
 (define *ocean-trans-down-left-table*
-  (new 'static
-       'array
-       float
-       72
+  (new 'static 'array float 72
        0.0
        1.0
        0.0
@@ -620,10 +581,7 @@
 
 ;; definition for symbol *ocean-trans-down-right-table*, type (pointer float)
 (define *ocean-trans-down-right-table*
-  (new 'static
-       'array
-       float
-       72
+  (new 'static 'array float 72
        1.0
        0.0
        0.0
@@ -699,10 +657,7 @@
 
 ;; definition for symbol *ocean-trans-up-right-table*, type (pointer float)
 (define *ocean-trans-up-right-table*
-  (new 'static
-       'array
-       float
-       72
+  (new 'static 'array float 72
        0.0
        0.0
        1.0
@@ -778,10 +733,7 @@
 
 ;; definition for symbol *ocean-trans-up-left-table*, type (pointer float)
 (define *ocean-trans-up-left-table*
-  (new 'static
-       'array
-       float
-       72
+  (new 'static 'array float 72
        0.0
        0.0
        0.0
@@ -858,10 +810,7 @@
 ;; definition for symbol *ocean-trans-corner-table*, type (inline-array vector4w-2)
 (define *ocean-trans-corner-table*
   (the-as (inline-array vector4w-2)
-          (new 'static
-               'array
-               float
-               100
+          (new 'static 'array float 100
                1.0
                0.0
                0.0
@@ -965,10 +914,7 @@
 
 ;; definition for symbol *ocean-trans-strip-array*, type (pointer float)
 (define *ocean-trans-strip-array*
-  (new 'static
-       'array
-       float
-       160
+  (new 'static 'array float 160
        1.0
        0.0
        0.0
@@ -1132,8 +1078,7 @@
 
 ;; definition for symbol *ocean-trans-st-table*, type (inline-array vector)
 (define *ocean-trans-st-table*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        4
        (new 'static 'vector :z 1.0)

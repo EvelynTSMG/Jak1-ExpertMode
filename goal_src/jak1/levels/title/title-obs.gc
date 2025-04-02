@@ -192,8 +192,7 @@
       (send-event (handle->process (-> self black)) 'origin-joint-index 3)
       (set! (-> self anim) (-> self next-anim))
       (set! (-> self next-anim)
-            (new 'static
-                 'spool-anim
+            (new 'static 'spool-anim
                  :name "logo-intro-2"
                  :index 7
                  :parts 15
@@ -238,8 +237,7 @@
         (if (not (paused?)) (ja :num! (seek!))))
       (set! (-> self anim) (-> self next-anim))
       (set! (-> self next-anim)
-            (new 'static
-                 'spool-anim
+            (new 'static 'spool-anim
                  :name "logo-loop"
                  :index 9
                  :parts 17
@@ -435,8 +433,7 @@
      (set! (-> self main-joint) (new 'process 'joint-mod (joint-mod-handler-mode joint-set*) self 3))
      (set! (-> self main-joint max-dist) (the-as meters #t))
      (set! (-> self next-anim)
-           (new 'static
-                'spool-anim
+           (new 'static 'spool-anim
                 :name "logo-intro"
                 :index 5
                 :parts 3
@@ -469,8 +466,7 @@
      (initialize-skeleton self *ndi-sg* '())
      (set! (-> self draw origin-joint-index) (the-as uint 3))
      (set! (-> self next-anim)
-           (new 'static
-                'spool-anim
+           (new 'static 'spool-anim
                 :name "ndi-intro"
                 :index 3
                 :parts 4

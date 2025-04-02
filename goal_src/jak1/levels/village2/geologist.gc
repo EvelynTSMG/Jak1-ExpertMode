@@ -22,8 +22,7 @@
      (when arg0
        (close-status! (-> this tasks) (task-status need-introduction))
        (close-specific-task! (game-task village2-geologist-money) (task-status need-introduction)))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "geologist-introduction"
           :index 6
           :parts 13

@@ -1091,11 +1091,9 @@ nav-enemy-default-event-handler
   :post nav-enemy-jump-post)
 
 (define *nav-enemy-dummy-shadow-control*
-  (new 'static
-       'shadow-control
+  (new 'static 'shadow-control
        :settings
-       (new 'static
-            'shadow-settings
+       (new 'static 'shadow-settings
             :flags (shadow-flags shdf03 disable-draw)
             :shadow-dir
             (new 'static 'vector :y -1.0 :w 614400.0)

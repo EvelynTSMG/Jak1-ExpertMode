@@ -330,8 +330,7 @@
            (v1-11 arg0)
            (a0-26 (the-as object (-> v1-11 base))))
       (set! (-> (the-as dma-packet a0-26) dma)
-            (new 'static
-                 'dma-tag
+            (new 'static 'dma-tag
                  :id (dma-tag-id ref)
                  :addr
                  (the-as int (+ (+ (* 160 (the-as int arg5)) 0) (the-as int *ocean-trans-strip-array*)))

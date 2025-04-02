@@ -5,8 +5,7 @@
 (require "kernel/gkernel-h.gc")
 (require "engine/math/vector-h.gc")
 (define *ocean-vu0-work*
-  (new 'static
-       'ocean-vu0-work
+  (new 'static 'ocean-vu0-work
        :scales
        (new 'static 'vector :x -0.00006975447 :y 255.0 :z -0.00006975447)
        :mask-hi

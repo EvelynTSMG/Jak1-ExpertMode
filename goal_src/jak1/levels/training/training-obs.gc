@@ -14,14 +14,12 @@
 
 
 (define ripple-for-training-water
-  (new 'static
-       'ripple-wave-set
+  (new 'static 'ripple-wave-set
        :count 3
        :converted #f
        :normal-scale 1.0
        :wave
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.5)
@@ -173,8 +171,7 @@
   (none))
 
 (define *tra-pontoon-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 4.0
        :buoyancy-factor 3.0
        :max-buoyancy-depth (meters 3)
@@ -194,7 +191,7 @@
        :inertial-tensor-x (meters 2.5)
        :inertial-tensor-y (meters 2)
        :inertial-tensor-z (meters 3.2)
-       :idle-distance (meters 50)
+       :idle-distance (meters 75) ;mod: Slightly increase idle distance
        :platform #t
        :sound-name "pontoonten"))
 
@@ -228,7 +225,8 @@
 (defmethod rigid-body-platform-method-31 ((this tra-pontoon))
   (initialize-skeleton this *tra-pontoon-sg* '())
   (rigid-body-platform-method-29 this *tra-pontoon-constants*)
-  (set! (-> this float-height-offset) 6144.0)
+  ;mod: Put Geyser Rock pontoons underwater (1.5 -> -0.7)
+  (set! (-> this float-height-offset) (meters -0.7))
   (set! (-> this root-overlay nav-radius) 20480.0)
   (let ((v1-6 (-> this control-point-array data)))
     (set! (-> v1-6 0 local-pos x) 9216.0)
@@ -285,6 +283,7 @@
   (initialize-skeleton this *tra-iris-door-sg* '())
   (set! (-> this open-distance) 32768.0)
   (set! (-> this close-distance) 49152.0)
+  (*! (-> this speed) 0.2) ;mod: Made Geyser door open slower. Why? No clue.
   (update-transforms! (-> this root))
   0
   (none))
@@ -551,7 +550,10 @@
       (clear-collide-with-as (-> self root))
       (effect-control-method-10 (-> self skel effect) 'group-scarecrow-joint-explode 12.0 -1)
       (effect-control-method-10 (-> self skel effect) 'group-scarecrow-joint-explode 20.0 -1)
-      (effect-control-method-10 (-> self skel effect) 'group-scarecrow-explode 4.0 -1)
+      ;mod: Made Geyser Rock dummies explode
+      (effect-control-method-10 (-> self skel effect) 'group-dark-eco-box-explosion 4.0 -1)
+      (send-event *target* 'attack #f (static-attack-info ((mode 'darkeco))))
+      (sound-play "dcrate-break")
       (sound-play "break-dummy")
       (ja-channel-set! 0)
       (let ((s5-2 (new 'stack 'joint-exploder-tuning 1)))
@@ -566,11 +568,9 @@
                        *scarecrow-a-break-sg*
                        5
                        s5-2
-                       (new 'static
-                            'joint-exploder-static-params
+                       (new 'static 'joint-exploder-static-params
                             :joints
-                            (new 'static
-                                 'boxed-array
+                            (new 'static 'boxed-array
                                  :type
                                  joint-exploder-static-joint-params
                                  (new 'static 'joint-exploder-static-joint-params :joint-index 12)
@@ -676,7 +676,10 @@
       (clear-collide-with-as (-> self root))
       (effect-control-method-10 (-> self skel effect) 'group-scarecrow-joint-explode 12.0 -1)
       (effect-control-method-10 (-> self skel effect) 'group-scarecrow-joint-explode 21.0 -1)
-      (effect-control-method-10 (-> self skel effect) 'group-scarecrow-explode 4.0 -1)
+      ;mod: Made Geyser Rock dummies explode
+      (effect-control-method-10 (-> self skel effect) 'group-dark-eco-box-explosion 4.0 -1)
+      (send-event *target* 'attack #f (static-attack-info ((mode 'darkeco))))
+      (sound-play "dcrate-break")
       (sound-play "break-dummy")
       (ja-channel-set! 0)
       (let ((s5-2 (new 'stack 'joint-exploder-tuning 1)))
@@ -686,35 +689,31 @@
         (set! (-> s5-2 fountain-rand-transv-hi z) 40960.0)
         (set! (-> s5-2 fountain-rand-transv-hi w) 102400.0)
         (set! (-> s5-2 fountain-rand-transv-lo quad) (-> arg1 quad))
-        (process-spawn joint-exploder
-                       *scarecrow-b-break-sg*
-                       5
-                       s5-2
-                       (new 'static
-                            'joint-exploder-static-params
-                            :joints
-                            (new 'static
-                                 'boxed-array
-                                 :type
-                                 joint-exploder-static-joint-params
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 12)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 10)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 21)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 4)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 5)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 11)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 9)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 7)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 14)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 13)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 14)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 13)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 16)
-                                 (new 'static 'joint-exploder-static-joint-params :joint-index 15)))
-                       :to
-                       self))
+        (process-spawn joint-exploder *scarecrow-b-break-sg* 5 s5-2
+          (new 'static 'joint-exploder-static-params
+            :joints (new 'static 'boxed-array :type joint-exploder-static-joint-params
+              (new 'static 'joint-exploder-static-joint-params :joint-index 12)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 10)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 21)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 4)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 5)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 11)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 9)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 7)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 14)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 13)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 14)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 13)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 16)
+              (new 'static 'joint-exploder-static-joint-params :joint-index 15)
+            )
+          )
+          :to self
+        )
+      )
       (while (-> self child)
-        (suspend))
+        (suspend)
+      )
       (cleanup-for-death self))
   :post ja-post)
 

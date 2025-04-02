@@ -124,10 +124,7 @@ Long array creation
 
 ---
 
-(let ((arr (new 'static
-                'array
-                uint32
-                16
+(let ((arr (new 'static 'array uint32 16
                 #x7b2191b ;; = 6 ^ 129112349
                 #x7b21914 ;; = 9 ^ 129112349
                 #x7b21916 ;; = 11 ^ 129112349

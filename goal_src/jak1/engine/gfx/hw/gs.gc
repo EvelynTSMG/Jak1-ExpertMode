@@ -10,8 +10,7 @@
 ;; or for directly interfacing with the memory-mapped GS control registers.
 
 (defconstant GIF_REGS_ALL_AD
-  (new 'static
-       'gif-tag-regs
+  (new 'static 'gif-tag-regs
        :regs0 (gif-reg-id a+d)
        :regs1 (gif-reg-id a+d)
        :regs2 (gif-reg-id a+d)

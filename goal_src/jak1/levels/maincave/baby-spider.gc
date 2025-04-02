@@ -56,8 +56,7 @@
   :shadow baby-spider-shadow-mg)
 
 (define *baby-spider-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 6
        :walk-anim 8
        :turn-anim 8
@@ -109,8 +108,7 @@
        :debug-draw-jump #f))
 
 (define *baby-spider-nav-enemy-info-for-cave-trap*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 6
        :walk-anim 8
        :turn-anim 8

@@ -27,8 +27,7 @@
   :bounds (static-spherem 0 0 0 3))
 
 (define *mother-spider-threads*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        mother-spider-thread
        9
        (new 'static 'mother-spider-thread :joint-index 27)
@@ -42,8 +41,7 @@
        (new 'static 'mother-spider-thread :joint-index 3 :trans-u 1.0 :swing-arc-u 1.0)))
 
 (define *mother-spider-leg-infos*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        mother-spider-leg-info
        8
        (new 'static 'mother-spider-leg-info :joint-index0 13 :joint-index1 14 :cprim-index 8)

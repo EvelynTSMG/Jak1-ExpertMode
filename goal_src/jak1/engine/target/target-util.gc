@@ -21,11 +21,9 @@
   :sort 1)
 
 (define *target-shadow-control*
-  (new 'static
-       'shadow-control
+  (new 'static 'shadow-control
        :settings
-       (new 'static
-            'shadow-settings
+       (new 'static 'shadow-settings
             :flags (shadow-flags disable-fade)
             :shadow-dir
             (new 'static 'vector :x -0.4226 :y -0.9063 :w 409600.0)
@@ -120,8 +118,7 @@
 
 
 (define *TARGET-bank*
-  (new 'static
-       'target-bank
+  (new 'static 'target-bank
        :jump-collide-offset (meters 0.7)
        :jump-height-min (meters 1.01)
        :jump-height-max (meters 3.5)

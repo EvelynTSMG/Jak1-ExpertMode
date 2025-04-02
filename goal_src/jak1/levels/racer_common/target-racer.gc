@@ -10,8 +10,7 @@
 ;; DECOMP BEGINS
 
 (define *racer-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'racer
        :turnv 131072.0
        :turnvv 524288.0
@@ -37,8 +36,7 @@
        :flags (surface-flags allow-look-around)))
 
 (define *racer-air-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'racer
        :turnv 131072.0
        :turnvv 524288.0
@@ -64,8 +62,7 @@
        :mode 'air
        :flags (surface-flags allow-look-around jump)))
 
-(let ((v1-2 (new 'static
-                 'surface
+(let ((v1-2 (new 'static 'surface
                  :name '*race-track-surface*
                  :turnv 1.0
                  :turnvv 1.0

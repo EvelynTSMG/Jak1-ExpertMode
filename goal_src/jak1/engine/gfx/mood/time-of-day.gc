@@ -384,8 +384,7 @@
   (set! (-> arg0 current-sun env-color w) (* 0.5019608 (-> arg0 current-sun env-color w)))
   (let ((v1-179 (-> arg0 current-fog)))
     (set! *fog-color*
-          (new 'static
-               'rgba
+          (new 'static 'rgba
                :r
                (the int (-> v1-179 fog-color x))
                :g

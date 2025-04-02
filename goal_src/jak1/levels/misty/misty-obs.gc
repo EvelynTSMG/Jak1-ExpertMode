@@ -1325,8 +1325,7 @@
   (none))
 
 (define *bone-platform-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 2.0
        :buoyancy-factor 2.0
        :max-buoyancy-depth (meters 3)

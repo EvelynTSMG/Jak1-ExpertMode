@@ -13,8 +13,7 @@
    (wind-vel vector2w :inline)))
 
 (define *wind-scales*
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        uint8
        #x2

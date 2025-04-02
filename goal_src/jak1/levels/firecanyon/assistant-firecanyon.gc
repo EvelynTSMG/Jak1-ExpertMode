@@ -19,8 +19,7 @@
   (case (current-status (-> this tasks))
     (((task-status need-reward-speech))
      (if arg0 (close-current! (-> this tasks)))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "assistant-firecanyon-resolution"
           :index 13
           :parts 11

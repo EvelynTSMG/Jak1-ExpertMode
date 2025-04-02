@@ -490,8 +490,7 @@
   (none))
 
 (define *ogre-step-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 2.0
        :buoyancy-factor 2.0
        :max-buoyancy-depth (meters 4)
@@ -577,8 +576,7 @@
   (none))
 
 (define *ogre-isle-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 2.0
        :buoyancy-factor 2.0
        :max-buoyancy-depth (meters 2)
@@ -998,13 +996,11 @@
       (go-virtual water-vol-idle)))
 
 (define ripple-for-ogre-lava
-  (new 'static
-       'ripple-wave-set
+  (new 'static 'ripple-wave-set
        :count 2
        :converted #f
        :wave
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 2 :speed 3.0)

@@ -338,8 +338,7 @@ nav-enemy-default-event-handler
       (nav-enemy-travel-post)))
 
 (define *lurkercrab-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 4
        :walk-anim 6
        :turn-anim -1

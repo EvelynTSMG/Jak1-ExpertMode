@@ -9,8 +9,7 @@
 ;; DECOMP BEGINS
 
 (define training
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 1
        :name 'training
        :visname 'training-vis
@@ -26,8 +25,7 @@
        :sky #t
        :sun-fade 1.0
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "training-start"
              :level 'training
              :trans
@@ -54,8 +52,7 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'special)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "training-warp"
              :level 'training
              :flags (continue-flags warp)
@@ -83,8 +80,7 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'special)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "game-start"
              :level 'training
              :flags (continue-flags warp game-start)
@@ -129,8 +125,7 @@
        :wait-for-load #f))
 
 (define village1
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 2
        :name 'village1
        :visname 'village1-vis
@@ -146,8 +141,7 @@
        :sky #t
        :sun-fade 1.0
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "village1-hut"
              :level 'village1
              :trans
@@ -165,8 +159,7 @@
              :disp0 'display
              :lev1 'beach
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "village1-intro"
              :level 'village1
              :flags (continue-flags warp sage-intro)
@@ -185,8 +178,7 @@
              :disp0 'display
              :lev1 #f
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "village1-warp"
              :level 'village1
              :flags (continue-flags warp sage-ecorocks)
@@ -205,8 +197,7 @@
              :disp0 'display
              :lev1 'beach
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "village1-demo-convo"
              :level 'village1
              :flags (continue-flags sage-demo-convo)
@@ -225,8 +216,7 @@
              :disp0 'display
              :lev1 'misty
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "intro-start"
              :level 'village1
              :flags (continue-flags intro)
@@ -273,8 +263,7 @@
        :wait-for-load #t))
 
 (define beach
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 3
        :name 'beach
        :visname 'beach-vis
@@ -290,8 +279,7 @@
        :sky #t
        :sun-fade 1.0
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "beach-start"
              :level 'beach
              :trans
@@ -326,8 +314,7 @@
        :wait-for-load #t))
 
 (define jungle
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 4
        :name 'jungle
        :visname 'jungle-vis
@@ -343,8 +330,7 @@
        :sky #t
        :sun-fade 1.0
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "jungle-start"
              :level 'jungle
              :trans
@@ -379,8 +365,7 @@
        :wait-for-load #t))
 
 (define jungleb
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 5
        :name 'jungleb
        :visname 'jungleb-vis
@@ -395,8 +380,7 @@
        :ocean 'none
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "jungle-tower"
              :level 'jungleb
              :trans
@@ -430,8 +414,7 @@
        :wait-for-load #f))
 
 (define misty
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 6
        :name 'misty
        :visname 'misty-vis
@@ -447,8 +430,7 @@
        :sky #t
        :sun-fade 0.25
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "misty-start"
              :level 'misty
              :trans
@@ -477,8 +459,7 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'special)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "misty-silo"
              :level 'misty
              :trans
@@ -507,8 +488,7 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'special)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "misty-bike"
              :level 'misty
              :trans
@@ -537,8 +517,7 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'special)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "misty-backside"
              :level 'misty
              :trans
@@ -567,8 +546,7 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'special)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "misty-silo2"
              :level 'misty
              :trans
@@ -614,8 +592,7 @@
        :wait-for-load #f))
 
 (define firecanyon
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 7
        :name 'firecanyon
        :visname 'firecanyon-vis
@@ -630,8 +607,7 @@
        :ocean 'none
        :sky #t
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "firecanyon-start"
              :level 'firecanyon
              :trans
@@ -649,8 +625,7 @@
              :disp0 'display
              :lev1 'village1
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "firecanyon-end"
              :level 'firecanyon
              :trans
@@ -685,8 +660,7 @@
        :wait-for-load #t))
 
 (define village2
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 8
        :name 'village2
        :visname 'village2-vis
@@ -701,8 +675,7 @@
        :ocean '*ocean-map-village2*
        :sky #t
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "village2-start"
              :level 'village2
              :trans
@@ -720,8 +693,7 @@
              :disp0 'display
              :lev1 'firecanyon
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "village2-warp"
              :level 'village2
              :flags (continue-flags warp)
@@ -740,8 +712,7 @@
              :disp0 'display
              :lev1 'firecanyon
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "village2-dock"
              :level 'village2
              :trans
@@ -776,8 +747,7 @@
        :wait-for-load #t))
 
 (define sunken
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 9
        :name 'sunken
        :visname 'sunken-vis
@@ -792,8 +762,7 @@
        :ocean '*ocean-map-sunken*
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "sunken-start"
              :level 'sunken
              :trans
@@ -811,8 +780,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "sunken1"
              :level 'sunken
              :trans
@@ -830,8 +798,7 @@
              :disp0 'display
              :lev1 'sunkenb
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "sunken2"
              :level 'sunken
              :trans
@@ -849,8 +816,7 @@
              :disp0 'display
              :lev1 'sunkenb
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "sunken-tube1"
              :level 'sunken
              :trans
@@ -885,8 +851,7 @@
        :wait-for-load #f))
 
 (define sunkenb
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 10
        :name 'sunkenb
        :visname 'sunkenb-vis
@@ -902,8 +867,7 @@
        :ocean '*ocean-map-sunken*
        :sky #t
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "sunkenb-start"
              :level 'sunkenb
              :trans
@@ -921,8 +885,7 @@
              :disp0 'display
              :lev1 'sunkenb
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "sunkenb-helix"
              :level 'sunkenb
              :trans
@@ -957,8 +920,7 @@
        :wait-for-load #f))
 
 (define swamp
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 11
        :name 'swamp
        :visname 'swamp-vis
@@ -973,8 +935,7 @@
        :ocean '*ocean-map-village2*
        :sky #t
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "swamp-start"
              :level 'swamp
              :trans
@@ -997,8 +958,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "swamp-dock1"
              :level 'swamp
              :trans
@@ -1021,8 +981,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'special-vis)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "swamp-cave1"
              :level 'swamp
              :trans
@@ -1045,8 +1004,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'special-vis)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "swamp-dock2"
              :level 'swamp
              :trans
@@ -1069,8 +1027,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'special-vis)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "swamp-cave2"
              :level 'swamp
              :trans
@@ -1093,8 +1050,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'special-vis)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "swamp-game"
              :level 'swamp
              :trans
@@ -1117,8 +1073,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'special-vis)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "swamp-cave3"
              :level 'swamp
              :trans
@@ -1158,8 +1113,7 @@
        :wait-for-load #t))
 
 (define rolling
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 12
        :name 'rolling
        :visname 'rolling-vis
@@ -1174,8 +1128,7 @@
        :ocean 'none
        :sky #t
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "rolling-start"
              :level 'rolling
              :trans
@@ -1210,8 +1163,7 @@
        :wait-for-load #t))
 
 (define ogre
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 13
        :name 'ogre
        :visname 'ogre-vis
@@ -1226,8 +1178,7 @@
        :ocean 'none
        :sky #t
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "ogre-start"
              :level 'ogre
              :trans
@@ -1245,8 +1196,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "ogre-race"
              :level 'ogre
              :trans
@@ -1264,8 +1214,7 @@
              :disp0 'display
              :lev1 'village2
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "ogre-end"
              :level 'ogre
              :trans
@@ -1300,8 +1249,7 @@
        :wait-for-load #t))
 
 (define village3
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 14
        :name 'village3
        :visname 'village3-vis
@@ -1316,8 +1264,7 @@
        :ocean #f
        :sky #t
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "village3-start"
              :level 'village3
              :trans
@@ -1335,8 +1282,7 @@
              :disp0 'display
              :lev1 'ogre
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "village3-warp"
              :level 'village3
              :flags (continue-flags warp)
@@ -1355,8 +1301,7 @@
              :disp0 'display
              :lev1 'ogre
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "village3-farside"
              :level 'village3
              :trans
@@ -1391,8 +1336,7 @@
        :wait-for-load #f))
 
 (define snow
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 15
        :name 'snow
        :visname 'snow-vis
@@ -1408,8 +1352,7 @@
        :sky #t
        :sun-fade 0.5
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "snow-start"
              :level 'snow
              :trans
@@ -1427,8 +1370,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "snow-fort"
              :level 'snow
              :trans
@@ -1446,8 +1388,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "snow-flut-flut"
              :level 'snow
              :trans
@@ -1465,8 +1406,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "snow-pass-to-fort"
              :level 'snow
              :trans
@@ -1484,8 +1424,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "snow-by-ice-lake"
              :level 'snow
              :trans
@@ -1503,8 +1442,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "snow-by-ice-lake-alt"
              :level 'snow
              :trans
@@ -1522,8 +1460,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "snow-outside-fort"
              :level 'snow
              :trans
@@ -1541,8 +1478,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "snow-outside-cave"
              :level 'snow
              :trans
@@ -1560,8 +1496,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "snow-across-from-flut"
              :level 'snow
              :trans
@@ -1596,8 +1531,7 @@
        :wait-for-load #f))
 
 (define maincave
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 16
        :name 'maincave
        :visname 'maincave-vis
@@ -1612,8 +1546,7 @@
        :ocean #f
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "maincave-start"
              :level 'maincave
              :trans
@@ -1631,8 +1564,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "maincave-to-darkcave"
              :level 'maincave
              :trans
@@ -1650,8 +1582,7 @@
              :disp0 'display
              :lev1 'darkcave
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "maincave-to-robocave"
              :level 'maincave
              :trans
@@ -1686,8 +1617,7 @@
        :wait-for-load #f))
 
 (define darkcave
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 17
        :name 'darkcave
        :visname 'darkcave-vis
@@ -1702,8 +1632,7 @@
        :ocean #f
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "darkcave-start"
              :level 'darkcave
              :trans
@@ -1738,8 +1667,7 @@
        :wait-for-load #t))
 
 (define robocave
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 18
        :name 'robocave
        :visname 'robocave-vis
@@ -1754,8 +1682,7 @@
        :ocean #f
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "robocave-start"
              :level 'robocave
              :trans
@@ -1773,8 +1700,7 @@
              :disp0 'display
              :lev1 'robocave
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "robocave-bottom"
              :level 'robocave
              :trans
@@ -1809,8 +1735,7 @@
        :wait-for-load #t))
 
 (define lavatube
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 19
        :name 'lavatube
        :visname 'lavatube-vis
@@ -1825,8 +1750,7 @@
        :ocean #f
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "lavatube-start"
              :level 'lavatube
              :trans
@@ -1844,8 +1768,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "lavatube-middle"
              :level 'lavatube
              :trans
@@ -1863,8 +1786,7 @@
              :disp0 'display
              :lev1 'village3
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "lavatube-after-ribbon"
              :level 'lavatube
              :trans
@@ -1882,8 +1804,7 @@
              :disp0 'display
              :lev1 'citadel
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "lavatube-end"
              :level 'lavatube
              :trans
@@ -1918,8 +1839,7 @@
        :wait-for-load #t))
 
 (define citadel
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 20
        :name 'citadel
        :visname 'citadel-vis
@@ -1934,8 +1854,7 @@
        :ocean #f
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "citadel-start"
              :level 'citadel
              :trans
@@ -1953,8 +1872,7 @@
              :disp0 'display
              :lev1 'lavatube
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-entrance"
              :level 'citadel
              :trans
@@ -1972,8 +1890,7 @@
              :disp0 'display
              :lev1 'lavatube
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-warp"
              :level 'citadel
              :flags (continue-flags warp)
@@ -1992,8 +1909,7 @@
              :disp0 'display
              :lev1 'lavatube
              :disp1 'display)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-launch-start"
              :level 'citadel
              :trans
@@ -2011,8 +1927,7 @@
              :disp0 'display
              :lev1 'lavatube
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-launch-end"
              :level 'citadel
              :trans
@@ -2030,8 +1945,7 @@
              :disp0 'display
              :lev1 'finalboss
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-plat-start"
              :level 'citadel
              :trans
@@ -2049,8 +1963,7 @@
              :disp0 'display
              :lev1 'finalboss
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-plat-end"
              :level 'citadel
              :trans
@@ -2068,8 +1981,7 @@
              :disp0 'display
              :lev1 'finalboss
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-generator-start"
              :level 'citadel
              :trans
@@ -2087,8 +1999,7 @@
              :disp0 'display
              :lev1 'finalboss
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-generator-end"
              :level 'citadel
              :trans
@@ -2106,8 +2017,7 @@
              :disp0 'display
              :lev1 #f
              :disp1 #f)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "citadel-elevator"
              :level 'citadel
              :trans
@@ -2142,8 +2052,7 @@
        :wait-for-load #t))
 
 (define finalboss
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 21
        :name 'finalboss
        :visname 'finalboss-vis
@@ -2159,8 +2068,7 @@
        :sky #t
        :sun-fade 1.0
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "finalboss-start"
              :level 'finalboss
              :trans
@@ -2178,8 +2086,7 @@
              :disp0 'display
              :lev1 'citadel
              :disp1 'special)
-        (new 'static
-             'continue-point
+        (new 'static 'continue-point
              :name "finalboss-fight"
              :level 'finalboss
              :trans
@@ -2214,8 +2121,7 @@
        :wait-for-load #f))
 
 (define intro
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 22
        :name 'intro
        :visname 'intro-vis
@@ -2247,8 +2153,7 @@
        :wait-for-load #f))
 
 (define demo
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 23
        :name 'demo
        :visname 'demo-vis
@@ -2264,8 +2169,7 @@
        :ocean #f
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "demo-start"
              :level 'demo
              :flags (continue-flags demo)
@@ -2299,8 +2203,7 @@
        :wait-for-load #f))
 
 (define title
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 24
        :name 'title
        :visname 'title-vis
@@ -2317,8 +2220,7 @@
        :ocean #f
        :sky #f
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "title-start"
              :level 'title
              :flags (continue-flags title)
@@ -2353,8 +2255,7 @@
        :wait-for-load #f))
 
 (define halfpipe
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 25
        :name 'halfpipe
        :visname 'halfpipe-vis
@@ -2372,8 +2273,7 @@
        :sky #t
        :sun-fade 1.0
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "halfpipe"
              :level 'halfpipe
              :trans
@@ -2407,8 +2307,7 @@
        :wait-for-load #t))
 
 (define default-level
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 26
        :name 'default-level
        :visname 'default-level-vis
@@ -2470,8 +2369,7 @@
 
 ;;;;;;;;; CUSTOM LEVELS
 (define test-zone
-  (new 'static
-       'level-load-info
+  (new 'static 'level-load-info
        :index 26
        :name 'test-zone
        :visname 'test-zone-vis
@@ -2491,8 +2389,7 @@
        :sky #t
        :sun-fade 1.0
        :continues
-       '((new 'static
-             'continue-point
+       '((new 'static 'continue-point
              :name "test-zone-start"
              :level 'test-zone
              :trans

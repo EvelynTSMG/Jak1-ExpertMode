@@ -20,8 +20,7 @@
    (run-away-time       seconds)))
 
 (define *PELICAN-bank*
-  (new 'static
-       'pelican-bank
+  (new 'static 'pelican-bank
        :circle-speed (meters 16)
        :dive-time (seconds 2)
        :to-nest0-time (seconds 4)
@@ -406,8 +405,7 @@
             (suspend)
             (set! v1-21 (or (not *target*) (process-grab? *target*))))
           (send-event (-> gp-1 process 0) 'anim-mode 'clone-anim)
-          (ja-play-spooled-anim (new 'static
-                                     'spool-anim
+          (ja-play-spooled-anim (new 'static 'spool-anim
                                      :name "pelican-spit-ext"
                                      :index 11
                                      :parts 2

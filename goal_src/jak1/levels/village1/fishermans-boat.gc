@@ -11,8 +11,7 @@
 ;; DECOMP BEGINS
 
 (define *fishermans-boat-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 2.0
        :buoyancy-factor 1.5
        :max-buoyancy-depth (meters 1)
@@ -114,10 +113,7 @@
   #f)
 
 (define *boat-turning-radius-table*
-  (new 'static
-       'array
-       float
-       32
+  (new 'static 'array float 32
        409600.0
        90931.2
        94699.52
@@ -152,10 +148,7 @@
        0.0))
 
 (define *boat-throttle-control-table*
-  (new 'static
-       'array
-       float
-       32
+  (new 'static 'array float 32
        0.0
        0.031
        0.0646
@@ -680,8 +673,7 @@
   :code
     (behavior ()
       (set! (-> self anim)
-            (new 'static
-                 'spool-anim
+            (new 'static 'spool-anim
                  :name "fishermans-boat-ride-to-misty"
                  :index 15
                  :parts 3
@@ -772,8 +764,7 @@
     (behavior ()
       (if #t
         (set! (-> self anim)
-              (new 'static
-                   'spool-anim
+              (new 'static 'spool-anim
                    :name "fishermans-boat-ride-to-village1"
                    :index 16
                    :parts 3
@@ -790,8 +781,7 @@
                     (459 blackout 20)
                     (459 shadow target #t))))
         (set! (-> self anim)
-              (new 'static
-                   'spool-anim
+              (new 'static 'spool-anim
                    :name "fishermans-boat-ride-to-village1-alt"
                    :index 17
                    :parts 12

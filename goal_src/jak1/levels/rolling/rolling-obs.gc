@@ -389,8 +389,7 @@
         (let ((s5-3 (ppointer->handle (process-spawn fuel-cell :init fuel-cell-init-as-clone (process->handle self) 55 :to self))))
           (if *target* (logior! (-> *target* mask) (process-mask sleep)))
           (send-event (-> gp-2 process 0) 'anim-mode 'clone-anim)
-          (ja-play-spooled-anim (new 'static
-                                     'spool-anim
+          (ja-play-spooled-anim (new 'static 'spool-anim
                                      :name "happy-plant-open"
                                      :index 5
                                      :parts 2
@@ -921,14 +920,12 @@
 
 (define ripple-for-rolling-water
   (the-as object
-          (new 'static
-               'ripple-wave-set
+          (new 'static 'ripple-wave-set
                :count 3
                :converted #f
                :normal-scale 1.0
                :wave
-               (new 'static
-                    'inline-array
+               (new 'static 'inline-array
                     ripple-wave
                     4
                     (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.5)

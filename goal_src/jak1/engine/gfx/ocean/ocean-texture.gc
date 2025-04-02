@@ -7,21 +7,17 @@
 ;; DECOMP BEGINS
 
 (define *ocean-texture-work*
-  (new 'static
-       'ocean-texture-work
+  (new 'static 'ocean-texture-work
        :sprite-tmpl
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x6 :cmd (vif-cmd direct) :msk #x1))
             :gif0
-            (new 'static
-                 'gif-tag64
+            (new 'static 'gif-tag64
                  :nloop #x1
                  :eop #x1
                  :pre #x1
@@ -29,26 +25,22 @@
                  (new 'static 'gs-prim :prim (gs-prim-type sprite) :tme #x1 :fst #x1)
                  :nreg #x5)
             :gif1
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id rgbaq)
                  :regs1 (gif-reg-id uv)
                  :regs2 (gif-reg-id xyz2)
                  :regs3 (gif-reg-id uv)
                  :regs4 (gif-reg-id xyz2)))
        :sprite-tmpl2
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x4 :id (dma-tag-id cnt))
                  :vif1
                  (new 'static 'vif-tag :imm #x4 :cmd (vif-cmd direct) :msk #x1))
             :gif0
-            (new 'static
-                 'gif-tag64
+            (new 'static 'gif-tag64
                  :nloop #x1
                  :eop #x1
                  :pre #x1
@@ -58,11 +50,9 @@
             :gif1
             (new 'static 'gif-tag-regs :regs0 (gif-reg-id rgbaq) :regs1 (gif-reg-id xyz2) :regs2 (gif-reg-id xyz2)))
        :adgif-tmpl
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
@@ -73,16 +63,14 @@
             (new 'static 'gif-tag-regs :regs0 (gif-reg-id a+d)))))
 
 (define ocean-texture-vu1-block
-  (new 'static
-       'vu-function
+  (new 'static 'vu-function
        #| :length #x92 :qlength 73 |#
        ))
 
 (defun ocean-texture-setup-constants ((arg0 ocean-texture-constants))
   "Set the constant values used in Ocean Texture VU1 program."
   (set! (-> arg0 giftag tag)
-        (new 'static
-             'gif-tag64
+        (new 'static 'gif-tag64
              :nloop #x42
              :eop #x1
              :pre #x1

@@ -8,8 +8,7 @@
 ;; DECOMP BEGINS
 
 (define *viewer-sg*
-  (new 'static
-       'skeleton-group
+  (new 'static 'skeleton-group
        :bounds
        (new 'static 'vector :w 16384.0)
        :lod-dist

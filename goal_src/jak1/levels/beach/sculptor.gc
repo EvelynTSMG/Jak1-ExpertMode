@@ -65,8 +65,7 @@
   (case (current-status (-> this tasks))
     (((task-status need-hint) (task-status need-introduction))
      (if arg0 (close-status! (-> this tasks) (task-status need-introduction)))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "sculptor-introduction"
           :index 16
           :parts 14
@@ -101,8 +100,7 @@
          (if v1-18 (set! (-> (the-as muse v1-18) draw light-index) (the-as uint 3))))
        (send-event (handle->process (-> this muse)) 'center-joint 4)
        (send-event (handle->process (-> this muse)) 'anim-mode 'clone-anim))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "sculptor-resolution"
           :index 18
           :parts 4

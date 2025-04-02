@@ -237,32 +237,28 @@ this
   (cond
     ((zero? *subdivide-draw-mode*) ;; normal textured
      (set! (-> arg0 strgif tag)
-           (new 'static
-                'gif-tag64
+           (new 'static 'gif-tag64
                 :pre #x1
                 :nreg #x3
                 :prim
                 (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :fge #x1 :abe arg1))))
     ((= *subdivide-draw-mode* 3) ;; "hack". same as normal.
      (set! (-> arg0 strgif tag)
-           (new 'static
-                'gif-tag64
+           (new 'static 'gif-tag64
                 :pre #x1
                 :nreg #x3
                 :prim
                 (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :fge #x1 :abe arg1))))
     ((= *subdivide-draw-mode* 1) ;; outline (wireframe). just switch to line-strip
      (set! (-> arg0 strgif tag)
-           (new 'static
-                'gif-tag64
+           (new 'static 'gif-tag64
                 :pre #x1
                 :nreg #x3
                 :prim
                 (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :fge #x1 :abe arg1))))
     ((= *subdivide-draw-mode* 2) ;; gouraud - turn off tme.
      (set! (-> arg0 strgif tag)
-           (new 'static
-                'gif-tag64
+           (new 'static 'gif-tag64
                 :pre #x1
                 :nreg #x3
                 :prim

@@ -144,8 +144,7 @@
       (let* ((a1-1 v1-3)
              (a3-2 (the-as object (-> a1-1 base))))
         (set! (-> (the-as gs-gif-tag a3-2) tag)
-              (new 'static
-                   'gif-tag64
+              (new 'static 'gif-tag64
                    :nloop #x1
                    :eop #x1
                    :pre #x1
@@ -153,8 +152,7 @@
                    (new 'static 'gs-prim :prim (gs-prim-type line) :iip #x1 :abe #x1)
                    :nreg #x4))
         (set! (-> (the-as gs-gif-tag a3-2) regs)
-              (new 'static
-                   'gif-tag-regs
+              (new 'static 'gif-tag-regs
                    :regs0 (gif-reg-id rgbaq)
                    :regs1 (gif-reg-id xyzf2)
                    :regs2 (gif-reg-id rgbaq)

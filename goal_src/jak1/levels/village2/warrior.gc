@@ -42,8 +42,7 @@
     (case (current-status (-> this tasks))
       (((task-status need-hint) (task-status need-introduction))
        (if arg0 (close-status! (-> this tasks) (task-status need-introduction)))
-       (new 'static
-            'spool-anim
+       (new 'static 'spool-anim
             :name "warrior-introduction"
             :index 6
             :parts 29

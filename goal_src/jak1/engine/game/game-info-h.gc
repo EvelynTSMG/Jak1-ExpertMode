@@ -19,8 +19,7 @@
    (money-oracle-inc   float)))
 
 (define *GAME-bank*
-  (new 'static
-       'game-bank
+  (new 'static 'game-bank
        :life-max-default 99.0
        :life-start-default 5.0
        :life-single-inc 1.0

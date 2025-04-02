@@ -352,8 +352,7 @@
       0))
 
 (define *warp-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 273066.66
        :turnvv 1820444.5

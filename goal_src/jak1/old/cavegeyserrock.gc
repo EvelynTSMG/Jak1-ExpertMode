@@ -61,15 +61,13 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-group-id-table* 504)
-      (new 'static
-           'sparticle-launch-group
+      (new 'static 'sparticle-launch-group
            :length 7
            :duration #x258
            :linger-duration #x12c
            :name "group-cavegeyserrock-sides"
            :launcher
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sparticle-group-item
                 7
                 (sp-item 1869 :fade-after (meters 100.0) :falloff-to (meters 160.0) :period 36 :length 15)
@@ -84,11 +82,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1875)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 16
                 (sp-flt spt-num 1.0)
@@ -110,18 +106,15 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1876)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
            (new 'static 'inline-array sp-field-init-spec 2 (sp-flt spt-fade-b -13.653334) (sp-end))))
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1869)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -152,11 +145,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1872)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -187,11 +178,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1870)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -222,11 +211,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1873)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -257,11 +244,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1871)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -292,11 +277,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1874)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -327,22 +310,19 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1877)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
            (new 'static 'inline-array sp-field-init-spec 2 (sp-flt spt-fade-a -1.0666667) (sp-end))))
 
 ;; failed to figure out what this is:
 (set! (-> *part-group-id-table* 505)
-      (new 'static
-           'sparticle-launch-group
+      (new 'static 'sparticle-launch-group
            :length 9
            :duration #x258
            :linger-duration #x12c
            :name "group-cavegeyserrock-plume"
            :launcher
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sparticle-group-item
                 9
                 (sp-item 1881 :flags (bit1) :period 240 :length 1 :binding 1878)
@@ -359,11 +339,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1880)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 16
                 (sp-flt spt-num 0.4)
@@ -385,11 +363,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1881)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 14
                 (sp-tex spt-texture (new 'static 'texture-id :index #xf :page #x2))
@@ -409,18 +385,15 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1885)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
            (new 'static 'inline-array sp-field-init-spec 3 (sp-flt spt-vel-y (meters 0.0)) (sp-flt spt-accel-y 0.0) (sp-end))))
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1879)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 24
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -450,11 +423,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1878)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 24
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -484,18 +455,15 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1886)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
            (new 'static 'inline-array sp-field-init-spec 2 (sp-flt spt-fade-a -1.6) (sp-end))))
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1882)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 19
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -520,11 +488,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1883)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 18
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
@@ -548,11 +514,9 @@
 
 ;; failed to figure out what this is:
 (set! (-> *part-id-table* 1884)
-      (new 'static
-           'sparticle-launcher
+      (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static
-                'inline-array
+           (new 'static 'inline-array
                 sp-field-init-spec
                 11
                 (sp-flt spt-num 0.5)
@@ -568,8 +532,7 @@
                 (sp-end))))
 
 ;; failed to figure out what this is:
-(let ((v1-22 (new 'static
-                  'skeleton-group
+(let ((v1-22 (new 'static 'skeleton-group
                   :art-group-name "cavegeyserrock"
                   :bounds
                   (new 'static 'vector :y -4096.0 :w 14745.6)

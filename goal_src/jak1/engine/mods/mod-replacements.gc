@@ -1,0 +1,53 @@
+; Methodology stolen from OrbHunt
+
+(defmacro training-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; CELLS
+    (('fuel-cell-55) (set-cell-pos e -1213.56 25.62 1001.86)) ;; First cell -> above scarecrow (lol)
+    (('fuel-cell-54) (set-cell-pos e -1299.07 59.98 1009.22)) ;; Last cell -> in the air
+
+    ;; FLIES (1.65h)
+    (('crate-2955) (set-cell-pos e -1393.88  5.38 1011.31)) ; Start, left beach (visible from eco vent)
+    (('crate-2956) (set-cell-pos e -1127.60  5.72  937.38)) ; Beach, plain view
+    (('crate-2957) (set-cell-pos e -1150.28  7.50  962.31)) ; Beach, rock up
+    ; 'crate-2958 left at the highest platform
+    (('crate-2959) (set-cell-pos e -1151.09  4.11  897.64)) ; Beach, behind geyser
+    (('crate-2960) (set-cell-pos e -1189.17 22.36  855.25)) ; Way up, next to crates
+    (('crate-2961) (set-cell-pos e -1288.61 17.82  937.29)) ; Pool, behind pillars
+  )
+)
+
+(defmacro village1-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; FLIES
+    (('crate-3141) (set-cell-pos e -115.45 33.98 191.80)) ; Samus's Hut, on the side
+    (('crate-3142) (set-cell-pos e  -72.60  0.94 110.33)) ; Beach, fisherman's ruined boat
+    (('crate-3143) (set-cell-pos e -131.56  9.23  53.11)) ; Village, behind mayor's house
+    (('crate-3144) (set-cell-pos e  -63.75 11.07 -30.57)) ; Village, bird lady's house
+    (('crate-3145) (set-cell-pos e -130.01  0.76  -0.19)) ; Beach, rock over water
+    (('crate-3146) (set-cell-pos e   51.47 25.89 -84.30)) ; Pillartop, on the rock
+    (('crate-3147) (set-cell-pos e  170.34  1.08 -95.91)) ; Way to Forbidden Jungle, behind rock
+  )
+)
+
+(defmacro jungle-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; ORBS
+    (('money-187) (set-posm e 223.19 51.94 -246.92)) ; Putting some
+    (('money-188) (set-posm e 220.10 48.88 -246.88)) ; moneys near
+    (('money-189) (set-posm e 218.83 44.94 -246.80)) ; last vanilla fly
+    (('money-190) (set-posm e 218.83 40.00 -246.80)) ; to modded last fly
+
+    ;; CELLS
+    (('fuel-cell-1) (set-cell-pos e 362.21 109.64 -241.05));362.21 109.87 241.05)) ; Temple, top of the button (so you're forced to go down)
+
+    ;; FLIES
+    (('crate-3)   (set-cell-pos e 310.18 29.14 -223.54)) ; Start Path, behind rock on upper ledge
+    (('crate-28)  (set-cell-pos e 279.49 35.02 -301.16)) ; Temple, on top of launcher out
+    (('crate-47)  (set-cell-pos e 431.36 17.23 -312.29)) ; Temple, before the inactive bridge
+    (('crate-58)  (set-cell-pos e 217.78 -4.02 -253.93) (disable-buzzer-hop drawable)) ; River, underwater
+    (('crate-688) (set-cell-pos e 372.56 42.55 -272.87)) ; Temple, on top of arch
+    (('crate-689) (set-cell-pos e 335.20 20.97 -135.13)) ; Start Path, sneak in behind the log
+    ; 'crate-1844 left on temple side path
+  )
+)

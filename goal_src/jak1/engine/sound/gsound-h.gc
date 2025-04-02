@@ -317,8 +317,7 @@
     (when volume
       (cons! snd-mask 'volume)
       (set! snd-volume volume))
-    `(new 'static
-         'sound-spec
+    `(new 'static 'sound-spec
          :sound-name (static-sound-name ,name)
          :num ,num
          :group ,group

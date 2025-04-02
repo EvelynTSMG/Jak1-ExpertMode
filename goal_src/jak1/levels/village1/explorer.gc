@@ -41,8 +41,7 @@
   (case (current-status (-> this tasks))
     (((task-status need-hint) (task-status need-introduction))
      (if arg0 (close-status! (-> this tasks) (task-status need-introduction)))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "explorer-introduction"
           :index 9
           :parts 11
@@ -53,8 +52,7 @@
      (cond
        ((zero? (get-reminder (-> this tasks) 0))
         (if arg0 (save-reminder (-> this tasks) 1 0))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "explorer-reminder-1"
              :index 10
              :parts 5
@@ -75,8 +73,7 @@
         (close-current! (-> this tasks))
         (send-event *target* 'get-pickup 5 (- (-> *GAME-bank* money-task-inc))))
        (else (set! (-> this will-talk) #t) (set! (-> this talk-message) (text-id press-to-trade-money))))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "explorer-resolution"
           :index 12
           :parts 5

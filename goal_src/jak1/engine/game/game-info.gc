@@ -52,8 +52,7 @@
 
 ;; set up a static continue point that can be used as a temporary continue point.
 (define *default-continue*
-  (new 'static
-       'continue-point
+  (new 'static 'continue-point
        :name "default"
        :level #f
        :trans

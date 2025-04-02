@@ -38,8 +38,7 @@
   :bounds (static-spherem 0 -2 0 4.5))
 
 (define *qbert-plat-constants*
-  (new 'static
-       'rigid-body-platform-constants
+  (new 'static 'rigid-body-platform-constants
        :drag-factor 2.0
        :buoyancy-factor 1.5
        :max-buoyancy-depth (meters 1)

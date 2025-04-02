@@ -89,8 +89,7 @@
   (set! (-> env dspfb) (new 'static 'gs-display-fb :psm psm :fbw (/ width 64) :fbp fbp))
   ;; set up the display area (obscure PS2 video output junk)
   (set! (-> env display)
-        (new 'static
-             'gs-display
+        (new 'static 'gs-display
              :dw #x9ff
              :dy
              (+ dy 50)
@@ -127,8 +126,7 @@
   ;; offset to window coordinate system (WCS)
   (set! (-> env xyoffset1addr) (gs-reg64 xyoffset-1))
   (set! (-> env xyoffset1)
-        (new 'static
-             'gs-xy-offset
+        (new 'static 'gs-xy-offset
              :ofx #x7000
              ;; = 1792 px = 2048 - 256, this will make 2048 the center of the screen.
              :ofy
@@ -154,8 +152,7 @@
    To center things in the usual way, call with 2048, 2048, even/odd
    "
   (set! (-> env xyoffset1)
-        (new 'static
-             'gs-xy-offset
+        (new 'static 'gs-xy-offset
              :ofx
              (* (- x (the-as int (shr (+ (-> env scissor1 scax1) 1) 1))) 16)
              :ofy
@@ -401,8 +398,7 @@
                              (new 'static 'gs-prim :prim (gs-prim-type sprite) :abe 1)
                              (-> context color 0)
                              (new 'static 'gs-xyzf :x (* draw-x 16) :y (* draw-y 16) :z #x3fffff)
-                             (new 'static
-                                  'gs-xyzf
+                             (new 'static 'gs-xyzf
                                   :x
                                   (* (minmax (+ draw-x draw-w) 1792 2304) 16)
                                   :y
@@ -428,15 +424,13 @@
                              (-> context color 1)
                              (new 'static 'gs-xyzf :x (* (minmax (+ draw-x draw-w) 1792 2304) 16) :y (* draw-y 16))
                              (-> context color 2)
-                             (new 'static
-                                  'gs-xyzf
+                             (new 'static 'gs-xyzf
                                   :x
                                   (* draw-x 16)
                                   :y
                                   (* (minmax (+ draw-y draw-h) (-> *video-parms* screen-miny) (-> *video-parms* screen-maxy)) 16))
                              (-> context color 3)
-                             (new 'static
-                                  'gs-xyzf
+                             (new 'static 'gs-xyzf
                                   :x
                                   (* (minmax (+ draw-x draw-w) 1792 2304) 16)
                                   :y

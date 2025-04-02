@@ -38,8 +38,7 @@
 
 ;; font vertex table.
 (define *font12-table*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        250
        (new 'static 'vector :x 0.0039 :y 0.0019 :z 1.0 :w 15.0)
@@ -294,8 +293,7 @@
        (new 'static 'vector :x 0.3789 :y 0.8769 :z 1.0 :w 24.0)))
 
 (define *font24-table*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        289
        (new 'static 'vector :x 0.0039 :y 0.0019 :z 1.0 :w 12.0)

@@ -144,8 +144,7 @@
   ;; each adgif has 5x registers, so we set up a tag to do 5x a+d's
   (set! (-> data adgif-giftag tag) (new 'static 'gif-tag64 :nloop #x1 :nreg #x5))
   (set! (-> data adgif-giftag regs)
-        (new 'static
-             'gif-tag-regs
+        (new 'static 'gif-tag-regs
              :regs0 (gif-reg-id a+d)
              :regs1 (gif-reg-id a+d)
              :regs2 (gif-reg-id a+d)
@@ -153,8 +152,7 @@
              :regs4 (gif-reg-id a+d)))
   ;; I believe this is used for the group 0's in 2d
   (set! (-> data sprite-2d-giftag tag)
-        (new 'static
-             'gif-tag64
+        (new 'static 'gif-tag64
              :nloop #x1
              :eop #x1
              :pre #x1
@@ -162,8 +160,7 @@
              (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :fge #x1 :abe #x1)
              :nreg #x9))
   (set! (-> data sprite-2d-giftag regs)
-        (new 'static
-             'gif-tag-regs
+        (new 'static 'gif-tag-regs
              :regs0 (gif-reg-id rgbaq)
              :regs1 (gif-reg-id st)
              :regs2 (gif-reg-id xyzf2)
@@ -175,8 +172,7 @@
              :regs8 (gif-reg-id xyzf2)))
   ;; group 1's in 2d
   (set! (-> data sprite-2d-giftag-2 tag)
-        (new 'static
-             'gif-tag64
+        (new 'static 'gif-tag64
              :nloop #x1
              :eop #x1
              :pre #x1
@@ -184,8 +180,7 @@
              (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :tme #x1 :abe #x1)
              :nreg #x9))
   (set! (-> data sprite-2d-giftag-2 regs)
-        (new 'static
-             'gif-tag-regs
+        (new 'static 'gif-tag-regs
              :regs0 (gif-reg-id rgbaq)
              :regs1 (gif-reg-id st)
              :regs2 (gif-reg-id xyzf2)
@@ -197,8 +192,7 @@
              :regs8 (gif-reg-id xyzf2)))
   ;; 3d's don't have different groups?
   (set! (-> data sprite-3d-giftag tag)
-        (new 'static
-             'gif-tag64
+        (new 'static 'gif-tag64
              :nloop #x1
              :eop #x1
              :pre #x1
@@ -207,8 +201,7 @@
              :nreg #xc))
   ;; note that we have rgbaq's per vertex in 3d
   (set! (-> data sprite-3d-giftag regs)
-        (new 'static
-             'gif-tag-regs
+        (new 'static 'gif-tag-regs
              :regs0 (gif-reg-id st)
              :regs1 (gif-reg-id rgbaq)
              :regs2 (gif-reg-id xyzf2)
@@ -223,8 +216,7 @@
              :regs11 (gif-reg-id xyzf2)))
   ;; ??
   (set! (-> data clipped-giftag tag)
-        (new 'static
-             'gif-tag64
+        (new 'static 'gif-tag64
              :nloop #x1
              :eop #x1
              :pre #x1
@@ -235,8 +227,7 @@
         (new 'static 'gif-tag-regs :regs0 (gif-reg-id st) :regs1 (gif-reg-id rgbaq) :regs2 (gif-reg-id xyzf2)))
   ;; not sure what this is either
   (set! (-> data warp-giftag tag)
-        (new 'static
-             'gif-tag64
+        (new 'static 'gif-tag64
              :nloop #x1
              :eop #x1
              :pre #x1
@@ -244,8 +235,7 @@
              (new 'static 'gs-prim :prim (gs-prim-type tri) :tme #x1 :abe #x1)
              :nreg #xc))
   (set! (-> data warp-giftag regs)
-        (new 'static
-             'gif-tag-regs
+        (new 'static 'gif-tag-regs
              :regs0 (gif-reg-id st)
              :regs1 (gif-reg-id rgbaq)
              :regs2 (gif-reg-id xyzf2)
@@ -423,8 +413,7 @@
        (dma-buffer-add-cnt-vif2 dma-buff
                                 5
                                 (new 'static 'vif-tag :cmd (vif-cmd stcycl) :imm (new 'static 'vif-stcycl-imm :cl 4 :wl 4))
-                                (new 'static
-                                     'vif-tag
+                                (new 'static 'vif-tag
                                      :cmd (vif-cmd unpack-v4-32)
                                      :num 5
                                      ;; matrix + qword
@@ -452,8 +441,7 @@
        (dma-buffer-add-cnt-vif2 dma-buff
                                 80
                                 (new 'static 'vif-tag :cmd (vif-cmd stcycl) :imm (new 'static 'vif-stcycl-imm :cl 4 :wl 4))
-                                (new 'static
-                                     'vif-tag
+                                (new 'static 'vif-tag
                                      :cmd (vif-cmd unpack-v4-32)
                                      :num 80
                                      ;; matrix + qword + 75 qword table
@@ -722,8 +710,7 @@
       (sprite-draw-distorters dma-buff)
       ;; first packet - set up the GS registers
       (dma-buffer-add-gs-set dma-buff
-                             (test-1 (new 'static
-                                          'gs-test
+                             (test-1 (new 'static 'gs-test
                                           :ate 1
                                           :atst (gs-atest greater-equal)
                                           :aref 38

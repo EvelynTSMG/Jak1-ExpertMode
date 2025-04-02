@@ -294,8 +294,7 @@ nav-enemy-default-event-handler
   :post bonelurker-push-post)
 
 (define *bonelurker-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 5
        :walk-anim 6
        :turn-anim 16

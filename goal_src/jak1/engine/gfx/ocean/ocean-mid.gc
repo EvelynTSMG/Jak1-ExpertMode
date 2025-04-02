@@ -25,8 +25,7 @@
     (cond
       ((zero? v1-3)
        (set! (-> arg0 drw-fan tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x4
                   :eop #x1
                   :pre #x1
@@ -35,8 +34,7 @@
                   :nreg #x3)))
       ((= v1-3 1)
        (set! (-> arg0 drw-fan tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x4
                   :eop #x1
                   :pre #x1
@@ -45,8 +43,7 @@
                   :nreg #x3)))
       ((= v1-3 2)
        (set! (-> arg0 drw-fan tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x4
                   :eop #x1
                   :pre #x1
@@ -59,8 +56,7 @@
     (cond
       ((zero? v1-12)
        (set! (-> arg0 env-fan tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x4
                   :eop #x1
                   :pre #x1
@@ -69,8 +65,7 @@
                   :nreg #x3)))
       ((= v1-12 1)
        (set! (-> arg0 env-fan tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x4
                   :eop #x1
                   :pre #x1
@@ -79,8 +74,7 @@
                   :nreg #x3)))
       ((= v1-12 2)
        (set! (-> arg0 env-fan tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x4
                   :eop #x1
                   :pre #x1
@@ -113,8 +107,7 @@
     (cond
       ((zero? v1-45)
        (set! (-> arg0 drw-strip-0 tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :pre #x1
                   :prim
@@ -122,8 +115,7 @@
                   :nreg #x3)))
       ((= v1-45 1)
        (set! (-> arg0 drw-strip-0 tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :pre #x1
                   :prim
@@ -131,8 +123,7 @@
                   :nreg #x3)))
       ((= v1-45 2)
        (set! (-> arg0 drw-strip-0 tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :pre #x1
                   :prim
@@ -144,8 +135,7 @@
     (cond
       ((zero? v1-54)
        (set! (-> arg0 drw-strip-1 tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :eop #x1
                   :pre #x1
@@ -154,8 +144,7 @@
                   :nreg #x3)))
       ((= v1-54 1)
        (set! (-> arg0 drw-strip-1 tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :eop #x1
                   :pre #x1
@@ -164,8 +153,7 @@
                   :nreg #x3)))
       ((= v1-54 2)
        (set! (-> arg0 drw-strip-1 tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :eop #x1
                   :pre #x1
@@ -183,8 +171,7 @@
     (cond
       ((zero? v1-66)
        (set! (-> arg0 env-strip tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :eop #x1
                   :pre #x1
@@ -193,8 +180,7 @@
                   :nreg #x3)))
       ((= v1-66 1)
        (set! (-> arg0 env-strip tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :eop #x1
                   :pre #x1
@@ -203,8 +189,7 @@
                   :nreg #x3)))
       ((= v1-66 2)
        (set! (-> arg0 env-strip tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :nloop #x12
                   :eop #x1
                   :pre #x1

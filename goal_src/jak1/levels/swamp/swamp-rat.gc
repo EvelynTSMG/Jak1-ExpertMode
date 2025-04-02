@@ -272,8 +272,7 @@ swamp-rat-default-event-handler
   :post nav-enemy-simple-post)
 
 (define *swamp-rat-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 4
        :walk-anim 7
        :turn-anim 7

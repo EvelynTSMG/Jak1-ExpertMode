@@ -56,8 +56,7 @@
   :shadow ice-cube-shadow-mg)
 
 (define *ice-cube-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 5
        :walk-anim 6
        :turn-anim -1
@@ -1050,11 +1049,9 @@
                        *ice-cube-break-sg*
                        2
                        gp-1
-                       (new 'static
-                            'joint-exploder-static-params
+                       (new 'static 'joint-exploder-static-params
                             :joints
-                            (new 'static
-                                 'boxed-array
+                            (new 'static 'boxed-array
                                  :type
                                  joint-exploder-static-joint-params
                                  (new 'static 'joint-exploder-static-joint-params :joint-index 28)

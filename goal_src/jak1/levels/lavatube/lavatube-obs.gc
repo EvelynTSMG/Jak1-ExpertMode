@@ -991,13 +991,11 @@
 
 
 (define ripple-for-lavatube-lava
-  (new 'static
-       'ripple-wave-set
+  (new 'static 'ripple-wave-set
        :count 2
        :converted #f
        :wave
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 2 :speed 3.0)

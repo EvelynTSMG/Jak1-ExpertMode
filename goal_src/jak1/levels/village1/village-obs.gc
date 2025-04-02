@@ -575,8 +575,7 @@
   :post nav-enemy-patrol-post)
 
 (define *starfish-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim -1
        :walk-anim -1
        :turn-anim -1
@@ -821,14 +820,12 @@
 
 
 (define ripple-for-villagea-water
-  (new 'static
-       'ripple-wave-set
+  (new 'static 'ripple-wave-set
        :count 3
        :converted #f
        :normal-scale 4.0
        :wave
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             ripple-wave
             4
             (new 'static 'ripple-wave :scale 10.0 :xdiv 1 :speed 1.5)

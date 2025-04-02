@@ -54,8 +54,7 @@
    (speed-boost-impulse    meters)))
 
 (define *YAKOW-bank*
-  (new 'static
-       'yakow-bank
+  (new 'static 'yakow-bank
        :walk-cycle-frame-count 16.0
        :run-cycle-frame-count 16.0
        :walk-speed (meters 2.13)

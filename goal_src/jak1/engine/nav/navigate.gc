@@ -124,16 +124,14 @@
   (the-as int (+ (-> nav-control size) (* (-> this max-spheres) 16))))
 
 (define *default-nav-mesh*
-  (new 'static
-       'nav-mesh
+  (new 'static 'nav-mesh
        :bounds
        (new 'static 'sphere :x 12288.0 :y -200704.0 :z 12288.0 :w 20480.0)
        :origin
        (new 'static 'vector :y -200704.0 :w 1.0)
        :vertex-count 4
        :vertex
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             nav-vertex
             4
             (new 'static 'nav-vertex :z 16384.0 :w 1.0)
@@ -142,21 +140,18 @@
             (new 'static 'nav-vertex :x 8192.0 :w 1.0))
        :poly-count 2
        :poly
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             nav-poly
             2
             (new 'static 'nav-poly :vertex (new 'static 'array uint8 3 #x0 #x2 #x1) :adj-poly (new 'static 'array uint8 3 #xff #x1 #xff))
-            (new 'static
-                 'nav-poly
+            (new 'static 'nav-poly
                  :id #x1
                  :vertex
                  (new 'static 'array uint8 3 #x1 #x2 #x3)
                  :adj-poly
                  (new 'static 'array uint8 3 #x0 #xff #xff)))
        :route
-       (new 'static
-            'inline-array
+       (new 'static 'inline-array
             vector4ub
             4
             (new 'static 'vector4ub :data (new 'static 'array uint8 4 #xcb #x0 #x0 #x0))

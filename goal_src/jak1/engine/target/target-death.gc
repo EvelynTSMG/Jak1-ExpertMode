@@ -292,8 +292,7 @@
   :post target-no-move-post)
 
 (define *smack-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :tiltv 32768.0
        :tiltvv 131072.0
@@ -330,8 +329,7 @@
        :flags (surface-flags jump)))
 
 (define *smack-up-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 131072.0
        :turnvv 32768.0
@@ -617,8 +615,7 @@
   :post target-post)
 
 (define *death-spool-array*
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        spool-anim
        (new 'static 'spool-anim :name "death-0181" :index 3 :parts 1 :command-list '())

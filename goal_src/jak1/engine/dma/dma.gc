@@ -75,8 +75,7 @@
   (.sync.l)
   ;;(set! (-> arg0 chcr) 325)
   (set! (-> arg0 chcr)
-        (new 'static
-             'dma-chcr
+        (new 'static 'dma-chcr
              :dir 1
              ;; from memory
              :mod 1
@@ -98,8 +97,7 @@
   (set! (-> arg0 tadr) (make-madr-addr arg1))
   (.sync.l)
   (set! (-> arg0 chcr)
-        (new 'static
-             'dma-chcr
+        (new 'static 'dma-chcr
              :dir 1
              ;; from memory
              :mod 1

@@ -9,8 +9,7 @@
 
 ;; helpful constants for the instance drawing EE asm.
 (define *instance-tie-work*
-  (new 'static
-       'instance-tie-work
+  (new 'static 'instance-tie-work
        :wind-const
        (new 'static 'vector :x 0.5 :y 100.0 :z 0.0166 :w -1.0)
        :constant
@@ -18,15 +17,13 @@
        :far-morph
        (new 'static 'vector :x 1.0 :w 256.0)
        :upload-color-0
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id ref))
             :vif1
             (new 'static 'vif-tag :imm #x80c6 :num #x6 :cmd (vif-cmd unpack-v4-32)))
        :upload-color-1
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif0
@@ -52,18 +49,15 @@
 
 ;; helpful constants for the prototype drawing EE asm
 (define *prototype-tie-work*
-  (new 'static
-       'prototype-tie-work
+  (new 'static 'prototype-tie-work
        :upload-palette-0
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id cnt))
             :vif0
             (new 'static 'vif-tag :cmd (vif-cmd flusha) :msk #x1))
        :upload-palette-1
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :qwc #x20 :id (dma-tag-id cnt))
             :vif0
@@ -71,8 +65,7 @@
             :vif1
             (new 'static 'vif-tag :imm #x4346 :num #x80 :cmd (vif-cmd unpack-v4-8)))
        :upload-model-0
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif0
@@ -80,15 +73,13 @@
             :vif1
             (new 'static 'vif-tag :cmd (vif-cmd unpack-v4-32)))
        :upload-model-1
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif1
             (new 'static 'vif-tag :imm #x4000 :cmd (vif-cmd unpack-v4-8)))
        :upload-model-2
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif1
@@ -96,8 +87,7 @@
        :upload-model-3
        (new 'static 'dma-packet :dma (new 'static 'dma-tag :id (dma-tag-id call)))
        :upload-model-near-0
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif0
@@ -105,22 +95,19 @@
             :vif1
             (new 'static 'vif-tag :cmd (vif-cmd unpack-v4-32)))
        :upload-model-near-1
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif1
             (new 'static 'vif-tag :imm #x4000 :cmd (vif-cmd unpack-v4-8)))
        :upload-model-near-2
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif1
             (new 'static 'vif-tag :imm #x1e :cmd (vif-cmd unpack-v4-8)))
        :upload-model-near-3
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id ref))
             :vif1

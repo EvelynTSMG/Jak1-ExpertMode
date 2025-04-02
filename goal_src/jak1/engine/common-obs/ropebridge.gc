@@ -28,8 +28,7 @@
 
 
 (define *ropebridge-70-rest-state*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        35
        (new 'static 'vector :x -2361.8552 :y 8191.9688 :z -1.9208 :w -0.1275)
@@ -69,8 +68,7 @@
        (new 'static 'vector :y 286720.0)))
 
 (define *ropebridge-52-rest-state*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        26
        (new 'static 'vector :x -1737.1892 :y 8191.979 :z 12.1884 :w 0.1708)
@@ -101,8 +99,7 @@
        (new 'static 'vector :y 212992.0)))
 
 (define *ropebridge-32-rest-state*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        16
        (new 'static 'vector :x -1041.5476 :y 8191.998 :z -4.4282 :w -0.0321)
@@ -123,8 +120,7 @@
        (new 'static 'vector :y 131072.0)))
 
 (define *ropebridge-36-rest-state*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        18
        (new 'static 'vector :x -1180.706 :y 8191.9907 :z -0.027 :w -0.0559)
@@ -147,12 +143,10 @@
        (new 'static 'vector :y 147456.0)))
 
 (define *ropebridge-tunings*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        ropebridge-tuning
        6
-       (new 'static
-            'ropebridge-tuning
+       (new 'static 'ropebridge-tuning
             :num-springs 16
             :num-spring-points 17
             :col-mesh-indexes
@@ -173,15 +167,11 @@
             :normal-board-len 8192.0
             :bridge-end-to-end-len 131072.0
             :rest-state '*ropebridge-32-rest-state*)
-       (new 'static
-            'ropebridge-tuning
+       (new 'static 'ropebridge-tuning
             :num-springs 18
             :num-spring-points 19
             :col-mesh-indexes
-            (new 'static
-                 'array
-                 uint8
-                 32
+            (new 'static 'array uint8 32
                  #x3
                  #x3
                  #x3
@@ -230,15 +220,11 @@
             :normal-board-len 8192.0
             :bridge-end-to-end-len 147456.0
             :rest-state '*ropebridge-36-rest-state*)
-       (new 'static
-            'ropebridge-tuning
+       (new 'static 'ropebridge-tuning
             :num-springs 26
             :num-spring-points 27
             :col-mesh-indexes
-            (new 'static
-                 'array
-                 uint8
-                 32
+            (new 'static 'array uint8 32
                  #x3
                  #x3
                  #x3
@@ -287,15 +273,11 @@
             :normal-board-len 8192.0
             :bridge-end-to-end-len 212992.0
             :rest-state '*ropebridge-52-rest-state*)
-       (new 'static
-            'ropebridge-tuning
+       (new 'static 'ropebridge-tuning
             :num-springs 35
             :num-spring-points 36
             :col-mesh-indexes
-            (new 'static
-                 'array
-                 uint8
-                 48
+            (new 'static 'array uint8 48
                  #x3
                  #x3
                  #x3
@@ -360,15 +342,11 @@
             :normal-board-len 8192.0
             :bridge-end-to-end-len 286720.0
             :rest-state '*ropebridge-70-rest-state*)
-       (new 'static
-            'ropebridge-tuning
+       (new 'static 'ropebridge-tuning
             :num-springs 18
             :num-spring-points 19
             :col-mesh-indexes
-            (new 'static
-                 'array
-                 uint8
-                 32
+            (new 'static 'array uint8 32
                  #x3
                  #x3
                  #x3
@@ -417,15 +395,11 @@
             :normal-board-len 8192.0
             :bridge-end-to-end-len 147456.0
             :rest-state '*ropebridge-36-rest-state*)
-       (new 'static
-            'ropebridge-tuning
+       (new 'static 'ropebridge-tuning
             :num-springs 18
             :num-spring-points 19
             :col-mesh-indexes
-            (new 'static
-                 'array
-                 uint8
-                 32
+            (new 'static 'array uint8 32
                  #x3
                  #x3
                  #x3

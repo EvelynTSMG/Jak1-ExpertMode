@@ -385,8 +385,7 @@
   (new 'static 'boxed-array :type float 1.0 0.0 1.0 0.0 1.0 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.5 0.4 0.3 0.2 0.1))
 
 (define *flash5*
-  (new 'static
-       'boxed-array
+  (new 'static 'boxed-array
        :type
        float
        1.0
@@ -1082,8 +1081,7 @@
 
 
 (define *rolling-spheres-on*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        11
        (new 'static 'vector :x -724992.0 :y 204800.0 :z -6635520.0 :w 24576.0)
@@ -1101,8 +1099,7 @@
 (define *rolling-spheres-light0* (new 'static 'vector :x -524288.0 :y 110592.0 :z -6356992.0 :w 24576.0))
 
 (define *rolling-spheres-light1*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        4
        (new 'static 'vector :x -454656.0 :y 114688.0 :z -7081984.0 :w 81920.0)
@@ -1111,14 +1108,11 @@
        (new 'static 'vector :x -1302528.0 :y 106496.0 :z -6434816.0 :w 24576.0)))
 
 (define *rolling-spheres-light2*
-  (new 'static
-       'light-ellipse
+  (new 'static 'light-ellipse
        :matrix
-       (new 'static
-            'matrix
+       (new 'static 'matrix
             :vector
-            (new 'static
-                 'inline-array
+            (new 'static 'inline-array
                  vector
                  4
                  (new 'static 'vector :x -581632.0 :y 114688.0 :z -6479872.0 :w 24576.0)
@@ -1129,8 +1123,7 @@
        (new 'static 'rgbaf :x -1404928.0 :y 110592.0 :z -6541312.0 :w 24576.0)))
 
 (define *rolling-spheres-light3*
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        vector
        2
        (new 'static 'vector :x -540672.0 :y 110592.0 :z -6549504.0 :w 24576.0)

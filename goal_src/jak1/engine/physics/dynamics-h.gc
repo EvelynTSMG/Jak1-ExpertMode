@@ -33,8 +33,7 @@
 
 ;; the default dynamics of the world.
 (define *standard-dynamics*
-  (new 'static
-       'dynamics
+  (new 'static 'dynamics
        :name 'standard
        :gravity-max
        GRAVITY_MAX

@@ -158,45 +158,39 @@
     (cond
       ((zero? *subdivide-draw-mode*)
        (set! (-> arg0 strgif tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :pre #x1
                   :nreg #x3
                   :prim
                   (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :tme #x1 :fge #x1 :abe arg1)))
        (set! (-> arg0 fangif tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :pre #x1
                   :nreg #x3
                   :prim
                   (new 'static 'gs-prim :prim (gs-prim-type tri-fan) :iip #x1 :tme #x1 :fge #x1 :abe arg1))))
       ((= *subdivide-draw-mode* 1)
        (set! (-> arg0 strgif tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :pre #x1
                   :nreg #x3
                   :prim
                   (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :fge #x1 :abe arg1)))
        (set! (-> arg0 fangif tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :pre #x1
                   :nreg #x3
                   :prim
                   (new 'static 'gs-prim :prim (gs-prim-type line-strip) :iip #x1 :tme #x1 :fge #x1 :abe arg1))))
       ((= *subdivide-draw-mode* 2)
        (set! (-> arg0 strgif tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :pre #x1
                   :nreg #x3
                   :prim
                   (new 'static 'gs-prim :prim (gs-prim-type tri-strip) :iip #x1 :fge #x1 :abe arg1)))
        (set! (-> arg0 fangif tag)
-             (new 'static
-                  'gif-tag64
+             (new 'static 'gif-tag64
                   :pre #x1
                   :nreg #x3
                   :prim

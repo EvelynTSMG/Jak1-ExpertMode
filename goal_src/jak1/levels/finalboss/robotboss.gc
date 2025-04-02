@@ -1529,8 +1529,7 @@
       (set! (-> self dda)
             (cond
               ((< 15 v1-5)
-               (new 'static
-                    'robotboss-dda
+               (new 'static 'robotboss-dda
                     :blue-bomb-time 4800.0
                     :num-blobs 8
                     :green-bomb-time 4200.0
@@ -1542,8 +1541,7 @@
                     :yellow-gun-hits 7
                     :yellow-bomb-time 4800.0))
               ((< 10 v1-5)
-               (new 'static
-                    'robotboss-dda
+               (new 'static 'robotboss-dda
                     :blue-bomb-time 4800.0
                     :num-blobs 10
                     :green-bomb-time 4200.0
@@ -1555,8 +1553,7 @@
                     :yellow-gun-hits 10
                     :yellow-bomb-time 4800.0))
               ((< 5 v1-5)
-               (new 'static
-                    'robotboss-dda
+               (new 'static 'robotboss-dda
                     :blue-bomb-time 4800.0
                     :num-blobs 11
                     :green-bomb-time 4200.0
@@ -1568,8 +1565,7 @@
                     :yellow-gun-hits 13
                     :yellow-bomb-time 4800.0))
               (else
-               (new 'static
-                    'robotboss-dda
+               (new 'static 'robotboss-dda
                     :blue-bomb-time 4800.0
                     :num-blobs 12
                     :green-bomb-time 4200.0
@@ -1933,8 +1929,7 @@
   (set! (-> this yellow-gun ignore-angle) 16384.0)
   (set! (-> this palette-val) 0.0)
   (set! (-> this dda)
-        (new 'static
-             'robotboss-dda
+        (new 'static 'robotboss-dda
              :blue-bomb-time 4200.0
              :num-blobs 12
              :green-bomb-time 4200.0

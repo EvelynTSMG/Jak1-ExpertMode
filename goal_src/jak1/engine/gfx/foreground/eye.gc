@@ -11,14 +11,11 @@
 ;; DECOMP BEGINS
 
 (define *eye-work*
-  (new 'static
-       'eye-work
+  (new 'static 'eye-work
        :sprite-tmpl
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
@@ -26,11 +23,9 @@
             :gif
             (new 'static 'array uint64 2 #x508b400000008001 #x53531))
        :sprite-tmpl2
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
@@ -38,11 +33,9 @@
             :gif
             (new 'static 'array uint64 2 #x50ab400000008001 #x53531))
        :adgif-tmpl
-       (new 'static
-            'dma-gif-packet
+       (new 'static 'dma-gif-packet
             :dma-vif
-            (new 'static
-                 'dma-packet
+            (new 'static 'dma-packet
                  :dma
                  (new 'static 'dma-tag :qwc #x6 :id (dma-tag-id cnt))
                  :vif1
@@ -88,8 +81,7 @@
                (a0-8 (the-as object (-> v1-13 base))))
           (set! (-> (the-as gs-gif-tag a0-8) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
           (set! (-> (the-as gs-gif-tag a0-8) regs)
-                (new 'static
-                     'gif-tag-regs
+                (new 'static 'gif-tag-regs
                      :regs0 (gif-reg-id a+d)
                      :regs1 (gif-reg-id a+d)
                      :regs2 (gif-reg-id a+d)
@@ -135,8 +127,7 @@
                  (a2-9 (the-as object (-> a1-23 base))))
             (set! (-> (the-as gs-gif-tag a2-9) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
             (set! (-> (the-as gs-gif-tag a2-9) regs)
-                  (new 'static
-                       'gif-tag-regs
+                  (new 'static 'gif-tag-regs
                        :regs0 (gif-reg-id a+d)
                        :regs1 (gif-reg-id a+d)
                        :regs2 (gif-reg-id a+d)
@@ -185,8 +176,7 @@
                  (a2-19 (the-as object (-> a1-30 base))))
             (set! (-> (the-as gs-gif-tag a2-19) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
             (set! (-> (the-as gs-gif-tag a2-19) regs)
-                  (new 'static
-                       'gif-tag-regs
+                  (new 'static 'gif-tag-regs
                        :regs0 (gif-reg-id a+d)
                        :regs1 (gif-reg-id a+d)
                        :regs2 (gif-reg-id a+d)
@@ -235,8 +225,7 @@
              (a0-34 (the-as object (-> v1-25 base))))
         (set! (-> (the-as gs-gif-tag a0-34) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
         (set! (-> (the-as gs-gif-tag a0-34) regs)
-              (new 'static
-                   'gif-tag-regs
+              (new 'static 'gif-tag-regs
                    :regs0 (gif-reg-id a+d)
                    :regs1 (gif-reg-id a+d)
                    :regs2 (gif-reg-id a+d)
@@ -282,8 +271,7 @@
                  (a2-29 (the-as object (-> a1-46 base))))
             (set! (-> (the-as gs-gif-tag a2-29) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
             (set! (-> (the-as gs-gif-tag a2-29) regs)
-                  (new 'static
-                       'gif-tag-regs
+                  (new 'static 'gif-tag-regs
                        :regs0 (gif-reg-id a+d)
                        :regs1 (gif-reg-id a+d)
                        :regs2 (gif-reg-id a+d)
@@ -334,8 +322,7 @@
                  (a2-39 (the-as object (-> a1-53 base))))
             (set! (-> (the-as gs-gif-tag a2-39) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
             (set! (-> (the-as gs-gif-tag a2-39) regs)
-                  (new 'static
-                       'gif-tag-regs
+                  (new 'static 'gif-tag-regs
                        :regs0 (gif-reg-id a+d)
                        :regs1 (gif-reg-id a+d)
                        :regs2 (gif-reg-id a+d)
@@ -383,8 +370,7 @@
            (a0-52 (the-as object (-> v1-40 base))))
       (set! (-> (the-as gs-gif-tag a0-52) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
       (set! (-> (the-as gs-gif-tag a0-52) regs)
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id a+d)
                  :regs1 (gif-reg-id a+d)
                  :regs2 (gif-reg-id a+d)
@@ -433,8 +419,7 @@
                (a2-49 (the-as object (-> a1-71 base))))
           (set! (-> (the-as gs-gif-tag a2-49) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
           (set! (-> (the-as gs-gif-tag a2-49) regs)
-                (new 'static
-                     'gif-tag-regs
+                (new 'static 'gif-tag-regs
                      :regs0 (gif-reg-id a+d)
                      :regs1 (gif-reg-id a+d)
                      :regs2 (gif-reg-id a+d)
@@ -483,8 +468,7 @@
                (a2-59 (the-as object (-> a1-81 base))))
           (set! (-> (the-as gs-gif-tag a2-59) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
           (set! (-> (the-as gs-gif-tag a2-59) regs)
-                (new 'static
-                     'gif-tag-regs
+                (new 'static 'gif-tag-regs
                      :regs0 (gif-reg-id a+d)
                      :regs1 (gif-reg-id a+d)
                      :regs2 (gif-reg-id a+d)
@@ -540,8 +524,7 @@
            (a0-6 (the-as object (-> v1-4 base))))
       (set! (-> (the-as gs-gif-tag a0-6) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
       (set! (-> (the-as gs-gif-tag a0-6) regs)
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id a+d)
                  :regs1 (gif-reg-id a+d)
                  :regs2 (gif-reg-id a+d)
@@ -589,8 +572,7 @@
            (a0-21 (the-as object (-> v1-16 base))))
       (set! (-> (the-as gs-gif-tag a0-21) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
       (set! (-> (the-as gs-gif-tag a0-21) regs)
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id a+d)
                  :regs1 (gif-reg-id a+d)
                  :regs2 (gif-reg-id a+d)
@@ -638,8 +620,7 @@
            (a0-36 (the-as object (-> v1-28 base))))
       (set! (-> (the-as gs-gif-tag a0-36) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
       (set! (-> (the-as gs-gif-tag a0-36) regs)
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id a+d)
                  :regs1 (gif-reg-id a+d)
                  :regs2 (gif-reg-id a+d)
@@ -743,8 +724,7 @@
            (a0-87 (the-as object (-> v1-81 base))))
       (set! (-> (the-as gs-gif-tag a0-87) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
       (set! (-> (the-as gs-gif-tag a0-87) regs)
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id a+d)
                  :regs1 (gif-reg-id a+d)
                  :regs2 (gif-reg-id a+d)
@@ -790,8 +770,7 @@
            (a0-102 (the-as object (-> v1-93 base))))
       (set! (-> (the-as gs-gif-tag a0-102) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
       (set! (-> (the-as gs-gif-tag a0-102) regs)
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id a+d)
                  :regs1 (gif-reg-id a+d)
                  :regs2 (gif-reg-id a+d)
@@ -837,8 +816,7 @@
            (a0-117 (the-as object (-> v1-105 base))))
       (set! (-> (the-as gs-gif-tag a0-117) tag) (new 'static 'gif-tag64 :nloop #x1 :eop #x1 :nreg #x1))
       (set! (-> (the-as gs-gif-tag a0-117) regs)
-            (new 'static
-                 'gif-tag-regs
+            (new 'static 'gif-tag-regs
                  :regs0 (gif-reg-id a+d)
                  :regs1 (gif-reg-id a+d)
                  :regs2 (gif-reg-id a+d)

@@ -63,8 +63,7 @@
   :longest-edge (meters 1.2))
 
 (define *ram-boss-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 13
        :walk-anim 11
        :turn-anim -1
@@ -116,8 +115,7 @@
        :debug-draw-jump #f))
 
 (define *ram-boss-nav-enemy-info-no-shield*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 13
        :walk-anim 12
        :turn-anim -1

@@ -657,11 +657,9 @@
                                         *racer-explode-sg*
                                         24
                                         gp-0
-                                        (new 'static
-                                             'joint-exploder-static-params
+                                        (new 'static 'joint-exploder-static-params
                                              :joints
-                                             (new 'static
-                                                  'boxed-array
+                                             (new 'static 'boxed-array
                                                   :type
                                                   joint-exploder-static-joint-params
                                                   (new 'static 'joint-exploder-static-joint-params :joint-index 3 :parent-joint-index -1)

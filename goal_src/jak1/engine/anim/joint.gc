@@ -1374,10 +1374,7 @@
         (the-as (function none) (+ 0 #x3ee6b6ef)))
   (set! (-> (scratchpad-object terrain-context) work foreground joint-work fix-jmp-table 15)
         (the-as (function none) (+ 0 #x3ee6b6f6)))
-  (let ((arr (new 'static
-                  'array
-                  uint32
-                  16
+  (let ((arr (new 'static 'array uint32 16
                   #x7b2191b ;; = 6 ^ 129112349
                   #x7b21914 ;; = 9 ^ 129112349
                   #x7b21916 ;; = 11 ^ 129112349
@@ -1398,10 +1395,7 @@
     (dotimes (i 16)
       (set! (-> (scratchpad-object terrain-context) work foreground joint-work frm-jmp-table i)
             (the-as (function none) (-> arr i)))))
-  (let ((arr (new 'static
-                  'array
-                  uint32
-                  16
+  (let ((arr (new 'static 'array uint32 16
                   #x4d7666df ;; = 6 ^ 1299605209
                   #x4d7666d0 ;; = 9 ^ 1299605209
                   #x4d7666d2 ;; = 11 ^ 1299605209

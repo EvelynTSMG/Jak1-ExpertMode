@@ -77,8 +77,7 @@
 
 
 (define *DISP_LIST-bank*
-  (new 'static
-       'DISP_LIST-bank
+  (new 'static 'DISP_LIST-bank
        :TV_SPACING 8
        :BORDER_WIDTH 4
        :BORDER_HEIGHT 4
@@ -253,8 +252,7 @@
 
 
 (define *ANIM_TESTER-bank*
-  (new 'static
-       'anim-tester-bank
+  (new 'static 'anim-tester-bank
        :ANIM_SPEED 1.0
        :BLEND 1.0
        :OBJECT_LIST_X 10
@@ -859,8 +857,7 @@
   #f)
 
 (define anim-test-field-highlight-lw
-  (new 'static
-       'inline-array
+  (new 'static 'inline-array
        list-field
        12
        (new 'static 'list-field :left 2 :width 20)

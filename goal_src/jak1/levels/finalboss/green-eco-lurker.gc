@@ -36,8 +36,7 @@
   :shadow green-eco-lurker-shadow-mg)
 
 (define *green-eco-lurker-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 3
        :walk-anim 4
        :turn-anim 10

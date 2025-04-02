@@ -177,8 +177,7 @@
    (binding    uint32)))
 
 (defmacro sp-item (launcher &key (fade-after 0.0) &key (falloff-to 0.0) &key (flags ()) &key (period 0) &key (length 0) &key (offset 0) &key (hour-mask 0) &key (binding 0))
-  `(new 'static
-       'sparticle-group-item
+  `(new 'static 'sparticle-group-item
        :launcher ,launcher
        :fade-after ,fade-after
        :falloff-to ,falloff-to
@@ -249,8 +248,7 @@
   `(begin
     (defconstant ,name ,id)
     (set! (-> *part-group-id-table* ,id)
-          (new 'static
-               'sparticle-launch-group
+          (new 'static 'sparticle-launch-group
                :duration ,duration
                :linger-duration ,linger-duration
                :flags (sp-group-flag ,@flags)
@@ -335,16 +333,14 @@
       (set! *last-field-id* field-id)
       (cond
         ((eq? field-name 'flags)
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :initial-value (sp-cpuinfo-flag ,@param0)
               :random-mult 1))
         ((eq? field-name 'texture)
          (if (eq? (car param0) 'new)
            `(new 'static 'sp-field-init-spec :field (sp-field-id ,field-enum-name) :tex ,param0 :flags (sp-flag int))
-           `(new 'static
-                'sp-field-init-spec
+           `(new 'static 'sp-field-init-spec
                 :field (sp-field-id ,field-enum-name)
                 :tex
                 ,(string->symbol-format "{}-{}" (car param0) (cadr param0))
@@ -362,15 +358,13 @@
                   "warning copying to sparticle field {} from {} - you can only copy from fields before this one!\n"
                   field-name
                   (cadr other-field)))
-           `(new 'static
-                'sp-field-init-spec
+           `(new 'static 'sp-field-init-spec
                 :field (sp-field-id ,field-enum-name)
                 :flags (sp-flag copy-from-other)
                 :initial-value ,(- other-field-id field-id)
                 :random-mult 1)))
         ((and (= 2 param-count) (symbol? param0) (eq? param0 ':data))
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags (sp-flag object)
               :object
@@ -378,8 +372,7 @@
         ((and (= 1 param-count) (param-symbol? param0))
          `(new 'static 'sp-field-init-spec :field (sp-field-id ,field-enum-name) :flags (sp-flag symbol) :sym ,param0))
         ((and (= 1 param-count) (param-float? param0))
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags
               (sp-flag ,(if store? 'float-store 'float))
@@ -388,8 +381,7 @@
               :random-rangef 0.0
               :random-multf 1.0))
         ((and (= 2 param-count) (param-float? param0) (param-float? param1))
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags
               (sp-flag ,(if store? 'float-store 'float))
@@ -399,8 +391,7 @@
               ,(if vel? `(/ ,param1 60.0) param1)
               :random-multf 1.0))
         ((and (= 3 param-count) (param-float? param0) (param-float? param1) (param-float? param2))
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags
               (sp-flag ,(if store? 'float-store 'float))
@@ -410,8 +401,7 @@
               :random-multf
               ,(if vel? `(/ ,param2 60.0) param2)))
         ((and (= 3 param-count) (param-float? param0) (param-int? param1) (param-float? param2))
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags (sp-flag float-int-rand)
               :initial-valuef
@@ -420,24 +410,21 @@
               :random-multf
               ,(if vel? `(/ ,param2 60.0) param2)))
         ((and (= 1 param-count) (param-int? param0))
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags (sp-flag int)
               :initial-value ,param0
               :random-range 0
               :random-mult 1))
         ((and (= 2 param-count) (param-int? param0) (param-int? param1))
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags (sp-flag int)
               :initial-value ,param0
               :random-range ,param1
               :random-mult 1))
         ((and (= 3 param-count) (param-int? param0) (param-int? param1) (param-int? param2))
-         `(new 'static
-              'sp-field-init-spec
+         `(new 'static 'sp-field-init-spec
               :field (sp-field-id ,field-enum-name)
               :flags (sp-flag int)
               :initial-value ,param0
@@ -450,11 +437,9 @@
   (begin
     (set! *last-field-id* -1)
     `(set! (-> *part-id-table* ,id)
-          (new 'static
-               'sparticle-launcher
+          (new 'static 'sparticle-launcher
                :init-specs
-               (new 'static
-                    'inline-array
+               (new 'static 'inline-array
                     sp-field-init-spec
                     ,(1+ (length init-specs))
                     ,@(apply process-init-spec init-specs)

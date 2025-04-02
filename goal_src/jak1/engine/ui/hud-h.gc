@@ -116,8 +116,7 @@
    (parts      (pointer hud) 9 :overlay-at pickups)))
 
 (define *hud-parts*
-  (new 'static
-       'hud-parts
+  (new 'static 'hud-parts
        :pickups #f
        :money #f
        :fuel-cell #f

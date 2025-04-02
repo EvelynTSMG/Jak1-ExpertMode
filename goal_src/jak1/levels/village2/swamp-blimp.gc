@@ -214,8 +214,7 @@
 (defun tetherrock-get-info ((arg0 entity))
   (case (-> arg0 extra perm task)
     (((game-task swamp-tether-1))
-     (new 'static
-          'tetherrock-info
+     (new 'static 'tetherrock-info
           :rock-camera "camera-182"
           :arm-camera "camera-187"
           :blimp-rp 10
@@ -223,8 +222,7 @@
           :connected-to-rock #t
           :damping 0.99))
     (((game-task swamp-tether-2))
-     (new 'static
-          'tetherrock-info
+     (new 'static 'tetherrock-info
           :rock-camera "camera-183"
           :arm-camera "camera-186"
           :blimp-rp 6
@@ -232,8 +230,7 @@
           :connected-to-rock #t
           :damping 0.99))
     (((game-task swamp-tether-3))
-     (new 'static
-          'tetherrock-info
+     (new 'static 'tetherrock-info
           :rock-camera "camera-180"
           :arm-camera "camera-184"
           :blimp-rp 7
@@ -241,8 +238,7 @@
           :connected-to-rock #t
           :damping 0.99))
     (((game-task swamp-tether-4))
-     (new 'static
-          'tetherrock-info
+     (new 'static 'tetherrock-info
           :rock-camera "camera-181"
           :arm-camera "camera-185"
           :blimp-rp 9

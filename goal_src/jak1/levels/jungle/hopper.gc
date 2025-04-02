@@ -192,8 +192,7 @@ nav-enemy-default-event-handler
       (go-virtual nav-enemy-stare)))
 
 (define *hopper-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 5
        :walk-anim 5
        :turn-anim 9

@@ -53,8 +53,7 @@
   :shadow double-lurker-top-shadow-mg)
 
 (define *double-lurker-top-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 12
        :walk-anim 13
        :turn-anim -1
@@ -107,8 +106,7 @@
        :debug-draw-jump #f))
 
 (define *double-lurker-when-both-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 5
        :walk-anim 6
        :turn-anim -1
@@ -161,8 +159,7 @@
        :debug-draw-jump #f))
 
 (define *double-lurker-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 12
        :walk-anim 13
        :turn-anim -1

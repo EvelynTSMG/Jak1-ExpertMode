@@ -31,8 +31,7 @@
 
 ;; default to NTSC
 (define *video-parms*
-  (new 'static
-       'video-parms
+  (new 'static 'video-parms
        :set-video-mode #f
        :reset-video-mode #f
        :screen-sy 224

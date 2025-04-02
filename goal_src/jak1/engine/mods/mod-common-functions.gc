@@ -40,6 +40,23 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; add your own unique custom functions here!
+; Stolen from OrbHunt
+(defun set-cell-pos ((e entity-actor) (x float) (y float) (z float))
+  (when e
+    (set-vector! (-> e extra trans) (meters x) (meters y) (meters z) 1.0)
+    (set-vector! (res-lump-struct e 'movie-pos vector) (meters x) (meters y) (meters z) 1.0)
+  )
+)
+
+(defun set-posm ((e entity-actor) (x float) (y float) (z float))
+  (set-vector! (-> e extra trans) (meters x) (meters y) (meters z) 1.0)
+)
+
+(defun disable-buzzer-hop ((drawable process-drawable))
+  (let ((crate (the-as crate drawable)))
+    (set! (-> crate do-fancies) #f)
+  )
+)
 
 ;; Macros can be used more-or-less just like functions
 (defmacro current-cell-count ()

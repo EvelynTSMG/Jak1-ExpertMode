@@ -179,7 +179,7 @@
    (pad                             uint8 56))
   (:methods
    (deactivate (_type_) _type_)
-   (is-object-visible? (_type_ int) symbol)
+   (is-object-visible? (_type_ entity int) symbol)
    (add-irq-to-tex-buckets! (_type_) none)
    (unload! (_type_) _type_)
    (bsp-name (_type_) symbol)
@@ -246,8 +246,7 @@
 
 (if (zero? *level*)
   (set! *level*
-        (new 'static
-             'level-group
+        (new 'static 'level-group
              :length 2
              :log-in-level-bsp #f
              :loading-level #f
@@ -258,45 +257,30 @@
              '()
              :play? #f
              :level0
-             (new 'static
-                  'level
+             (new 'static 'level
                   :name #f
                   :status 'inactive
                   :tfrag-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
+                       (new 'static 'array dma-foreground-sink 3
                             (new 'static 'dma-foreground-sink :bucket (bucket-id merc-tfrag-tex0))
                             (new 'static 'generic-dma-foreground-sink :bucket (bucket-id generic-tfrag-tex0) :foreground-output-bucket 1)))
                   :pris-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
+                       (new 'static 'array dma-foreground-sink 3
                             (new 'static 'dma-foreground-sink :bucket (bucket-id merc-pris0) :foreground-texture-page 1)
-                            (new 'static
-                                 'generic-dma-foreground-sink
+                            (new 'static 'generic-dma-foreground-sink
                                  :bucket (bucket-id generic-pris0)
                                  :foreground-texture-page 1
                                  :foreground-output-bucket 1)))
                   :water-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
+                       (new 'static 'array dma-foreground-sink 3
                             (new 'static 'dma-foreground-sink :bucket (bucket-id merc-water0) :foreground-texture-page 2)
-                            (new 'static
-                                 'generic-dma-foreground-sink
+                            (new 'static 'generic-dma-foreground-sink
                                  :bucket (bucket-id generic-water0)
                                  :foreground-texture-page 2
                                  :foreground-output-bucket 1)))
@@ -304,51 +288,35 @@
                   :inside-boxes? #f
                   :force-inside? #f)
              :level1
-             (new 'static
-                  'level
+             (new 'static 'level
                   :name #f
                   :index 1
                   :status 'inactive
                   :tfrag-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
+                       (new 'static 'array dma-foreground-sink 3
                             (new 'static 'dma-foreground-sink :bucket (bucket-id merc-tfrag-tex1) :foreground-texture-level 1)
-                            (new 'static
-                                 'generic-dma-foreground-sink
+                            (new 'static 'generic-dma-foreground-sink
                                  :bucket (bucket-id generic-tfrag-tex1)
                                  :foreground-texture-level 1
                                  :foreground-output-bucket 1)))
                   :pris-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
+                       (new 'static 'array dma-foreground-sink 3
                             (new 'static 'dma-foreground-sink :bucket (bucket-id merc-pris1) :foreground-texture-page 1 :foreground-texture-level 1)
-                            (new 'static
-                                 'generic-dma-foreground-sink
+                            (new 'static 'generic-dma-foreground-sink
                                  :bucket (bucket-id generic-pris1)
                                  :foreground-texture-page 1
                                  :foreground-texture-level 1
                                  :foreground-output-bucket 1)))
                   :water-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
+                       (new 'static 'array dma-foreground-sink 3
                             (new 'static 'dma-foreground-sink :bucket (bucket-id merc-water1) :foreground-texture-page 2 :foreground-texture-level 1)
-                            (new 'static
-                                 'generic-dma-foreground-sink
+                            (new 'static 'generic-dma-foreground-sink
                                  :bucket (bucket-id generic-water1)
                                  :foreground-texture-page 2
                                  :foreground-texture-level 1
@@ -357,55 +325,38 @@
                   :inside-boxes? #f
                   :force-inside? #f)
              :level-default
-             (new 'static
-                  'level
+             (new 'static 'level
                   :name 'default
                   :index 2
                   :status 'reserved
                   :tfrag-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
+                       (new 'static 'array dma-foreground-sink 3
                             (new 'static 'dma-foreground-sink :bucket (bucket-id merc-alpha-tex) :foreground-texture-level 2)
-                            (new 'static
-                                 'generic-dma-foreground-sink
+                            (new 'static 'generic-dma-foreground-sink
                                  :bucket (bucket-id generic-alpha-tex)
                                  :foreground-texture-level 2
                                  :foreground-output-bucket 1)))
                   :pris-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
-                            (new 'static
-                                 'dma-foreground-sink
+                       (new 'static 'array dma-foreground-sink 3
+                            (new 'static 'dma-foreground-sink
                                  :bucket (bucket-id merc-pris-common)
                                  :foreground-texture-page 1
                                  :foreground-texture-level 2)
-                            (new 'static
-                                 'generic-dma-foreground-sink
+                            (new 'static 'generic-dma-foreground-sink
                                  :bucket (bucket-id generic-pris-common)
                                  :foreground-texture-page 1
                                  :foreground-texture-level 2
                                  :foreground-output-bucket 1)))
                   :water-tex-foreground-sink-group
-                  (new 'static
-                       'dma-foreground-sink-group
+                  (new 'static 'dma-foreground-sink-group
                        :sink
-                       (new 'static
-                            'array
-                            dma-foreground-sink
-                            3
+                       (new 'static 'array dma-foreground-sink 3
                             (new 'static 'dma-foreground-sink :bucket (bucket-id merc-water0) :foreground-texture-page 2 :foreground-texture-level 2)
-                            (new 'static
-                                 'generic-dma-foreground-sink
+                            (new 'static 'generic-dma-foreground-sink
                                  :bucket (bucket-id generic-water0)
                                  :foreground-texture-page 2
                                  :foreground-texture-level 2

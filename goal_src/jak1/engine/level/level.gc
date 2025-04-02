@@ -709,7 +709,8 @@
 ;; method 27 level
 
 ;; method 10 level
-(defmethod is-object-visible? ((this level) (arg0 int))
+(define-extern crate (type))
+(defmethod is-object-visible? ((this level) (e entity) (arg0 int))
   "Is arg0 visible? Note that this will return #f if the visibility data is not loaded."
   ;; og:mod-base anything thats not a vanilla level -> always show actors
   (case (-> this name)
@@ -743,6 +744,16 @@
     (else
      ;; some custom level -> return true
      (return #t)))
+  
+  ;mod: Make scout flies and power cells always visible
+  (if (or
+        (type-type? (-> (the entity-actor e) etype) fuel-cell)
+        (type-type? (-> (the entity-actor e) etype) crate)
+        (type-type? (-> (the entity-actor e) etype) money)
+      )
+    (return #t)
+  )
+
   ;; og:preserve-this pc port added option to show every actor regardless
   (with-pc
     (if (not (-> *pc-settings* ps2-actor-vis?)) (return #t)))

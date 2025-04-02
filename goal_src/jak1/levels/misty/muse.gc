@@ -295,8 +295,7 @@ nav-enemy-default-event-handler
       (ja-post)))
 
 (define *muse-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 3
        :walk-anim 4
        :turn-anim -1

@@ -82,8 +82,7 @@
    (default-tilt-adjust     degrees)))
 
 (define *CAMERA-bank*
-  (new 'static
-       'camera-bank
+  (new 'static 'camera-bank
        :collide-move-rad 1638.4
        :min-detectable-velocity 40.96
        :attack-timeout (seconds 0.25)

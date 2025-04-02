@@ -129,8 +129,7 @@ nav-enemy-default-event-handler
 
 ;mod: Speed up junglefish
 (define *junglefish-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 4
        :walk-anim 4
        :turn-anim -1

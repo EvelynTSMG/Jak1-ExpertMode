@@ -95,8 +95,7 @@
 
 ;; The kernel context is a global which stores the state of the kernel.
 (define *kernel-context*
-  (new 'static
-       'kernel-context
+  (new 'static 'kernel-context
        :prevent-from-run (process-mask execute sleep)
        :next-pid 2
        ;; 1 will be listener

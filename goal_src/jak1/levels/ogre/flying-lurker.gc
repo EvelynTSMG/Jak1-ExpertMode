@@ -64,8 +64,7 @@
             (t9-10 (if v1-34 (-> v1-34 extra process)) a1-9)))
         (send-event (-> gp-1 process 0) 'clone-copy-trans #f)
         (send-event (-> gp-1 process 0) 'anim-mode 'clone-anim)
-        (ja-play-spooled-anim (new 'static
-                                   'spool-anim
+        (ja-play-spooled-anim (new 'static 'spool-anim
                                    :name "plunger-lurker-blowup"
                                    :index 7
                                    :parts 4

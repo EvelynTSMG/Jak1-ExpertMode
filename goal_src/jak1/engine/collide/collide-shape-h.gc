@@ -677,12 +677,10 @@
   (the-as int (+ (-> this type size) (* (+ (-> this allocated-riders) -1) 32))))
 
 (define *collide-shape-prim-backgnd*
-  (new 'static
-       'collide-shape-prim-mesh
+  (new 'static 'collide-shape-prim-mesh
        :cshape #f
        :prim-core
-       (new 'static
-            'collide-prim-core
+       (new 'static 'collide-prim-core
             :world-sphere
             (new 'static 'vector :w 204800000.0)
             :collide-as (collide-kind background)
@@ -694,12 +692,10 @@
        :mesh #f))
 
 (define *collide-shape-prim-water*
-  (new 'static
-       'collide-shape-prim-mesh
+  (new 'static 'collide-shape-prim-mesh
        :cshape #f
        :prim-core
-       (new 'static
-            'collide-prim-core
+       (new 'static 'collide-prim-core
             :world-sphere
             (new 'static 'vector :w 204800000.0)
             :collide-as (collide-kind water)

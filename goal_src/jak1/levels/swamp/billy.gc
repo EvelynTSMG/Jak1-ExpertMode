@@ -230,8 +230,7 @@
            (+! (-> s5-1 x) -40960.0)
            (+! (-> s5-1 z) 20480.0)
            (manipy-spawn s5-1 (-> this entity) *farthy-snack-sg* #f :to this))))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "billy-introduction"
           :index 5
           :parts 14
@@ -270,8 +269,7 @@
      (set! (-> this skippable) #t)
      (set! (-> this blend-on-exit) (the-as art-joint-anim #t))
      (set! (-> this will-talk) #t)
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "billy-reminder-1"
           :index 8
           :parts 2
@@ -302,8 +300,7 @@
      (when arg0
        (set! (-> this cell-for-task) (current-task (-> this tasks)))
        (close-current! (-> this tasks)))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "billy-resolution"
           :index 9
           :parts 2

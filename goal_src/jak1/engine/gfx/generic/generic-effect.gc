@@ -11,11 +11,9 @@
 (define *target-lock* (the-as symbol 0))
 
 (define *generic-consts*
-  (new 'static
-       'generic-consts
+  (new 'static 'generic-consts
        :dma-header
-       (new 'static
-            'dma-packet
+       (new 'static 'dma-packet
             :dma
             (new 'static 'dma-tag :id (dma-tag-id cnt))
             :vif0
@@ -29,11 +27,9 @@
        :dma-cnt-call
        (new 'static 'dma-packet :dma (new 'static 'dma-tag :id (dma-tag-id cnt)))
        :matrix
-       (new 'static
-            'matrix
+       (new 'static 'matrix
             :vector
-            (new 'static
-                 'inline-array
+            (new 'static 'inline-array
                  vector
                  4
                  (new 'static 'vector :x 1.0)
@@ -60,8 +56,7 @@
        :reset-cycle-tag #x1000404
        :dma-tag-cnt #x10000000
        :envmap
-       (new 'static
-            'generic-envmap-consts
+       (new 'static 'generic-envmap-consts
             :consts
             (new 'static 'vector :x 1.0 :z 0.5 :w 0.5)
             :strgif

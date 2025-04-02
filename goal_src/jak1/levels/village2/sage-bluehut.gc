@@ -38,8 +38,7 @@
           (let ((s5-2 (-> this assistant extra process)))
             (if (and s5-2 (should-display? (the-as assistant-bluehut s5-2))) (send-event s5-2 'clone (process->handle this))))
           (set! (-> this draw bounds w) 40960.0))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "sage-bluehut-introduction-crop-dusting"
              :index 8
              :parts 12
@@ -52,8 +51,7 @@
           (close-specific-task! (game-task swamp-tether-2) (task-status need-introduction))
           (close-specific-task! (game-task swamp-tether-3) (task-status need-introduction))
           (close-specific-task! (game-task swamp-tether-4) (task-status need-introduction)))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "sage-bluehut-introduction-prec-arm"
              :index 6
              :parts 8
@@ -72,8 +70,7 @@
         (new 'static 'spool-anim :name "sage-bluehut-reminder-1-crop-dusting" :index 9 :parts 3 :command-list '()))
        (else
         (if arg0 (set! (-> this draw bounds w) 40960.0))
-        (new 'static
-             'spool-anim
+        (new 'static 'spool-anim
              :name "sage-bluehut-reminder-1-prec-arm"
              :index 7
              :parts 4

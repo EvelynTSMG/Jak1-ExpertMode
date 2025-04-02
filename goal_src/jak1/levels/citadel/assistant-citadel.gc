@@ -21,8 +21,7 @@
      (new 'static 'spool-anim :name "assistant-lavatube-end-resolution" :index 4 :parts 11 :command-list '()))
     (((task-status need-reward-speech))
      (if arg0 (close-current! (-> this tasks)))
-     (new 'static
-          'spool-anim
+     (new 'static 'spool-anim
           :name "assistant-lavatube-end-resolution"
           :index 4
           :parts 11

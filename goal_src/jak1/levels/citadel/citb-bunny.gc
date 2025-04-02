@@ -17,8 +17,7 @@
   :bounds (static-spherem 0 0.25 0 2))
 
 (define *citb-bunny-nav-enemy-info*
-  (new 'static
-       'nav-enemy-info
+  (new 'static 'nav-enemy-info
        :idle-anim 3
        :walk-anim 3
        :turn-anim 3

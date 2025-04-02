@@ -105,8 +105,7 @@ Amibiguous List
 Within unrelated form
 ===
 
-(new 'static
-     'gif-tag64
+(new 'static 'gif-tag64
      :nloop
      #x1
      :eop
@@ -120,8 +119,7 @@ Within unrelated form
 
 ---
 
-(new 'static
-     'gif-tag64
+(new 'static 'gif-tag64
      :nloop #x1
      :eop #x1
      :pre #x1
@@ -133,8 +131,7 @@ Within unrelated form
 Quoted Symbol
 ===
 
-(new 'static
-     'clm-item
+(new 'static 'clm-item
      :description "adjust"
      :button-symbol
      'x
@@ -143,8 +140,7 @@ Quoted Symbol
 
 ---
 
-(new 'static
-     'clm-item
+(new 'static 'clm-item
      :description "adjust"
      :button-symbol 'x
      :action
@@ -155,8 +151,7 @@ Special case forms
 ===
 
 (define *CAMERA_MASTER-bank*
-  (new 'static
-       'camera-master-bank
+  (new 'static 'camera-master-bank
        :onscreen-head-height
        (meters 2.65)
        :onscreen-foot-height
@@ -172,8 +167,7 @@ Special case forms
 ---
 
 (define *CAMERA_MASTER-bank*
-  (new 'static
-       'camera-master-bank
+  (new 'static 'camera-master-bank
        :onscreen-head-height (meters 2.65)
        :onscreen-foot-height (meters -0.5)
        :target-height (meters 2.15)
@@ -188,8 +182,7 @@ Enums
 ===
 
 (define *warp-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 273066.66
        :turnvv 1820444.5
@@ -215,8 +208,7 @@ Enums
 ---
 
 (define *warp-jump-mods*
-  (new 'static
-       'surface
+  (new 'static 'surface
        :name 'jump
        :turnv 273066.66
        :turnvv 1820444.5

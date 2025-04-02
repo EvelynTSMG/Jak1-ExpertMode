@@ -155,8 +155,7 @@
     ;; now multiply by the brightness setting
     (vector-float*! (-> obj controller-led-color) (-> obj controller-led-color) (-> obj controller-led-brightness))
     ;; now use it as the controller led color
-    (let ((led-rgba (new 'static
-                         'rgba
+    (let ((led-rgba (new 'static 'rgba
                          :r
                          (the int (lerp-scale 0.0 255.0 (-> obj controller-led-color r) 0.0 1.0))
                          :g

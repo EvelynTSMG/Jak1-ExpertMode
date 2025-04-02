@@ -196,8 +196,7 @@
 ;;;;;;;;;;;;;;;;
 
 (define bones-vu0-block
-  (new 'static
-       'vu-function
+  (new 'static 'vu-function
        #| :length 63 :qlength 32 |#
        ))
 
@@ -650,8 +649,7 @@
   (none))
 
 (define *default-shadow-settings*
-  (new 'static
-       'shadow-settings
+  (new 'static 'shadow-settings
        :shadow-dir
        (new 'static 'vector :x -0.4226 :y -0.9063 :w 409600.0)
        :bot-plane

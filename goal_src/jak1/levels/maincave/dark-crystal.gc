@@ -43,11 +43,9 @@
 (define *dark-crystal-flash-delays* (new 'static 'boxed-array :type int32 #xb4 #x96 #x78 90 60 30 15 7 3))
 
 (define *dark-crystal-exploder-params*
-  (new 'static
-       'joint-exploder-static-params
+  (new 'static 'joint-exploder-static-params
        :joints
-       (new 'static
-            'boxed-array
+       (new 'static 'boxed-array
             :type
             joint-exploder-static-joint-params
             (new 'static 'joint-exploder-static-joint-params :joint-index 3 :parent-joint-index -1)
