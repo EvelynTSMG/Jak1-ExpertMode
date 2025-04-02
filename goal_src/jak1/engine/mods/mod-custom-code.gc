@@ -24,11 +24,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun mod-vanilla-drawables ((drawable process-drawable) (e entity-actor))
-  (training-mod-pickup drawable e)
-  (village1-mod-pickup drawable e)
-  (jungle-mod-pickup   drawable e)
-  (misty-mod-pickup    drawable e)
-  (beach-mod-pickup    drawable e)
+  (training-mod-pickup   drawable e)
+
+  (village1-mod-pickup   drawable e)
+  (jungle-mod-pickup     drawable e)
+  (misty-mod-pickup      drawable e)
+  (beach-mod-pickup      drawable e)
+  (firecanyon-mod-pickup drawable e)
 
   (none)
 )

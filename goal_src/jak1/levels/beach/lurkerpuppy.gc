@@ -148,7 +148,7 @@ nav-enemy-default-event-handler
        :walk-rotate-speed (degrees 1999.9999)
        :walk-acceleration (meters 1.9)
        :walk-turn-time (seconds 0.1)
-       :attack-shove-back (meters 12)
+       :attack-shove-back (meters 12) ;mod: Lurker Puppies shove further
        :attack-shove-up (meters 2.5)
        :shadow-size (meters 2)
        :notice-nav-radius (meters 1)

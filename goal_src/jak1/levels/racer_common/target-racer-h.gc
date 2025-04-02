@@ -137,16 +137,16 @@
   (new 'static 'racer-bank
        :slide-hold-time (seconds 0.2)
        :heat-max 100.0
-       :hotcoals-heat-inc 3.0
-       :lava-heat-inc 20.0
-       :lava-air-heat-inc 4.0
-       :surface-heat-inc 1.0
-       :jump-heat-inc 2.0
-       :lavatube-hotcoals-heat-inc 2.0
-       :lavatube-lava-heat-inc 4.5
-       :lavatube-lava-air-heat-inc 4.0
-       :lavatube-surface-heat-inc 1.0
-       :lavatube-jump-heat-inc 10.0
+       :hotcoals-heat-inc 6.0 ;mod: Heat acculumates faster (3.0 -> 6.0)
+       :lava-heat-inc 40.0 ;mod: (20.0 -> 40.0)
+       :lava-air-heat-inc 10.0 ;mod: (4.0 -> 10.0)
+       :surface-heat-inc 3.0 ;mod: (1.0 -> 3.0)
+       :jump-heat-inc 5.0 ;mod: (2.0 -> 5.0)
+       :lavatube-hotcoals-heat-inc 5.0 ;mod: (2.0 -> 5.0)
+       :lavatube-lava-heat-inc 12.0 ;mod: (4.5 -> 12.0)
+       :lavatube-lava-air-heat-inc 10.0 ;mod: (4.0 -> 10.0)
+       :lavatube-surface-heat-inc 3.0 ;mod: (1.0 -> 3.0)
+       :lavatube-jump-heat-inc 20.0 ;mod: (10.0 -> 20.0)
        :boost-curve-max (meters 5)
        :boost-level-max (meters 12.5)
        :boost-level-inc (meters 2)

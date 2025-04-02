@@ -97,7 +97,8 @@
 (defstate balloon-idle (balloon)
   :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
-        (('attack) (send-event proc 'heat -10.0) (go balloon-popping))))
+        ;mod: Balloons reduce heat more
+        (('attack) (send-event proc 'heat -25.0) (go balloon-popping))))
   :code (behavior ()
       (transform-post)
       (loop

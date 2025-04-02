@@ -88,3 +88,16 @@
     (('crate-2467) (set-cell-pos e -252.45 16.94 -302.89) (rot-ent e -10.0 -7.5 -20.0)) ; Cannon Tower, in front of the window
   )
 )
+
+(defmacro firecanyon-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; FLIES
+    (('crate-1019) (set-posm e  18.84 30.70  -292.14))
+    (('crate-1027) (set-posm e 155.12 30.69  -514.36))
+    (('crate-1028) (set-posm e 162.46 30.69  -653.72))
+    (('crate-1029) (set-posm e 172.57 34.37  -860.69))
+    (('crate-1030) (set-posm e -89.90 30.69 -1084.23))
+    (('crate-1032) (set-posm e 225.85 34.91 -1214.99))
+    (('crate-1033) (set-posm e 260.63 30.99 -1278.05))
+  )
+)
