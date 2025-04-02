@@ -31,8 +31,8 @@
     :net-accel            32.0  ;vanilla:  28.0
     :net-decel            17.0  ;vanilla:  15.0
     :fish-vel              2.85 ;vanilla:   1.85 ;mod: All fish are faster, controls are snappier to compensate
-    :max-caught          200    ;vanilla: 200
-    :max-missed           20    ;vanilla:  20
+    :max-caught          200    ;vanilla: 200 ;mod: Can't change because cutscene-claimed
+    :max-missed           20    ;vanilla:  20 ;mod: Can't change because cutscene-claimed
     :max-caught-hard     400
     :max-missed-hard      30
   )
