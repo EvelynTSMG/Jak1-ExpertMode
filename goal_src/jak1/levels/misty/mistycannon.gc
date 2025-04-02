@@ -607,6 +607,7 @@
         0)
       (set-time! (-> self ground-time))
       (sound-play "sack-land" :position (the-as symbol (-> self root trans)))
+      (go mistycannon-missile-explode) ;mod: Cannon bags explode upon immediately landing
       (ja-no-eval :group! sack-hit-ja :num! (seek!) :frame-num 0.0)
       (until (ja-done? 0)
         (suspend)
@@ -1050,12 +1051,12 @@
         (set! (-> gp-0 y) (-> s5-1 y))))
     (mistycannon-find-trajectory gp-0)
     (when (= (-> gp-0 time) 0.0)
-      (when (time-elapsed? (-> self state-time) (seconds 3))
+      (when (time-elapsed? (-> self state-time) (seconds 0.3))
         (mistycannon-method-22 self 409600.0 2.0 20480.0)
         (set-time! (-> self state-time)))
       (return #f))
     (when (angle-tracker-seek! (-> self tilt) (-> gp-0 theta))
-      (when (time-elapsed? (-> self state-time) (seconds 3))
+      (when (time-elapsed? (-> self state-time) (seconds 0.3))
         (mistycannon-method-22 self (fmax 163840.0 (fmin 409600.0 (-> gp-0 speed))) (-> gp-0 time) 20480.0)
         (set-time! (-> self state-time)))))
   0
@@ -1273,11 +1274,11 @@
   (logclear! (-> this mask) (process-mask actor-pause))
   (let ((f30-0 (res-lump-float arg0 'rotmin :default 16384.0))
         (f28-0 (res-lump-float arg0 'rotmax :default 32768.0))
-        (f0-15 (res-lump-float arg0 'rotspeed :default 3640.889)))
+        (f0-15 (res-lump-float arg0 'rotspeed :default (degrees 40.0)))) ;mod: Cannon can rotate much faster
     (angle-tracker-init-range! (-> this rotate) f30-0 f28-0 f0-15))
   (let ((f30-1 (res-lump-float arg0 'tiltmin :default -1820.4445))
         (f28-1 (res-lump-float arg0 'tiltmax :default 12743.111))
-        (f0-16 (res-lump-float arg0 'tiltspeed :default 3640.889)))
+        (f0-16 (res-lump-float arg0 'tiltspeed :default (degrees 40.0)))) ;mod: Cannon can tilt much faster
     (angle-tracker-init-range! (-> this tilt) f30-1 f28-1 f0-16))
   (set! (-> this avoid-entity) (entity-actor-lookup (-> this entity) 'alt-actor 0))
   (set! (-> this center-point w) (res-lump-float arg0 'center-radius))

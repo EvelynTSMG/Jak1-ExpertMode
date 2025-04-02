@@ -146,7 +146,7 @@ nav-enemy-default-event-handler
     (behavior ()
       (set! (-> self rotate-speed) 524288.0)
       (set! (-> self turn-time) (seconds 0.1))
-      (set! (-> self speed-scale) 1.0)
+      (set! (-> self speed-scale) 2.3)
       (let ((f30-0 (nav-enemy-rnd-float-range 0.8 1.2)))
         (cond
           ((ja-group? bonelurker-win-ja) (ja-channel-push! 1 (seconds 0.3)))
@@ -286,10 +286,11 @@ nav-enemy-default-event-handler
         (vector+! gp-0 (-> self collide-info trans) gp-0)
         (set! (-> self nav target-pos quad) (-> gp-0 quad)))
       (ja-channel-push! 1 (seconds 0.1))
-      (ja-no-eval :group! bonelurker-stun-ja :num! (seek!) :frame-num 0.0)
+      (ja-no-eval :group! bonelurker-stun-ja :num! (seek!) :frame-num 17.0)
       (until (ja-done? 0)
         (suspend)
-        (ja :num! (seek!)))
+        (ja :num! (seek!))
+      )
       (go-virtual nav-enemy-chase))
   :post bonelurker-push-post)
 
@@ -307,23 +308,23 @@ nav-enemy-default-event-handler
        :die-anim 14
        :neck-joint 5
        :player-look-at-joint 5
-       :run-travel-speed (meters 6)
+       :run-travel-speed (meters 9.5) ; No idea if any of these works lol
        :run-rotate-speed (degrees 2880)
-       :run-acceleration (meters 1)
+       :run-acceleration (meters 2.0)
        :run-turn-time (seconds 0.1)
-       :walk-travel-speed (meters 3)
+       :walk-travel-speed (meters 6.5)
        :walk-rotate-speed (degrees 2880)
-       :walk-acceleration (meters 1)
+       :walk-acceleration (meters 1.5)
        :walk-turn-time (seconds 0.1)
-       :attack-shove-back (meters 3)
-       :attack-shove-up (meters 2)
+       :attack-shove-back (meters 12) ;mod: Increased bonelurker knockback
+       :attack-shove-up (meters 2.8)
        :shadow-size (meters 2)
        :notice-nav-radius (meters 5)
        :nav-nearest-y-threshold (meters 5)
        :notice-distance (meters 30)
        :stop-chase-distance (meters 40)
        :frustration-distance (meters 8)
-       :frustration-time (seconds 4)
+       :frustration-time (seconds 2)
        :die-anim-hold-frame 24.0
        :jump-anim-start-frame 10.0
        :jump-land-anim-end-frame 32.0

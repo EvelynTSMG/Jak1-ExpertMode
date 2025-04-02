@@ -69,7 +69,7 @@
           (when (send-event proc
                             'shove
                             #f
-                            (static-attack-info ((shove-back (meters 0)) (shove-up (meters 13)) (angle 'jump) (control 1.0))))
+                            (static-attack-info ((shove-back (meters 0)) (shove-up (meters 13)) (angle 'jump) (control 0.5))))
             (let ((v0-0 #t)) (set! (-> self launched-player) v0-0) v0-0)))))
   :code
     (behavior ()

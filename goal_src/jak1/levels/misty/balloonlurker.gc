@@ -217,11 +217,11 @@
        :buoyancy-depth-offset (meters 30)
        :player-mass 20.0
        :rudder-factor 32.0
-       :max-engine-thrust 409600.0
-       :max-rudder-deflection-angle 8192.0
-       :throttle-factor 0.5
-       :throttle-distance 53248.0
-       :throttle-close-distance 81920.0
+       :max-engine-thrust (meters 100.0)
+       :max-rudder-deflection-angle (degrees 40.0)
+       :throttle-factor 0.25
+       :throttle-distance (meters 13.0)
+       :throttle-close-distance (meters 20.0)
        :explosion-force 24576000.0
        :mine-weight 53248.0))
 
@@ -359,27 +359,38 @@
 (defbehavior balloonlurker-event-handler balloonlurker ((arg0 process) (arg1 int) (arg2 symbol) (arg3 event-message-block))
   (case arg2
     (('touch 'attack)
-     (balloonlurker-player-impulse)
-     (when ((method-of-type touching-shapes-entry prims-touching?)
-            (the-as touching-shapes-entry (-> arg3 param 0))
-            (-> self root-overlay)
-            (the-as uint 1))
-       (do-push-aways! (-> self root-overlay))
-       (send-event arg0 'shove (-> arg3 param 0) (static-attack-info ((shove-back (meters 2)) (shove-up (meters 0.5))))))
-     (dotimes (s4-0 2)
-       (let ((s3-0 (if (zero? s4-0) 8 16)))
-         (when ((method-of-type touching-shapes-entry prims-touching?)
-                (the-as touching-shapes-entry (-> arg3 param 0))
-                (-> self root-overlay)
-                (the-as uint s3-0))
-           (let ((a0-10 (find-prim-by-id (-> self root-overlay) (the-as uint s3-0))))
-             (when a0-10
-               (set! (-> self explosion-force-position quad) (-> a0-10 prim-core world-sphere quad))
-               (if (send-event arg0 'attack (-> arg3 param 0) (static-attack-info ((mode 'balloonlurker))))
-                 (level-hint-spawn (text-id misty-bike-mines-hint) "sksp0063" (the-as entity #f) *entity-pool* (game-task none)))
-               (go balloonlurker-mine-explode s4-0))))))
-     #f)
-    (('die) (go balloonlurker-die))))
+      (balloonlurker-player-impulse)
+      (when ((method-of-type touching-shapes-entry prims-touching?)
+              (the-as touching-shapes-entry (-> arg3 param 0))
+              (-> self root-overlay)
+              (the-as uint 1)
+            )
+        (do-push-aways! (-> self root-overlay))
+        (send-event arg0 'shove (-> arg3 param 0) (static-attack-info ((shove-back (meters 2)) (shove-up (meters 0.5)))))
+      )
+      (dotimes (mine-idx 2)
+        (let ((prim-id (if (zero? mine-idx) 8 16)))
+          (when ((method-of-type touching-shapes-entry prims-touching?)
+                  (the-as touching-shapes-entry (-> arg3 param 0))
+                  (-> self root-overlay)
+                  (the-as uint prim-id))
+            (let ((mine-prim (find-prim-by-id (-> self root-overlay) (the-as uint prim-id))))
+                (when mine-prim
+                (set! (-> self explosion-force-position quad) (-> mine-prim prim-core world-sphere quad))
+                (if (send-event arg0 'attack (-> arg3 param 0) (static-attack-info ((mode 'death)))) ;mod: Balloonlurker mines instakill
+                  (level-hint-spawn (text-id misty-bike-mines-hint) "sksp0063" (the-as entity #f) *entity-pool* (game-task none))
+                )
+                (go balloonlurker-mine-explode mine-idx)
+              )
+            )
+          )
+        )
+      )
+      #f
+    )
+    (('die) (go balloonlurker-die))
+  )
+)
 
 (defmethod rigid-body-platform-method-23 ((this balloonlurker) (arg0 float))
   (let ((s5-0 (new 'stack-no-clear 'vector)))
@@ -544,16 +555,14 @@
       (set! (-> self explosion-force-position quad)
             (-> self node-list data (-> self explosion-joint-index-bytes arg0) bone transform vector 3 quad))
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 204)
                      -1
                      #f
                      #f
                      #f
                      (-> self explosion-force-position)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (sound-play "explosion")
       (set! (-> self explosion) #t)
       (vector-! (-> self explosion-force) (-> self rbody position) (-> self explosion-force-position))
@@ -639,16 +648,14 @@
   :code
     (behavior ()
       (process-spawn part-tracker
-                     :init
-                     part-tracker-init
+                     :init part-tracker-init
                      (-> *part-group-id-table* 203)
                      -1
                      #f
                      #f
                      #f
                      (-> self root trans)
-                     :to
-                     *entity-pool*)
+                     :to *entity-pool*)
       (rigid-body-method-17 (-> self parent-override 0 rbody) (-> self root trans) (-> self root transv))
       (clear-collide-with-as (-> self root))
       (ja-channel-push! 1 (seconds 0.1))

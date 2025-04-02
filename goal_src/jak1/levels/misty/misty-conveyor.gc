@@ -13,6 +13,8 @@
 
 ;; DECOMP BEGINS
 
+;;;;; Deep thanks to the devs of The Forgotten Lands, they figured this out first, I just copied it :P ;;;;;
+
 (defpartgroup group-keg-bounce
   :id 197
   :duration (seconds 0.035)
@@ -192,10 +194,10 @@
           (let ((f28-0 (the float (+ (-> (the-as keg-conveyor-paddle (-> self parent 0)) path curve num-cverts) -1))))
             0.0
             (let ((f26-1 (- 1.0 (get-current-phase (-> (the-as keg-conveyor-paddle (-> self parent 0)) sync))))
-                  (f24-0 102379.1))
+                  (f24-0 (meters 18.0))) ;mod: Decreased bounce height (25.0 -> 18.0)
               (/ 1.0 f24-0)
               (let ((f22-0 1.0)
-                    (f20-0 2.5))
+                    (f20-0 1.5)) ;mod: Decreased smush distance (2.5 -> 1.25)
                 (set! sv-48 0.0)
                 (set! sv-64 0.0)
                 (set! sv-80 (- (-> *standard-dynamics* gravity-length)))
@@ -263,7 +265,7 @@
                                           (new-stack-vector0)
                                           (the float (+ (-> (the-as process-drawable (-> self parent 0)) path curve num-cverts) -1))))
             (s5-0 (new-stack-vector0))
-            (f30-0 61440.0)
+            (f30-0 (meters 20.0)) ;mod: end keg speed is faster (15.0 -> 20.0)
             (f28-0 0.0)
             (f26-0 (- (-> *standard-dynamics* gravity-length))))
         (let ((v1-10 (-> self draw shadow-ctrl))) (logior! (-> v1-10 settings flags) (shadow-flags disable-draw)))
@@ -356,13 +358,15 @@
             (s5-0 (length *keg-conveyor-keg-spawn-table*)))
         (loop
           (let ((s4-0 #f))
-            (when (or (not *target*) (< 102400.0 (vector-vector-distance (-> self root trans) (-> *target* control trans))))
+            ;mod: Conveyor keeps spawning kegs even if player is close
+            (when *target*
               (let ((v1-10 (-> *keg-conveyor-keg-spawn-table* gp-0)))
                 (cond
                   ((zero? v1-10) (nothing))
                   ((= v1-10 1) (keg-conveyor-spawn-keg (the-as keg-conveyor self)))
                   ((= v1-10 2) (keg-conveyor-spawn-bouncing-keg (the-as keg-conveyor self)))
-                  (else (nothing)))))
+                  (else (nothing))))
+            )
             (+! gp-0 1)
             (if (>= gp-0 s5-0) (set! gp-0 0))
             (ja-no-eval :group! (ja-group) :num! (seek!) :frame-num 0.0)
@@ -378,7 +382,7 @@
                           (v1-42 (-> self object-on-paddle)))
                       (t9-8 (the-as process-tree (if v1-42 (-> v1-42 0 max-value))) a1-2)))))
               (suspend)
-              (ja :num! (seek!)))))))
+              (ja :num! (seek! max 1.5))))))) ;mod: Kegs spawn more often (1.0 -> 1.5)
   :post transform-post)
 
 (defbehavior keg-conveyor-paddle-init-by-other keg-conveyor-paddle ((arg0 keg-conveyor-paddle))
@@ -403,7 +407,7 @@
   (set! (-> self root quat vec quad) (-> arg0 root quat vec quad))
   (set! (-> self root scale quad) (-> arg0 root scale quad))
   (initialize-skeleton self *keg-conveyor-paddle-sg* '())
-  (setup-params! (-> self sync) (the-as uint 4800) 0.0 0.15 0.15)
+  (setup-params! (-> self sync) (the-as uint 3600) 0.0 0.15 0.15)
   (logclear! (-> self mask) (process-mask actor-pause enemy))
   (set! (-> self object-on-paddle) (the-as (pointer bouncing-float) #f))
   (go keg-conveyor-paddle-idle)

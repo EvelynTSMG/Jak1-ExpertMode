@@ -27,6 +27,8 @@
   (training-mod-pickup drawable e)
   (village1-mod-pickup drawable e)
   (jungle-mod-pickup   drawable e)
+  (misty-mod-pickup    drawable e)
+  (beach-mod-pickup    drawable e)
 
   (none)
 )

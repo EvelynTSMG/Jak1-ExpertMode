@@ -39,7 +39,7 @@
     (('money-190) (set-posm e 218.83 40.00 -246.80)) ; to modded last fly
 
     ;; CELLS
-    (('fuel-cell-1) (set-cell-pos e 362.21 109.64 -241.05));362.21 109.87 241.05)) ; Temple, top of the button (so you're forced to go down)
+    (('fuel-cell-1) (set-cell-pos e 362.21 109.64 -241.05)) ; Temple, top of the button (so you're "forced" to go down) (lol)
 
     ;; FLIES
     (('crate-3)   (set-cell-pos e 310.18 29.14 -223.54)) ; Start Path, behind rock on upper ledge
@@ -49,5 +49,31 @@
     (('crate-688) (set-cell-pos e 372.56 42.55 -272.87)) ; Temple, on top of arch
     (('crate-689) (set-cell-pos e 335.20 20.97 -135.13)) ; Start Path, sneak in behind the log
     ; 'crate-1844 left on temple side path
+  )
+)
+
+(defmacro misty-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; CELLS
+    (('fuel-cell-12) (set-cell-pos e 23.83 37.40 1087.76)) ; Ship, top of rotor near vanilla spot
+
+    ;; MISC
+    (('crate-685) (set-posm e -151.13 45.63 916.06) (rot-ent e 0.0 -40.0   0.0)) ; Adds some crates to the skip rock
+    (('crate-660) (set-posm e -149.05 49.41 916.60) (rot-ent e 0.0  -5.0 -28.0)) ; at the end of the cliff path
+
+    ;; FLIES
+    (('crate-659)  (set-cell-pos e   57.47 35.29  971.95)) ; Muse Path, inside bone
+    (('crate-673)  (set-cell-pos e -233.94 20.05 1007.41)) ; Arena Back, on the right
+    (('crate-672)  (set-cell-pos e  -78.90 30.14  921.72)) ; Cliff Path, slightly shifted to the side
+    (('crate-684)  (set-cell-pos e  -11.03  2.91  819.28)) ; Starter Beach, torch-lit dead-end
+    (('crate-747)  (set-cell-pos e  -53.55 14.36  826.70)) ; Way to Arena, in the mud
+    (('crate-2560) (set-posm     e   32.09 13.11 1065.70)) ; Ship, in front of door ; `posm` because it's a zoomer fly, doesn't have a movie-pos
+    (('crate-2561) (set-cell-pos e   90.34  2.04  858.87)) ; Starter Beach, in the distance
+  )
+)
+
+(defmacro beach-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    (('fuel-cell-freebie))
   )
 )

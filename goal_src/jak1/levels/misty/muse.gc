@@ -169,9 +169,9 @@ nav-enemy-default-event-handler
          (if (= (-> self momentum-speed) 0.0) (go muse-idle)))
         ((or (not *target*)
              (< (-> self sprint-distance) (vector-vector-distance (-> self collide-info trans) (-> *target* control trans))))
-         (set! (-> self target-speed) 40960.0))
-        (else (set! (-> self target-speed) 61440.0)))
-      (seek! (-> self sprint-distance) 0.0 (* 4096.0 (seconds-per-frame)))
+         (set! (-> self target-speed) (meters 15.0))) ;mod: Increased muse speed
+        (else (set! (-> self target-speed) (meters 25.0)))) ;mod: Increased muse speed
+      (seek! (-> self sprint-distance) 0.0 (* (meters 1.0) (seconds-per-frame)))
       (muse-check-dest-point))
   :code
     (behavior ()
@@ -308,11 +308,11 @@ nav-enemy-default-event-handler
        :die-anim 3
        :neck-joint 6
        :player-look-at-joint 5
-       :run-travel-speed (meters 10)
+       :run-travel-speed (meters 20)
        :run-rotate-speed (degrees 999.99994)
        :run-acceleration (meters 5)
        :run-turn-time (seconds 0.15)
-       :walk-travel-speed (meters 10)
+       :walk-travel-speed (meters 15)
        :walk-rotate-speed (degrees 999.99994)
        :walk-acceleration (meters 1)
        :walk-turn-time (seconds 0.15)
