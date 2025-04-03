@@ -562,7 +562,7 @@
    (:rot-x 5)
    (:r 8192.0)
    (:g 6144.0)
-   (:b 5324.8)
+   (:b 8192.0) ;mod: Purple flames
    (:vel-x (meters -0.006666667) (meters 0.013333334))
    (:vel-y (meters 0.026666667))
    (:vel-z (meters -0.006666667) (meters 0.013333334))
@@ -583,7 +583,7 @@
    (:rot-x 5)
    (:r 8192.0)
    (:g 6144.0)
-   (:b 5324.8)
+   (:b 8192.0) ;mod: Purple flames
    (:vel-x (meters -0.006666667) (meters 0.013333334))
    (:vel-y (meters 0.026666667))
    (:vel-z (meters -0.006666667) (meters 0.013333334))
@@ -601,7 +601,7 @@
    (:rot-x 5)
    (:r 8192.0)
    (:g 6144.0)
-   (:b 5324.8)
+   (:b 8192.0) ;mod: Purple flames
    (:vel-x (meters -0.006666667) (meters 0.013333334))
    (:vel-y (meters 0.026666667))
    (:vel-z (meters -0.006666667) (meters 0.013333334))
@@ -622,6 +622,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 96.0)
    (:vel-y (meters 0.016666668) (meters 0.01))
    (:rotvel-z (degrees -3.0000002) (degrees 6.0000005))
@@ -647,6 +648,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 96.0)
    (:vel-y (meters 0.026666667) 1 (meters 0.006666667))
    (:rotvel-z (degrees -3.0000002) (degrees 6.0000005))
@@ -672,7 +674,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0)
    (:g 64.0)
-   (:b 0.0)
+   (:b 128.0) ;mod: Purple flames
    (:a 20.0 12.0)
    (:vel-y (meters 0.023333333) (meters 0.01))
    (:scalevel-x (meters 0.005))
@@ -706,6 +708,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 96.0)
    (:vel-y (meters 0.016666668) (meters 0.01))
    (:rotvel-z (degrees -3.0000002) (degrees 6.0000005))
@@ -732,6 +735,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 96.0)
    (:vel-y (meters 0.026666667) 1 (meters 0.006666667))
    (:rotvel-z (degrees -3.0000002) (degrees 6.0000005))
@@ -758,7 +762,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0)
    (:g 64.0)
-   (:b 0.0)
+   (:b 128.0) ;mod: Purple flames
    (:a 32.0)
    (:vel-y (meters 0.023333333) (meters 0.01))
    (:scalevel-x (meters 0.005))
@@ -787,6 +791,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 96.0)
    (:vel-y (meters 0.016666668) (meters 0.01))
    (:rotvel-z (degrees -3.0000002) (degrees 6.0000005))
@@ -813,6 +818,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 96.0)
    (:vel-y (meters 0.026666667) 1 (meters 0.006666667))
    (:rotvel-z (degrees -3.0000002) (degrees 6.0000005))
@@ -839,7 +845,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0)
    (:g 64.0)
-   (:b 0.0)
+   (:b 128.0) ;mod: Purple flames
    (:a 32.0)
    (:vel-y (meters 0.023333333) (meters 0.01))
    (:scalevel-x (meters 0.005))
@@ -868,6 +874,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 96.0)
    (:vel-y (meters 0.016666668) (meters 0.01))
    (:rotvel-z (degrees -3.0000002) (degrees 6.0000005))
@@ -920,7 +927,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0)
    (:g 64.0)
-   (:b 0.0)
+   (:b 128.0) ;mod: Purple flames
    (:a 32.0)
    (:vel-y (meters 0.023333333) (meters 0.01))
    (:scalevel-x (meters 0.005))
@@ -949,6 +956,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 96.0)
    (:vel-y (meters 0.006666667) (meters 0.006666667))
    (:rotvel-z (degrees -1.9999999) (degrees 3.9999998))
@@ -974,7 +982,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0)
    (:g 64.0)
-   (:b 64.0)
+   (:b 128.0) ;mod: Purple flames
    (:a 0.0)
    (:scalevel-x (meters 0.0044444446))
    (:rotvel-z (degrees -0.2) (degrees 0.4))
@@ -1013,7 +1021,7 @@
    (:scale-y :copy scale-x)
    (:r 64.0)
    (:g 48.0)
-   (:b 48.0)
+   (:b 64.0) ;mod: Purple flames
    (:a 0.0)
    (:vel-y (meters 0.0073333336))
    (:scalevel-x (meters 0.0013333333))
@@ -1104,7 +1112,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 0.0 128.0)
-   (:b 0.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 0.0)
    (:scalevel-x (meters 0.006666667))
    (:rotvel-z (degrees -0.020000001) (degrees 0.040000003))
@@ -1132,7 +1140,7 @@
    (:scale-y :copy scale-x)
    (:r 255.0)
    (:g 0.0 2 128.0)
-   (:b 0.0)
+   (:b 255.0) ;mod: Purple flames
    (:a 255.0)
    (:rotvel-z (degrees -0.020000001) (degrees 0.040000003))
    (:fade-a -0.048484847)
@@ -1180,7 +1188,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 0.0 128.0)
-   (:b 0.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 0.0)
    (:scalevel-x (meters 0.006666667))
    (:rotvel-z (degrees -0.020000001) (degrees 0.040000003))
@@ -1244,7 +1252,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 0.0 128.0)
-   (:b 0.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 0.0)
    (:scalevel-x (meters 0.006666667))
    (:rotvel-z (degrees -0.020000001) (degrees 0.040000003))
@@ -1269,7 +1277,7 @@
    (:scale-y :copy scale-x)
    (:r 255.0)
    (:g 0.0 2 128.0)
-   (:b 0.0)
+   (:b 255.0) ;mod: Purple flames
    (:a 255.0)
    (:rotvel-z (degrees -0.020000001) (degrees 0.040000003))
    (:fade-a -0.048484847)
@@ -1292,7 +1300,7 @@
    (:scale-y :copy scale-x)
    (:r 32.0)
    (:g 32.0)
-   (:b 32.0)
+   (:b 32.0) ;mod: Purple flames
    (:a 0.0 8.0)
    (:scalevel-x (meters 0.006666667))
    (:rotvel-z (degrees -0.020000001) (degrees 0.040000003))
@@ -1317,7 +1325,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 0.0 128.0)
-   (:b 0.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 0.0)
    (:scalevel-x (meters 0.006666667))
    (:rotvel-z (degrees -0.020000001) (degrees 0.040000003))
@@ -1373,7 +1381,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 0.0 128.0)
-   (:b 0.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 0.0)
    (:scalevel-x (meters 0.006666667))
    (:rotvel-z (degrees -0.020000001) (degrees 0.040000003))

@@ -40,45 +40,94 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; add your own unique custom functions here!
-; Stolen from OrbHunt
-(defun set-cell-pos ((e entity-actor) (x float) (y float) (z float))
-  (when e
-    (set-vector! (-> e extra trans) (meters x) (meters y) (meters z) 1.0)
-    (set-vector! (res-lump-struct e 'movie-pos vector) (meters x) (meters y) (meters z) 1.0)
+(defun set-posm ((e entity-actor) (x float) (y float) (z float))
+  (set-vector! (-> e extra trans) (meters x) (meters y) (meters z) 1.0)
+
+  (none)
+)
+
+(defun set-movie-posm ((e entity-actor) (x float) (y float) (z float) (rot float))
+  (set-vector! (res-lump-struct e 'movie-pos vector) (meters x) (meters y) (meters z) (degrees rot))
+
+  (none)
+)
+
+(defun add-movie-posm ((e entity-actor) (x float) (y float) (z float) (rot float))
+  (let ((movie-tag (new 'static 'res-tag :name 'movie-pos :elt-type vector :elt-count 1 :key-frame -1000000000.0)))
+    (add-data! e movie-tag (the pointer (new 'static 'vector)))
+    (set-movie-posm e x y z rot)
   )
+
+  (none)
+)
+
+(defun set-posms ((e entity-actor) (x float) (y float) (z float) (mx float) (my float) (mz float) (mrot float))
+  (set-posm e x y z)
+  (if (res-lump-struct e 'movie-pos vector)
+    (set-movie-posm e mx my mz mrot)
+    (add-movie-posm e mx my mz mrot)
+  )
+
+  (none)
+)
+
+(defun set-posc ((e entity-actor) (x float) (y float) (z float) (mrot float))
+  (set-posm e x y z)
+  (set-movie-posm e x y z mrot)
+
+  (none)
+)
+
+(defun copy-pos ((e entity-actor) (other-name string))
+  (let ((other (the-as process-drawable (process-by-ename other-name))))
+    (vector-copy! (-> e extra trans) (-> other root trans))
+  )
+
+  (none)
+)
+
+(defun copy-movie-pos ((e entity-actor) (other-name string))
+  (let ((other (the-as process-drawable (process-by-ename other-name))))
+    (vector-copy! (res-lump-struct e 'movie-pos vector) (-> other root trans))
+  )
+
+  (none)
 )
 
 (defun copy-cell-pos ((e entity-actor) (other-name string))
-  (when e
-    (let ((other (the-as process-drawable (process-by-ename other-name))))
-      (vector-copy! (-> e extra trans) (-> other root trans))
-      (vector-copy! (res-lump-struct e 'movie-pos vector) (-> other root trans))
-    )
-  )
+  (copy-pos e other-name)
+  (copy-movie-pos e other-name)
+
+  (none)
 )
 
-(defun set-posm ((e entity-actor) (x float) (y float) (z float))
-  (set-vector! (-> e extra trans) (meters x) (meters y) (meters z) 1.0)
+(defun reset-rot ((e entity-actor))
+  (quaternion-identity! (-> e quat))
+
+  (none)
 )
 
 (defun rot-ent ((e entity-actor) (x float) (y float) (z float))
   (quaternion-rotate-local-y! (-> e quat) (-> e quat) (degrees y))
   (quaternion-rotate-local-x! (-> e quat) (-> e quat) (degrees x))
   (quaternion-rotate-local-z! (-> e quat) (-> e quat) (degrees z))
+
+  (none)
 )
 
-(defun copy-pos ((e entity-actor) (other-name string))
-  (when e
-    (let ((other (the-as process-drawable (process-by-ename other-name))))
-      (vector-copy! (-> e extra trans) (-> other root trans))
-    )
-  )
+(defun set-rot ((e entity-actor) (x float) (y float) (z float))
+  (reset-rot e)
+  (rot-ent e x y z)
+
+  (none)
 )
 
 (defun disable-buzzer-hop ((drawable process-drawable))
   (let ((crate (the-as crate drawable)))
     (set! (-> crate do-fancies) #f)
   )
+
+  (none)
 )
 
 ;; Macros can be used more-or-less just like functions

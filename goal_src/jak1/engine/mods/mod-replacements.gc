@@ -3,51 +3,53 @@
 (defmacro training-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
     ;; CELLS
-    (('fuel-cell-55) (set-cell-pos e -1213.56 25.62 1001.86)) ;; First cell -> above scarecrow (lol)
-    (('fuel-cell-54) (set-cell-pos e -1299.07 59.98 1009.22)) ;; Last cell -> in the air
+    (('fuel-cell-55) (set-posc e -1213.56 25.62 1001.86 0.0)) ;; First cell -> above scarecrow (lol)
+    (('fuel-cell-54) (set-posc e -1299.07 59.98 1009.22 0.0)) ;; Last cell -> in the air
 
     ;; FLIES (1.65h)
-    (('crate-2955) (set-cell-pos e -1393.88  5.38 1011.31)) ; Start, left beach (visible from eco vent)
-    (('crate-2956) (set-cell-pos e -1127.60  5.72  937.38)) ; Beach, plain view
-    (('crate-2957) (set-cell-pos e -1150.28  7.50  962.31)) ; Beach, rock up
+    (('crate-2955) (set-posms e -1393.88  5.38 1011.31 -1363.84  2.59 1020.80 0.0)) ; Start, left beach (visible from eco vent) -> basin in the dunes
+    (('crate-2956) (set-posms e -1127.60  5.72  937.38 -1120.28  6.42  938.81 0.0)) ; Beach, plain view -> on the rocks
+    (('crate-2957) (set-posms e -1150.28  7.50  962.31 -1151.27 15.13  972.77 0.0)) ; Beach, on the rock up -> after getting up
     ; 'crate-2958 left at the highest platform
-    (('crate-2959) (set-cell-pos e -1151.09  4.11  897.64)) ; Beach, behind geyser
-    (('crate-2960) (set-cell-pos e -1189.17 22.36  855.25)) ; Way up, next to crates
-    (('crate-2961) (set-cell-pos e -1288.61 17.82  937.29)) ; Pool, behind pillars
+    (('crate-2959) (set-posms e -1151.09  4.11  897.64 -1158.69  3.40  922.22 0.0)) ; Beach, behind geyser -> in front of geyser
+    (('crate-2960) (set-posms e -1189.17 22.36  855.25 -1200.52 25.69  857.03 0.0)) ; Way up, next to crates -> step up
+    (('crate-2961) (set-posms e -1288.61 17.82  937.29 -1271.18 21.95  926.05 0.0)) ; Pool, behind pillars -> on top of pillar #2
   )
 )
 
 (defmacro village1-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
     ;; FLIES
-    (('crate-3141) (set-cell-pos e -115.45 33.98 191.80)) ; Samus's Hut, on the side
-    (('crate-3142) (set-cell-pos e  -72.60  0.94 110.33)) ; Beach, fisherman's ruined boat
-    (('crate-3143) (set-cell-pos e -131.56  9.23  53.11)) ; Village, behind mayor's house
-    (('crate-3144) (set-cell-pos e  -63.75 11.07 -30.57)) ; Village, bird lady's house
-    (('crate-3145) (set-cell-pos e -130.01  0.76  -0.19)) ; Beach, rock over water
-    (('crate-3146) (set-cell-pos e   51.47 25.89 -84.30)) ; Pillartop, on the rock
-    (('crate-3147) (set-cell-pos e  170.34  1.08 -95.91)) ; Way to Forbidden Jungle, behind rock
+    (('crate-3141) (set-posms e -115.45 33.98 191.80  -94.79 17.41  138.12 0.0)  ; Samus's Hut, on the side -> between the bridges
+                   (reset-rot e))
+    (('crate-3142) (set-posms e  -72.60  0.94 110.33  -62.87  7.75   98.36 0.0)) ; Beach, fisherman's ruined boat -> steps up
+    (('crate-3143) (set-posms e -131.56  9.23  53.11 -105.41 13.73   73.25 0.0)) ; Village, behind mayor's house -> on top of fountain
+    (('crate-3144) (set-posms e  -63.75 11.07 -30.57  -58.89 11.12  -22.86 0.0)) ; Village, bird lady's house -> on the carpet
+    (('crate-3145) (set-posms e -130.01  0.76  -0.19 -158.93  1.80   -5.34 0.0)) ; Beach, rock over water -> on the beach
+    (('crate-3146) (set-posms e   51.47 25.89 -84.30   49.95 22.68  -71.54 0.0)) ; Pillartop, on the rock -> between the orbs
+    (('crate-3147) (set-posms e  170.34  1.08 -95.91  161.22  6.60 -121.13 0.0)) ; Way to Forbidden Jungle, behind rock -> on the big rock
   )
 )
 
 (defmacro jungle-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
     ;; ORBS
-    (('money-187) (set-posm e 223.19 51.94 -246.92)) ; Putting some
-    (('money-188) (set-posm e 220.10 48.88 -246.88)) ; moneys near
-    (('money-189) (set-posm e 218.83 44.94 -246.80)) ; last vanilla fly
-    (('money-190) (set-posm e 218.83 40.00 -246.80)) ; to modded last fly
+    (('money-187) (set-posm e 223.19 51.94 -246.92)) ; Orbs down from pillars
+    (('money-188) (set-posm e 220.10 48.88 -246.88)) ; of trees near the last mirror
+    (('money-189) (set-posm e 218.83 44.94 -246.80)) ; down to the river!
+    (('money-190) (set-posm e 218.83 40.00 -246.80)) ; - a haiku
 
     ;; CELLS
-    (('fuel-cell-1) (set-cell-pos e 362.21 109.64 -241.05)) ; Temple, top of the button (so you're "forced" to go down) (lol)
+    (('fuel-cell-1) (set-posc e 362.21 109.64 -241.05 0.0)) ; Temple, top of the button (so you're "forced" to go down) (lol)
 
     ;; FLIES
-    (('crate-3)   (set-cell-pos e 310.18 29.14 -223.54)) ; Start Path, behind rock on upper ledge
-    (('crate-28)  (set-cell-pos e 279.49 35.02 -301.16)) ; Temple, on top of launcher out
-    (('crate-47)  (set-cell-pos e 431.36 17.23 -312.29)) ; Temple, before the inactive bridge
-    (('crate-58)  (set-cell-pos e 217.78 -4.02 -253.93) (disable-buzzer-hop drawable)) ; River, underwater
-    (('crate-688) (set-cell-pos e 372.56 42.55 -272.87)) ; Temple, on top of arch
-    (('crate-689) (set-cell-pos e 335.20 20.97 -135.13)) ; Start Path, sneak in behind the log
+    (('crate-3)   (set-posms e 310.18 29.14 -223.54 306.87 27.72 -261.73 0.0)) ; Start Path, behind rock on upper ledge -> across the gap
+    (('crate-28)  (set-posms e 279.49 35.02 -301.16 289.36 35.01 -301.49 0.0)) ; Temple, on top of launcher out -> on top of highest pillar
+    (('crate-47)  (set-posms e 431.36 17.23 -312.29 396.59 17.13 -281.45 0.0)) ; Temple, before the inactive bridge -> across the gap
+    (('crate-58)  (set-posms e 217.78 -4.02 -253.93 230.45  0.70 -244.94 0.0)  ; River, underwater -> shore
+                  (disable-buzzer-hop drawable))
+    (('crate-688) (set-posms e 372.56 42.55 -272.87 372.58 35.51 -280.11 0.0)) ; Temple, on top of arch -> first step up
+    (('crate-689) (set-posms e 335.20 20.97 -135.13 329.59 21.51 -129.15 0.0)) ; Start Path, sneak in behind the log -> nearby
     ; 'crate-1844 left on temple side path
   )
 )
@@ -55,49 +57,75 @@
 (defmacro misty-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
     ;; CELLS
-    (('fuel-cell-12) (set-cell-pos e 23.83 37.40 1087.76)) ; Ship, top of rotor near vanilla spot
+    (('fuel-cell-12) (set-posc e 23.83 37.40 1087.76 0.0)) ; Ship, top of rotor near vanilla spot
 
     ;; MISC
     (('crate-685) (set-posm e -151.13 45.63 916.06) (rot-ent e 0.0 -40.0   0.0)) ; Adds some crates to the skip rock
     (('crate-660) (set-posm e -149.05 49.41 916.60) (rot-ent e 0.0  -5.0 -28.0)) ; at the end of the cliff path
 
     ;; FLIES
-    (('crate-659)  (set-cell-pos e   57.47 35.29  971.95)) ; Muse Path, inside bone
-    (('crate-673)  (set-cell-pos e -233.94 20.05 1007.41)) ; Arena Back, on the right
-    (('crate-672)  (set-cell-pos e  -78.90 30.14  921.72)) ; Cliff Path, slightly shifted to the side
-    (('crate-684)  (set-cell-pos e  -11.03  2.91  819.28)) ; Starter Beach, torch-lit dead-end
-    (('crate-747)  (set-cell-pos e  -53.55 14.36  826.70)) ; Way to Arena, in the mud
-    (('crate-2560) (set-posm     e   32.09 13.11 1065.70)) ; Ship, in front of door ; `posm` because it's a zoomer fly, doesn't have a movie-pos
-    (('crate-2561) (set-cell-pos e   90.34  2.04  858.87)) ; Starter Beach, in the distance
+    (('crate-659)  (set-posms e   57.47 35.29  971.95   68.22 34.03  969.58 0.0)) ; Muse Path, inside bone -> on the bone
+    (('crate-673)  (set-posms e -233.94 20.05 1007.41 -224.34 20.24 1025.00 0.0)) ; Arena Back, on the right -> among the lurkers
+    (('crate-672)  (set-posms e  -78.90 30.14  921.72  -74.07 30.13  912.84 0.0)) ; Cliff Path, slightly shifted to the side -> on the way back
+    (('crate-684)  (set-posms e  -11.03  2.91  819.28   16.73  3.16  798.91 0.0)) ; Starter Beach, torch-lit dead-end -> outside the dead-end
+    (('crate-747)  (set-posms e  -53.55 14.36  826.70  -56.67 17.96  834.49 0.0)) ; Way to Arena, in the mud -> nearby
+    (('crate-2560) (set-posms e   32.09 13.11 1065.70   10.75 15.14 1066.53 0.0)) ; Ship, in front of door -> zoomery fly, no movie pos
+    (('crate-2561) (set-posms e   90.34  2.04  858.87   80.97  4.34  852.34 0.0)  ; Starter Beach, in the distance -> on top of rock
+                   (rot-ent   e 10.0 0.0 0.0))
   )
 )
 
 (defmacro beach-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
     ;; CELLS
-    (('fuel-cell-40) (set-cell-pos e -240.82 29.63 -389.50)) ; Pillartop #1
-    (('fuel-cell-42) (set-cell-pos e -303.33 31.53 -386.13)) ; Sentinel #1, on top of broken arch
+    (('fuel-cell-40) (set-posc e -240.82 29.63 -389.50 0.0)) ; Pillartop #1
+    (('fuel-cell-42) (set-posc e -303.33 31.53 -386.13 0.0)) ; Sentinel #1, on top of broken arch
 
     ;; FLIES
-    (('crate-213)  (set-cell-pos e  -50.42 18.61 -327.25)) ; Upper Path (Start), gap in wall
-    (('crate-646)  (set-cell-pos e -167.23 15.74 -257.17)) ; Upper Path (Start), behind rocks out of the cannon's range
+    (('crate-213)  (set-posms e  -50.42 18.61 -327.25  -69.17 16.17 -336.93 0.0)) ; Upper Path (Start), gap in wall -> overlooking gap
+    (('crate-646)  (set-posms e -167.23 15.74 -257.17 -154.40 23.05 -259.53 0.0)) ; Upper Path (Start), behind rocks out of the cannon's range -> on top of rocks
     ; crate-647 left on top of hill overlooking sentinels
-    (('crate-648)  (set-cell-pos e -162.16 17.00 -527.88)) ; Upper Path (End), near eco collectors
-    (('crate-649)  (set-cell-pos e -257.69 -0.93 -499.66)) ; Logs Area (Lower), in the center
-    (('crate-651)  (set-cell-pos e -422.75  4.08 -472.27)) ; Sentinel #3, below the balcony
-    (('crate-2467) (set-cell-pos e -252.45 16.94 -302.89) (rot-ent e -10.0 -7.5 -20.0)) ; Cannon Tower, in front of the window
+    (('crate-648)  (set-posms e -162.16 17.00 -527.88 -183.29 17.00 -506.44 0.0)) ; Upper Path (End), near eco collectors -> overlooking nest
+    (('crate-649)  (set-posms e -257.69 -0.93 -499.66 -303.27  4.01 -475.11 0.0)) ; Logs Area (Lower), in the center -> in front of Sentinel #2
+    (('crate-651)  (set-posms e -422.75  4.08 -472.27 -416.88  1.56 -457.60 0.0)) ; Sentinel #3, below the balcony -> looking at the sea
+    (('crate-2467) (set-posms e -252.45 16.94 -302.89 -258.03 29.96 -298.74 0.0)  ; Cannon Tower, in front of the window -> on top of the window
+                   (rot-ent e -10.0 -7.5 -20.0))
   )
 )
 
 (defmacro firecanyon-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
     ;; FLIES
-    (('crate-1019) (set-posm e  18.84 30.70  -292.14))
-    (('crate-1027) (set-posm e 155.12 30.69  -514.36))
-    (('crate-1028) (set-posm e 162.46 30.69  -653.72))
-    (('crate-1029) (set-posm e 172.57 34.37  -860.69))
-    (('crate-1030) (set-posm e -89.90 30.69 -1084.23))
-    (('crate-1032) (set-posm e 225.85 34.91 -1214.99))
-    (('crate-1033) (set-posm e 260.63 30.99 -1278.05))
+    (('crate-1019) (set-posm e  18.84 30.70  -292.14)) ; Start, right path -> zoomer
+    (('crate-1027) (set-posm e 155.12 30.69  -514.36)) ; First Spikes, over the lava
+    (('crate-1028) (set-posm e 162.46 30.69  -653.72)) ; After Narrow Path, over the lava
+    (('crate-1029) (set-posm e 172.57 34.37  -860.69)) ; Middle, On top of a precursor bridge
+    (('crate-1030) (set-posm e -89.90 30.69 -1084.23)) ; Two Narrow Paths, in the corner
+    (('crate-1032) (set-posm e 225.85 34.91 -1214.99)) ; End, on top of a precursor bridge
+    (('crate-1033) (set-posm e 260.63 30.99 -1278.05)) ; End, over lava next to a precursor bridge
+  )
+)
+
+(defmacro village2-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; FLIES
+    (('crate-3127) (set-posms e 185.49 10.08 -1610.83 188.18 13.14 -1616.37 0.0) ; Geologist, near boxes -> on cart
+                   (set-rot   e -5.0 0.0 -10.0))
+    (('crate-3128) (set-posms e 229.09  3.29 -1644.38 232.32  4.94 -1616.67 0.0) ; Bridge, platform below -> other side
+                   (reset-rot e))
+    (('crate-3129) (set-posms e 184.23 11.58 -1547.46 202.71 12.73 -1564.56 0.0) ; Path to Basin, behind rock -> path center
+                   (reset-rot e))
+    (('crate-3130) (set-posms e 296.20 20.75 -1631.53 331.07 9.21 -1632.38 0.0)) ; Hub, in ceiling torch -> overlooking LPC entrance
+    (('crate-3131) (set-posms e 424.32 -4.05 -1622.67 424.78  1.37 -1604.11 0.0) ; Path to LPC, underwater -> pontoon
+                   (disable-buzzer-hop drawable))
+    (('crate-3132) (set-posms e 428.85  5.01 -1769.00 435.85  2.29 -1756.65 0.0)) ; Path to Boggy, behind rock -> near water
+    (('crate-3133) (set-posms e 253.36 40.49 -1754.29 242.70 40.27 -1763.77 0.0)) ; Path to Mountain Pass, overlooking the village -> moving on
+  )
+)
+
+(defmacro village3-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; FLIES
+    (('crate-3121) (set-posms e 1114.07 40.54 -3516.90 1112.43 45.71 -3524.70 0.0)) ; Farside, over the lava
   )
 )

@@ -2914,6 +2914,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 0.0)
    (:vel-y (meters 0.0033333334) (meters 0.006666667))
    (:rotvel-z (degrees -1.9999999) (degrees 3.9999998))
@@ -2946,6 +2947,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0 128.0)
    (:g 32.0 64.0)
+   (:b 128.0 128.0) ;mod: Purple flames
    (:a 0.0)
    (:vel-y (meters 0.0033333334) (meters 0.006666667))
    (:rotvel-z (degrees -1.9999999) (degrees 3.9999998))
@@ -2974,7 +2976,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0)
    (:g 64.0)
-   (:b 64.0)
+   (:b 128.0) ;mod: Purple flames
    (:a 0.0)
    (:scalevel-x (meters 0.0044444446))
    (:rotvel-z (degrees -0.2) (degrees 0.4))
@@ -3004,7 +3006,7 @@
    (:scale-y :copy scale-x)
    (:r 128.0)
    (:g 64.0)
-   (:b 64.0)
+   (:b 128.0) ;mod: Purple flames
    (:a 0.0)
    (:scalevel-x (meters 0.0044444446))
    (:rotvel-z (degrees -0.2) (degrees 0.4))

@@ -154,7 +154,7 @@
        :inertial-tensor-x (meters 2.5)
        :inertial-tensor-y (meters 2)
        :inertial-tensor-z (meters 3.2)
-       :idle-distance (meters 90)
+       :idle-distance (meters 700) ;mod: Massively increase idle distance
        :platform #t
        :sound-name "pontoonten"))
 
@@ -179,7 +179,7 @@
        :inertial-tensor-x (meters 5)
        :inertial-tensor-y (meters 2)
        :inertial-tensor-z (meters 3.2)
-       :idle-distance (meters 90)
+       :idle-distance (meters 700) ;mod: Massively increase idle distance
        :platform #t
        :sound-name "pontoonten"))
 
@@ -228,7 +228,8 @@
 (defmethod rigid-body-platform-method-31 ((this pontoonfive))
   (initialize-skeleton this *pontoonfive-sg* '())
   (rigid-body-platform-method-29 this *pontoonfive-constants*)
-  (set! (-> this float-height-offset) 6144.0)
+  ;mod: Put Rock Village pontoons underwater (1.5 -> -0.7)
+  (set! (-> this float-height-offset) (meters -0.7))
   (set! (-> this root-overlay nav-radius) 12288.0)
   (let ((v1-6 (-> this control-point-array data)))
     (set! (-> v1-6 0 local-pos x) 9216.0)
@@ -278,7 +279,8 @@
 (defmethod rigid-body-platform-method-31 ((this pontoonten))
   (initialize-skeleton this *pontoonten-sg* '())
   (rigid-body-platform-method-29 this *pontoonten-constants*)
-  (set! (-> this float-height-offset) 6144.0)
+  ;mod: Put Rock Village pontoons underwater (1.5 -> -0.7)
+  (set! (-> this float-height-offset) (meters -0.7))
   (set! (-> this root-overlay nav-radius) 20480.0)
   (let ((v1-6 (-> this control-point-array data)))
     (set! (-> v1-6 0 local-pos x) 17408.0)
