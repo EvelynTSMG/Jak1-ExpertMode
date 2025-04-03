@@ -928,7 +928,7 @@
   :virtual #t
   :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
-        (('attack) (send-event proc 'heat -10.0) (go-virtual die))))
+        (('attack) (send-event proc 'heat -25.0) (go-virtual die))))
   :trans (behavior ()
       (when (not (logtest? (-> self path flags) (path-control-flag not-found)))
         (let ((f0-4 (* 0.5 (+ 1.0 (sin (* (-> self move-per-tick) (the float (current-time))))))))
