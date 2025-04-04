@@ -85,7 +85,7 @@
   :virtual #t
   :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
-        (('notify) (if (= (-> block param 0) 'attack) (sound-play "get-shocked")))
+        (('notify) (if (= (-> block param 0) 'attack) (sound-play "get-burned"))) ;mod: water is hot ("get-shocked" -> "get-burned")
         (else ((-> (method-of-type water-anim water-vol-idle) event) proc argc message block))))
   :trans (behavior ()
       (let ((t9-0 (-> (method-of-type water-anim water-vol-idle) trans))) (if t9-0 (t9-0)))
@@ -103,7 +103,7 @@
             (draw-ripple self)
             (when (not (-> self playing-deadly-sound?))
               (set! (-> self playing-deadly-sound?) #t)
-              (sound-play "water-on"))
+              (sound-play "explosion" :vol 30 :pitch 2.5)) ;mod: Water is hot ("water-on" -> "explosion" :vol 30 :pitch 2.5)
             (update! (-> self sound)))
            (else
             (logclear! (-> self flags) (water-flags wt19))
@@ -117,7 +117,8 @@
             (when (-> self playing-deadly-sound?)
               (set! (-> self playing-deadly-sound?) #f)
               (stop! (-> self sound))
-              (sound-play "water-off"))))
+              (sound-play "water-off")
+              )))
          (set-fade! *palette-fade-controls*
                     3
                     (-> self deadly-fade)
