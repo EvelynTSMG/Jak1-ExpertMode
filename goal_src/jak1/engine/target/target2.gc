@@ -323,7 +323,7 @@
              (vf6 :class vf))
         (init-vf0-vector)
         ;; og:preserve-this - High FPS Fix
-        (when (and (recently-pressed? r2 circle square)
+        (when (and (cpad-hold? 0 r2 circle square) ;mod: Can shoot yellow eco by holding the button instead of spamming
                    (and (= (-> self fact eco-type) (pickup-type eco-yellow)) (>= (-> self fact eco-level) 1.0))
                    (time-elapsed? (-> self control unknown-dword82) (seconds 0.5))
                    (not *pause-lock*))
@@ -397,8 +397,8 @@
              (vf6 :class vf))
         (init-vf0-vector)
         ;; og:preserve-this - High FPS Fix
-        (when (and (recently-pressed? r2 circle square)
-                   (time-elapsed? (-> self control unknown-dword82) (seconds 0.45))
+        (when (and (cpad-hold? 0 r2 circle square) ;mod: Can shoot yellow eco by holding the button instead of spamming
+                   (time-elapsed? (-> self control unknown-dword82) (seconds 0.30)) ;mod: Slightly reduced shot cooldown in billy game (0.45s -> 0.30s)
                    (and (= (-> self fact eco-type) (pickup-type eco-yellow)) (>= (-> self fact eco-level) 1.0))
                    (not *pause-lock*))
           (let ((gp-1 (vector-float*! (new-stack-vector0)

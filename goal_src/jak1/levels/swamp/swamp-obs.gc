@@ -277,6 +277,8 @@
   (initialize-skeleton this *swamp-spike-sg* '())
   (set! (-> this draw origin-joint-index) (the-as uint 3))
   (load-params! (-> this sync) this (the-as uint 1500) 0.0 0.15 0.15)
+  (/! (-> this sync period) 6) ;mod: Swamp spikes are much faster
+  (/! (-> this sync offset) 6)
   (set! (-> this open-gate) #f)
   (set! (-> this dangerous) #f)
   #f)
@@ -324,13 +326,15 @@
   :code (behavior ()
       (loop
         ;; og:preserve-this modified for high fps
-        (let ((f30-0 (* -0.025 (+ (-> self y-offset) (-> self y-travel))))
-              (f28-0 (* -0.025 (- (-> self y-offset) (-> self y-travel)))))
+        ;mod: Balance platforms fall down faster (-0.025 -> -0.075)
+        (let ((f30-0 (* -0.075 (+ (-> self y-offset) (-> self y-travel))))
+              (f28-0 (* -0.075 (- (-> self y-offset) (-> self y-travel)))))
           (cond
             ((and (-> self root riders) (nonzero? (-> self root riders num-riders)))
              ;; has rider, accelerate downwards
              (send-event *target* 'no-look-around (seconds 0.25))
-             (set! (-> self y-accel) (fmin 4.096 (fmax -4.096 (+ (* DISPLAY_FPS_RATIO -0.2048) (-> self y-accel)))))
+             ;mod: Balance platforms are faster (4.096 -> 8.192, -0.2048 -> -0.8192)
+             (set! (-> self y-accel) (fmin 8.192 (fmax -8.192 (+ (* DISPLAY_FPS_RATIO -0.8192) (-> self y-accel)))))
              (set! (-> self y-vel) (fmin f28-0 (fmax f30-0 (+ (-> self y-vel) (* DISPLAY_FPS_RATIO (-> self y-accel))))))
              ;; tell linked platforms to go up
              (send-to-all-after (-> self link) 'grow)
@@ -338,19 +342,22 @@
             ((-> self got-grow)
              ;; got 'grow' signal, accelerate upwards
              (set! (-> self got-grow) #f)
-             (set! (-> self y-accel) (fmin 4.096 (fmax -4.096 (+ (* DISPLAY_FPS_RATIO 0.2048) (-> self y-accel)))))
+             ;mod: Balance platforms are faster (4.096 -> 8.192, -0.2048 -> -0.8192)
+             (set! (-> self y-accel) (fmin 8.192 (fmax -8.192 (+ (* DISPLAY_FPS_RATIO 0.8192) (-> self y-accel)))))
              (set! (-> self y-vel) (fmin f28-0 (fmax f30-0 (+ (-> self y-vel) (* DISPLAY_FPS_RATIO (-> self y-accel)))))))
             ((< (-> self y-offset) 0.0)
              ;; accelerate towards neutral position (from below)
              (set! (-> self y-accel)
-                   (fmin (fmin 4.096 (fmax -4.096 (+ (* DISPLAY_FPS_RATIO 0.1024) (-> self y-accel)))) (* -0.0001 (-> self y-offset))))
+             ;mod: Balance platforms are faster (4.096 -> 8.192, -0.1024 -> -0.4096)
+                   (fmin (fmin 8.192 (fmax -8.192 (+ (* DISPLAY_FPS_RATIO 0.4096) (-> self y-accel)))) (* -0.0001 (-> self y-offset))))
              (set! (-> self y-vel) (fmin f28-0 (fmax f30-0 (+ (-> self y-vel) (* DISPLAY_FPS_RATIO (-> self y-accel))))))
              ;; slow down
              (set! (-> self y-vel) (* (- 1.0 (* DISPLAY_FPS_RATIO (- 1.0 0.99))) (-> self y-vel))))
             (else
              ;; accelerate towards neutral position (from above)
              (set! (-> self y-accel)
-                   (fmin 4.096 (fmax (fmax -4.096 (+ (* DISPLAY_FPS_RATIO -0.1024) (-> self y-accel))) (* -0.0001 (-> self y-offset)))))
+             ;mod: Balance platforms are faster (4.096 -> 8.192, -0.1024 -> -0.4096)
+                   (fmin 8.192 (fmax (fmax -8.192 (+ (* DISPLAY_FPS_RATIO -0.4096) (-> self y-accel))) (* -0.0001 (-> self y-offset)))))
              (set! (-> self y-vel) (fmin f28-0 (fmax f30-0 (+ (-> self y-vel) (* DISPLAY_FPS_RATIO (-> self y-accel))))))
              ;; slow down
              (set! (-> self y-vel) (* (- 1.0 (* DISPLAY_FPS_RATIO (- 1.0 0.99))) (-> self y-vel))))))

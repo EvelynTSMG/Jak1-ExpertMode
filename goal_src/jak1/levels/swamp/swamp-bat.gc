@@ -298,7 +298,7 @@ swamp-bat-slave-event-handler
   (set! (-> self idle-position-index) arg1)
   (swamp-bat-slave-get-new-path)
   (set! (-> self root trans quad) (-> self idle-position quad))
-  (setup-params! (-> self sync) (the-as uint 1200) 0.0 0.15 0.15)
+  (setup-params! (-> self sync) (the-as uint 600) 0.0 0.15 0.15) ;mod: Swamp bats are faster
   (initialize-skeleton self *swamp-bat-slave-sg* '())
   (logclear! (-> self mask) (process-mask actor-pause))
   (go swamp-bat-slave-idle)
