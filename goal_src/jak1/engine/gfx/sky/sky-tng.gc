@@ -68,18 +68,14 @@
                  :regs3 (gif-reg-id uv)
                  :regs4 (gif-reg-id xyzf2)))
        :sky-data
-       (new 'static 'inline-array
-            qword
-            5
+       (new 'static 'inline-array qword 5
             (new 'static 'qword :data (new 'static 'array uint32 4 #x0 #x0 #x0 #x80))
             (new 'static 'qword)
             (new 'static 'qword :data (new 'static 'array uint32 4 #x0 #x0 #xffffff #x0))
             (new 'static 'qword :data (new 'static 'array uint32 4 #x200 #x200 #x0 #x0))
             (new 'static 'qword :data (new 'static 'array uint32 4 #x200 #x200 #xffffff #x0)))
        :cloud-data
-       (new 'static 'inline-array
-            qword
-            5
+       (new 'static 'inline-array qword 5
             (new 'static 'qword :data (new 'static 'array uint32 4 #x0 #x0 #x0 #x80))
             (new 'static 'qword)
             (new 'static 'qword :data (new 'static 'array uint32 4 #x0 #x200 #xffffff #x0))
@@ -259,9 +255,7 @@
   (none))
 
 (define sky-base-polygons
-  (new 'static 'inline-array
-       sky-vertex
-       12
+  (new 'static 'inline-array sky-vertex 12
        (new 'static 'sky-vertex
             :pos (new 'static 'vector :z -40960000.0)
             :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))
@@ -292,9 +286,7 @@
             :col (new 'static 'vector :x 3.0 :y 18.0 :z 113.0 :w 128.0))))
 
 (define sky-roof-polygons
-  (new 'static 'inline-array
-       sky-vertex
-       12
+  (new 'static 'inline-array sky-vertex 12
        (new 'static 'sky-vertex
             :pos (new 'static 'vector :z -40960000.0)
             :stq (new 'static 'vector :z 1.0)
@@ -345,9 +337,7 @@
             :col (new 'static 'vector :x 128.0 :y 128.0 :z 128.0 :w 128.0))))
 
 (define sky-cloud-polygons
-  (new 'static 'inline-array
-       sky-vertex
-       72
+  (new 'static 'inline-array sky-vertex 72
        (new 'static 'sky-vertex)
        (new 'static 'sky-vertex)
        (new 'static 'sky-vertex)

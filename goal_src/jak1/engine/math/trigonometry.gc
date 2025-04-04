@@ -74,6 +74,10 @@
     (if (< max-diff (fabs step)) (set! step (if (>= step 0.0) max-diff (- max-diff))))
     (+ in step)))
 
+(defun deg-lerp ((a float) (b float) (t float))
+  (the float (sar (shl (the int (+ a (* t (deg-diff a b)))) 48) 48))
+)
+
 (defun deg-lerp-clamp ((min-val float) (max-val float) (in float))
   "Map [0, 1] to min-val, max-val, handling wrapping and saturating, using rotation units."
   (cond

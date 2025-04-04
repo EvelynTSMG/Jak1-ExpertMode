@@ -105,67 +105,45 @@
   (none))
 
 (define *seagull-boxes*
-  (new 'static 'inline-array
-       air-box
-       10
+  (new 'static 'inline-array air-box 10
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1146880.0 :y 143360.0 :z -1638400.0 :w -0.6427)
                  (new 'static 'vector :x 286720.0 :z 716800.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1277952.0 :y 14336.0 :z -1306624.0 :w -0.6427)
                  (new 'static 'vector :x 675840.0 :z 114688.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1474560.0 :y 10240.0 :z -1024000.0 :w -0.6427)
                  (new 'static 'vector :x 1228800.0 :z 339968.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1822720.0 :y 27033.6 :z -1961984.0 :w -0.6427)
                  (new 'static 'vector :x 143360.0 :z 245760.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1589248.0 :y 43417.6 :z -1933312.0 :w -0.6427)
                  (new 'static 'vector :x 204800.0 :z 184320.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1597440.0 :y 24985.6 :z -1757184.0 :w -0.6427)
                  (new 'static 'vector :x 133120.0 :z 491520.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1323008.0 :y 44236.8 :z -1771520.0 :w -0.6427)
                  (new 'static 'vector :x 360448.0 :z 221184.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1441792.0 :y 24985.6 :z -1564672.0 :w -0.6427)
                  (new 'static 'vector :x 81920.0 :z 421888.0 :w -0.766)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -1124352.0 :y 27975.68 :z -1581465.6 :w -0.8533)
                  (new 'static 'vector :x 204800.0 :z 221184.0 :w -0.5214)))
        (new 'static 'air-box
-            :vecs (new 'static 'inline-array
-                 vector
-                 2
+            :vecs (new 'static 'inline-array vector 2
                  (new 'static 'vector :x -737280.0 :y 122880.0 :z -1396736.0 :w -0.8533)
                  (new 'static 'vector :x 475136.0 :z 819200.0 :w -0.5214)))))
 

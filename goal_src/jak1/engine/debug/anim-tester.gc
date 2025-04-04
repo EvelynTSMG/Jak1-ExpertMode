@@ -857,9 +857,7 @@
   #f)
 
 (define anim-test-field-highlight-lw
-  (new 'static 'inline-array
-       list-field
-       12
+  (new 'static 'inline-array list-field 12
        (new 'static 'list-field :left 2 :width 20)
        (new 'static 'list-field :left 30 :width 4)
        (new 'static 'list-field :left 35 :width 4)

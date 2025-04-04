@@ -66,16 +66,16 @@
        :die-anim 17
        :neck-joint -1
        :player-look-at-joint 5
-       :run-travel-speed (meters 6)
+       :run-travel-speed (meters 13.5)  ;mod: Top lurker is *much* faster (6.0 -> 13.5)
        :run-rotate-speed (degrees 2880)
-       :run-acceleration (meters 1)
+       :run-acceleration (meters 4.0)   ;mod: Top lurker is *much* faster (1.0 -> 4.0)
        :run-turn-time (seconds 0.1)
-       :walk-travel-speed (meters 3)
+       :walk-travel-speed (meters 6.5)  ;mod: Top lurker is *much* faster (3.0 -> 6.5)
        :walk-rotate-speed (degrees 720)
-       :walk-acceleration (meters 1)
+       :walk-acceleration (meters 1)    ;mod: Top lurker is *much* faster (1.0 -> 3.0)
        :walk-turn-time (seconds 0.5)
-       :attack-shove-back (meters 3)
-       :attack-shove-up (meters 2)
+       :attack-shove-back (meters 6.5) ;mod: Top lurker knocks player back much faster
+       :attack-shove-up (meters 2.5)
        :shadow-size (meters 3)
        :notice-nav-radius (meters 2)
        :nav-nearest-y-threshold (meters 10)

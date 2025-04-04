@@ -218,11 +218,12 @@
   #f)
 
 (defmethod puffer-method-20 ((this puffer) (arg0 vector))
+  ;mod: Make puffer much faster ([7.5 -> 9.5] @ [2.0 -> 3.0] | [4.5 -> 6.5] @ [0.5 -> 1.5])
   (if (-> this attacking?)
     (set! (-> this travel-speed)
-          (seek-with-smooth (-> this travel-speed) 30720.0 (* 8192.0 (seconds-per-frame)) 0.125 40.96))
+          (seek-with-smooth (-> this travel-speed) (meters 9.5) (* (meters 3.0) (seconds-per-frame)) 0.125 40.96))
     (set! (-> this travel-speed)
-          (seek-with-smooth (-> this travel-speed) 18432.0 (* 2048.0 (seconds-per-frame)) 0.125 40.96)))
+          (seek-with-smooth (-> this travel-speed) (meters 6.5) (* (meters 1.5) (seconds-per-frame)) 0.125 40.96)))
   (nav-control-method-27 (-> this nav))
   (nav-control-method-28 (-> this nav) (the-as collide-kind -1))
   (nav-control-method-13 (-> this nav) arg0 (-> this root transv))
@@ -362,11 +363,11 @@
   :enter (behavior ()
       (set! (-> self attacking?) #t)
       (set-time! (-> self state-time))
-      (set! (-> self travel-turn-speed) 21845.334))
+      (set! (-> self travel-turn-speed) (degrees 360.0))) ;mod: Puffer can turn faster (120.0 -> 360.0)
   :exit (behavior ()
       (shut-down! (-> self neck))
       (set! (-> self attacking?) #f)
-      (set! (-> self travel-turn-speed) 16384.0))
+      (set! (-> self travel-turn-speed) (degrees 180.0))) ;mod: Puffer can turn faster (90.0 -> 180.0)
   :trans (behavior ()
       (if (not (puffer-method-25 self (-> self give-up-dist))) (go puffer-patrol))
       (when *target*
@@ -479,6 +480,7 @@
 
 (defmethod puffer-method-26 ((this puffer))
   (let ((f30-0 (get-current-phase (-> this sync))))
+    (set! f30-0 0.8) ;mod: Puffer is always active
     (if (and (< 0.025 f30-0) (< f30-0 0.525)) (flip-look! this #f) (flip-look! this #t))
     (cond
       ((< f30-0 0.5)

@@ -66,9 +66,7 @@
            :duration #x258
            :linger-duration #x12c
            :name "group-cavegeyserrock-sides"
-           :launcher (new 'static 'inline-array
-                sparticle-group-item
-                7
+           :launcher (new 'static 'inline-array sparticle-group-item 7
                 (sp-item 1869 :fade-after (meters 100.0) :falloff-to (meters 160.0) :period 36 :length 15)
                 (sp-item 1870 :fade-after (meters 100.0) :falloff-to (meters 160.0) :period 36 :length 15 :offset 12)
                 (sp-item 1871 :fade-after (meters 100.0) :falloff-to (meters 160.0) :period 36 :length 15 :offset 24)
@@ -82,9 +80,7 @@
 (set! (-> *part-id-table* 1875)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                16
+           (new 'static 'inline-array sp-field-init-spec 16
                 (sp-flt spt-num 1.0)
                 (sp-int spt-rot-x 5)
                 (sp-flt spt-r 4096.0)
@@ -112,9 +108,7 @@
 (set! (-> *part-id-table* 1869)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                25
+           (new 'static 'inline-array sp-field-init-spec 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-rnd-flt spt-num 0.0 2.0 1.0)
                 (sp-flt spt-y (meters -0.5))
@@ -145,9 +139,7 @@
 (set! (-> *part-id-table* 1872)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                25
+           (new 'static 'inline-array sp-field-init-spec 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-rnd-flt spt-num 0.0 2.0 1.0)
                 (sp-flt spt-y (meters -0.5))
@@ -178,9 +170,7 @@
 (set! (-> *part-id-table* 1870)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                25
+           (new 'static 'inline-array sp-field-init-spec 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-rnd-flt spt-num 0.0 2.0 1.0)
                 (sp-flt spt-y (meters -0.5))
@@ -211,9 +201,7 @@
 (set! (-> *part-id-table* 1873)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                25
+           (new 'static 'inline-array sp-field-init-spec 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-rnd-flt spt-num 0.0 2.0 1.0)
                 (sp-flt spt-y (meters -0.5))
@@ -244,9 +232,7 @@
 (set! (-> *part-id-table* 1871)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                25
+           (new 'static 'inline-array sp-field-init-spec 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-rnd-flt spt-num 0.0 2.0 1.0)
                 (sp-flt spt-y (meters -0.5))
@@ -277,9 +263,7 @@
 (set! (-> *part-id-table* 1874)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                25
+           (new 'static 'inline-array sp-field-init-spec 25
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-rnd-flt spt-num 0.0 2.0 1.0)
                 (sp-flt spt-y (meters -0.5))
@@ -319,9 +303,7 @@
            :duration #x258
            :linger-duration #x12c
            :name "group-cavegeyserrock-plume"
-           :launcher (new 'static 'inline-array
-                sparticle-group-item
-                9
+           :launcher (new 'static 'inline-array sparticle-group-item 9
                 (sp-item 1881 :flags (bit1) :period 240 :length 1 :binding 1878)
                 (sp-item 1881 :flags (bit1) :period 240 :length 1 :binding 1879)
                 (sp-item 1881 :flags (bit1) :period 240 :length 1 :binding 1880)
@@ -337,9 +319,7 @@
 (set! (-> *part-id-table* 1880)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                16
+           (new 'static 'inline-array sp-field-init-spec 16
                 (sp-flt spt-num 0.4)
                 (sp-int spt-rot-x 5)
                 (sp-flt spt-r 6144.0)
@@ -361,9 +341,7 @@
 (set! (-> *part-id-table* 1881)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                14
+           (new 'static 'inline-array sp-field-init-spec 14
                 (sp-tex spt-texture (new 'static 'texture-id :index #xf :page #x2))
                 (sp-flt spt-num 1.0)
                 (sp-flt spt-y (meters -0.5))
@@ -389,9 +367,7 @@
 (set! (-> *part-id-table* 1879)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                24
+           (new 'static 'inline-array sp-field-init-spec 24
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-flt spt-num 0.5)
                 (sp-flt spt-y (meters -0.5))
@@ -421,9 +397,7 @@
 (set! (-> *part-id-table* 1878)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                24
+           (new 'static 'inline-array sp-field-init-spec 24
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-flt spt-num 0.5)
                 (sp-flt spt-y (meters -0.5))
@@ -459,9 +433,7 @@
 (set! (-> *part-id-table* 1882)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                19
+           (new 'static 'inline-array sp-field-init-spec 19
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-rnd-flt spt-num 0.5 0.5 1.0)
                 (sp-rnd-flt spt-x (meters 0.0) (meters 1.0) 1.0)
@@ -486,9 +458,7 @@
 (set! (-> *part-id-table* 1883)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                18
+           (new 'static 'inline-array sp-field-init-spec 18
                 (sp-tex spt-texture (new 'static 'texture-id :page #x2))
                 (sp-rnd-flt spt-num 0.5 0.5 1.0)
                 (sp-rnd-flt spt-x (meters 0.0) (meters 0.5) 1.0)
@@ -512,9 +482,7 @@
 (set! (-> *part-id-table* 1884)
       (new 'static 'sparticle-launcher
            :init-specs
-           (new 'static 'inline-array
-                sp-field-init-spec
-                11
+           (new 'static 'inline-array sp-field-init-spec 11
                 (sp-flt spt-num 0.5)
                 (sp-rnd-flt spt-x (meters 0.5) (meters 0.5) 1.0)
                 (sp-int spt-rot-x 5)

@@ -27,9 +27,7 @@
   (new 'static 'shadow-data
        :texoffset (new 'static 'vector :x 256.5 :y 112.5)
        :texscale (new 'static 'vector :x 0.001953125 :y 0.00390625)
-       :clrs (new 'static 'inline-array
-            vector
-            2
+       :clrs (new 'static 'inline-array vector 2
             (new 'static 'vector :x (the-as float #x80) :w (the-as float #x82))
             (new 'static 'vector :y (the-as float #x80) :w (the-as float #x7f)))
        :dma-unpack-template

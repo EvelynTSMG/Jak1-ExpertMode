@@ -72,9 +72,7 @@
 
 (define *font-default-matrix*
   (new 'static 'matrix
-       :vector (new 'static 'inline-array
-            vector
-            4
+       :vector (new 'static 'inline-array vector 4
             (new 'static 'vector :x 1.0)
             (new 'static 'vector :y 1.0)
             (new 'static 'vector :z 1.0)
@@ -289,51 +287,39 @@
        (new 'static 'vector :x 0.08985 :y 0.06153846 :w 0.5)
        :current-verts
        (new 'static 'char-verts
-            :pos (new 'static 'inline-array
-                 vector
-                 4
+            :pos (new 'static 'inline-array vector 4
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0))
             :tex-st
-            (new 'static 'inline-array
-                 vector
-                 4
+            (new 'static 'inline-array vector 4
                  (new 'static 'vector :z 1.0)
                  (new 'static 'vector :z 1.0)
                  (new 'static 'vector :z 1.0)
                  (new 'static 'vector :z 1.0)))
        :src-verts
        (new 'static 'char-verts
-            :pos (new 'static 'inline-array
-                 vector
-                 4
+            :pos (new 'static 'inline-array vector 4
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0))
             :tex-st
-            (new 'static 'inline-array
-                 vector
-                 4
+            (new 'static 'inline-array vector 4
                  (new 'static 'vector :z 1.0)
                  (new 'static 'vector :z 1.0)
                  (new 'static 'vector :z 1.0)
                  (new 'static 'vector :z 1.0)))
        :dest-verts
        (new 'static 'char-verts
-            :pos (new 'static 'inline-array
-                 vector
-                 4
+            :pos (new 'static 'inline-array vector 4
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0)
                  (new 'static 'vector :w 1.0))
             :tex-st
-            (new 'static 'inline-array
-                 vector
-                 4
+            (new 'static 'inline-array vector 4
                  (new 'static 'vector :z 1.0)
                  (new 'static 'vector :z 1.0)
                  (new 'static 'vector :z 1.0)
@@ -342,9 +328,7 @@
        (new 'static 'vector4w :x #x00 :y #x00 :z #x00 :w #x80)
        ;; TODO - make enum for this
        :color-table
-       (new 'static 'inline-array
-            char-color
-            64
+       (new 'static 'inline-array char-color 64
             ;; 00 - default (menu and HUD)
             (new 'static 'char-color
                  :color (new 'static 'array rgba 4

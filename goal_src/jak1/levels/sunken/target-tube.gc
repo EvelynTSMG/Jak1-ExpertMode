@@ -11,15 +11,15 @@
 (define *tube-mods*
   (new 'static 'surface
        :name 'tube
-       :turnv 21845.334
-       :turnvv 524288.0
+       :turnv (degrees 360.0) ;mod: Turning while sliding is easier (120.0 -> 360.0)
+       :turnvv (degrees 8640.0) ;mod: Turning while sliding is easier (2880.0 -> 8640.0)
        :tiltv 5461.3335
        :tiltvv 131072.0
-       :transv-max 1.0
-       :target-speed 32768.0
-       :seek0 1.0
-       :seek90 1.0
-       :seek180 1.0
+       :transv-max 1.5       ;mod: Sliding is faster (1.0 -> 1.5)
+       :target-speed (meters 12.0) ;mod: Sliding is faster (8.0 -> 12.0)
+       :seek0 1.8   ;mod Turning while sliding is easier (1.0 -> 1.8)
+       :seek90 1.65 ;mod Turning while sliding is easier (1.0 -> 1.65)
+       :seek180 1.5 ;mod Turning while sliding is easier (1.0 -> 1.5)
        :fric 1.0
        :nonlin-fric-dist 1.0
        :slip-factor 1.0
@@ -155,10 +155,10 @@
                       (bucket-id debug-no-zbuf)
                       (-> self control trans)
                       s4-1
-                      (meters 0.00024414062)
+                      (the-as meters 1.0)
                       (new 'static 'rgba :g #xff :a #x80))
     (vector-matrix*! s4-1 s4-1 (-> self control unknown-matrix00))
-    (vector-float*! s4-1 s4-1 2.0)
+    (vector-float*! s4-1 s4-1 8.0)
     (if (< (-> self control unknown-surface01 target-speed) (vector-length s4-1))
       (vector-normalize! s4-1 (-> self control unknown-surface01 target-speed)))
     (vector-v++! (-> self control unknown-vector00) s4-1)
@@ -278,11 +278,13 @@
                        (-> self control local-normal))
       (vector-normalize! (-> self tube downhill) 1.0)
       (set! (-> self control unknown-float12) 1.0)
-      (let ((f30-0 (analog-input (the-as int (-> self control unknown-cpad-info00 leftx)) 128.0 32.0 110.0 1.0)))
-        (set! (-> self tube mod-x) f30-0)
-        (let ((f0-5 (analog-input (the-as int (-> self control unknown-cpad-info00 lefty)) 128.0 32.0 110.0 1.0)))
-          (set! (-> self tube mod-y) f0-5)
-          (tube-thrust f30-0 f0-5)))
+      (let ((mod-x (analog-input (the-as int (-> self control unknown-cpad-info00 leftx)) 128.0 32.0 110.0 1.0)))
+        (set! (-> self tube mod-x) mod-x)
+        (let ((mod-y (analog-input (the-as int (-> self control unknown-cpad-info00 lefty)) 128.0 32.0 110.0 1.0)))
+          (set! (-> self tube mod-y) mod-y)
+          (tube-thrust mod-x mod-y)
+        )
+      )
       (add-gravity)
       (do-rotations2)
       (reverse-conversions (-> self control transv))

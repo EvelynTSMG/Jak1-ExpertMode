@@ -432,12 +432,13 @@
                           self))
         (set-target! (-> self neck) (target-pos 5)))
       (cond
-        ((time-elapsed? (-> self start-spin-time) (-> self slow-down))
-         (seek! (-> self speed-u) 0.0 (* 0.5555556 (seconds-per-frame)))
-         (if (= (-> self speed-u) 0.0) (go bully-stop-spinning)))
+        ;mod: Bullies never stop spinning
+        ;; ((time-elapsed? (-> self start-spin-time) (-> self slow-down))
+        ;;  (seek! (-> self speed-u) 0.0 (* 0.5555556 (seconds-per-frame)))
+        ;;  (if (= (-> self speed-u) 0.0) (go bully-stop-spinning)))
         (else (seek! (-> self speed-u) 1.0 (* 0.5555556 (seconds-per-frame)))))
       (set! (-> self spin-vel) (* 196608.0 (-> self speed-u)))
-      (set! (-> self travel-speed) (* 41779.2 (-> self speed-u)))
+      (set! (-> self travel-speed) (* (meters 30.6) (-> self speed-u))) ;mod: Bullies are beyblades (10.2 -> 30.6)
       (+! (-> self facing-ry) (* (-> self spin-vel) (seconds-per-frame)))
       (quaternion-axis-angle! (-> self root quat) 0.0 1.0 0.0 (-> self facing-ry))
       (bully-method-20 self)

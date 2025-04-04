@@ -48,9 +48,7 @@
   (new 'static 'ripple-wave-set
        :count 2
        :converted #f
-       :wave (new 'static 'inline-array
-            ripple-wave
-            4
+       :wave (new 'static 'inline-array ripple-wave 4
             (new 'static 'ripple-wave :scale 40.0 :xdiv 2 :speed 1.5)
             (new 'static 'ripple-wave :scale 40.0 :xdiv -2 :zdiv 2 :speed 0.9)
             (new 'static 'ripple-wave)

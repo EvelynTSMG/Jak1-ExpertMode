@@ -1079,9 +1079,7 @@
 
 
 (define *rolling-spheres-on*
-  (new 'static 'inline-array
-       vector
-       11
+  (new 'static 'inline-array vector 11
        (new 'static 'vector :x -724992.0 :y 204800.0 :z -6635520.0 :w 24576.0)
        (new 'static 'vector :x -692224.0 :y 204800.0 :z -6582272.0 :w 24576.0)
        (new 'static 'vector :x -688128.0 :y 204800.0 :z -6520832.0 :w 24576.0)
@@ -1097,9 +1095,7 @@
 (define *rolling-spheres-light0* (new 'static 'vector :x -524288.0 :y 110592.0 :z -6356992.0 :w 24576.0))
 
 (define *rolling-spheres-light1*
-  (new 'static 'inline-array
-       vector
-       4
+  (new 'static 'inline-array vector 4
        (new 'static 'vector :x -454656.0 :y 114688.0 :z -7081984.0 :w 81920.0)
        (new 'static 'vector :x -581632.0 :y 110592.0 :z -6410240.0 :w 24576.0)
        (new 'static 'vector :x -1265664.0 :y 106496.0 :z -6492160.0 :w 24576.0)
@@ -1108,9 +1104,7 @@
 (define *rolling-spheres-light2*
   (new 'static 'light-ellipse
        :matrix (new 'static 'matrix
-            :vector (new 'static 'inline-array
-                 vector
-                 4
+            :vector (new 'static 'inline-array vector 4
                  (new 'static 'vector :x -581632.0 :y 114688.0 :z -6479872.0 :w 24576.0)
                  (new 'static 'vector :x -737280.0 :y 110592.0 :z -7159808.0 :w 24576.0)
                  (new 'static 'vector :x -733184.0 :y 110592.0 :z -7266304.0 :w 24576.0)
@@ -1118,9 +1112,7 @@
        :color (new 'static 'rgbaf :x -1404928.0 :y 110592.0 :z -6541312.0 :w 24576.0)))
 
 (define *rolling-spheres-light3*
-  (new 'static 'inline-array
-       vector
-       2
+  (new 'static 'inline-array vector 2
        (new 'static 'vector :x -540672.0 :y 110592.0 :z -6549504.0 :w 24576.0)
        (new 'static 'vector :x -774144.0 :y 204800.0 :z -6275072.0 :w 24576.0)))
 

@@ -11,9 +11,7 @@
 (define *instance-shrub-work*
   (new 'static 'instance-shrub-work
        :matrix-tmpl
-       (new 'static 'inline-array
-            qword
-            20
+       (new 'static 'inline-array qword 20
             (new 'static 'qword :data (new 'static 'array uint32 4 #x10000005 #x0 #x0 #x6c050143))
             (new 'static 'qword :data (new 'static 'array uint32 4 #x20000005 #x0 #x0 #x6c050148))
             (new 'static 'qword :data (new 'static 'array uint32 4 #x20000005 #x0 #x0 #x6c05014d))
@@ -35,9 +33,7 @@
             (new 'static 'qword :data (new 'static 'array uint32 4 #x20000005 #x0 #x0 #x6c05019e))
             (new 'static 'qword :data (new 'static 'array uint32 4 #x10000005 #x0 #x0 #x6c0501a3)))
        :count-tmpl
-       (new 'static 'inline-array
-            vector4w
-            20
+       (new 'static 'inline-array vector4w 20
             (new 'static 'vector4w :x #x20000000 :z #x60010175 :w 10)
             (new 'static 'vector4w :x #x20000000 :z #x60010142 :w 1)
             (new 'static 'vector4w :x #x20000000 :z #x60010142 :w 2)
@@ -85,9 +81,7 @@
                  (new 'static 'vif-tag :imm #xd :cmd (vif-cmd direct) :msk #x1))
             :gif (new 'static 'array uint64 2 #x303e400000008004 #x412))
        :shrub-near-packets
-       (new 'static 'inline-array
-            shrub-near-packet
-            6
+       (new 'static 'inline-array shrub-near-packet 6
             (new 'static 'shrub-near-packet
                  :matrix-tmpl
                  (new 'static 'dma-packet

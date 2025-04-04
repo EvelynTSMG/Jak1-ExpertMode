@@ -1097,9 +1097,7 @@
        :count 3
        :converted #f
        :normal-scale 6.0
-       :wave (new 'static 'inline-array
-            ripple-wave
-            4
+       :wave (new 'static 'inline-array ripple-wave 4
             (new 'static 'ripple-wave :scale 7.0 :xdiv 1 :speed 6.0)
             (new 'static 'ripple-wave :scale 7.0 :xdiv -1 :zdiv 1 :speed 6.0)
             (new 'static 'ripple-wave :scale 3.0 :xdiv 5 :zdiv 3 :speed 3.0)

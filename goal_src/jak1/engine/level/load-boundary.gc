@@ -116,9 +116,7 @@
 
 ;; the polygon curently rendering.
 (define *boundary-polygon*
-  (new 'static 'inline-array
-       lbvtx
-       12
+  (new 'static 'inline-array lbvtx 12
        (new 'static 'lbvtx)
        (new 'static 'lbvtx)
        (new 'static 'lbvtx)

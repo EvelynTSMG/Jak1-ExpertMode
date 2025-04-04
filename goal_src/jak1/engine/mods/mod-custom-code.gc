@@ -33,6 +33,7 @@
   (firecanyon-mod-pickup drawable e)
 
   (village2-mod-pickup   drawable e)
+  (sunken-mod-pickup     drawable e)
 
   (village3-mod-pickup   drawable e)
 

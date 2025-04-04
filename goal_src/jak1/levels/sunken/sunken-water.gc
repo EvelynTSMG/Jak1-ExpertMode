@@ -26,13 +26,11 @@
        :count 3
        :converted #f
        :normal-scale 1.0
-       :wave (new 'static 'inline-array
-            ripple-wave
-            4
-            (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 1.5)
-            (new 'static 'ripple-wave :scale 40.0 :xdiv -1 :zdiv 1 :speed 1.5)
-            (new 'static 'ripple-wave :scale 20.0 :xdiv 5 :zdiv 3 :speed 0.75)
-            (new 'static 'ripple-wave))))
+       :wave (new 'static 'inline-array ripple-wave 4 ;mod: LPC Water ripples slower :P
+            (new 'static 'ripple-wave :scale 40.0 :xdiv 1 :speed 0.75)
+            (new 'static 'ripple-wave :scale 40.0 :xdiv -1 :zdiv 1 :speed 0.75)
+            (new 'static 'ripple-wave :scale 20.0 :xdiv 5 :zdiv 3 :speed 0.375)
+            (new 'static 'ripple-wave :speed 0.5))))
 
 (defpartgroup group-sunken-water-deadly-water
   :id 446
@@ -42,22 +40,31 @@
 
 (defpart 1736
   :init-specs
-  ((:texture (hotdot effects))
-   (:num 1.0)
-   (:y (meters 0))
-   (:scale-x (meters 1) (meters 4))
-   (:scale-y (meters 0.25))
-   (:r 255.0)
-   (:g 255.0)
-   (:b 255.0)
-   (:a 96.0 32.0)
-   (:scalevel-x (meters 0.1875))
-   (:scalevel-y (meters -0.001875))
-   (:fade-a -3.2)
-   (:timer (seconds 0.27))
-   (:flags (bit2 bit3 bit14))
-   (:next-time (seconds 0.05))
-   (:next-launcher 2022)))
+  ((:texture (bigpuff effects))
+   (:num 0.15 0.2)
+   (:x (meters -0.5) (meters 1))
+   (:y (meters -0.25))
+   (:z (meters -0.5) (meters 1))
+   (:scale-x (meters 2) (meters 1))
+   (:rot-z (degrees 0) (degrees 360))
+   (:scale-y :copy scale-x)
+   (:r 96.0 64.0)
+   (:g 48.0 64.0)
+   (:b 32.0 48.0)
+   (:a 20.0 12.0)
+   (:vel-y (meters 0.005) (meters 0.0025))
+   (:scalevel-x (meters 0.0055555557))
+   (:rotvel-z (degrees -0.99999994) (degrees 1.9999999))
+   (:scalevel-y :copy scalevel-x)
+   (:fade-a -0.0627451)
+   (:accel-y (meters -0.00026666667))
+   (:timer (seconds 3.5))
+   (:flags (bit2 bit14))
+   (:next-time (seconds 0.5) (seconds 0.197))
+   (:next-launcher 2022)
+   (:conerot-x (degrees -4) 4 (degrees 2))
+   (:conerot-y (degrees -180) (degrees 360))
+   (:conerot-radius (meters 0) (meters 0.5))))
 
 (defpart 2022
   :init-specs ((:r 255.0) (:g 128.0 128.0) (:b 0.0) (:fade-a -1.28)))
@@ -68,7 +75,10 @@
     (let ((a0-1 (current-time))) (set! (-> gp-0 start-vertex) (logand (* 13 (logand a0-1 127)) 127)))
     (set! (-> gp-0 vertex-skip) 128)
     (dotimes (s5-0 (-> gp-0 vertex-count))
-      (launch-particles (-> *part-id-table* 1736) (-> gp-0 data s5-0))))
+      (launch-particles (-> *part-id-table* 1736) (-> gp-0 data s5-0))
+      (launch-particles (-> *part-id-table* 1736) (-> gp-0 data s5-0))
+    )
+  )
   #f)
 
 (defstate water-vol-idle (sunken-water)
@@ -123,10 +133,11 @@
 (defmethod water-vol-method-25 ((this sunken-water))
   (let ((t9-0 (method-of-type water-anim water-vol-method-25))) (t9-0 this))
   (set! (-> this playing-deadly-sound?) #f)
-  (set-vector! (-> this safe-color-mult) 0.125 0.225 0.22 0.5)
-  (set-vector! (-> this safe-color-emissive) 0.0 0.0 0.0 1.0)
-  (set-vector! (-> this deadly-color-mult) 0.125 0.225 0.22 0.5)
-  (set-vector! (-> this deadly-color-emissive) 0.33 0.6 0.0 1.0)
+  ;mod: Electrified water is red
+  (set-vector! (-> this safe-color-mult) 0.225 0.22 0.22 0.5)
+  (set-vector! (-> this safe-color-emissive) 0.0 0.0 0.0 0.5)
+  (set-vector! (-> this deadly-color-mult) 0.225 0.22 0.22 0.5)
+  (set-vector! (-> this deadly-color-emissive) 0.5 0.0 0.0 0.2)
   (let ((s5-0 (load-params! (-> this sync) this (the-as uint 1500) 0.0 0.15 0.15)))
     (let ((f0-16 (res-lump-float (-> this entity) 'percent :default -1.0)))
       (if (or (< f0-16 0.0) (< 1.0 f0-16))

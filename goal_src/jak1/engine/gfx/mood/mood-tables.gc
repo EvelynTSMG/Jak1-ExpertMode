@@ -253,9 +253,7 @@
 
 (define *default-interp-table*
   (new 'static 'sky-color-day
-       :hour (new 'static 'inline-array
-            sky-color-hour
-            24
+       :hour (new 'static 'inline-array sky-color-hour 24
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.2 :morph-end 0.4)
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.4 :morph-end 0.6)
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.6 :morph-end 0.8)
@@ -283,9 +281,7 @@
 
 (define *village1-palette-interp-table*
   (new 'static 'sky-color-day
-       :hour (new 'static 'inline-array
-            sky-color-hour
-            24
+       :hour (new 'static 'inline-array sky-color-hour 24
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.2 :morph-end 0.4)
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.4 :morph-end 0.6)
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.6 :morph-end 0.8)
@@ -313,9 +309,7 @@
 
 (define *misty-palette-interp-table*
   (new 'static 'sky-color-day
-       :hour (new 'static 'inline-array
-            sky-color-hour
-            24
+       :hour (new 'static 'inline-array sky-color-hour 24
             (new 'static 'sky-color-hour :snapshot1 1 :morph-start 0.04 :morph-end 0.08)
             (new 'static 'sky-color-hour :snapshot1 1 :morph-start 0.08 :morph-end 0.12)
             (new 'static 'sky-color-hour :snapshot1 1 :morph-start 0.12 :morph-end 0.16)
@@ -343,9 +337,7 @@
 
 (define *firecanyon-palette-interp-table*
   (new 'static 'sky-color-day
-       :hour (new 'static 'inline-array
-            sky-color-hour
-            24
+       :hour (new 'static 'inline-array sky-color-hour 24
             (new 'static 'sky-color-hour :snapshot1 3 :morph-end 0.08)
             (new 'static 'sky-color-hour :snapshot1 3 :morph-start 0.08 :morph-end 0.12)
             (new 'static 'sky-color-hour :snapshot1 3 :morph-start 0.12 :morph-end 0.16)
@@ -373,9 +365,7 @@
 
 (define *rolling-palette-interp-table*
   (new 'static 'sky-color-day
-       :hour (new 'static 'inline-array
-            sky-color-hour
-            24
+       :hour (new 'static 'inline-array sky-color-hour 24
             (new 'static 'sky-color-hour :snapshot1 2 :snapshot2 3 :morph-start 0.2 :morph-end 0.4)
             (new 'static 'sky-color-hour :snapshot1 2 :snapshot2 3 :morph-start 0.4 :morph-end 0.6)
             (new 'static 'sky-color-hour :snapshot1 2 :snapshot2 3 :morph-start 0.6 :morph-end 0.8)
@@ -403,9 +393,7 @@
 
 (define *village2-sky-texture-table*
   (new 'static 'sky-color-day
-       :hour (new 'static 'inline-array
-            sky-color-hour
-            24
+       :hour (new 'static 'inline-array sky-color-hour 24
             (new 'static 'sky-color-hour :snapshot1 1 :snapshot2 4 :morph-start 0.2 :morph-end 0.4)
             (new 'static 'sky-color-hour :snapshot1 1 :snapshot2 4 :morph-start 0.4 :morph-end 0.6)
             (new 'static 'sky-color-hour :snapshot1 1 :snapshot2 4 :morph-start 0.6 :morph-end 0.8)
@@ -433,9 +421,7 @@
 
 (define *finalboss-interp-table*
   (new 'static 'sky-color-day
-       :hour (new 'static 'inline-array
-            sky-color-hour
-            24
+       :hour (new 'static 'inline-array sky-color-hour 24
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.2 :morph-end 0.4)
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.4 :morph-end 0.6)
             (new 'static 'sky-color-hour :snapshot1 6 :snapshot2 7 :morph-start 0.6 :morph-end 0.8)
@@ -463,9 +449,7 @@
 
 (define *village1-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 160.0 :y 150.0 :z 200.0 :w 128.0)
@@ -525,9 +509,7 @@
 
 (define *village1-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.066987306 :y 0.25000003 :z 0.9659258)
                  :lgt-color
@@ -619,9 +601,7 @@
 
 (define *village1-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 128.0 :w 128.0)
@@ -665,9 +645,7 @@
 
 (define *training-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 160.0 :y 150.0 :z 200.0 :w 128.0)
@@ -727,9 +705,7 @@
 
 (define *snow-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 210.0 :y 183.0 :z 160.0 :w 128.0)
@@ -789,9 +765,7 @@
 
 (define *snow-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.067 :y 0.25 :z 0.966)
                  :lgt-color
@@ -908,9 +882,7 @@
 
 (define *snow-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 128.0 :w 128.0)
@@ -954,9 +926,7 @@
 
 (define *jungleb-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :w 128.0)
@@ -974,9 +944,7 @@
 
 (define *jungleb-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :y 1.0)
                  :lgt-color
@@ -996,9 +964,7 @@
 
 (define *jungleb-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -1014,9 +980,7 @@
 
 (define *maincave-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :y 96.0 :z 96.0 :w 128.0)
@@ -1034,9 +998,7 @@
 
 (define *maincave-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :y 1.0)
                  :lgt-color
@@ -1056,9 +1018,7 @@
 
 (define *maincave-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -1074,9 +1034,7 @@
 
 (define *robocave-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :w 128.0)
@@ -1094,9 +1052,7 @@
 
 (define *darkcave-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :w 128.0)
@@ -1114,9 +1070,7 @@
 
 (define *darkcave-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :y -1.0)
                  :lgt-color
@@ -1136,9 +1090,7 @@
 
 (define *darkcave-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -1154,9 +1106,7 @@
 
 (define *misty-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 186.0 :y 148.0 :z 164.0 :w 128.0)
@@ -1216,9 +1166,7 @@
 
 (define *misty-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.25 :y 0.9330127 :z 0.25881904)
                  :lgt-color
@@ -1250,9 +1198,7 @@
 
 (define *misty-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 128.0 :w 128.0)
@@ -1296,9 +1242,7 @@
 
 (define *village2-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 75.0 :y 82.0 :z 96.0 :w 128.0)
@@ -1358,9 +1302,7 @@
 
 (define *village2-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.25 :y 0.9330127 :z 0.25881904)
                  :lgt-color
@@ -1412,9 +1354,7 @@
 
 (define *village2-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -1450,9 +1390,7 @@
 
 (define *swamp-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 22.0 :y 89.0 :z 101.0 :w 128.0)
@@ -1512,9 +1450,7 @@
 
 (define *swamp-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.25 :y 0.9330127 :z 0.25881904)
                  :lgt-color
@@ -1566,9 +1502,7 @@
 
 (define *swamp-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -1604,9 +1538,7 @@
 
 (define *sunken-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 16.512 :y 26.112 :z 54.912 :w 128.0)
@@ -1630,9 +1562,7 @@
 
 (define *sunken-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :y 1.0)
                  :lgt-color
@@ -1664,9 +1594,7 @@
 
 (define *sunken-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -1686,9 +1614,7 @@
 
 (define *rolling-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 42.0 :y 50.0 :z 68.0 :w 128.0)
@@ -1748,9 +1674,7 @@
 
 (define *rolling-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.1830127 :y 0.6830127 :z 0.70710677)
                  :lgt-color
@@ -1802,9 +1726,7 @@
 
 (define *rolling-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -1840,9 +1762,7 @@
 
 (define *firecanyon-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 180.0 :y 113.0 :z 80.0 :w 128.0)
@@ -1902,9 +1822,7 @@
 
 (define *firecanyon-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.0278 :y 0.6578 :z 0.7526)
                  :lgt-color
@@ -1962,9 +1880,7 @@
 
 (define *firecanyon-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -2008,9 +1924,7 @@
 
 (define *ogre-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 64.0 :y 68.0 :z 68.0 :w 128.0)
@@ -2070,9 +1984,7 @@
 
 (define *ogre-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.1830127 :y 0.6830127 :z 0.70710677)
                  :lgt-color
@@ -2144,9 +2056,7 @@
 
 (define *ogre2-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.25 :y 0.9330127 :z 0.25881904)
                  :lgt-color
@@ -2218,9 +2128,7 @@
 
 (define *ogre3-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 255.0 :y 96.0 :w 128.0)
@@ -2238,9 +2146,7 @@
 
 (define *ogre3-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :y 0.666 :z 0.745)
                  :lgt-color
@@ -2262,9 +2168,7 @@
 
 (define *village3-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 64.0 :y 68.0 :z 68.0 :w 128.0)
@@ -2324,9 +2228,7 @@
 
 (define *village3-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :x -0.067 :y 0.25 :z 0.966)
                  :lgt-color
@@ -2370,9 +2272,7 @@
 
 (define *lavatube-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 255.0 :y 96.0 :w 128.0)
@@ -2390,9 +2290,7 @@
 
 (define *lavatube-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :y 1.0)
                  :lgt-color
@@ -2456,9 +2354,7 @@
 
 (define *lavatube-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 225.0 :z 96.0 :w 128.0)
@@ -2474,9 +2370,7 @@
 
 (define *finalboss-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :x 255.0 :y 128.0 :w 128.0)
@@ -2520,9 +2414,7 @@
 
 (define *finalboss-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :x 160.0 :y 150.0 :z 200.0 :w 128.0)
@@ -2642,9 +2534,7 @@
 
 (define *citadel-mood-fog-table*
   (new 'static 'mood-fog-table
-       :data (new 'static 'inline-array
-            mood-fog
-            8
+       :data (new 'static 'inline-array mood-fog 8
             (new 'static 'mood-fog
                  :fog-color
                  (new 'static 'vector :w 128.0)
@@ -2662,9 +2552,7 @@
 
 (define *citadel-mood-lights-table*
   (new 'static 'mood-lights-table
-       :data (new 'static 'inline-array
-            mood-lights
-            8
+       :data (new 'static 'inline-array mood-lights 8
             (new 'static 'mood-lights
                  :direction (new 'static 'vector :y 1.0)
                  :lgt-color
@@ -2684,9 +2572,7 @@
 
 (define *citadel-mood-sun-table*
   (new 'static 'mood-sun-table
-       :data (new 'static 'inline-array
-            mood-sun
-            8
+       :data (new 'static 'inline-array mood-sun 8
             (new 'static 'mood-sun
                  :sun-color
                  (new 'static 'vector :w 128.0)

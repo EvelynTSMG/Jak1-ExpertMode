@@ -1078,9 +1078,7 @@
 
 ;; definition for symbol *ocean-trans-st-table*, type (inline-array vector)
 (define *ocean-trans-st-table*
-  (new 'static 'inline-array
-       vector
-       4
+  (new 'static 'inline-array vector 4
        (new 'static 'vector :z 1.0)
        (new 'static 'vector :x 1.0 :z 1.0)
        (new 'static 'vector :y 1.0 :z 1.0)

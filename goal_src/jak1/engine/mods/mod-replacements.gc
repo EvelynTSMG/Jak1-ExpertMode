@@ -123,6 +123,22 @@
   )
 )
 
+(defmacro sunken-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; CELLS
+    (('fuel-cell-52) (set-posms e 741.31 -143.90 -1714.44 738.70 -139.19 -1725.93 0.0)) ; T-Chamber, inside whirlpool (movie on dry land)
+    (('fuel-cell-26) (set-posms e 602.65 -117.19 -1698.25 602.65 -130.26 -1698.25 0.0)) ; Piggyback Chamber, high above the button (movie on button)
+
+    ;; FLIES
+    (('crate-925)  (set-posms e 686.34 -160.99 -1623.13 669.23 -160.99 -1605.08 0.0)) ; Chamber #1, in the corner -> other corner
+    (('crate-926)  (set-posms e 771.35 -141.99 -1600.31 774.51 -141.99 -1570.26 0.0)) ; Chamber #1.5, in the corner -> other corner
+    (('crate-917)  (set-posms e 895.89 -118.99 -1612.31 894.45 -118.99 -1608.27 0.0)) ; Chamber #2, above the orb vent -> nearby
+    (('crate-923)  (set-posms e 830.34 -118.00 -1678.81 830.68 -130.99 -1675.19 0.0)) ; Chamber #2, on the cell pipe -> platform below
+    (('crate-2705) (set-posms e 573.01 -238.99 -1793.21 576.50 -223.18 -1780.31 0.0)) ; Two Vent Chamber, vanilla position -> High above the second vent
+    ; Two of the scout flies are in the pipegame
+  )
+)
+
 (defmacro village3-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
     ;; FLIES

@@ -16,9 +16,7 @@
   :pack-me)
 
 (define *inv-init-table*
-  (new 'static 'inline-array
-       invinitdata
-       8
+  (new 'static 'inline-array invinitdata 8
        (new 'static 'invinitdata :count #x48 :init-addr #x1)
        (new 'static 'invinitdata :count #x43 :init-data #xc :init-addr #x11)
        (new 'static 'invinitdata :count #x3d :init-data #x18 :init-addr #x21)

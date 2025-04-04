@@ -28,9 +28,7 @@
 
 
 (define *ropebridge-70-rest-state*
-  (new 'static 'inline-array
-       vector
-       35
+  (new 'static 'inline-array vector 35
        (new 'static 'vector :x -2361.8552 :y 8191.9688 :z -1.9208 :w -0.1275)
        (new 'static 'vector :x -4584.7974 :y 16383.936 :z -3.5561 :w -0.0995)
        (new 'static 'vector :x -6668.8125 :y 24575.91 :z -5.0685 :w 0.035)
@@ -68,9 +66,7 @@
        (new 'static 'vector :y 286720.0)))
 
 (define *ropebridge-52-rest-state*
-  (new 'static 'inline-array
-       vector
-       26
+  (new 'static 'inline-array vector 26
        (new 'static 'vector :x -1737.1892 :y 8191.979 :z 12.1884 :w 0.1708)
        (new 'static 'vector :x -3335.4602 :y 16383.967 :z 25.0793 :w 0.0007)
        (new 'static 'vector :x -4794.766 :y 24575.955 :z 37.6373 :w -0.0002)
@@ -99,9 +95,7 @@
        (new 'static 'vector :y 212992.0)))
 
 (define *ropebridge-32-rest-state*
-  (new 'static 'inline-array
-       vector
-       16
+  (new 'static 'inline-array vector 16
        (new 'static 'vector :x -1041.5476 :y 8191.998 :z -4.4282 :w -0.0321)
        (new 'static 'vector :x -1944.2802 :y 16383.992 :z -8.0124 :w 0.0452)
        (new 'static 'vector :x -2708.21 :y 24576.0 :z -11.5897 :w 0.311)
@@ -120,9 +114,7 @@
        (new 'static 'vector :y 131072.0)))
 
 (define *ropebridge-36-rest-state*
-  (new 'static 'inline-array
-       vector
-       18
+  (new 'static 'inline-array vector 18
        (new 'static 'vector :x -1180.706 :y 8191.9907 :z -0.027 :w -0.0559)
        (new 'static 'vector :x -2222.5103 :y 16383.984 :z -0.0441 :w -0.0457)
        (new 'static 'vector :x -3125.4124 :y 24575.979 :z -0.047 :w -0.004)
@@ -143,9 +135,7 @@
        (new 'static 'vector :y 147456.0)))
 
 (define *ropebridge-tunings*
-  (new 'static 'inline-array
-       ropebridge-tuning
-       6
+  (new 'static 'inline-array ropebridge-tuning 6
        (new 'static 'ropebridge-tuning
             :num-springs 16
             :num-spring-points 17

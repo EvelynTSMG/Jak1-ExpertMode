@@ -329,9 +329,7 @@
 
 (defun joint-mod-rotate-handler ((arg0 cspace) (arg1 transformq))
   (let ((s4-0 (the-as joint-mod (-> arg0 param1)))
-        (s3-0 (new 'static 'inline-array
-                   vector
-                   3
+        (s3-0 (new 'static 'inline-array vector 3
                    (new 'static 'vector :x 1.0 :w 1.0)
                    (new 'static 'vector :y 1.0 :w 1.0)
                    (new 'static 'vector :z 1.0 :w 1.0))))
@@ -380,9 +378,7 @@
   (none))
 
 (define *joint-axis-vectors*
-  (new 'static 'inline-array
-       vector
-       6
+  (new 'static 'inline-array vector 6
        (new 'static 'vector :x 1.0 :w 1.0)
        (new 'static 'vector :y 1.0 :w 1.0)
        (new 'static 'vector :z 1.0 :w 1.0)

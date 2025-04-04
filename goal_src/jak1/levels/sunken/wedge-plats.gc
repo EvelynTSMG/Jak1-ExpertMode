@@ -14,17 +14,21 @@
   ((center       vector :inline)
    (rotspeed     float)
    (rotate-inner float)
-   (rotate-outer float))
+   (rotate-outer float)
+   (should-tip? symbol))
   (:states
    wedge-plat-master-idle))
 
 (defstate wedge-plat-master-idle (wedge-plat-master)
   :code (behavior ()
       (loop
+        ;mod: Wedge platforms rotate the other way :3
         (set! (-> self rotate-inner)
-              (the float (sar (shl (the int (+ (-> self rotate-inner) (* (-> self rotspeed) (seconds-per-frame)))) 48) 48)))
+              (the float (sar (shl (the int (- (-> self rotate-inner) (* (-> self rotspeed) (seconds-per-frame)))) 48) 48)))
         (set! (-> self rotate-outer)
-              (the float (sar (shl (the int (- (-> self rotate-outer) (* (-> self rotspeed) (seconds-per-frame)))) 48) 48)))
+              (the float (sar (shl (the int (+ (-> self rotate-outer) (* (-> self rotspeed) (seconds-per-frame)))) 48) 48)))
+        ;mod: Wedge platforms tip when approached, fine tuned to be as rude as possible
+        (set! (-> self should-tip?) (< (vector-vector-xz-distance (-> self center) (target-pos 0)) (meters 34.0)))
         (suspend))))
 
 (defmethod init-from-entity! ((this wedge-plat-master) (arg0 entity-actor))
@@ -39,14 +43,19 @@
   (none))
 
 (deftype wedge-plat (baseplat)
-  ((master   wedge-plat-master)
-   (distance float)
-   (offset   float))
+  (
+    (master   wedge-plat-master)
+    (distance float)
+    (offset   float)
+  )
   (:methods
-   (wedge-plat-method-27 (_type_) symbol))
+    (wedge-plat-method-27 (_type_ symbol) symbol)
+  )
   (:states
-   wedge-plat-idle
-   wedge-plat-tip))
+    wedge-plat-idle
+    wedge-plat-tip
+  )
+)
 
 (defskelgroup *wedge-plat-sg*
   wedge-plat
@@ -55,20 +64,33 @@
   ((wedge-plat-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 6))
 
-(defmethod wedge-plat-method-27 ((this wedge-plat))
-  (let* ((a0-1 (-> this master))
-         (v1-0 (if a0-1 (-> (the-as process-drawable (-> a0-1 ppointer)) brother))))
-    (when v1-0
-      (let ((s4-0 (&-> v1-0 27))
-            (f30-0 (-> this distance))
-            (f28-0 (the float (sar (shl (the int (+ (the-as float (-> v1-0 32)) (-> this offset))) 48) 48)))
-            (s5-0 #f))
-        (quaternion-axis-angle! (-> this root quat) 0.0 1.0 0.0 (the float (sar (shl (the int (- 49152.0 f28-0)) 48) 48)))
-        (set! (-> this basetrans x) (+ (the-as float (-> s4-0 0)) (* f30-0 (cos f28-0))))
-        (set! (-> this basetrans y) (the-as float (-> s4-0 1)))
-        (set! (-> this basetrans z) (+ (the-as float (-> s4-0 2)) (* f30-0 (sin f28-0))))
-        (let ((f0-16 (cos f28-0))) (if (or (< 0.95 f0-16) (< f0-16 -0.95)) (set! s5-0 #t)))
-        s5-0))))
+(defmethod wedge-plat-method-27 ((this wedge-plat) (is-outer? symbol))
+  (let* (
+        (master (-> this master))
+        (sibling (if master (-> (the-as process-drawable (-> master ppointer)) brother)))
+      )
+    (when sibling
+      (let* (
+            (center-pos (the-as vector (&-> sibling 27))) ; technically wrong? maybe? but shhhh
+            (dist (-> this distance))
+            (progress (the float (sar (shl (the int (+ (the-as float (-> sibling (if is-outer? 33 32))) (-> this offset))) 48) 48)))
+            (sin-p (sin progress))
+            (cos-p (cos progress))
+            (sin-pp (sin (+ (* 3.0 progress) (-> this offset))))
+            (cos-pp (cos (+ (* 3.0 progress) (-> this offset))))
+            (y-offset (meters (* 1.0 (- (if is-outer? cos-pp sin-pp) 0.5))))
+            (can-flip? #f)
+          )
+        (quaternion-axis-angle! (-> this root quat) 0.0 1.0 0.0 (the float (sar (shl (the int (- 49152.0 progress)) 48) 48)))
+        (set! (-> this basetrans x) (+ (-> center-pos x) (* dist cos-p)))
+        (set! (-> this basetrans y) (+ (-> center-pos y) y-offset))
+        (set! (-> this basetrans z) (+ (-> center-pos z) (* dist sin-p)))
+        (if (or (< 0.95 cos-p) (< cos-p -0.95)) (set! can-flip? #t))
+        can-flip?
+      )
+    )
+  )
+)
 
 (defstate wedge-plat-idle (wedge-plat)
   :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
@@ -78,7 +100,11 @@
   :code (behavior ()
       (ja :num-func num-func-identity :frame-num (ja-aframe 0.0 0))
       (loop
-        (if (wedge-plat-method-27 self) (go wedge-plat-tip))
+        (wedge-plat-method-27 self #f)
+        ;mod: Wedge platformers tip over when player gets close
+        (when (-> (the-as wedge-plat-master (process-by-ename "wedge-plat-master-1")) should-tip?)
+          (go wedge-plat-tip)
+        )
         (suspend)))
   :post plat-post)
 
@@ -91,22 +117,22 @@
   :code (behavior ()
       (ja-no-eval :group! wedge-plat-tip-ja :num! (seek! (ja-aframe 60.0 0)) :frame-num (ja-aframe 0.0 0))
       (until (ja-done? 0)
-        (wedge-plat-method-27 self)
+        (wedge-plat-method-27 self #f)
         (suspend)
-        (ja :num! (seek! (ja-aframe 60.0 0))))
+        (ja :num! (seek! (ja-aframe 60.0 0) 100.0))) ;mod: Wedge platformers tip over instantly
       (ja-no-eval :group! wedge-plat-tip-ja :num! (seek! (ja-aframe 100.0 0)) :frame-num (ja-aframe 60.0 0))
       (until (ja-done? 0)
-        (wedge-plat-method-27 self)
+        (wedge-plat-method-27 self #f)
         (suspend)
         (ja :num! (seek! (ja-aframe 100.0 0))))
-      (set-time! (-> self state-time))
-      (until (time-elapsed? (-> self state-time) (seconds 1))
+      ;mod: Wedge platformers stay tipped over
+      (while (-> (the-as wedge-plat-master (process-by-ename "wedge-plat-master-1")) should-tip?)
         (ja :num-func num-func-identity :frame-num (ja-aframe 100.0 0))
-        (wedge-plat-method-27 self)
+        (wedge-plat-method-27 self #f)
         (suspend))
       (ja-no-eval :group! wedge-plat-tip-ja :num! (seek! (ja-aframe 153.0 0)) :frame-num (ja-aframe 100.0 0))
       (until (ja-done? 0)
-        (wedge-plat-method-27 self)
+        (wedge-plat-method-27 self #f)
         (suspend)
         (ja :num! (seek! (ja-aframe 153.0 0))))
       (go wedge-plat-idle))
@@ -154,21 +180,6 @@
   ((wedge-plat-outer-lod0-mg (meters 999999)))
   :bounds (static-spherem 0 0 0 8))
 
-(defmethod wedge-plat-method-27 ((this wedge-plat-outer))
-  (let* ((a0-1 (-> this master))
-         (v1-0 (if a0-1 (-> (the-as process-drawable (-> a0-1 ppointer)) brother))))
-    (when v1-0
-      (let ((s4-0 (&-> v1-0 27))
-            (f30-0 (-> this distance))
-            (f28-0 (the float (sar (shl (the int (+ (the-as float (-> v1-0 33)) (-> this offset))) 48) 48)))
-            (s5-0 #f))
-        (quaternion-axis-angle! (-> this root quat) 0.0 1.0 0.0 (the float (sar (shl (the int (- 49152.0 f28-0)) 48) 48)))
-        (set! (-> this basetrans x) (+ (the-as float (-> s4-0 0)) (* f30-0 (cos f28-0))))
-        (set! (-> this basetrans y) (the-as float (-> s4-0 1)))
-        (set! (-> this basetrans z) (+ (the-as float (-> s4-0 2)) (* f30-0 (sin f28-0))))
-        (let ((f0-16 (sin f28-0))) (if (or (< 0.95 f0-16) (< f0-16 -0.95)) (set! s5-0 #t)))
-        s5-0))))
-
 (defstate wedge-plat-outer-idle (wedge-plat-outer)
   :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
       (case message
@@ -176,9 +187,14 @@
   :trans plat-trans
   :code (behavior ()
       (loop
-        (ja :num-func num-func-identity :frame-num (ja-aframe 0.0 0))
-        (if (wedge-plat-method-27 self) (go wedge-plat-outer-tip))
-        (suspend)))
+        (wedge-plat-method-27 self #t)
+        ;mod: Wedge platformers tip over when player gets close
+        (when (-> (the-as wedge-plat-master (process-by-ename "wedge-plat-master-1")) should-tip?)
+          (go wedge-plat-outer-tip)
+        )
+        (suspend)
+      )
+    )
   :post plat-post)
 
 (defstate wedge-plat-outer-tip (wedge-plat-outer)
@@ -190,22 +206,22 @@
   :code (behavior ()
       (ja-no-eval :group! wedge-plat-outer-tip-ja :num! (seek! (ja-aframe 60.0 0)) :frame-num (ja-aframe 0.0 0))
       (until (ja-done? 0)
-        (wedge-plat-method-27 self)
+        (wedge-plat-method-27 self #t)
         (suspend)
-        (ja :num! (seek! (ja-aframe 60.0 0))))
+        (ja :num! (seek! (ja-aframe 60.0 0) 100.0))) ;mod: Wedge platformers tip over instantly
       (ja-no-eval :group! wedge-plat-outer-tip-ja :num! (seek! (ja-aframe 100.0 0)) :frame-num (ja-aframe 60.0 0))
       (until (ja-done? 0)
-        (wedge-plat-method-27 self)
+        (wedge-plat-method-27 self #t)
         (suspend)
         (ja :num! (seek! (ja-aframe 100.0 0))))
-      (set-time! (-> self state-time))
-      (until (time-elapsed? (-> self state-time) (seconds 1))
+      ;mod: Wedge platformers stay tipped over
+      (while (-> (the-as wedge-plat-master (process-by-ename "wedge-plat-master-1")) should-tip?)
         (ja :num-func num-func-identity :frame-num (ja-aframe 100.0 0))
-        (wedge-plat-method-27 self)
+        (wedge-plat-method-27 self #t)
         (suspend))
       (ja-no-eval :group! wedge-plat-outer-tip-ja :num! (seek! (ja-aframe 153.0 0)) :frame-num (ja-aframe 100.0 0))
       (until (ja-done? 0)
-        (wedge-plat-method-27 self)
+        (wedge-plat-method-27 self #t)
         (suspend)
         (ja :num! (seek! (ja-aframe 153.0 0))))
       (go wedge-plat-outer-idle))

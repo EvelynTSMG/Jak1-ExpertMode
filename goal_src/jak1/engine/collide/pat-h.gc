@@ -78,9 +78,7 @@
    (hilite-color rgba)))
 
 (define *pat-mode-info*
-  (new 'static 'inline-array
-       pat-mode-info
-       4
+  (new 'static 'inline-array pat-mode-info 4
        (new 'static 'pat-mode-info
             :name "ground"
             :wall-angle 0.2

@@ -26,9 +26,7 @@
        :dma-cnt-call
        (new 'static 'dma-packet :dma (new 'static 'dma-tag :id (dma-tag-id cnt)))
        :matrix (new 'static 'matrix
-            :vector (new 'static 'inline-array
-                 vector
-                 4
+            :vector (new 'static 'inline-array vector 4
                  (new 'static 'vector :x 1.0)
                  (new 'static 'vector :y 1.0)
                  (new 'static 'vector :z 1.0)

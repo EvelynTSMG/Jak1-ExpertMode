@@ -102,9 +102,7 @@
   :bounds (static-spherem 0 0 0 2))
 
 (define *gnawer-segment-infos*
-  (new 'static 'inline-array
-       gnawer-segment-info
-       10
+  (new 'static 'inline-array gnawer-segment-info 10
        (new 'static 'gnawer-segment-info :num-joints 8 :joint-index (new 'static 'array int8 8 4 31 13 32 33 34 35 36))
        (new 'static 'gnawer-segment-info :num-joints 3 :joint-index (new 'static 'array int8 8 5 14 15 0 0 0 0 0))
        (new 'static 'gnawer-segment-info :num-joints 3 :joint-index (new 'static 'array int8 8 6 16 17 0 0 0 0 0))

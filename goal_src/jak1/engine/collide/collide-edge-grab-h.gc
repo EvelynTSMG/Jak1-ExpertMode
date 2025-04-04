@@ -125,9 +125,7 @@
             :min (new 'static 'vector :x -6144.0 :y 5324.8 :z -6144.0 :w 1.0)
             :max (new 'static 'vector :x 6144.0 :y 11059.2 :z 6144.0 :w 1.0))
        :local-player-spheres
-       (new 'static 'inline-array
-            sphere
-            12
+       (new 'static 'inline-array sphere 12
             (new 'static 'sphere :x 1720.32 :y -819.2 :w 1433.6)
             (new 'static 'sphere :x 2293.76 :y -3276.8 :w 1884.16)
             (new 'static 'sphere :x 1966.08 :y -6144.0 :w 1556.48)
