@@ -175,6 +175,30 @@
   (set! (-> self root trans y) (+ (-> self root trans y) (-> self y-offset))))
 
 (defbehavior robber-calc-speed robber ((arg0 float) (arg1 float) (arg2 float) (arg3 float) (arg4 symbol))
+  ;mod: Flying Lurkers have constant speed
+  (let ((f30-0 (meters 0.1))
+        (f31-0 (meters 0.02))
+        (gp-1 (vector-! (new 'stack-no-clear 'vector) (-> self root trans) (target-pos 0)))
+      )
+    (cond
+      ((or
+            (not arg4)
+            (< arg0 (vector-length gp-1))
+          ) 
+        (if (< (-> self speed) 0.0)
+          (set! f30-0 (- f30-0))
+        )
+      )
+
+      ((< (vector-dot gp-1 (-> self tangent)) 0.0) 
+        (set! f30-0 (- f31-0))
+      )
+    )
+
+    (set! (-> self speed) f30-0)
+    (return f30-0)
+  )
+
   (let ((gp-1 (vector-! (new 'stack-no-clear 'vector) (-> self root trans) (target-pos 0))))
     (set! (-> gp-1 y) 0.0)
     (let* ((f2-1 (/ (- (vector-length gp-1) arg0) (- arg1 arg0)))
@@ -463,6 +487,7 @@
   (set! (-> this y-offset) (-> this y-offset-desired))
   (let ((f0-14 (res-lump-float arg0 'timeout :default 10.0)))
     (set! (-> this timeout) (the-as time-frame (the int (* 300.0 f0-14)))))
+  (set! (-> this timeout) 0) ;mod: Flying Lurkers have constant speed
   (set! (-> this last-ambient-time) 0)
   (set! (-> this time-to-next-ambient) 0)
   (set! (-> this speed) 0.0)

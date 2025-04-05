@@ -577,7 +577,7 @@
       (set-setting! 'allow-pause #f 0.0 0)
       (set-setting! 'allow-progress #f 0.0 0)
       (set-setting! 'music 'ogreboss 0.0 0)
-      (set! (-> self state-time) (-> *display* game-frame-counter))
+      (set! (-> self state-time) (igt-gameplay))
       (logior! (-> self draw status) (draw-status hidden))
       (let ((gp-0 (-> self mask)))
         (load-state-want-display-level 'finalboss 'special)

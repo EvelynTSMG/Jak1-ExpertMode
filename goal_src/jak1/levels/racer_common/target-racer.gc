@@ -729,7 +729,23 @@
       (flag-setup)
       (build-conversions (-> self control transv))
       (racer-service-slide)
-      (let ((f30-0 (analog-input (the-as int (-> self control unknown-cpad-info00 leftx)) 128.0 32.0 110.0 1.0)))
+      
+      (if (-> *pc-settings* unstable-racer?)
+        (begin
+          ; hehe
+          (if (rand-vu-percent? (-> *RACER-bank* instability-dir-chance))
+            (*! (-> self racer instability) -1.0)
+          )
+          (if (zero? (-> self racer instability))
+            (+! (-> self racer instability) (-> *RACER-bank* instability))
+            (+! (-> self racer instability) (* (sign (-> self racer instability)) (-> *RACER-bank* instability)))
+          )
+          (fminmax! (-> self racer instability) (- (-> *RACER-bank* max-instability)) (-> *RACER-bank* max-instability))
+        )
+        (set! (-> self racer instability) 0.0)
+      )
+
+      (let ((f30-0 (+ (-> self racer instability) (analog-input (the-as int (-> self control unknown-cpad-info00 leftx)) 128.0 32.0 110.0 1.0))))
         (set! (-> self racer mod-x) f30-0)
         (let* ((f28-0 (-> self racer slide-amp))
                (v1-17 (-> self racer slide-mode))

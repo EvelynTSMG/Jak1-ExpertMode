@@ -491,7 +491,7 @@
     (set! (-> a0-33 settings shadow-dir y) (-> v1-67 y))
     (set! (-> a0-33 settings shadow-dir z) (-> v1-67 z)))
   (when (and (!= (-> self fact eco-level) 0.0)
-             (>= (- (-> *display* game-frame-counter) (-> self fact eco-pickup-time)) (the-as time-frame (-> self fact eco-timeout))))
+             (>= (- (igt-gameplay) (-> self fact eco-pickup-time)) (the-as time-frame (-> self fact eco-timeout))))
     (set! (-> self fact eco-level) 0.0)
     (set! (-> self fact eco-timeout) 0)
     (logclear! (-> self state-flags) (state-flags invuln-powerup))
@@ -504,7 +504,7 @@
              (rand-vu-percent? (lerp-scale 0.0
                                            1.0
                                            (the float
-                                                (- (-> self fact eco-timeout) (the-as uint (- (-> *display* game-frame-counter) (-> self fact eco-pickup-time)))))
+                                                (- (-> self fact eco-timeout) (the-as uint (- (igt-gameplay) (-> self fact eco-pickup-time)))))
                                            0.0
                                            900.0)))
     (case (-> self fact eco-type)

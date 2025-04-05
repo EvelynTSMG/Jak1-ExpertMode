@@ -307,7 +307,7 @@
                                           1.0
                                           (-> *FACT-bank* health-max-default))))
              (set! (-> obj controller-led-color a)
-                   (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (-> *display* game-frame-counter))))) 2.0))))))))
+                   (- 1.0 (* flicker-amp (/ (+ 1.0 (sin (* flicker-speed (degrees (igt-gameplay))))) 2.0))))))))
       (when (and (-> obj controller-led-heat?)
                  (nonzero? (-> *target* racer))
                  (logtest? (-> *target* control root-prim prim-core action) (collide-action racer))
@@ -327,7 +327,7 @@
             (false! set-no-eco-color?))))
       (when (-> obj controller-led-eco?)
         ;; get remaining eco as a number from 0.0 to 1.0
-        (let ((eco-remain-fac (/ (the float (- (-> *target* fact eco-timeout) (- (-> *display* game-frame-counter) (-> *target* fact eco-pickup-time))))
+        (let ((eco-remain-fac (/ (the float (- (-> *target* fact eco-timeout) (- (igt-gameplay) (-> *target* fact eco-pickup-time))))
                                  (the float (-> *FACT-bank* eco-full-timeout)))))
           (when set-no-eco-color?
             (set! (-> obj controller-led-color r) 1.0)
@@ -438,6 +438,7 @@
   (case-str *pc-temp-string*
     (("money-starburst?") (set! (-> obj money-starburst?) (file-stream-read-symbol file)))
     (("skip-cells?") (set! (-> obj skip-cells?) (file-stream-read-symbol file)))
+    (("unstable-racer?") (set! (-> obj unstable-racer?) (file-stream-read-symbol file)))
     (("extra-hud?") (set! (-> obj extra-hud?) (file-stream-read-symbol file)))
     (("skip-movies?") (set! (-> obj skip-movies?) (file-stream-read-symbol file)))
     (("subtitles?") (set! (-> obj subtitles?) (file-stream-read-symbol file)))
@@ -474,6 +475,7 @@
   ((method-of-type pc-settings handle-output-settings) obj file)
   (format file "  (money-starburst? ~A)~%" (-> obj money-starburst?))
   (format file "  (skip-cells? ~A)~%" (-> obj skip-cells?))
+  (format file "  (unstable-racer? ~A)~%" (-> obj unstable-racer?))
   (format file "  (extra-hud? ~A)~%" (-> obj extra-hud?))
   (format file "  (skip-movies? ~A)~%" (-> obj skip-movies?))
   (format file "  (subtitles? ~A)~%" (-> obj subtitles?))

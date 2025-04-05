@@ -45,6 +45,10 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
   (none)
 )
 
+(defun set-posr ((e entity-actor) (x float) (y float) (z float) (r float))
+  (set-vector! (-> e extra trans) (meters x) (meters y) (meters z) (degrees r))
+)
+
 (defun set-movie-posm ((e entity-actor) (x float) (y float) (z float) (rot float))
   (set-vector! (res-lump-struct e 'movie-pos vector) (meters x) (meters y) (meters z) (degrees rot))
 
@@ -121,12 +125,89 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
   (none)
 )
 
+(defun set-poser ((drawable process-drawable) (e entity-actor) (x float) (y float) (z float) (r float))
+  (set-posm e x y z)
+  (set-rot  e 0.0 r 0.0)
+
+  (let ((auto-rot-tag (new 'static 'res-tag :name 'auto-rot :elt-type symbol :elt-count 1 :key-frame -1000000000.0)))
+    (add-data! e auto-rot-tag (the-as pointer #f))
+  )
+
+  (set! (-> drawable root quat quad) (-> e quat quad))
+
+  (none)
+)
+
+(defun set-ring-rot ((name string) (r float))
+  (let ((race-ring (the-as race-ring (process-by-ename name))))
+    (set-rot (-> race-ring entity) 0.0 r 0.0)
+    (let ((auto-rot-tag (new 'static 'res-tag :name 'auto-rot :elt-type symbol :elt-count 1 :key-frame -1000000000.0)))
+      (add-data! (-> race-ring entity) auto-rot-tag (the-as pointer #f))
+    )
+    (set! (-> race-ring root quat quad) (-> race-ring entity quat quad))
+    (rotate-ring race-ring)
+  )
+)
+
 (defun disable-buzzer-hop ((drawable process-drawable))
   (let ((crate (the-as crate drawable)))
     (set! (-> crate do-fancies) #f)
   )
 
   (none)
+)
+
+(define vec-000-2x2-posm (new 'static 'vector))
+(define vec-001-2x2-posm (new 'static 'vector))
+(define vec-010-2x2-posm (new 'static 'vector))
+(define vec-011-2x2-posm (new 'static 'vector))
+(define vec-100-2x2-posm (new 'static 'vector))
+(define vec-101-2x2-posm (new 'static 'vector))
+(define vec-110-2x2-posm (new 'static 'vector))
+(define vec-111-2x2-posm (new 'static 'vector))
+
+(defun setup-2x2-posm (
+      (w float) (h float)
+      (x float) (y float) (z float)
+      (rx float) (ry float) (rz float)
+    )
+  (let ((half-w (/ w 2.0)))
+    (set-vector! vec-000-2x2-posm (meters (- x half-w)) (meters y)       (meters (- z half-w)) 1.0)
+    (set-vector! vec-001-2x2-posm (meters (+ x half-w)) (meters y)       (meters (- z half-w)) 1.0)
+    (set-vector! vec-010-2x2-posm (meters (- x half-w)) (meters y)       (meters (+ z half-w)) 1.0)
+    (set-vector! vec-011-2x2-posm (meters (+ x half-w)) (meters y)       (meters (+ z half-w)) 1.0)
+    (set-vector! vec-100-2x2-posm (meters (- x half-w)) (meters (+ y h)) (meters (- z half-w)) 1.0)
+    (set-vector! vec-101-2x2-posm (meters (+ x half-w)) (meters (+ y h)) (meters (- z half-w)) 1.0)
+    (set-vector! vec-110-2x2-posm (meters (- x half-w)) (meters (+ y h)) (meters (+ z half-w)) 1.0)
+    (set-vector! vec-111-2x2-posm (meters (+ x half-w)) (meters (+ y h)) (meters (+ z half-w)) 1.0)
+  )
+  
+  (none)
+)
+
+(defun set-2x2-posm (
+      (name-000 string) (name-001 string) (name-010 string) (name-011 string)
+      (name-100 string) (name-101 string) (name-110 string) (name-111 string)
+    )
+  (let (
+        (ent-000 (entity-by-name name-000))
+        (ent-001 (entity-by-name name-001))
+        (ent-010 (entity-by-name name-010))
+        (ent-011 (entity-by-name name-011))
+        (ent-100 (entity-by-name name-100))
+        (ent-101 (entity-by-name name-101))
+        (ent-110 (entity-by-name name-110))
+        (ent-111 (entity-by-name name-111))
+      )
+    (vector-copy! (-> ent-000 extra trans) vec-000-2x2-posm)
+    (vector-copy! (-> ent-001 extra trans) vec-001-2x2-posm)
+    (vector-copy! (-> ent-010 extra trans) vec-010-2x2-posm)
+    (vector-copy! (-> ent-011 extra trans) vec-011-2x2-posm)
+    (vector-copy! (-> ent-100 extra trans) vec-100-2x2-posm)
+    (vector-copy! (-> ent-101 extra trans) vec-101-2x2-posm)
+    (vector-copy! (-> ent-110 extra trans) vec-110-2x2-posm)
+    (vector-copy! (-> ent-111 extra trans) vec-111-2x2-posm)
+  )
 )
 
 ;; Macros can be used more-or-less just like functions
@@ -484,3 +565,15 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
 
 (defun spawn-money-meters ((x float) (y float) (z float) (amount float) (bob? symbol))
   (let ((vec (new 'stack-no-clear 'vector))) (set-vector-meters! vec x y z) (spawn-money vec amount bob?)))
+
+(defmacro inspect-vecm (v)
+  `(let ((vec ,v))
+    (format #t "(~M, ~M, ~M, ~F)~%" (-> vec x) (-> vec y) (-> vec z) (-> vec w))
+  )
+)
+
+(defmacro inspect-vecmr (v)
+  `(let ((vec ,v))
+    (format #t "(~M, ~M, ~M, ~R)~%" (-> vec x) (-> vec y) (-> vec z) (-> vec w))
+  )
+)

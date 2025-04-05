@@ -366,7 +366,7 @@
   (when (or (not arg0) (= arg0 'eco))
     (set! (-> this eco-timeout) 0)
     (set! (-> this eco-level) 0.0)
-    (set! (-> this eco-pickup-time) (-> *display* game-frame-counter)))
+    (set! (-> this eco-pickup-time) (igt-gameplay)))
   (when (or (not arg0) (= arg0 'health))
     (set! (-> this health-max) (-> *FACT-bank* health-max-default))
     (set! (-> this health) (-> this health-max))
@@ -490,7 +490,7 @@
        ;; this check now doesn't make much sense...
        (when (and (= eco-lev 0.0) (< 0.0 (-> this eco-level)))
          ;; didn't have eco and now we do, remember when
-         (set! (-> this eco-pickup-time) (-> *display* game-frame-counter))
+         (set! (-> this eco-pickup-time) (igt-gameplay))
          ;; send a reset-collide message. Not sure why we do this.
          (send-event (-> this process) 'reset-collide))
        ;; this logic prevents eco from respawning before you are out.
@@ -498,9 +498,9 @@
        (set! (-> this eco-timeout)
              (the-as seconds
                      (min (the-as int (+ (-> this eco-timeout) (* (the-as int (-> *FACT-bank* eco-single-timeout)) (the int amount))))
-                          (the-as int (+ (-> *FACT-bank* eco-full-timeout) (- (-> *display* game-frame-counter) (-> this eco-pickup-time)))))))
+                          (the-as int (+ (-> *FACT-bank* eco-full-timeout) (- (igt-gameplay) (-> this eco-pickup-time)))))))
        ;; if you max out the eco, this should trigger
-       (if (>= (the-as int (- (-> this eco-timeout) (the-as uint (- (-> *display* game-frame-counter) (-> this eco-pickup-time)))))
+       (if (>= (the-as int (- (-> this eco-timeout) (the-as uint (- (igt-gameplay) (-> this eco-pickup-time)))))
                (the-as int (-> *FACT-bank* eco-full-timeout)))
          (set! (-> this eco-level) 2.0))
        ;; sound and controller vibration.

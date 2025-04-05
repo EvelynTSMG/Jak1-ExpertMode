@@ -11,7 +11,7 @@
 ;; The cpad-set-buzz! function can be used for vibration.
 
 ;; in display, but we haven't gotten to display-h.gc yet.
-(define-extern get-current-time (function time-frame))
+(define-extern igt-no-pause (function time-frame))
 
 (define-extern get-integral-current-time (function time-frame))
 
@@ -246,11 +246,11 @@
     ((= buzz-amount (-> pad buzz-val buzz-idx))
      ;; we are already buzzing at this intensity.
      ;; buzz for max (old_buzz, new_buzz) duration
-     (set! (-> pad buzz-time buzz-idx) (max (-> pad buzz-time buzz-idx) (+ (get-current-time) duration))))
+     (set! (-> pad buzz-time buzz-idx) (max (-> pad buzz-time buzz-idx) (+ (igt-no-pause) duration))))
     ((< (-> pad buzz-val buzz-idx) (the-as uint buzz-amount))
      ;; buzz harder than the older value, overwrite the old buzz.
      (set! (-> pad buzz-val buzz-idx) buzz-amount)
-     (set! (-> pad buzz-time buzz-idx) (+ (get-current-time) duration))))
+     (set! (-> pad buzz-time buzz-idx) (+ (igt-no-pause) duration))))
   (none))
 
 ;; the four controllers
@@ -283,7 +283,7 @@
            (dotimes (buzz-idx 2)
              (cond
                ;; check if okay to buzz:
-               ((and (-> pad buzz) (< (get-current-time) (-> pad buzz-time buzz-idx)) (= *master-mode* 'game))
+               ((and (-> pad buzz) (< (igt-no-pause) (-> pad buzz-time buzz-idx)) (= *master-mode* 'game))
                 (let ((v1-10 buzz-idx))
                   (cond
                     ((zero? v1-10)
@@ -376,7 +376,7 @@
            ;; if the pad was changed or stick0 pushed, update the last changed time.
            (if (or (!= (-> pad button0-abs 0) (-> pad button0-abs 1))
                    (or (< STICK_DEADZONE (-> pad stick0-speed)) (zero? (-> pad change-time))))
-             (set! (-> pad change-time) (get-current-time))))
+             (set! (-> pad change-time) (igt-no-pause))))
           (else
            ;; invalid bits set, controller is not connected.
            (cpad-invalid! pad))))))

@@ -571,6 +571,7 @@
   (accessibility-options #x1010)
   (money-starburst #x1011)
   (skip-cells #x1012)
+  (unstable-racer #x1013)
   (ps2-options #x1020)
   (ps2-load-speed #x1021)
   (ps2-parts #x1022)

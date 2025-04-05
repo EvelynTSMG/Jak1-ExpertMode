@@ -21,10 +21,16 @@
 
 ;; for some reason, the display also tracks some timing stuff.
 
-(defun get-current-time ()
+(defun igt-no-pause ()
   "Get the in game time.  This advances when the game is unpaused.
    This increases at the same rate for PAL/NTSC and if the game is lagging."
-  (-> *display* base-frame-counter))
+  (-> *display* base-frame-counter)
+)
+
+(defun igt-gameplay ()
+  "Get the in-game-time. This advances when the game is unpaused and a cutscene isn't occuring"
+  (-> *display* game-frame-counter)
+)
 
 (defun get-integral-current-time ()
   "Get the game time as a number of frames. This advances at different rates for PAL/NTSC.

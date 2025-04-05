@@ -822,9 +822,9 @@
       (remove-setting! 'sound-flava))
   :trans gorge-trans
   :code (behavior ()
-      (set! (-> self state-time) (-> *display* game-frame-counter))
+      (set! (-> self state-time) (igt-gameplay))
       (loop
-        (seconds->race-time (-> self this-time) (- (-> *display* game-frame-counter) (-> self state-time)))
+        (seconds->race-time (-> self this-time) (- (igt-gameplay) (-> self state-time)))
         (seekl! (-> self timer-pos-offset) 0 (the int (* 5.0 (-> *display* time-adjust-ratio))))
         (completed? (-> self ticker))
         (gorge-start-draw-time #f #f)
@@ -871,7 +871,7 @@
   (let ((a0-3 (new 'stack-no-clear 'vector)))
     (set! (-> a0-3 quad) (-> this root trans quad))
     (+! (-> a0-3 y) -8192.0)
-    (gorge-init a0-3 (new 'static 'vector :z 1.0) 102400.0 40960.0))
+    (gorge-init a0-3 *z-vector* 102400.0 40960.0))
   (set! (-> this tasks) (get-task-control (-> this entity extra perm task)))
   (set! (-> this start-banner) (the-as handle #f))
   (set! (-> this end-banner) (the-as handle #f))

@@ -36,7 +36,7 @@
       (set! (-> cam-pos x) x)
       (set! (-> cam-pos z) z)
       (set! (-> cam-pos y) (meters 2.))
-      (forward-down->inv-matrix cam-inv-rot cam-pos (new 'static 'vector :y 1.0))
+      (forward-down->inv-matrix cam-inv-rot cam-pos *y-vector*)
       ;; if the camera is here.
       (set! (-> cam-pos x) (- 0. x))
       (set! (-> cam-pos z) (- 0. z))

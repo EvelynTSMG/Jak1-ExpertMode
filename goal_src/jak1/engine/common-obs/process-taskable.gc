@@ -237,7 +237,7 @@
 (defbehavior process-taskable-play-anim-exit process-taskable ()
   (logclear! (-> self skel status) (janim-status blerc))
   (let ((a0-4 (handle->process (-> self camera)))) (if a0-4 (deactivate a0-4)))
-  (set! (-> self last-talk) (-> *display* game-frame-counter))
+  (set! (-> self last-talk) (igt-gameplay))
   (process-taskable-method-52 self)
   (none))
 
@@ -538,7 +538,7 @@
       (cond
         ((not *target*))
         ((not (-> self will-talk))
-         (if (>= (- (-> *display* game-frame-counter) (-> self last-talk)) (seconds 10)) (set! (-> self will-talk) #t)))
+         (if (>= (- (igt-gameplay) (-> self last-talk)) (seconds 10)) (set! (-> self will-talk) #t)))
         ((begin
            (process-taskable-method-46 self)
            (and (not (and (logtest? (-> *target* control unknown-surface00 flags) (surface-flags jump))
@@ -665,12 +665,12 @@
   (the-as symbol 0))
 
 (defmethod ambient-control-method-9 ((this ambient-control))
-  (set! (-> this last-ambient-time) (-> *display* game-frame-counter))
+  (set! (-> this last-ambient-time) (igt-gameplay))
   0
   (none))
 
 (defmethod vector-for-ambient-limited ((this ambient-control) (dst vector) (min-time-since-last time-frame) (max-dist float) (source process-drawable))
-  (when (>= min-time-since-last (- (-> *display* game-frame-counter) (-> this last-ambient-time)))
+  (when (>= min-time-since-last (- (igt-gameplay) (-> this last-ambient-time)))
     (set! dst (the-as vector #f))
     (goto early-ret)
   )
@@ -690,7 +690,7 @@
              (or arg1 (can-hint-be-played? (text-id one) (the-as entity #f) (the-as string #f)))
              (= (-> *level* loading-level) (-> *level* level-default))
              (ambient-hint-spawn arg0 arg2 *entity-pool* 'ambient))
-    (set! (-> this last-ambient-time) (-> *display* game-frame-counter))
+    (set! (-> this last-ambient-time) (igt-gameplay))
     (set! (-> this last-ambient) arg0)
     (return #t))
   #f)

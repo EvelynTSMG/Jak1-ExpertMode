@@ -152,6 +152,81 @@
   )
 )
 
+(defmacro rolling-mod-pickup (drawable e)
+  `(case (-> drawable name) :comp name=
+    ;; MISC
+    ; Dark Eco 2x2 Stack @ First Area, above moles hole (Dark Eco 2x2 Stack = 2.00w 1.51h)
+    (('crate-2250) ; Make sure this is on the last entity initialized!
+      (setup-2x2-posm
+        2.0 1.57
+        -59.85 24.81 -1562.50
+        0.0 0.0 0.0
+      )
+      (set-2x2-posm
+        "crate-2250" "crate-2251" "crate-2252" "crate-2253"
+        "crate-2254" "crate-2255" "crate-2256" "crate-2257"
+      )
+    )
+    ; Dark Eco 2x2 Stack @ First Area, centered to account for the previous being moved
+    (('crate-2242) ; Make sure this is on the last entity initialized!
+      (setup-2x2-posm
+        2.0 1.57
+        -15.62 42.98 -1560.75
+        0.0 0.0 0.0
+      )
+      (set-2x2-posm
+        "crate-2242" "crate-2243" "crate-2244" "crate-2245"
+        "crate-2246" "crate-2247" "crate-2248" "crate-2249"
+      )
+    )
+    ; Money to surround the abovementioned dark eco stack
+    (('money-3408) (set-posm e -23.23 42.67 -1564.62)) ; br
+    (('money-3409) (set-posm e -23.28 44.10 -1557.76)) ; tr
+    (('money-3410) (set-posm e  -8.79 44.62 -1557.17)) ; tl
+    (('money-3411) (set-posm e  -8.98 42.87 -1564.68)) ; bl
+
+    ;; FLIES
+    (('crate-2176) (set-posm e -256.21 25.08 -1564.12)) ; Second Area, on top of rock over lake -> zoomer
+    (('crate-2188) (set-posm e -318.39 42.53 -1438.57)) ; Second Area, on precursor pillar attached to pillartop #2 -> zoomer
+    (('crate-2187) (set-posm e -253.86 39.56 -1419.23)) ; Second Area, perilous ledge next to jump over lake -> zoomer
+    (('crate-2289) (set-posm e   29.25 25.87 -1671.34)) ; First Area, near the start on the right -> zoomer
+    (('crate-2194) (set-posm e  -25.12 30.00 -1529.83)) ; First Area, at the end of Dead Man's Gorge -> zoomer
+    (('crate-2199) (set-posm e    2.35 40.88 -1604.27)) ; First Area, behind a rock near the bridge -> zoomer
+    (('crate-2209) (set-posm e -303.86 24.99 -1489.55)) ; Second Area, lakeshore -> zoomer
+
+    ;; PURPLE RACE RINGS (6m above target pos)
+    ; order: 9 1 25 12 13 14 15 16 17 18 19 20 21 22 2 26 4 5 6 7 8 10 11 3 23 24
+    ; first race ring (race-ring-9) left in vanilla position
+
+    ;;TODO: FINAL CELL DOESN'T FOOKIN WORK
+    ;; (('race-ring-1)  (set-poser drawable e -131.34 26.49 -1469.32  30.4))
+    ;; (('race-ring-25) (set-poser drawable e -200.00 35.43 -1450.00 -10.4))
+    ;; (('race-ring-12) (set-poser drawable e -240.14 30.20 -1453.90  22.4))
+    ;; (('race-ring-13) (set-poser drawable e -259.40 29.28 -1431.02  54.0))
+    ;; (('race-ring-14) (set-poser drawable e -291.42 29.71 -1431.58 -86.4))
+    ;; (('race-ring-15) (set-poser drawable e -312.00 30.11 -1450.00  -4.2))
+    ;; (('race-ring-16) (set-poser drawable e -332.65 29.33 -1521.24 -90.0))
+    ;; (('race-ring-17) (set-poser drawable e -350.26 29.82 -1549.78 -22.8))
+    ;; (('race-ring-18) (set-poser drawable e -373.64 31.63 -1589.22  75.7))
+    ;; (('race-ring-19) (set-poser drawable e -374.59 30.56 -1631.80  90.0))
+    ;; (('race-ring-20) (set-poser drawable e -367.61 23.70 -1727.46  58.4))
+    ;; (('race-ring-21) (set-poser drawable e -326.40 23.84 -1740.62 -40.3))
+    ;; (('race-ring-22) (set-poser drawable e -279.91 35.93 -1687.19  -9.0))
+    ;; (('race-ring-2)  (set-poser drawable e -231.42 37.36 -1666.33   6.0))
+    ;; (('race-ring-26) (set-poser drawable e -154.74 27.39 -1668.18 -49.0))
+    ;; (('race-ring-4)  (set-poser drawable e -127.67 31.61 -1605.96  54.0))
+    ;; (('race-ring-5)  (set-poser drawable e -139.52 30.00 -1566.12 -64.0))
+    ;; (('race-ring-6)  (set-poser drawable e  -68.18 42.92 -1505.30 -51.0))
+    ;; (('race-ring-7)  (set-poser drawable e  -50.92 41.25 -1477.60 -51.0))
+    ;; (('race-ring-8)  (set-poser drawable e  -24.63 29.02 -1438.15  13.4))
+    ;; (('race-ring-10) (set-poser drawable e   -8.66 34.80 -1462.21  34.0))
+    ;; (('race-ring-11) (set-poser drawable e    7.24 39.28 -1472.25 -51.0))
+    ;; (('race-ring-3)  (set-poser drawable e  -14.06 45.15 -1492.42  67.0))
+    ;; (('race-ring-23) (set-poser drawable e   -4.94 49.02 -1516.18 -38.3))
+    ;; (('race-ring-24) (set-poser drawable e  -33.60 54.61 -1539.72 -43.6))
+  )
+)
+
 (defmacro village3-mod-pickup (drawable e)
   `(case (-> drawable name) :comp name=
     ;; FLIES
