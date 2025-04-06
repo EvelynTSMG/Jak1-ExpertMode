@@ -732,15 +732,23 @@
       
       (if (-> *pc-settings* unstable-racer?)
         (begin
-          ; hehe
-          (if (rand-vu-percent? (-> *RACER-bank* instability-dir-chance))
-            (*! (-> self racer instability) -1.0)
+          (let (
+                (instability-dir (sign (-> self racer instability)))
+                (speed-ratio (/ (vector-length (-> self control transv)) (-> self racer transv-max)))
+              )
+            ; hehe
+            (if (rand-vu-percent? (-> *RACER-bank* instability-dir-chance))
+              (*! (-> self racer instability) -1.0)
+            )
+            (if (zero? (-> self racer instability))
+              (+! (-> self racer instability) (-> *RACER-bank* instability))
+              (+! (-> self racer instability) (* (-> *RACER-bank* instability) instability-dir speed-ratio))
+            )
+            (fminmax! (-> self racer instability)
+              (- (* speed-ratio (-> *RACER-bank* max-instability)))
+              (* speed-ratio (-> *RACER-bank* max-instability))
+            )
           )
-          (if (zero? (-> self racer instability))
-            (+! (-> self racer instability) (-> *RACER-bank* instability))
-            (+! (-> self racer instability) (* (sign (-> self racer instability)) (-> *RACER-bank* instability)))
-          )
-          (fminmax! (-> self racer instability) (- (-> *RACER-bank* max-instability)) (-> *RACER-bank* max-instability))
         )
         (set! (-> self racer instability) 0.0)
       )
